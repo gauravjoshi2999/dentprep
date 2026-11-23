@@ -37,7 +37,7 @@
       "status": "Partial",
       "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
       "acceptance": "T01,T06-T10,T48",
-      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR #21 CI/live/native expand-contract verified; actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q005",
@@ -461,7 +461,7 @@
       "status": "Partial",
       "code_area": "/plan; study_plans, study_tasks, profiles",
       "acceptance": "T17-T20,T50",
-      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR #21 CI/live/native expand-contract verified; actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q052",
@@ -489,7 +489,7 @@
       "status": "Partial",
       "code_area": "/plan; study_plans, study_tasks, profiles",
       "acceptance": "T17-T20,T50",
-      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR #21 CI/live/native expand-contract verified; actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q055",
@@ -517,7 +517,7 @@
       "status": "Partial",
       "code_area": "/plan; study_plans, study_tasks, profiles",
       "acceptance": "T17-T20,T50",
-      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR #21 CI/live/native expand-contract verified; actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q058",

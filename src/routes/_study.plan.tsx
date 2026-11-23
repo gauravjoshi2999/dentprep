@@ -382,7 +382,8 @@ function Plan() {
                                   Practice
                                 </Link>
                               ) : ["practice", "test"].includes(t.task_type) ||
-                                t.title.startsWith("Revise ") ? (
+                                (t.task_type === "revision" &&
+                                  t.title.replace(/^(Continue: )+/, "").startsWith("Revise ")) ? (
                                 <Link to="/practice" className="text-teal underline">
                                   Open practice
                                 </Link>

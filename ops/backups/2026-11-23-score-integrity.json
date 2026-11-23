@@ -1,0 +1,257 @@
+{
+  "captured_at": "2026-11-23T19:18Z",
+  "source": "Read-only native DB metadata immediately before score-integrity grant hardening; no user rows.",
+  "counts": {
+    "answers": 0,
+    "attempts": 0,
+    "revisions": 0
+  },
+  "grants": [
+    {
+      "grantee": "anon",
+      "privilege": "INSERT",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "SELECT",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "UPDATE",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "DELETE",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "TRUNCATE",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "REFERENCES",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "TRIGGER",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "INSERT",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "SELECT",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "UPDATE",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "DELETE",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "TRUNCATE",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "REFERENCES",
+      "table": "attempts"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "TRIGGER",
+      "table": "attempts"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "INSERT",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "UPDATE",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "TRUNCATE",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "REFERENCES",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "TRIGGER",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "INSERT",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "UPDATE",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "TRUNCATE",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "REFERENCES",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "TRIGGER",
+      "table": "test_answers"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "INSERT",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "SELECT",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "UPDATE",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "DELETE",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "TRUNCATE",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "REFERENCES",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "anon",
+      "privilege": "TRIGGER",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "INSERT",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "SELECT",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "UPDATE",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "DELETE",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "TRUNCATE",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "REFERENCES",
+      "table": "revision_schedule"
+    },
+    {
+      "grantee": "authenticated",
+      "privilege": "TRIGGER",
+      "table": "revision_schedule"
+    }
+  ],
+  "policies": [
+    {
+      "cmd": "DELETE",
+      "permissive": "PERMISSIVE",
+      "policyname": "Own attempts delete",
+      "qual": "(auth.uid() = user_id)",
+      "roles": ["authenticated"],
+      "schemaname": "public",
+      "tablename": "attempts",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policyname": "Own attempts read",
+      "qual": "(auth.uid() = user_id)",
+      "roles": ["authenticated"],
+      "schemaname": "public",
+      "tablename": "attempts",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policyname": "Own revision",
+      "qual": "(auth.uid() = user_id)",
+      "roles": ["authenticated"],
+      "schemaname": "public",
+      "tablename": "revision_schedule",
+      "with_check": "(auth.uid() = user_id)"
+    },
+    {
+      "cmd": "DELETE",
+      "permissive": "PERMISSIVE",
+      "policyname": "Own answers delete",
+      "qual": "(auth.uid() = user_id)",
+      "roles": ["authenticated"],
+      "schemaname": "public",
+      "tablename": "test_answers",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policyname": "Own answers read",
+      "qual": "(auth.uid() = user_id)",
+      "roles": ["authenticated"],
+      "schemaname": "public",
+      "tablename": "test_answers",
+      "with_check": null
+    }
+  ],
+  "submit_before": {
+    "search_path": ["public"],
+    "definition_reference": "ops/backups/2026-11-23-attempt-access.json"
+  }
+}

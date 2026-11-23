@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 const files = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
 const failures = [];
 for (const path of files) {
+  if (/\.(?:jks|keystore)$/.test(path)) failures.push(`${path}: Android signing key is tracked`);
   if (/(^|\/)\.env(?:\.|$)/.test(path) && !path.endsWith('.env.example')) failures.push(`${path}: private environment file is tracked`);
   const text = readFileSync(path, 'utf8');
   if (/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/.test(text)) failures.push(`${path}: private key found`);

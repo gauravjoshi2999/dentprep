@@ -16,6 +16,14 @@ Database hardening is recorded in `ops/harden-learning-access.sql` and verified 
 
 CI runs source checks, TypeScript, unit tests, SSR build and Chromium acceptance tests for desktop and mobile viewports. Browser tests use isolated mocked backend data. Real production sign-in, physical-device acceptance and deployment are separate checks.
 
+## PWA and offline notes
+
+The manifest and service worker support installation on compatible HTTPS browsers. The worker caches only the separate offline reading page and its public assets. Authenticated HTML, API responses, server functions, answers, study plans and interview transcripts are never cached. On network failure, navigation opens the public offline reading shelf.
+
+Candidates can explicitly save a published lesson with a recorded review date on their device. Offline notes are plain text and show their review/save dates; they can become stale, so reconnect to check for updates or withdrawal. The reading shelf lets users remove each copy. Offline quizzes, scoring, account changes and interviews are unavailable. Build-time hashing updates the worker whenever offline assets change. Development registration is opt-in with `VITE_ENABLE_PWA=true`.
+
+The separate [Android configuration](android/README.md) builds a Trusted Web Activity wrapper against the deployed SSR app. The default `example.invalid` URL is configuration verification only. A usable release needs a verified production URL, signing certificate, Digital Asset Links and physical-device QA; no production APK or Play Store release is claimed.
+
 ## Stack
 
 React 19, TypeScript, TanStack Start, Tailwind CSS, Lovable Cloud / Supabase PostgreSQL. Test tooling: Vitest.

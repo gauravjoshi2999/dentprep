@@ -16,6 +16,7 @@ export default defineConfig({
     url: "http://127.0.0.1:4173",
     reuseExistingServer: false,
     env: {
+      VITE_ENABLE_PWA: "true",
       VITE_SUPABASE_URL: "https://example.supabase.co",
       VITE_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_ci_only_dummy",
       SUPABASE_URL: "https://example.supabase.co",

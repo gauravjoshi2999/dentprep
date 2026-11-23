@@ -8,6 +8,7 @@ import { EmptyState, ErrorBlock, LoadingBlock, PageHeader } from "@/components/a
 import { Markdown } from "@/components/app/markdown";
 import { BookmarkButton } from "@/components/app/bookmark-button";
 import { Button } from "@/components/ui/button";
+import { saveOfflineLesson } from "@/lib/offline";
 
 export const Route = createFileRoute("/_study/lesson/$subjectSlug/$lessonSlug")({
   component: Lesson,
@@ -45,6 +46,14 @@ function Lesson() {
       void qc.invalidateQueries({ queryKey: ["activity", user?.id] });
       toast.success("Progress saved");
     },
+    onError: (e) => toast.error(e.message),
+  });
+  const offline = useMutation({
+    mutationFn: () => {
+      if (!lesson) throw new Error("Lesson unavailable");
+      return saveOfflineLesson(lesson);
+    },
+    onSuccess: () => toast.success("Lesson saved for offline reading on this device"),
     onError: (e) => toast.error(e.message),
   });
   if (query.isPending) return <LoadingBlock />;
@@ -117,6 +126,11 @@ function Lesson() {
         </section>
       )}
       <div className="mt-8 flex flex-wrap gap-3">
+        {lesson.reviewed_on && (
+          <Button variant="outline" disabled={offline.isPending} onClick={() => offline.mutate()}>
+            Save for offline reading
+          </Button>
+        )}
         {user ? (
           <Button
             disabled={complete.isPending || progress.isPending || progress.isError}

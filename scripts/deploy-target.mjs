@@ -7,16 +7,32 @@ export function deployedWorkerOrigin(output, expectedWorker = "dentprep") {
   if (!/^[a-z][a-z0-9-]{0,62}$/.test(expectedWorker)) {
     throw new Error("Invalid expected Worker name");
   }
-  const urls = output.match(/https:\/\/[^\\s"\x27<>]+/g) ?? [];
+  const urls = output.match(/https:\/\/[^\s"'<>]+/gi) ?? [];
   const accepted = new Set();
   for (const candidate of urls) {
-    let url;\n    try { url = new URL(candidate.replace(/[),;]+$/, "")); } catch { continue; }
+    let url;
+    try {
+      url = new URL(candidate.replace(/[),;]+$/, ""));
+    } catch {
+      continue;
+    }
     const suffix = ".workers.dev";
     if (!url.hostname.endsWith(suffix)) continue;
     const firstPart = url.hostname.slice(0, -suffix.length);
     const labels = firstPart.split(".");
-    if (labels.length !== 2 || labels[0] !== expectedWorker || !/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(labels[1])) continue;
-    if (url.pathname !== "/" || url.search || url.hash || url.port || url.username || url.password) continue;
+    if (
+      labels.length !== 2 ||
+      labels[0] !== expectedWorker ||
+      !/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(labels[1])
+    ) continue;
+    if (
+      url.pathname !== "/" ||
+      url.search ||
+      url.hash ||
+      url.port ||
+      url.username ||
+      url.password
+    ) continue;
     accepted.add(url.origin);
   }
   if (accepted.size !== 1) {

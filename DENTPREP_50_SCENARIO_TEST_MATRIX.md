@@ -152,7 +152,7 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T19 — Study plan renew
 
-- Partial implementation evidence: continuous-cycle unit tests and real rollback-only SQL cover 7/15/30 saves, carry once, history, owned queue, retry/stale save and atomic daily budget failure. Production application and CI fixture results are pending this checkpoint. Real account/cross-device scenario remains NOT RUN. See `ops/STUDY_CYCLE_ROLLOUT.md`.
+- Partial implementation evidence: PR #21 (live `15a68141d84ee813c3e383cb30ec24d502a549d4`) continuous-cycle unit tests and real rollback-only SQL cover 7/15/30 saves, carry once, history, owned queue, retry/stale save and atomic daily budget failure. 35 unit tests and 21 passing desktop/mobile fixtures; production 45247885359 and DB expand/contract PASS, original 1 plan/30 tasks retained. Full real account/cross-device scenario remains NOT RUN. See `ops/STUDY_CYCLE_ROLLOUT.md`.
 
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: 7/15/30 day plan cycles complete and renew indefinitely without study deadline or duplicate tasks.
@@ -162,7 +162,7 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T20 — Carry-forward
 
-- Partial implementation evidence: continuous-cycle unit tests and real rollback-only SQL cover 7/15/30 saves, carry once, history, owned queue, retry/stale save and atomic daily budget failure. Production application and CI fixture results are pending this checkpoint. Real account/cross-device scenario remains NOT RUN. See `ops/STUDY_CYCLE_ROLLOUT.md`.
+- Partial implementation evidence: PR #21 (live `15a68141d84ee813c3e383cb30ec24d502a549d4`) continuous-cycle unit tests and real rollback-only SQL cover 7/15/30 saves, carry once, history, owned queue, retry/stale save and atomic daily budget failure. 35 unit tests and 21 passing desktop/mobile fixtures; production 45247885359 and DB expand/contract PASS, original 1 plan/30 tasks retained. Full real account/cross-device scenario remains NOT RUN. See `ops/STUDY_CYCLE_ROLLOUT.md`.
 
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: Missed/overdue tasks reschedule, revision queue updates, no loss of historic completion.

@@ -24,3 +24,7 @@ Merge/live `a6ea77536aade2356a051f0b6c089aa012fcd586`, PR #19; production [45243
 ## P0-04 account-local state isolation release
 
 PR #20, head `ce90671c5f9979b2118f1be4f04583ba52d2fb1f`, merge/live `889cb9bcf6767a31a0ca5bf8460a47bb56aabb6b`. PR CI 45245114228 SUCCESS; production [45246246768](https://github.com/gauravjoshi2999/dentprep/actions/runs/45246246768) SUCCESS; artifact `14853303268`. Fresh CLI exact revision/SSR/assets/routes/PWA PASS. Main CI 45246246939 SUCCESS (19 fixture browser tests passed, one intentional desktop skip). No database mutation. Real-account browser/device gate remains BLOCKED.
+
+## P1-01 accepted release
+
+PR #21, head `e25caad72e74c2f508f33a72d518243801b3eca4`, merge/live `15a68141d84ee813c3e383cb30ec24d502a549d4`. PR CI 45247389604, main CI 45247885358 and production [45247885359](https://github.com/gauravjoshi2999/dentprep/actions/runs/45247885359) SUCCESS. Artifact `14853939298`. Fresh exact-SHA CLI verification PASS. Expand/contract and native rollback regression PASS, original 1 user/1 plan/30 tasks retained; owned lineage empty before actual learner renewal. Full clinical/adaptive/real-device gates remain separate.

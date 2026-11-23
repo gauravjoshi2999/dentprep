@@ -59,7 +59,13 @@ try {
   assert.deepEqual(await response.json(), { app: "dentprep", status: "ok", revision });
   const home = await fetch("http://127.0.0.1:8790/", { signal: AbortSignal.timeout(15_000) });
   assert.equal(home.status, 200);
-  assert((await home.text()).includes("DentPrep"), "Built Worker did not render the SSR homepage.");
+  const homeHtml = await home.text();
+  assert(homeHtml.includes("DentPrep"), "Built Worker did not render the DentPrep shell.");
+  // A successful HTTP 200 containing only the root error boundary is NOT a healthy app.
+  assert(
+    homeHtml.includes("Study with clarity.") && !homeHtml.includes("This page didn't load"),
+    "Built Worker served the React root error boundary instead of the actual homepage.",
+  );
   const manifest = await fetch("http://127.0.0.1:8790/manifest.webmanifest");
   assert.equal((await manifest.json()).short_name, "DentPrep");
   console.log(`Built Cloudflare Worker served release ${revision}, SSR and PWA successfully.`);

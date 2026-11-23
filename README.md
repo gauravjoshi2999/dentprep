@@ -14,11 +14,11 @@ React 19, TypeScript, TanStack Start, Tailwind CSS, Lovable Cloud / Supabase Pos
 
 ## Get started
 
-1. Install Node.js 22+.
-2. Run `npm install`.
+1. Install Node.js 24 (see `.nvmrc`).
+2. Run `npm ci` using the committed lockfile.
 3. Copy `.env.example` to `.env` and enter DentPrep backend's public URL and publishable key. Never commit `.env`.
 4. Run `npm run dev`.
-5. Run `npm test` and `npm run build` before merging changes.
+5. Run `npm run check:security`, `npm run typecheck`, `npm test` and `npm run build` before merging changes.
 
 **Deployment note:** This project uses TanStack Start SSR and server middleware. Do not host it as a purely static GitHub Pages site without a separate deployment strategy. Provide the intended runtime and Supabase settings when deploying to a supported host.
 

@@ -48,11 +48,11 @@ test("reviewed public notes save locally and remain readable through the offline
   });
   // A fresh navigation is controlled by the installed worker.
   await page.goto("/offline.html");
-  await expect(page.getByRole("button", { name: /Regular study practice/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Regular study practice/ })).toBeVisible();
   await context.setOffline(true);
   await page.goto("/library");
   await expect(page.getByRole("heading", { name: "Your offline reading shelf" })).toBeVisible();
-  await page.getByRole("button", { name: /Regular study practice/ }).click();
+  await page.getByRole("button", { name: /^Regular study practice/ }).click();
   await expect(page.locator("#notes")).toContainText("Choose a regular time for learning.");
   const keys = await page.evaluate(() => caches.keys());
   expect(keys.every((k) => k.startsWith("dentprep-offline-"))).toBe(true);

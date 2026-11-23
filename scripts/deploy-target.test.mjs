@@ -13,12 +13,14 @@ test("ignores unrelated links in a deployment log", () => {
 });
 
 test("rejects a missing, ambiguous or misleading URL instead of claiming success", () => {
-  for (const output of [
+  const invalidLogs = [
     "Deployed successfully but no live URL",
     "https://other.user.workers.dev",
     "https://dentprep.p1.workers.dev https://dentprep.p2.workers.dev",
-    "https://other.dentprep.user.workers.dev",\n    "https://dentprep.user.workers.dev/malicious",
-  ]) {
+    "https://other.dentprep.user.workers.dev",
+    "https://dentprep.user.workers.dev/malicious",
+  ];
+  for (const output of invalidLogs) {
     assert.throws(() => deployedWorkerOrigin(output), /Unable to uniquely identify/);
   }
 });

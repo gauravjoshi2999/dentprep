@@ -17,7 +17,7 @@ test("rejects a missing, ambiguous or misleading URL instead of claiming success
     "Deployed successfully but no live URL",
     "https://other.user.workers.dev",
     "https://dentprep.p1.workers.dev https://dentprep.p2.workers.dev",
-    "https://other.dentprep.user.workers.dev",
+    "https://other.dentprep.user.workers.dev",\n    "https://dentprep.user.workers.dev/malicious",
   ]) {
     assert.throws(() => deployedWorkerOrigin(output), /Unable to uniquely identify/);
   }

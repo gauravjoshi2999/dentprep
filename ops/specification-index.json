@@ -368,9 +368,10 @@
       "page": 10,
       "question": "Accuracy percent 90 hone se mastery confirm ho jayegi?",
       "required_behavior": "Nahi. Confidence requires unseen questions, topic coverage, delayed retention, difficulty and sample size. Show accuracy with count and uncertainty; 9/10 is not same evidence as 90/100.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/progress; attempts, test_answers, revision_schedule",
-      "acceptance": "T18,T26-T28,T43"
+      "acceptance": "T18,T26-T28,T43",
+      "implementation_note": "PR #23 latest distinct-question subject/topic report and disclosed sample/heuristic limits verified CI/live. Unseen diagnostic, retention and clinical validity pending."
     },
     {
       "id": "Q042",
@@ -379,7 +380,8 @@
       "required_behavior": "Haan, subject and topic breakdown based on own attempts, filtering reviewed unique items and showing sample counts. Insufficient data -> Not enough evidence.",
       "status": "Partial",
       "code_area": "/progress; attempts, test_answers, revision_schedule",
-      "acceptance": "T18,T26-T28,T43"
+      "acceptance": "T18,T26-T28,T43",
+      "implementation_note": "PR #23 latest distinct-question subject/topic report and disclosed sample/heuristic limits verified CI/live. Unseen diagnostic, retention and clinical validity pending."
     },
     {
       "id": "Q043",

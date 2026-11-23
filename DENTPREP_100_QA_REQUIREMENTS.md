@@ -290,12 +290,16 @@ Evidence: PR #18, deployed `98bf0db3f477c066adda862f31b8257ddf4c2937`; T25 SQL/R
 
 ## Q041 — Accuracy percent 90 hone se mastery confirm ho jayegi?
 
-- SOURCE: Q&A, PDF p.10; status: **Missing**.
+- Implementation: PR #23 /progress latest distinct-question subject/topic report, sample counts, sparse/missing/withdrawn handling and explicit heuristic limits verified in CI/live. Unseen diagnostic, delayed retention and clinical validation remain pending.
+
+- SOURCE: Q&A, PDF p.10; status: **Partial**.
 - Required: Nahi. Confidence requires unseen questions, topic coverage, delayed retention, difficulty and sample size. Show accuracy with count and uncertainty; 9/10 is not same evidence as 90/100.
 - Code/data: /progress; attempts, test_answers, revision_schedule.
 - Acceptance: T18,T26-T28,T43; see scenario matrix for actual evidence.
 
 ## Q042 — Kya har subject ki accuracy alag dikhegi?
+
+- Implementation: PR #23 /progress latest distinct-question subject/topic report, sample counts, sparse/missing/withdrawn handling and explicit heuristic limits verified in CI/live. Unseen diagnostic, delayed retention and clinical validation remain pending.
 
 - SOURCE: Q&A, PDF p.10; status: **Partial**.
 - Required: Haan, subject and topic breakdown based on own attempts, filtering reviewed unique items and showing sample counts. Insufficient data -> Not enough evidence.

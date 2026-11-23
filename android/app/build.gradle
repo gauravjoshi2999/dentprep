@@ -1,6 +1,6 @@
 plugins { id 'com.android.application' }
 
-def launchValue = providers.gradleProperty('dentprepUrl').orElse('https://example.invalid/').get()
+def launchValue = providers.gradleProperty('dentprepUrl').orElse('https://dentprep.gauravjoshi2999.workers.dev/dashboard').get()
 def launchUri = new URI(launchValue)
 if (launchUri.scheme != 'https' || !launchUri.host || launchUri.userInfo || launchUri.query || launchUri.fragment || launchUri.port != -1) {
     throw new GradleException('dentprepUrl must be a public HTTPS URL without credentials, a port, query or fragment.')

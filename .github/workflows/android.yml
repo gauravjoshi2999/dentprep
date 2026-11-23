@@ -1,11 +1,14 @@
-name: DentPrep Android configuration
+name: DentPrep Android debug build
 on:
+  push:
+    branches: [main]
+    paths: ["android/**", ".github/workflows/android.yml"]
   pull_request:
-    paths: ['android/**', '.github/workflows/android.yml']
+    paths: ["android/**", ".github/workflows/android.yml"]
   workflow_dispatch:
     inputs:
       app_url:
-        description: 'Verified production HTTPS DentPrep URL (leave blank for configuration-only build)'
+        description: "DentPrep launch URL on the verified workers.dev origin (default: /dashboard)"
         required: false
         type: string
 permissions:
@@ -13,29 +16,61 @@ permissions:
 jobs:
   debug-build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
-      DENTPREP_APP_URL: ${{ inputs.app_url || 'https://example.invalid/' }}
+      DENTPREP_APP_URL: ${{ inputs.app_url || 'https://dentprep.gauravjoshi2999.workers.dev/dashboard' }}
+      EXPECTED_WEB_REVISION: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.sha }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Validate known DentPrep launch origin
+        run: |
+          node --input-type=module <<'JS'
+          const url = new URL(process.env.DENTPREP_APP_URL);
+          if (url.origin !== 'https://dentprep.gauravjoshi2999.workers.dev' || url.username || url.password || url.search || url.hash || !['/', '/dashboard'].includes(url.pathname)) throw Error('Use the verified DentPrep HTTPS origin and root/dashboard route.');
+          JS
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
       - uses: android-actions/setup-android@v3
         with:
           packages: platform-tools platforms;android-36 build-tools;35.0.0
           log-accepted-android-sdk-licenses: false
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.13'
-      - name: Build Android configuration and run lint
+          gradle-version: "8.13"
+      - name: Build debug APK against verified live DentPrep and run lint
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug :app:lintDebug -PdentprepUrl="$DENTPREP_APP_URL"
+      - name: Verify exact live web release before accepting the APK
+        run: |
+          # Main's compatible web release may still be running. Every bounded retry
+          # must verify the whole exact release; never accept a different revision.
+          for attempt in 1 2 3; do
+            if node scripts/verify-deployment.mjs https://dentprep.gauravjoshi2999.workers.dev "$EXPECTED_WEB_REVISION"; then
+              exit 0
+            fi
+          done
+          exit 1
+      - name: Record debug signature, checksum and acceptance limits
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs android/app/build/outputs/apk/debug/app-debug.apk > android-debug-certificate.txt
+          sha256sum android/app/build/outputs/apk/debug/app-debug.apk > android-debug-SHA256.txt
+          node --input-type=module <<'JS'
+          import { writeFileSync } from 'node:fs';
+          writeFileSync('android-debug-evidence.json', JSON.stringify({ artifactType: 'debug APK for testing; not a production release', launchUrl: process.env.DENTPREP_APP_URL, verifiedWebRevision: process.env.EXPECTED_WEB_REVISION, nativeBuildRevision: process.env.GITHUB_SHA, run: process.env.GITHUB_SERVER_URL + '/' + process.env.GITHUB_REPOSITORY + '/actions/runs/' + process.env.GITHUB_RUN_ID, productionSigning: 'NOT CONFIGURED', assetLinksOwnership: 'NOT VERIFIED', physicalDeviceAndAccountAcceptance: 'NOT RUN', capturedAt: new Date().toISOString() }, null, 2) + '\n');
+          JS
       - name: Upload debug build and lint report
         uses: actions/upload-artifact@v4
         with:
-          name: dentprep-android-debug-configuration
+          name: dentprep-android-debug-${{ github.sha }}
           path: |
             android/app/build/outputs/apk/debug/*.apk
             android/app/build/reports/lint-results-debug.html
+            android-debug-certificate.txt
+            android-debug-SHA256.txt
+            android-debug-evidence.json
           retention-days: 7

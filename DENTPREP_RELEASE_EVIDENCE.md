@@ -32,3 +32,7 @@ PR #21, head `e25caad72e74c2f508f33a72d518243801b3eca4`, merge/live `15a68141d84
 ## Score/revision integrity accepted release
 
 PR #22, head `621cc0834803f9bdbb4a63782eed6c35fcbbe949`, merge/live `137985adfeeaea1114d803b0688f8c2ac063f6e2`. PR CI 45248990949, main CI 45249547705 and production [45249547837](https://github.com/gauravjoshi2999/dentprep/actions/runs/45249547837) SUCCESS; artifact `14855490953`. Exact-SHA CLI PASS. Native regression and grant/search-path enforcement PASS, QA rows rolled back, publication guard enabled; 1 user and original clinical draft counts unchanged. Separate real-account, regrading/versioning and clinical-validation gates remain pending.
+
+## P1-03 accepted release
+
+PR #23, head `cdb8029d31911d60288c3e6ffa221d56c9356017`, merge/live `e3b3ee74db3e8357175189a0907a8463ccae24af`. Main CI 45251461255 and production [45251461187](https://github.com/gauravjoshi2999/dentprep/actions/runs/45251461187) SUCCESS; artifact `14854928788`. 44 unit/11 release/23 nonclinical fixture browser passes, one intentional desktop skip. Fresh exact-SHA CLI PASS. No DB change. Native draft isolation also passed with 1 real user/15-30-15 drafts/three guards intact and all synthetic rows rolled back. This remains technical acceptance, not medical/real-device validation.

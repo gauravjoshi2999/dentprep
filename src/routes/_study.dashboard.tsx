@@ -9,6 +9,7 @@ import {
   progressQuery,
   revisionQuery,
   subjectsQuery,
+  noticesQuery,
 } from "@/lib/queries";
 import { computeStreak, istToday } from "@/lib/dates";
 import { scorePercent } from "@/lib/scoring";
@@ -21,7 +22,7 @@ import {
 } from "@/components/app/common";
 import { Button } from "@/components/ui/button";
 import { AppHero } from "@/components/app/app-hero";
-import { BookOpen, CalendarCheck2, CheckCircle2, ClipboardList, Flame, Target, ArrowRight } from "lucide-react";
+import { BookOpen, CalendarCheck2, CheckCircle2, ClipboardList, Flame, Target, ArrowRight, Megaphone } from "lucide-react";
 
 export const Route = createFileRoute("/_study/dashboard")({
   component: () => (
@@ -40,6 +41,7 @@ function Dashboard() {
   const plan = useQuery(planQuery(id));
   const revision = useQuery(revisionQuery(id));
   const subjects = useQuery(subjectsQuery());
+  const notices = useQuery(noticesQuery());
   const queries = [profile, progress, attempts, activity, plan, revision, subjects];
   if (queries.some((q) => q.isPending)) return <LoadingBlock label="Loading your study space…" />;
   const error = queries.find((q) => q.isError);
@@ -116,7 +118,14 @@ function Dashboard() {
           <Link to="/interviews" className="rounded-2xl bg-[#076569] p-3 text-white sm:p-5"><ClipboardList className="mb-4 h-6 w-6" /><strong className="block text-sm sm:text-lg">Interview</strong><span className="text-xs text-white/80">Text rehearsal</span></Link>
         </div>
       </section>
-      <div className="grid items-start gap-6 lg:grid-cols-[1.4fr_1fr]">
+      {notices.data?.[0] && (
+        <section className="surface mb-7 flex items-center gap-4 bg-teal-soft/30 p-4 sm:p-5" aria-label="Official recruitment notice">
+          <span className="rounded-2xl bg-teal-soft p-3 text-teal"><Megaphone className="h-6 w-6" aria-hidden="true" /></span>
+          <div className="min-w-0 flex-1"><p className="text-xs font-bold uppercase tracking-wider text-teal">Official notice linked</p><h2 className="mt-1 font-extrabold">{notices.data[0].title}</h2><p className="mt-1 text-xs text-muted-foreground">Verify recruitment details directly on the official UPSC website.</p></div>
+          <a href={notices.data[0].official_url} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded-xl bg-primary px-3 py-2 text-xs font-bold text-primary-foreground">View notice</a>
+        </section>
+      )}
+            <div className="grid items-start gap-6 lg:grid-cols-[1.4fr_1fr]">
         <section className="surface p-5 sm:p-6">
           <div className="mb-5 flex items-center justify-between gap-3">
             <h2 className="text-xl font-bold">Today's focus</h2>

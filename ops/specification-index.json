@@ -1,0 +1,1340 @@
+{
+  "source_sha256": "25ebe945dec661912a9408c6c5118bf8851587b069f83b9e365efa974e7d49c1",
+  "pdf_pages": 102,
+  "q_and_a": [
+    {
+      "id": "Q001",
+      "page": 6,
+      "question": "Kya DentPrep ek student ko UPSC Dental Surgeon ke liye poori taiyari kara sakta hai?",
+      "required_behavior": "Target: ek structured primary preparation platform, lekin abhi content incomplete hai. Exam success guaranteed nahi; content coverage, clinical review, practice retention, aur real candidate QA ke baad hi exam-ready kehna hai.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q002",
+      "page": 6,
+      "question": "Kya sirf app par depend karna safe hoga?",
+      "required_behavior": "DentPrep mein verified notes, MCQs, cases, interview practice aur official links hone chahiye. Student ko authoritative textbooks, official notices aur qualified clinical teaching ke saath cross-check ka option hamesha mile.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q003",
+      "page": 6,
+      "question": "Kya app UPSC ka official partner hai?",
+      "required_behavior": "Nahi. Har relevant screen par independent educational tool ka disclaimer dikhe. UPSC logo/endorsement, authorized question bank, official exam scores ya selection guarantee imply na kare.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q004",
+      "page": 6,
+      "question": "Exam ki date announce nahi hui toh study kaise chalegi?",
+      "required_behavior": "Exam-date-unknown mode hamesha available rahe. Syllabus mastery aur revision indefinite chalte rahein; official date verified hone par hi countdown aur priority reshuffle ho.",
+      "status": "Missing",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q005",
+      "page": 6,
+      "question": "Kya exam pattern, marking ya cutoff app bana sakta hai?",
+      "required_behavior": "Nahi. Official advertisement aur latest corrigenda mein jo documented ho wahi display ho. Unannounced written RT scheme, marking, weightage ya interview rubric ko Unknown/Unconfirmed mark karo.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q006",
+      "page": 6,
+      "question": "Padhai ka target BDS syllabus hai ya sirf UPSC notification?",
+      "required_behavior": "Core learning 15 BDS groups aur clinically relevant public-service skills ko cover kare; official recruitment requirements ek separate verified layer hon. Dono ko milakar invented UPSC syllabus na banao. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q007",
+      "page": 7,
+      "question": "Kya har learner ke liye ek hi roadmap rahega?",
+      "required_behavior": "Nahi. Starting baseline, existing knowledge, daily hours, practice errors aur retention results ke hisaab se adaptive path ho. User chahe toh manual adjustments bhi kar sake.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q008",
+      "page": 7,
+      "question": "Kya har student ki progress alag save hogi?",
+      "required_behavior": "Haan, own account ke liye RLS-protected progress, answers, plans, bookmarks, interview transcripts. Logout/account switch par private cache clear ho aur cross-user data leakage test ho.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q009",
+      "page": 7,
+      "question": "Kya design images mein jo accuracy 86.4% hai wo real hai?",
+      "required_behavior": "Nahi. Woh illustration sample hai. Production par authenticated learner ke actual submitted answers aur defined denominator se calculated result hi dikhe; no attempts par blank/Not yet measured.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q010",
+      "page": 7,
+      "question": "Kya purani chats ka kaam phir se banega?",
+      "required_behavior": "Nahi. Work ko GitHub latest main, Cloudflare deployment receipt, Lovable database, 72-slide blueprint aur current issue ledger se deduplicate karna hai. Earlier chat claims ko verified status se cross-check kare.",
+      "status": "Partial",
+      "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
+      "acceptance": "T01,T06-T10,T48"
+    },
+    {
+      "id": "Q011",
+      "page": 7,
+      "question": "Kaise confirm hoga ki saare essential topics cover hue?",
+      "required_behavior": "Blueprint ke 15 subject groups se subject->unit->topic->learning outcome coverage matrix banao. Har essential outcome ko reviewed lesson, retrieval question, case ya oral prompt se map karo; missing cells gap report mein dikhao.",
+      "status": "Missing",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q012",
+      "page": 7,
+      "question": "Kaun decide karega kaunsa topic essential hai?",
+      "required_behavior": "DCI/National Dental Commission ke relevant BDS regulations, authorized textbooks, verified recruitment notices aur qualified dental faculty editorial review. Exam-weightage guess ko evidence na mano.",
+      "status": "Partial",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q013",
+      "page": 7,
+      "question": "Kya outdated medical information student ko sikh sakta hai?",
+      "required_behavior": "Har clinical item ke source version, review date aur next-review due date record ho. Guideline change par flagged content temporarily pause ho aur approved correction ke baad publish ho.",
+      "status": "Missing",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q014",
+      "page": 7,
+      "question": "Kya AI khud clinical notes likh kar turant publish karega?",
+      "required_behavior": "Nahi. AI drafts create kar sakta hai, par clinical publication ke liye medical author + independent qualified reviewer + evidence sign-off + audit trail mandatory hai.",
+      "status": "Blocked",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q015",
+      "page": 7,
+      "question": "Kya primary sources aur textbooks ke citations honge?",
+      "required_behavior": "Haan. Each claim/lesson ke source title, edition/year, stable URL/identifier, relevant section, reviewed_on aur reviewer fields. Unsupported assertions ko source-needed status mile.",
+      "status": "Missing",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q016",
+      "page": 7,
+      "question": "Agar 2 trusted references disagree karein toh kya hoga?",
+      "required_behavior": "Disputed status set karo, uncertainty explain karo, reviewer consensus record karo, aur ambiguous clinical MCQ ko publish na karo jab tak defensible single-best-answer aur scope clear na ho.",
+      "status": "Missing",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q017",
+      "page": 7,
+      "question": "Kya syllabus me 15 subjects ki equal importance hogi?",
+      "required_behavior": "Coverage sabki hogi, lekin time allocation evidence-based baseline mastery, clinical importance aur official constraints se ho; invented exam weightage ke basis par false equal/unequal marks na dikhao. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Partial",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q018",
+      "page": 8,
+      "question": "Kya diagrams/images scientifically sahi hongi?",
+      "required_behavior": "Illustrations ke anatomical labels, orientation aur claims dental expert verify kare; alt text + usage rights record hon. Generated artwork ko illustration label aur source-approved clinical anatomy ke saath QA karo.",
+      "status": "Missing",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q019",
+      "page": 8,
+      "question": "Kya Hindi-medium ya weak-English student bhi samajh payega?",
+      "required_behavior": "English exam-ready explanations with plain-English glossary, expandable Hindi/Hinglish help where feasible, progressively harder vocabulary and comprehension checks. Translation clinically reviewed ho.",
+      "status": "Missing",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q020",
+      "page": 8,
+      "question": "Kya app medicine prescribe karna sikha degi?",
+      "required_behavior": "App educational clinical reasoning sikhaye, patient-specific advice ya unsupervised treatment instructions nahi. Safety-sensitive drug doses/interventions ko expert approval, context aur supervision caveats ke bina surface na karo.",
+      "status": "Blocked",
+      "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
+      "acceptance": "T11-T16,T42"
+    },
+    {
+      "id": "Q021",
+      "page": 8,
+      "question": "Ek lesson ke end par kya student ko sach me samajh aaya ye check hoga?",
+      "required_behavior": "Har lesson objective-based retrieval questions, 1-minute summary, applied mini-case aur confidence rating se check ho; sirf page open/read time ko mastery na samjho.",
+      "status": "Missing",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q022",
+      "page": 8,
+      "question": "Kya videos compulsory honge?",
+      "required_behavior": "Nahi. Text, diagrams, guided examples, optional video/audio sab accessible modes ho sakte hain. Learning outcome test zaroori hai; video watch completion alone mastery ka proxy nahi.",
+      "status": "Partial",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q023",
+      "page": 8,
+      "question": "Kya basic se advanced order automatic hoga?",
+      "required_behavior": "Prerequisite graph mein anatomy/physiology foundations se clinical application link karo. Baseline strong ho toh learner skip test de sakta hai; weak ho toh foundation remediation mile.",
+      "status": "Missing",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q024",
+      "page": 8,
+      "question": "Student ko galat concept samajh aaye toh?",
+      "required_behavior": "Incorrect answer ke liye why-wrong explanation, misconception tag, concept recap aur new transfer question do. Sirf correct answer flash karke learning complete na mark karo.",
+      "status": "Missing",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q025",
+      "page": 8,
+      "question": "Har topic kitni baar revise hoga?",
+      "required_behavior": "Adaptive spaced-review scheduling retrieval performance, difficulty aur forgetting patterns par based ho. Daily fixed count guarantee nahi; overdue items and estimated workload transparent rakho.",
+      "status": "Partial",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q026",
+      "page": 8,
+      "question": "Kya 7 din baad bhi yaad hai test hoga?",
+      "required_behavior": "Yes: delayed retrieval checkpoints (e.g. next day, one week, one month) as configured, without exposing answers. Retention measure item-level first-attempt accuracy and transfer performance.",
+      "status": "Missing",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q027",
+      "page": 8,
+      "question": "Kya student ko baar-baar same question milne se fake accuracy aayegi?",
+      "required_behavior": "Repeated-item accuracy separate dikhao, unseen question accuracy alag; spaced old questions and fresh transfer questions ka balance rakho. Suspicious exact repetition se inflated mastery avoid karo.",
+      "status": "Missing",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q028",
+      "page": 8,
+      "question": "Kya progress ka graph bas decoration hoga?",
+      "required_behavior": "No. Date, actual submissions, attempted/correct counts, mastery tags, revisions and coverage evidence backed chart ho; zero data par honest empty state. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Missing",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q029",
+      "page": 9,
+      "question": "Kya dyslexia/low-vision ya screen-reader students padh sakte hain?",
+      "required_behavior": "WCAG 2.2 AA target, keyboard navigation, headings/labels, contrast, large text, reduced motion, readable tables, caption/alt text aur screen reader semantic announcements test karo.",
+      "status": "Partial",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q030",
+      "page": 9,
+      "question": "Kya daily teacher jaisa guidance milega?",
+      "required_behavior": "Dashboard par Today next-best-action: continue lesson, review due, weak-topic drill, interview practice. Reason visible ho: e.g. last two unseen questions wrong, so repeat underlying concept.",
+      "status": "Partial",
+      "code_area": "/library, /plan, /progress; topic_progress, revision_schedule",
+      "acceptance": "T14,T17-T20,T46"
+    },
+    {
+      "id": "Q031",
+      "page": 9,
+      "question": "MCQs ke sahi answers kaun verify karega?",
+      "required_behavior": "Author drafts with single-best-answer rationale; at least one independent dental reviewer verifies stem, all options, answer, distractors, sources and clinical relevance before publish.",
+      "status": "Blocked",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q032",
+      "page": 9,
+      "question": "Kya PYQs original UPSC questions honge?",
+      "required_behavior": "Only if independently verifiable and legally usable with paper/year/source; otherwise label original DentPrep practice items. Never invent UPSC previous-year provenance.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q033",
+      "page": 9,
+      "question": "Kya MCQ mein 2 options sahi ho sakte hain?",
+      "required_behavior": "Ambiguity gate reject kare. Context-sensitive clinical items clarify assumptions, jurisdiction and wording; unresolved ambiguity -> withdraw/review, not force arbitrary correct choice.",
+      "status": "Blocked",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q034",
+      "page": 9,
+      "question": "Kya option reveal test se pehle ho sakta hai?",
+      "required_behavior": "Exam simulation mode me never; practice mode me answer save hone ke baad explanation optional. Browser/network replay se correctness prematurely leak na ho.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q035",
+      "page": 9,
+      "question": "Kya random questions difficulty balanced rahenge?",
+      "required_behavior": "Question blueprint by subject/topic/difficulty and review status; deterministic seeded test builds when needed. No published questions -> explicit empty state, never fill with draft content.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q036",
+      "page": 9,
+      "question": "Kya 10, 20, 30, 50 questions user choose kar sakta hai?",
+      "required_behavior": "Configurable count with actual available approved pool; requested count > pool then show truthful actual count or disable start. No duplicated questions to match advertised quota.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q037",
+      "page": 9,
+      "question": "Timer khatam hone par kya hoga?",
+      "required_behavior": "Server-authoritative attempt start/time limit, expiration handling, submission idempotency and clear final status; background tab/clock tampering should not produce silent score corruption.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q038",
+      "page": 9,
+      "question": "Skip, Previous, Next se answers lose honge?",
+      "required_behavior": "Explicit saved/unsaved indicators; selected but unsaved state warning; navigation preserves saved state, retries idempotently. Test refresh, back, offline, connection drop.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q039",
+      "page": 9,
+      "question": "Score ka formula kya rahega?",
+      "required_behavior": "Define raw correct, attempted, skipped and total separately. Accuracy = correct/attempted for attempted-only metric; score may be correct/total under DentPrep one-point scheme. Any official negative-marking is applied only if sourced. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q040",
+      "page": 10,
+      "question": "Wrong answer copy aur revise kaise hoga?",
+      "required_behavior": "Wrong question auto enters private revision queue with topic and reason, links to reviewed lesson; revision repeats and tracks correction over time without rewriting historical original score.",
+      "status": "Partial",
+      "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
+      "acceptance": "T21-T28"
+    },
+    {
+      "id": "Q041",
+      "page": 10,
+      "question": "Accuracy percent 90 hone se mastery confirm ho jayegi?",
+      "required_behavior": "Nahi. Confidence requires unseen questions, topic coverage, delayed retention, difficulty and sample size. Show accuracy with count and uncertainty; 9/10 is not same evidence as 90/100.",
+      "status": "Missing",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q042",
+      "page": 10,
+      "question": "Kya har subject ki accuracy alag dikhegi?",
+      "required_behavior": "Haan, subject and topic breakdown based on own attempts, filtering reviewed unique items and showing sample counts. Insufficient data -> Not enough evidence.",
+      "status": "Partial",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q043",
+      "page": 10,
+      "question": "Kya wrong-answer details private rahenge?",
+      "required_behavior": "Haan. Per-user access control, encrypted transport, limited retention, export/delete controls as implemented and a test that user A never sees B transcripts/results.",
+      "status": "Partial",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q044",
+      "page": 10,
+      "question": "Kya student khud confidence 100% mark kare toh app believe karegi?",
+      "required_behavior": "Self-reported confidence separately track ho; mastery retrieval outcomes se validate ho. Confidence calibration gap highlight karo when high confidence and repeated errors coincide.",
+      "status": "Missing",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q045",
+      "page": 10,
+      "question": "Kya lesson read time ko progress maan sakte hain?",
+      "required_behavior": "Engagement alag; mastery nahi. Video watched/read complete only completion indicator; concept mastery check after low-hint practice and delayed re-test.",
+      "status": "Partial",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q046",
+      "page": 10,
+      "question": "Kya accuracy tests mein cheat/answer memorization detect hoga?",
+      "required_behavior": "Do not accuse users; recognize repeated identical items, unexpectedly fast responses and open-note modes. Separate practice accuracy from timed/unseen accuracy and label limitations.",
+      "status": "Partial",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q047",
+      "page": 10,
+      "question": "Kya AI explanations ko automatically correct samjha jayega?",
+      "required_behavior": "Nahi. AI output is a candidate draft; grounded response with references and clinical safety boundaries. In conflict, prefer approved content and route uncertain answers to human review.",
+      "status": "Partial",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q048",
+      "page": 10,
+      "question": "Kaise pata chalega student exam-ready hai?",
+      "required_behavior": "No deterministic pass predictor. Dashboard can show readiness indicators: breadth, unseen performance, retention, clinical reasoning, mock consistency; attach confidence/limitations and no UPSC selection probability.",
+      "status": "Missing",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q049",
+      "page": 10,
+      "question": "Kya learning analytics algorithms test honge?",
+      "required_behavior": "Yes: formula unit tests, seed data, no-attempt states, time-zone IST, denominator edge cases, duplicate answers, revision invalidation and longitudinal regression tests.",
+      "status": "Partial",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q050",
+      "page": 10,
+      "question": "Kya student feedback se poor question ko flag kar sakta hai?",
+      "required_behavior": "Yes: report a suspected error with item version, optional note, reviewer queue and resolution transparency. Valid disputes trigger regrading when fair and documented. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Missing",
+      "code_area": "/progress; attempts, test_answers, revision_schedule",
+      "acceptance": "T18,T26-T28,T43"
+    },
+    {
+      "id": "Q051",
+      "page": 11,
+      "question": "7-day aur 30-day plan ka matlab padhai bas itne din hai?",
+      "required_behavior": "Nahi. Ye renewable planning cycles hain; exam-date-unknown mode mein cycles indefinitely continue. Next cycle previous work and overdue tasks ko carry forward kare.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q052",
+      "page": 11,
+      "question": "Kya long-term syllabus roadmap dikhna chahiye?",
+      "required_behavior": "Yes: foundation to clinical application to revision and interview, with coverage percent and projected workload—not a fabricated official deadline.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q053",
+      "page": 11,
+      "question": "Agar student 30 minute roz deta hai vs 4 hours?",
+      "required_behavior": "Plan workload available study time, fatigue and current mastery ke hisaab se scale ho; unrealistic daily goals avoid karo and manual adjust allowed ho.",
+      "status": "Partial",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q054",
+      "page": 11,
+      "question": "Agar 10 din gap ho jaaye toh?",
+      "required_behavior": "No guilt/pop-up spam: missed tasks reschedule, prioritize due revisions, offer short restart plan; historical record remains unchanged.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q055",
+      "page": 11,
+      "question": "Kya exam date announce hone par automatic mode change hoga?",
+      "required_behavior": "Only after official verified notification and ideally user confirmation; preserve existing progress and compute remaining days, prioritizing high-yield weak concepts without invented marking scheme.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q056",
+      "page": 11,
+      "question": "Kya interview practice shuru se chalegi?",
+      "required_behavior": "Yes: clinical, English communication and public-service scenarios weekly parallel; exact intensity varies per baseline and future official selection stage.",
+      "status": "Partial",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q057",
+      "page": 11,
+      "question": "Kya plan automatic renew ho sakta hai?",
+      "required_behavior": "When cycle ends, create reviewed next cycle automatically or with user acceptance per settings. Never silently duplicate tasks or reset completed topics.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q058",
+      "page": 11,
+      "question": "Kya topic priority dynamic hogi?",
+      "required_behavior": "Yes: unmet prerequisites, missed retention, risk-significant clinical topics, user goals and officially known constraints; provide explainable reason for recommendation.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q059",
+      "page": 11,
+      "question": "Kya late-night padhne par streak galat ho sakti hai?",
+      "required_behavior": "Use user timezone or IST preference consistently; define study-day boundary; never count mere login as meaningful study without disclosed criteria.",
+      "status": "Partial",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q060",
+      "page": 11,
+      "question": "Kya data export ki suvidha hogi?",
+      "required_behavior": "User may export plans, progress and question history where privacy-safe and allowed. Support deletion and explain what permanently persists, with no loss from ordinary app upgrades.",
+      "status": "Missing",
+      "code_area": "/plan; study_plans, study_tasks, profiles",
+      "acceptance": "T17-T20,T50"
+    },
+    {
+      "id": "Q061",
+      "page": 12,
+      "question": "Clinical case mein wrong treatment choose karne par kya hoga?",
+      "required_behavior": "Educational corrective feedback should flag safety issue, red flags and appropriate escalation. Never encourage patient-specific unsupervised treatment.",
+      "status": "Missing",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q062",
+      "page": 12,
+      "question": "Emergency signs ko priority kaise milegi?",
+      "required_behavior": "Red-flag-first decision tree verified by expert: airway compromise, major bleeding, sepsis concerns and urgent referral need identified in context, with no overconfident one-size-fits-all dosing.",
+      "status": "Missing",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q063",
+      "page": 12,
+      "question": "Kya cases actual patients ke records honge?",
+      "required_behavior": "Use synthetic or de-identified cases with valid authorization and privacy protections. No identifiable patient stories in public fixtures or prompts.",
+      "status": "Partial",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q064",
+      "page": 12,
+      "question": "Kya clinical diagrams generated images se ban sakti hain?",
+      "required_behavior": "Possible if labelled as educational illustrations, but actual anatomy/diagnosis claims need independent specialist verification and permission/right-to-use review.",
+      "status": "Blocked",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q065",
+      "page": 12,
+      "question": "Kya differential diagnosis sikhaya jayega?",
+      "required_behavior": "Yes: ask evidence for/against each candidate diagnosis, needed investigations and uncertainty; avoid teaching mechanical guess as clinical certainty.",
+      "status": "Missing",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q066",
+      "page": 12,
+      "question": "Kya emergency clinical content doctor ke bina publish ho sakta hai?",
+      "required_behavior": "No. Safety-critical material requires qualified dental/medical reviewer sign-off; add high-severity block when source/rationale/reviewer missing.",
+      "status": "Blocked",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q067",
+      "page": 12,
+      "question": "Agar AI medical recommendation unsafe de de toh?",
+      "required_behavior": "Catch via risk policy and evaluation tests, cite approved safety sources, abstain/redirect, log review flag and withhold unsafe output; do not use prompt-only controls as sole defense.",
+      "status": "Missing",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q068",
+      "page": 12,
+      "question": "Kya case performance ko clinical competence certificate bana sakte hain?",
+      "required_behavior": "No. Simulator is independent educational practice, not clinical licensure, eligibility, professional certification or proof of real-patient competence.",
+      "status": "Partial",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q069",
+      "page": 12,
+      "question": "Kya each case stage reviewed hoga?",
+      "required_behavior": "Yes: case intro, red flags, reasoning steps, expected safe decisions, rationale, feedback and versions; per-stage reviewer sign-off and traceability.",
+      "status": "Missing",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q070",
+      "page": 12,
+      "question": "Kya old incorrect content silently change karna safe hai?",
+      "required_behavior": "No. Version content, audit changes, record affected attempts, notify users if regrading needed. Preserve original attempt context for explainable score revisions.",
+      "status": "Missing",
+      "code_area": "/cases; clinical_cases, content_reviews",
+      "acceptance": "T29-T31,T42"
+    },
+    {
+      "id": "Q071",
+      "page": 12,
+      "question": "Kya abhi real AI interviewer live hai?",
+      "required_behavior": "Current deployed baseline contains self-guided text and opt-in browser voice-to-text; do not call it fully adaptive conversational AI until a secured provider-backed integration is implemented and tested. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Partial",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q072",
+      "page": 13,
+      "question": "Kya voice input dena compulsory hoga?",
+      "required_behavior": "Nahi. Optional microphone consent, clear external-browser transcription disclosure, permission rejection fallback to text, and editable transcript before saving.",
+      "status": "Partial",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q073",
+      "page": 13,
+      "question": "Kya AI genuinely follow-up pooch sakta hai?",
+      "required_behavior": "Future target yes, using authenticated server proxy, saved context and safe model configuration. It must never fabricate model capability or silently incur paid usage.",
+      "status": "Missing",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q074",
+      "page": 13,
+      "question": "Kya AI marks 92/100 deta toh usko reliable samjhein?",
+      "required_behavior": "Not without calibrated rubric, multiple blinded human-rated anchors, inter-rater agreement and out-of-sample evaluation. Until then show descriptive feedback only, not pseudo-official scores.",
+      "status": "Missing",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q075",
+      "page": 13,
+      "question": "Clinical viva mein answers ki medical accuracy kaise check hogi?",
+      "required_behavior": "Use reviewed evidence/golden cases, red-flag safety criteria and human expert evaluation of sampled outputs. AI can summarize gaps but cannot certify clinical correctness alone.",
+      "status": "Missing",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q076",
+      "page": 13,
+      "question": "Kya AI hamare student ka personal data use karega?",
+      "required_behavior": "Use minimal necessary transcript, informed consent and privacy policy; do not send identifiers or clinical patient data. Provider retention and cross-border processing disclosures must be clear.",
+      "status": "Missing",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q077",
+      "page": 13,
+      "question": "Kya 5, 15 aur 30 min ke options actual timer honge?",
+      "required_behavior": "When enabled, duration goal vs enforced timer must be distinguished. Existing self-guided goal cannot be called an official UPSC interview or guaranteed time-boxed live agent.",
+      "status": "Partial",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q078",
+      "page": 13,
+      "question": "Kya mixed Hindi-English speech supported rahegi?",
+      "required_behavior": "Begin with en-IN where supported, disclose recognition errors, allow manual editing and fallback. Multilingual support should be tested with medical terminology on real devices.",
+      "status": "Partial",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q079",
+      "page": 13,
+      "question": "AI ka feedback har baar ek jaisa reliable hoga?",
+      "required_behavior": "Require objective rubric, source references for factual critique, uncertainty, deterministic regression sets and human sampling; document model/version drift and known limits.",
+      "status": "Missing",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q080",
+      "page": 13,
+      "question": "Kya interview history private aur resumable rahegi?",
+      "required_behavior": "Yes with per-user isolation, explicit Save Draft/Finish, transcript status and recoverable interrupted sessions. Test user A cannot load user B interviews.",
+      "status": "Partial",
+      "code_area": "/interviews; interview_sessions, interview_feedback; browser-dictation.tsx",
+      "acceptance": "T32-T37"
+    },
+    {
+      "id": "Q081",
+      "page": 13,
+      "question": "Kya slow mobile network par app chalegi?",
+      "required_behavior": "Progressive loading, retry, offline reading where cached, low-byte assets and clear save status; measure 3G/4G flows and test no silent data loss.",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q082",
+      "page": 13,
+      "question": "Kya website ki har button sach me kaam karegi?",
+      "required_behavior": "Clickable visual mock is not sufficient: each action needs route, state mutation, backend validation, keyboard behavior and Playwright screenshot/test evidence. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q083",
+      "page": 14,
+      "question": "Kya student ka data app update par delete ho jayega?",
+      "required_behavior": "It should not. Use schema migrations, backups and forward-compatible client states; test rollout, rollback and account persistence on real data-safe staging fixtures.",
+      "status": "Missing",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q084",
+      "page": 14,
+      "question": "Kya password ya service-role keys browser mein jayengi?",
+      "required_behavior": "Never. Only publishable backend key is client-safe; server secrets belong in protected environment and authorization decisions enforced server-side and by RLS.",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q085",
+      "page": 14,
+      "question": "Kya Supabase database Bite se mix ho sakta hai?",
+      "required_behavior": "Never. Existing DentPrep Lovable/Supabase project remains separate from restaurant-os. Verify URLs/IDs in environment and guard against cross-project migrations.",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q086",
+      "page": 14,
+      "question": "Kya notification official UPSC announcement jaisa claim karegi?",
+      "required_behavior": "Only based on verified official update and source URL, with timestamp. If not independently checked, label provisional/unverified and avoid push notification certainty.",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q087",
+      "page": 14,
+      "question": "Kya color contrast aur tap targets check honge?",
+      "required_behavior": "Target WCAG 2.2 AA where applicable, test actual mobile touch size, keyboard/focus visibility, alt text, zoom and reduced motion.",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q088",
+      "page": 14,
+      "question": "Kya offline mode se expired medical note show ho sakta hai?",
+      "required_behavior": "Mark offline cached version/date and validity; when online check update/revocation. Safety-critical withdrawn material should not be presented as current without warning.",
+      "status": "Missing",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q089",
+      "page": 14,
+      "question": "Kya bugs aur errors ka evidence milega?",
+      "required_behavior": "Yes: scenario ID, reproduction, device/browser, console/network trace, screenshot, severity, fix PR/commit, retest status, regression guard.",
+      "status": "Partial",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q090",
+      "page": 14,
+      "question": "Kya analytics secretly track sensitive study/interview answers?",
+      "required_behavior": "No. Prefer privacy-minimizing product telemetry, explicit notices, no raw transcript logging in analytics, role-restricted access, retention and deletion controls.",
+      "status": "Missing",
+      "code_area": "auth.tsx, PWA, deployment scripts; all private tables",
+      "acceptance": "T05,T10,T38-T46"
+    },
+    {
+      "id": "Q091",
+      "page": 14,
+      "question": "Kya 50 software scenarios enough hain?",
+      "required_behavior": "They are minimum cross-functional acceptance; add dedicated medical content validation, learning outcome mastery tests, hallucination tests and actual longitudinal student pilots. No 50/50 Pass implies medically accurate teaching.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q092",
+      "page": 14,
+      "question": "Kya har test automated ho sakta hai?",
+      "required_behavior": "No. Unit, integration and simulated browser tests automate much; clinical review, actual microphone, OAuth, Android APK, visual inspection and real learning retention need qualified humans/devices.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q093",
+      "page": 14,
+      "question": "Kya Pass likhna evidence ke bina chalega?",
+      "required_behavior": "No. Each test gets steps, expected vs actual, environment, log/screenshot, branch/SHA and reviewer. Mark Blocked/Not Run if not executed. DentPrep | Independent education | Verified-source work handoff",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q094",
+      "page": 15,
+      "question": "Kya 100 Q&A ke answers current app me already live hain?",
+      "required_behavior": "No. This Q&A is a quality/implementation contract and gap checklist. Current code, database and tests must be audited before marking each item done.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q095",
+      "page": 15,
+      "question": "Kya medical expert review sign-off Work khud kar sakta hai?",
+      "required_behavior": "No. Work can build queue, check evidence and create draft; only appropriately qualified and authorized reviewer can perform accountable clinical approval.",
+      "status": "Blocked",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q096",
+      "page": 15,
+      "question": "Kya naya feature directly main par push karna sahi hoga?",
+      "required_behavior": "Use small PRs with typecheck, security scan, unit/integration tests, browser QA, safe merge and verified production rollout. Keep rollback/incident plan.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q097",
+      "page": 15,
+      "question": "Kya deployment green hone ka matlab student journey green?",
+      "required_behavior": "No. Successful SSR/assets/PWA checks prove technical release only. Real login, saving, voice, mobile device and reviewed content learning must separately pass.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q098",
+      "page": 15,
+      "question": "Agar Work limit khatam ho jaye toh kya?",
+      "required_behavior": "Persist DENTPREP_COMPLETION_LEDGER.md, 50-scenario matrix, PR links, exact SHA, blockers and next safe task in repository. Next session resume from verified state; no redo.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q099",
+      "page": 15,
+      "question": "Kya app kisi ko UPSC selection guarantee de?",
+      "required_behavior": "No. No guarantee of selection, no official equivalence, no claimed readiness probability. Provide transparent educational progress, uncertainty and official source checking.",
+      "status": "Partial",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    },
+    {
+      "id": "Q100",
+      "page": 15,
+      "question": "Final 100% complete kaun decide karega?",
+      "required_behavior": "Definition of Done requires every blueprint workflow, content quality review, all critical 50 scenarios with proof, learning validation, real-device acceptance and trustworthy production release. Unmet external gates stay Blocked, never cosmetically 100%.",
+      "status": "Blocked",
+      "code_area": "CI/release workflows, ops SQL, GitHub ledger",
+      "acceptance": "T41-T50"
+    }
+  ],
+  "blueprint": [
+    {
+      "slide": 1,
+      "pdf_page": 31,
+      "title": "Learn. Practice. Interview. Succeed.",
+      "text": "UPSC DENTAL SURGEON 2026\nDentPrep\nLearn. Practice. Interview. Succeed.\nCANVA-EDITABLE COMPLETE PRODUCT & INTERACTION BLUEPRINT\nVisual references · 40+ candidate/admin screens · workflows · data · clinical quality · release\ngates · Work handoff\nVersion 1.0 | 23 November 2026 | Independent study platform; not affiliated with UPSC"
+    },
+    {
+      "slide": 2,
+      "pdf_page": 32,
+      "title": "The app can organize practice; UPSC selection remains competitive and externally determined.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nNorth star: better preparation, not a selection guarantee\nThe app can organize practice; UPSC selection remains competitive and externally determined.\nOFFICIAL\nAdvertisement 13/2026; Dental Surgeon vacancy 26111301114; five positions; 100-mark\ninterview.\nUNCONFIRMED\nSeparate Recruitment Test scheme, dates, official interview-topic weightage and scoring rubric\nare not published in the ad.\nLEARNING FOUNDATION\nRecognized BDS academic disciplines, real clinical reasoning, public service and professional\ncommunication.\nNO FALSE SCORE\nPractice scores are independent learning feedback, never estimated UPSC marks or job\nguarantees.\nOfficial URL: https://upsc.gov.in/uploads/2026/11/AdvtNo-13-2026-Engl-131126_0.pdf\n2 / 72"
+    },
+    {
+      "slide": 3,
+      "pdf_page": 33,
+      "title": "Preserve the design language. These are concept images, not proof of implemented features.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nORIGINAL VISUAL REFERENCE — Home Dashboard\nPreserve the design language. These are concept images, not proof of implemented features.\nWhat to preserve\nDeep navy medical header; white/light teal surface\nDentPrep tooth logo, teal accent, crisp typography\nRounded cards, structured spacing and simple bottom navigation\nRealistic, legible mobile-first layout; corresponding desktop adaptation\nCorrection / next implementation:\nReplace fictitious 12-day streak/1248 questions with real persisted user statistics.\n3 / 72"
+    },
+    {
+      "slide": 4,
+      "pdf_page": 34,
+      "title": "Preserve the design language. These are concept images, not proof of implemented features.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nORIGINAL VISUAL REFERENCE — Study Library\nPreserve the design language. These are concept images, not proof of implemented features.\nWhat to preserve\nDeep navy medical header; white/light teal surface\nDentPrep tooth logo, teal accent, crisp typography\nRounded cards, structured spacing and simple bottom navigation\nRealistic, legible mobile-first layout; corresponding desktop adaptation\nCorrection / next implementation:\nFull 15 BDS subject categories; display actual reviewed lesson counts, not invented numbers.\n4 / 72"
+    },
+    {
+      "slide": 5,
+      "pdf_page": 35,
+      "title": "Preserve the design language. These are concept images, not proof of implemented features.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nORIGINAL VISUAL REFERENCE — MCQ Practice\nPreserve the design language. These are concept images, not proof of implemented features.\nWhat to preserve\nDeep navy medical header; white/light teal surface\nDentPrep tooth logo, teal accent, crisp typography\nRounded cards, structured spacing and simple bottom navigation\nRealistic, legible mobile-first layout; corresponding desktop adaptation\nCorrection / next implementation:\nCorrect the ambiguous OLP vs leukoplakia item and prevent premature answer reveal.\n5 / 72"
+    },
+    {
+      "slide": 6,
+      "pdf_page": 36,
+      "title": "Preserve the design language. These are concept images, not proof of implemented features.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nORIGINAL VISUAL REFERENCE — AI Interview Coach\nPreserve the design language. These are concept images, not proof of implemented features.\nWhat to preserve\nDeep navy medical header; white/light teal surface\nDentPrep tooth logo, teal accent, crisp typography\nRounded cards, structured spacing and simple bottom navigation\nRealistic, legible mobile-first layout; corresponding desktop adaptation\nCorrection / next implementation:\nThe image implies voice AI and scores that are NOT yet implemented; label only after real QA.\n6 / 72"
+    },
+    {
+      "slide": 7,
+      "pdf_page": 37,
+      "title": "Keep original visual quality, add missing learning and recruitment workflows.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nCritical additions before exam-ready launch\nKeep original visual quality, add missing learning and recruitment workflows.\nBaseline test\nA diagnostic across BDS domains to identify weak topics before a study plan is chosen.\nActive learning\nSpaced revision, incorrect-answer notebook, explanations, case scenarios and English medical\nglossary.\nInterview mastery\nPersonal introduction, govt service situations, clinical viva, ethics, emergency reasoning, English\nanswer structure.\nReal application readiness\nEligibility source centre, documents checklist, deadline, corrected notices and optional\nreminders.\nQuality gate\nExpert review, citations, disputed MCQ detection, content updates, proper clinical caution and\naudit log.\n7 / 72"
+    },
+    {
+      "slide": 8,
+      "pdf_page": 38,
+      "title": "Color, typography and component rules to apply across every candidate/admin screen.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nExact visual design system\nColor, typography and component rules to apply across every candidate/admin screen.\nNAVY · #092C41\nHeaders, hero areas, interview studio and premium information panels.\nTEAL · #00AFA4\nPrimary buttons, progress accents, active navigation and completion signals.\nSURFACES\nWhite #FFFFFF, mint #E8F9F6, pale sky #E9F3F8, neutral #F5F9FA.\nTYPE / SPACING\nAptos/Inter-like sans; mobile headers 24–28px, body 14–16px; 8px spacing grid.\nMOBILE FRAME\nBottom nav = Home / Study / Practice / Interview / Profile; desktop expands to sidebar.\n8 / 72"
+    },
+    {
+      "slide": 9,
+      "pdf_page": 39,
+      "title": "From first launch to daily improvement, with honest personalized progress.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n01  Candidate journey\nFrom first launch to daily improvement, with honest personalized progress.\nOne account, private and cross-device progress\nAll primary navigation works at 360px and desktop\nContent must be clinically reviewed before publication\nNo fabricated metrics or unofficial exam patterns\n9 / 72"
+    },
+    {
+      "slide": 10,
+      "pdf_page": 40,
+      "title": "S01 / Welcome & orientation — /",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS01 / Welcome & orientation\nExplain product and independent status\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nWelcome & orientation\nDentPrep / UPSC Dental Surgeon\nPrepare smarter with English clinical\nlearning\nStart preparation  |  Explore syllabus\nIndependent preparation · not UPSC\nHome\nStudy\nPractice\nInterview\nProfile\nGuest\nNEW\nRoute: /\nPRIMARY USER ACTION\nStart onboarding; read official disclaimer\nWHAT MUST HAPPEN\nNever suggest admission/selection guarantee; guest access to public info\nDATA + INTEGRATION\nPublic brand and official-source links\nIMPLEMENTATION STATUS / CHECK\nNEW · Route / onboarding screens\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n10 / 72"
+    },
+    {
+      "slide": 11,
+      "pdf_page": 41,
+      "title": "S02 / Exam and preparation track — /onboarding/track",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS02 / Exam and preparation track\nSeparate officially announced details and proposed practice\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nExam and preparation\ntrack\nUPSC Dental Surgeon 2026\nOfficial notice: Advertisement 13/2026\nInterview preparation\nRecruitment Test practice (if required)\nContinue\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /onboarding/track\nPRIMARY USER ACTION\nChoose both interview and BDS review\nWHAT MUST HAPPEN\nShow RT pattern as unconfirmed until UPSC posts details\nDATA + INTEGRATION\nrecruitment_notices, profiles\nIMPLEMENTATION STATUS / CHECK\nNEW · Exact official source audit\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n11 / 72"
+    },
+    {
+      "slide": 12,
+      "pdf_page": 42,
+      "title": "S03 / Login / registration — /login",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS03 / Login / registration\nSafe sign-in with clear guest option\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nLogin / registration\nWelcome back\nEmail\nPassword\nSign in\nCreate account · Reset password\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /login\nPRIMARY USER ACTION\nEmail/password; optional Google if configured\nWHAT MUST HAPPEN\nSession persistence, validation, friendly error and retry\nDATA + INTEGRATION\nSupabase Auth, profiles\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Real OAuth + redirects to validate\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n12 / 72"
+    },
+    {
+      "slide": 13,
+      "pdf_page": 43,
+      "title": "S04 / Personalized setup — /onboarding/profile",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS04 / Personalized setup\nSet goals, subject strengths and English confidence\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nPersonalized setup\nStudy goal: Interview + Clinical\nDaily time: 30 / 60 / 90 min\nChoose weak subjects\nEnglish speaking confidence\nCreate my plan\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /onboarding/profile\nPRIMARY USER ACTION\nSave preferences or skip optional answers\nWHAT MUST HAPPEN\nAuto-generate 7/15/30 day plans; allow later edits\nDATA + INTEGRATION\nprofiles, user_preferences, study_plans\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Onboarding UX to implement\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n13 / 72"
+    },
+    {
+      "slide": 14,
+      "pdf_page": 44,
+      "title": "S05 / First-day Home — /dashboard",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS05 / First-day Home\nReal empty state, not invented metrics\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nFirst-day Home\nWelcome to DentPrep\nYour first study plan is ready\n0 practice questions completed\nStart baseline assessment\nBegin first lesson\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /dashboard\nPRIMARY USER ACTION\nStart first lesson or baseline test\nWHAT MUST HAPPEN\nNever show fake study streak / accuracy on empty account\nDATA + INTEGRATION\nprofiles, topic_progress, attempts\nIMPLEMENTATION STATUS / CHECK\nEXISTS · New-user QA required\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n14 / 72"
+    },
+    {
+      "slide": 15,
+      "pdf_page": 45,
+      "title": "S06 / Active Dashboard — /dashboard",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS06 / Active Dashboard\nCondense next steps and progress\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nActive Dashboard\nToday’s plan · 3 tasks\nYour weakest subject\nContinue: Oral Medicine\nReview due: 12 cards (sample only)\nStudy | Practice | Interview\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /dashboard\nPRIMARY USER ACTION\nQuick link to each available module\nWHAT MUST HAPPEN\nUse real persisted counts; all demo data labelled\nDATA + INTEGRATION\nstudy_tasks, topic_progress, attempts\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Real-data acceptance QA\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n15 / 72"
+    },
+    {
+      "slide": 16,
+      "pdf_page": 46,
+      "title": "S07 / Today’s study plan — /plan",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS07 / Today’s study plan\nPrioritized achievable daily tasks\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nToday’s study plan\nDay 4 / 15 (sample)\nRead: Lesion recognition\nPractice 10 MCQs\nOne clinical case\nReview 7 missed questions\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /plan\nPRIMARY USER ACTION\nComplete / postpone / reschedule\nWHAT MUST HAPPEN\nAdaptive plan updates from weakness, not arbitrary streaks\nDATA + INTEGRATION\nstudy_plans, study_tasks, revision_schedule\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Coverage / schedule test\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n16 / 72"
+    },
+    {
+      "slide": 17,
+      "pdf_page": 47,
+      "title": "S08 / Study library — /library",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS08 / Study library\nMatch supplied screenshot while using all 15 categories\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nStudy library\nSearch BDS subjects\nClinical | Basics | Public health\nOral Medicine & Radiology\nOral & Maxillofacial Surgery\nPeriodontology | Endodontics\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /library\nPRIMARY USER ACTION\nSearch, filter, open subject\nWHAT MUST HAPPEN\nOnly approved/published lessons are visible\nDATA + INTEGRATION\nsubjects, lessons, source_refs\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Search/filter polish\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n17 / 72"
+    },
+    {
+      "slide": 18,
+      "pdf_page": 48,
+      "title": "S09 / Subject overview — /library/:subject",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS09 / Subject overview\nExplain scope before a chapter\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nSubject overview\nOral Medicine & Radiology\nLearning outcomes\nTopic groups and progress\nClinical relevance\nOpen chapter list\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /library/:subject\nPRIMARY USER ACTION\nSelect lesson, bookmark subject\nWHAT MUST HAPPEN\nShow not-yet-reviewed items as unavailable\nDATA + INTEGRATION\nsubjects, chapters, lessons\nIMPLEMENTATION STATUS / CHECK\nNEW · Subject detail navigation\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n18 / 72"
+    },
+    {
+      "slide": 19,
+      "pdf_page": 49,
+      "title": "S10 / Chapter / topic list — /library/:subject/chapters",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS10 / Chapter / topic list\nBuild BDS learning hierarchy\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nChapter / topic list\nOral Mucosal Disorders\n01 Leukoplakia\n02 Oral Lichen Planus\n03 OSMF\nProgress: complete as studied\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /library/:subject/chapters\nPRIMARY USER ACTION\nOpen chapter, track each completion\nWHAT MUST HAPPEN\nRespect versioned content withdrawal\nDATA + INTEGRATION\nchapters, lessons, topic_progress\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Expand subject taxonomy\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n19 / 72"
+    },
+    {
+      "slide": 20,
+      "pdf_page": 50,
+      "title": "S11 / Lesson reader — /lesson/:subject/:lesson",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS11 / Lesson reader\nStructured English high-yield content\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nLesson reader\nRecognising oral red flags\nDefinition and importance\nHistory + examination checklist\nDifferential reasoning\nClinical referral points\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /lesson/:subject/:lesson\nPRIMARY USER ACTION\nRead, highlight, bookmark, mark complete\nWHAT MUST HAPPEN\nNo unverified doses/procedures; reviewed sources shown\nDATA + INTEGRATION\nlessons, sources, progress, bookmarks\nIMPLEMENTATION STATUS / CHECK\nEXISTS · 15 drafts need dental review\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n20 / 72"
+    },
+    {
+      "slide": 21,
+      "pdf_page": 51,
+      "title": "S12 / Clinical learning visuals — /lesson/:subject/:lesson",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS12 / Clinical learning visuals\nOffer diagrams and radiographic examples\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nClinical learning visuals\nView labeled anatomy illustration\nKey structures | Differential\nImage provenance and alt text\nZoom illustration\nImage-based quiz\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /lesson/:subject/:lesson\nPRIMARY USER ACTION\nZoom/compare; toggle annotations\nWHAT MUST HAPPEN\nUse licensed images with consent; all visual content accessible\nDATA + INTEGRATION\nlearning_resources, source_refs\nIMPLEMENTATION STATUS / CHECK\nNEW · Media CMS and rights review\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n21 / 72"
+    },
+    {
+      "slide": 22,
+      "pdf_page": 52,
+      "title": "S13 / Lesson recap & knowledge check — /lesson/:subject/:lesson",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS13 / Lesson recap & knowledge check\nCheck understanding before moving on\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nLesson recap &\nknowledge check\n5 key points\n2 viva prompts\n3 independent practice questions\nMark topic complete\nSchedule revision\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /lesson/:subject/:lesson\nPRIMARY USER ACTION\nFinish and queue spaced revision\nWHAT MUST HAPPEN\nRequire actual completion; avoid empty success claims\nDATA + INTEGRATION\nlesson progress, revision_schedule\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · More useful recap\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n22 / 72"
+    },
+    {
+      "slide": 23,
+      "pdf_page": 53,
+      "title": "S14 / Glossary / dental terminology — /glossary",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS14 / Glossary / dental terminology\nImprove English medical fluency\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nGlossary / dental\nterminology\nSearch: dysplasia\nDefinition, example, pronunciation\nCommon viva use\nAdd to revision cards\nRelated topic\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /glossary\nPRIMARY USER ACTION\nSearch, listen, bookmark definition\nWHAT MUST HAPPEN\nEnglish and pronunciation; no forced speech\nDATA + INTEGRATION\nglossary, audio optional\nIMPLEMENTATION STATUS / CHECK\nNEW · Important for English medium\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n23 / 72"
+    },
+    {
+      "slide": 24,
+      "pdf_page": 54,
+      "title": "Practice is meaningful only when answers are reviewed and mistakes drive future revision.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n02  Questions, tests and revision\nPractice is meaningful only when answers are reviewed and mistakes drive future revision.\nIndependent practice only; not official UPSC PYQ unless verified\nServer-validated answers and timed assessment\nReview explanations; retry weak concepts\nCorrect errors before shipping the question bank\n24 / 72"
+    },
+    {
+      "slide": 25,
+      "pdf_page": 55,
+      "title": "S15 / Practice hub — /practice",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS15 / Practice hub\nMultiple independent question modes\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nPractice hub\nTopic-wise MCQ\nMixed BDS practice\nWrong-answer revision\nTimed custom test\nPrevious attempts\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /practice\nPRIMARY USER ACTION\nChoose mode and subject\nWHAT MUST HAPPEN\nNever label custom set an official UPSC RT\nDATA + INTEGRATION\nquestions, attempts, revision\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Published questions needed\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n25 / 72"
+    },
+    {
+      "slide": 26,
+      "pdf_page": 56,
+      "title": "S16 / Test configuration — /practice",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS16 / Test configuration\nLet candidate set topic/time/questions\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nTest configuration\nSubject: Oral Pathology\nDifficulty: mixed\n10 / 20 / 30 questions\nTimed 15m or untimed\nStart practice\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /practice\nPRIMARY USER ACTION\nChoose filters and start persisted attempt\nWHAT MUST HAPPEN\nOnly approved questions, no reused leaked answers\nDATA + INTEGRATION\nstart_attempt RPC, question metadata\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Guard empty sets\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n26 / 72"
+    },
+    {
+      "slide": 27,
+      "pdf_page": 57,
+      "title": "S17 / MCQ unanswered — /attempt/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS17 / MCQ unanswered\nHigh contrast and accessible answer entry\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nMCQ unanswered\nQuestion 12 of 30\nWhat finding should trigger referral?\nA) Option one\nB) Option two\nC) Option three | D) Option four\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /attempt/:id\nPRIMARY USER ACTION\nChoose option, next, previous, finish\nWHAT MUST HAPPEN\nNever show correct answer during timed mock; save draft answer\nDATA + INTEGRATION\nattempt_answers, question_options\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Mobile QA\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n27 / 72"
+    },
+    {
+      "slide": 28,
+      "pdf_page": 58,
+      "title": "S18 / Practice answer reveal — /attempt/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS18 / Practice answer reveal\nExplain why selected answer is right/wrong\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nPractice answer reveal\nYour answer: B\nReviewed key: A\nWhy A is correct\nWhy other choices fail\nBookmark for revision\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /attempt/:id\nPRIMARY USER ACTION\nReveal only after submitted practice / review\nWHAT MUST HAPPEN\nDetect ambiguous MCQ; human-reviewed answer key\nDATA + INTEGRATION\nscoring RPC, explanations, reviews\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Dental review required\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n28 / 72"
+    },
+    {
+      "slide": 29,
+      "pdf_page": 59,
+      "title": "S19 / Timed test summary — /attempt/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS19 / Timed test summary\nReal timer and guarded submission\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nTimed test summary\nTime remaining: 09:42\nAnswered: 17 / 30\nUnanswered list\nSubmit test?\nContinue test\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /attempt/:id\nPRIMARY USER ACTION\nWarn before submit; auto-finalize only per defined rules\nWHAT MUST HAPPEN\nUse authoritative server clock; race-safe writes\nDATA + INTEGRATION\nattempt timing/status, RPC\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Timer edge QA\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n29 / 72"
+    },
+    {
+      "slide": 30,
+      "pdf_page": 60,
+      "title": "S20 / Test results — /attempt/:id/results",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS20 / Test results\nMake performance actionable\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nTest results\nScore: illustrative sample\nAccuracy by subject\nIncorrect / unattempted\nTime used\nReview mistakes\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /attempt/:id/results\nPRIMARY USER ACTION\nReview each answer; generate study next steps\nWHAT MUST HAPPEN\nNever show score before completed; mark practice only\nDATA + INTEGRATION\nattempts, submissions, progress\nIMPLEMENTATION STATUS / CHECK\nEXISTS · QA with real account\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n30 / 72"
+    },
+    {
+      "slide": 31,
+      "pdf_page": 61,
+      "title": "S21 / Answer explanation — /attempt/:id/review",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS21 / Answer explanation\nDetailed clinical rationale and citations\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAnswer explanation\nQuestion + candidate choice\nValidated correct answer\nExplanation + why others wrong\nConfidence/uncertainty\nFlag ambiguous question\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /attempt/:id/review\nPRIMARY USER ACTION\nBookmark/flag question, navigate all answers\nWHAT MUST HAPPEN\nFlagged items go to academic review; protect answer leakage\nDATA + INTEGRATION\nquestion_reviews, bookmarks\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Flagging/review workflow\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n31 / 72"
+    },
+    {
+      "slide": 32,
+      "pdf_page": 62,
+      "title": "S22 / Incorrect answer notebook — /saved?filter=incorrect",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS22 / Incorrect answer notebook\nDeliberate improvement with spaced review\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nIncorrect answer\nnotebook\nMissed in last 7 days\nOral Pathology (3)\nEndodontics (2)\nReview due: Today\nRetry quiz\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /saved?filter=incorrect\nPRIMARY USER ACTION\nRetry only wrong concepts; mark understood\nWHAT MUST HAPPEN\nIntervals adapt to recurrence and confidence\nDATA + INTEGRATION\nrevision_schedule, attempt answers\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Refine UI\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n32 / 72"
+    },
+    {
+      "slide": 33,
+      "pdf_page": 63,
+      "title": "S23 / Saved & bookmarks — /saved",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS23 / Saved & bookmarks\nSingle place for saved learning\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nSaved & bookmarks\nSaved lessons\nBookmarked MCQs\nSaved clinical cases\nGlossary terms\nRemove / organize\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /saved\nPRIMARY USER ACTION\nOpen, filter, remove bookmark\nWHAT MUST HAPPEN\nAll data private per user via RLS\nDATA + INTEGRATION\nbookmarks, learning resources\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Validate RLS\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n33 / 72"
+    },
+    {
+      "slide": 34,
+      "pdf_page": 64,
+      "title": "S24 / Spaced revision calendar — /revision",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS24 / Spaced revision calendar\nSRS without aggressive streak pressure\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nSpaced revision\ncalendar\nToday: 6 due\nTomorrow: 8 planned\nRecently mastered\nReview priority\nStart revision\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /revision\nPRIMARY USER ACTION\nSRS schedule and practice review\nWHAT MUST HAPPEN\nReasonable reminders; no false readiness score\nDATA + INTEGRATION\nrevision_schedule, user goals\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Add calendar view\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n34 / 72"
+    },
+    {
+      "slide": 35,
+      "pdf_page": 65,
+      "title": "Focus on prioritization, red flags and safe professional judgment.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n03  Clinical case reasoning\nFocus on prioritization, red flags and safe professional judgment.\nStructured history\ndifferential\nsafety\ncommunication\n→\n→\n→\nSupervision and current protocols always take precedence\nDo not provide unverified doses or automatic treatment advice\nEvery case requires qualified review before public access\n35 / 72"
+    },
+    {
+      "slide": 36,
+      "pdf_page": 66,
+      "title": "S25 / Clinical case library — /cases",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS25 / Clinical case library\nCase-based reasoning, not cookbook medicine\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nClinical case library\nSuspected oral cancer\nAcute dental emergency\nPregnant patient with pain\nPaediatric trauma\nReview status visible\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /cases\nPRIMARY USER ACTION\nOpen staged case after review\nWHAT MUST HAPPEN\nNo draft clinical case shown publicly\nDATA + INTEGRATION\nclinical_cases, case_steps\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Cases currently all draft\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n36 / 72"
+    },
+    {
+      "slide": 37,
+      "pdf_page": 67,
+      "title": "S26 / Clinical case: initial assessment — /cases/:slug",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS26 / Clinical case: initial assessment\nPrompt candidate to gather necessary history\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nClinical case: initial\nassessment\nPatient presents with red flag\nChief complaint / duration\nVital signs, relevant history\nWhich findings would you seek?\nSubmit reasoning\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /cases/:slug\nPRIMARY USER ACTION\nType reasoning; choose safe next step\nWHAT MUST HAPPEN\nImmediate red flags prioritized; no dangerous drug dosing\nDATA + INTEGRATION\ncase_stages, candidate answers\nIMPLEMENTATION STATUS / CHECK\nNEW · Guided stage-by-stage mode\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n37 / 72"
+    },
+    {
+      "slide": 38,
+      "pdf_page": 68,
+      "title": "S27 / Clinical case: reasoning — /cases/:slug",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS27 / Clinical case: reasoning\nTrack differential, escalation, consent\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nClinical case: reasoning\nList differential diagnoses\nWhat is urgent?\nInvestigations or referrals\nInformed consent and\ndocumentation\nNext stage\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /cases/:slug\nPRIMARY USER ACTION\nSubmit structured differential and triage\nWHAT MUST HAPPEN\nUse human-reviewed keys; escalate emergencies\nDATA + INTEGRATION\ncase_answers, clinical review\nIMPLEMENTATION STATUS / CHECK\nNEW · Clinical reasoning engine\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n38 / 72"
+    },
+    {
+      "slide": 39,
+      "pdf_page": 69,
+      "title": "S28 / Clinical case feedback — /cases/:slug/results",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS28 / Clinical case feedback\nExplain safe thinking rather than only points\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nClinical case feedback\nMain red flags recognized\nMissed key question\nAppropriate referral logic\nClinical review references\nTry again\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /cases/:slug/results\nPRIMARY USER ACTION\nReview safety points, bookmark weak area\nWHAT MUST HAPPEN\nExplicit limits: supervised educational scenario\nDATA + INTEGRATION\ncase_review, learner progress\nIMPLEMENTATION STATUS / CHECK\nNEW · Academic QA essential\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n39 / 72"
+    },
+    {
+      "slide": 40,
+      "pdf_page": 70,
+      "title": "Build confidence without manufacturing official scores or simulated AI capability.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n04  English interview practice\nBuild confidence without manufacturing official scores or simulated AI capability.\nStart with non-AI English communication rehearsal\nAdd clinical and emergency viva after review\nSecure AI follow-ups only with a configured service\nVoice requires opt-in consent and text alternative\n40 / 72"
+    },
+    {
+      "slide": 41,
+      "pdf_page": 71,
+      "title": "S29 / Interview Coach hub — /interviews",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS29 / Interview Coach hub\nMatch supplied AI coach screen layout\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nInterview Coach hub\nGeneral\nClinical\nEnglish\nGeneral UPSC | Clinical Viva\nMedical Emergencies\nFull Mock | English Practice\n5 / 15 / 30 min\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /interviews\nPRIMARY USER ACTION\nSelect mode and duration\nWHAT MUST HAPPEN\nAI available only if secure service configured; fallback transparent\nDATA + INTEGRATION\ninterview_sessions and settings\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Current text-only rehearsal\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n41 / 72"
+    },
+    {
+      "slide": 42,
+      "pdf_page": 72,
+      "title": "S30 / Interview setup — /interviews/start",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS30 / Interview setup\nSet practice parameters and consent\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nInterview setup\nGeneral\nClinical\nEnglish\nChoose mode\nPractice duration\nText or voice\nConsent to microphone and AI\nprocessing\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /interviews/start\nPRIMARY USER ACTION\nStart session and show session ID\nWHAT MUST HAPPEN\nOpt-in voice; voice alternatives; protect transcripts\nDATA + INTEGRATION\ninterview sessions, preferences\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Duration goal exists, not timer\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n42 / 72"
+    },
+    {
+      "slide": 43,
+      "pdf_page": 73,
+      "title": "S31 / English text interview — /interviews/session/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS31 / English text interview\nOne-by-one interview dialogue\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nEnglish text interview\nInterviewer question\nCandidate response editor\nSave draft\nNext question\nReflection notes\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /interviews/session/:id\nPRIMARY USER ACTION\nRespond and save; optionally request follow-up\nWHAT MUST HAPPEN\nCurrent mode self-guided, no false AI grading\nDATA + INTEGRATION\ninterview_sessions, messages\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Self-guided text only\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n43 / 72"
+    },
+    {
+      "slide": 44,
+      "pdf_page": 74,
+      "title": "S32 / Adaptive follow-up (AI) — /interviews/session/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS32 / Adaptive follow-up (AI)\nRelevant follow-ups based on response\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAdaptive follow-up (AI)\nQuestion from reviewed prompt\nbank\nCandidate response\nContextual follow-up\nHint after response\nFinish session\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /interviews/session/:id\nPRIMARY USER ACTION\nAI generates limited safe follow-up\nWHAT MUST HAPPEN\nServer-only model; medical safety layer; rate limit\nDATA + INTEGRATION\ninterview server endpoint, prompts\nIMPLEMENTATION STATUS / CHECK\nNEW · Requires secure AI integration\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n44 / 72"
+    },
+    {
+      "slide": 45,
+      "pdf_page": 75,
+      "title": "S33 / Voice permission & transcript — /interviews/voice",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS33 / Voice permission & transcript\nAccessible opt-in speech practice\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nVoice permission &\ntranscript\nGeneral\nClinical\nEnglish\nMicrophone permission\nexplanation\nStart voice input\nLive transcript preview\nEdit before submit\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /interviews/voice\nPRIMARY USER ACTION\nExplicit consent, revoke, switch to text\nWHAT MUST HAPPEN\nNo silent recordings; retention transparency\nDATA + INTEGRATION\nmicrophone client; private metadata\nIMPLEMENTATION STATUS / CHECK\nNEW · Optional/conditional\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n45 / 72"
+    },
+    {
+      "slide": 46,
+      "pdf_page": 76,
+      "title": "S34 / Interview feedback — /interviews/report/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS34 / Interview feedback\nCoaching, not fake official UPSC scores\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nInterview feedback\nGeneral\nClinical\nEnglish\nClarity + structured answer\nClinical reasoning checklist\nSafety and ethics reminders\nSuggested improved answer\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /interviews/report/:id\nPRIMARY USER ACTION\nRead feedback, compare prior sessions\nWHAT MUST HAPPEN\nLabel AI-derived and human review limits; no predicted selection\nDATA + INTEGRATION\ninterview_feedback, content review\nIMPLEMENTATION STATUS / CHECK\nNEW · AI scorer not yet implemented\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n46 / 72"
+    },
+    {
+      "slide": 47,
+      "pdf_page": 77,
+      "title": "S35 / Interview history — /interviews/history",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS35 / Interview history\nMeasure personal improvement\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nInterview history\nGeneral\nClinical\nEnglish\nSession history\nGeneral interview – completed\nEnglish – draft\nWeak answer structures\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /interviews/history\nPRIMARY USER ACTION\nResume draft, view past answer\nWHAT MUST HAPPEN\nConfidential per-user transcripts and deletion\nDATA + INTEGRATION\ninterview_sessions, RLS\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Session history; more reports later\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n47 / 72"
+    },
+    {
+      "slide": 48,
+      "pdf_page": 78,
+      "title": "Prevent missed deadlines and track learning; do not confuse guidance with official rules.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n05  UPSC application and progress\nPrevent missed deadlines and track learning; do not confuse guidance with official rules.\nOfficial UPSC notices take precedence\nBDS qualification, registration and internship checks\nProgress metrics use real attempts only\nCandidate can export or remove personal data\n48 / 72"
+    },
+    {
+      "slide": 49,
+      "pdf_page": 79,
+      "title": "S36 / Official recruitment centre — /upsc",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS36 / Official recruitment centre\nSingle authoritative facts source\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nOfficial recruitment\ncentre\nUPSC Advertisement 13/2026\n5 Dental Surgeon vacancies\nLast date: 04 Dec 2026\nInterview: 100 marks\nVerify latest corrigendum\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS notice record;\nroute UX pending\nRoute: /upsc\nPRIMARY USER ACTION\nOpen official UPSC PDF and portal\nWHAT MUST HAPPEN\nNever invent RT schedule or subject weights\nDATA + INTEGRATION\nofficial notices + verification date\nIMPLEMENTATION STATUS / CHECK\nEXISTS notice record; route UX pending\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n49 / 72"
+    },
+    {
+      "slide": 50,
+      "pdf_page": 80,
+      "title": "S37 / Eligibility & duties — /upsc/eligibility",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS37 / Eligibility & duties\nInterpret requirements with references\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nEligibility & duties\nRecognized dental qualification\nState Dental Council registration\nCompulsory rotating internship\nSafdarjung / RML / RHTC duties\nRead official criteria\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /upsc/eligibility\nPRIMARY USER ACTION\nRead/acknowledge details, no auto-eligibility promise\nWHAT MUST HAPPEN\nQuote only verified UPSC requirements, updates\nDATA + INTEGRATION\nrecruitment notices, source links\nIMPLEMENTATION STATUS / CHECK\nNEW · Informational only\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n50 / 72"
+    },
+    {
+      "slide": 51,
+      "pdf_page": 81,
+      "title": "S38 / Application & document checklist — /upsc/checklist",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS38 / Application & document checklist\nPrevent missed deadlines/documents\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nApplication &\ndocument checklist\nApplication submission?\nID proof\nDegree / registration / internship\nCategory certificates if relevant\nAppointment originals\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /upsc/checklist\nPRIMARY USER ACTION\nMark ready, set local reminder\nWHAT MUST HAPPEN\nNo forced upload of sensitive files\nDATA + INTEGRATION\nlocal checklist + optional private sync\nIMPLEMENTATION STATUS / CHECK\nNEW · High priority now\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n51 / 72"
+    },
+    {
+      "slide": 52,
+      "pdf_page": 82,
+      "title": "S39 / Performance analytics — /progress",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS39 / Performance analytics\nShow factual trends and weak concepts\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nPerformance analytics\nQuestions: 0 for new account\nAccuracy over time\nWeakest subject (when available)\nClinical case completion\nSuggested focus\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /progress\nPRIMARY USER ACTION\nFilter by date and subject\nWHAT MUST HAPPEN\nNo fake scores, no AI selection prediction\nDATA + INTEGRATION\nattempts, topic_progress\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Guard small-sample confidence\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n52 / 72"
+    },
+    {
+      "slide": 53,
+      "pdf_page": 83,
+      "title": "S40 / Account & preferences — /profile",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS40 / Account & preferences\nEdit goals and user rights\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAccount & preferences\nEdit daily study goal\nChange password\nManage notification permissions\nExport my data\nDelete my account\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nPARTIAL\nRoute: /profile\nPRIMARY USER ACTION\nSave and confirm destructive actions\nWHAT MUST HAPPEN\nRLS, session isolation, no exposed credentials\nDATA + INTEGRATION\nprofiles, auth, user settings\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · Export/delete to implement\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n53 / 72"
+    },
+    {
+      "slide": 54,
+      "pdf_page": 84,
+      "title": "S41 / Accessibility & help — /help",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS41 / Accessibility & help\nSupport inclusive English preparation\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAccessibility & help\nText size\nScreen reader support\nHigh contrast\nDisable motion / voice\nHelp & academic feedback\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nNEW\nRoute: /help\nPRIMARY USER ACTION\nChange preferences and file issue\nWHAT MUST HAPPEN\nNever penalize accent or disability\nDATA + INTEGRATION\nuser_preferences, support\nIMPLEMENTATION STATUS / CHECK\nNEW · WCAG test gate\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n54 / 72"
+    },
+    {
+      "slide": 55,
+      "pdf_page": 85,
+      "title": "S42 / Offline reading shelf — /offline",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS42 / Offline reading shelf\nControlled offline access to reviewed notes\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nOffline reading shelf\nSaved public lessons\nLast updated and reviewed\nRemove offline copy\nReconnect to refresh\nNo offline scores/auth\nHome\nStudy\nPractice\nInterview\nProfile\nCandidate\nEXISTS\nRoute: /offline\nPRIMARY USER ACTION\nDownload/remove published lesson\nWHAT MUST HAPPEN\nNo private transcripts cached, withdrawal sync\nDATA + INTEGRATION\nPWA service worker, local cache\nIMPLEMENTATION STATUS / CHECK\nEXISTS · PWA, real device QA\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n55 / 72"
+    },
+    {
+      "slide": 56,
+      "pdf_page": 86,
+      "title": "Design is not complete until content, permission and deployment checks are real.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n06  Administration and release quality\nDesign is not complete until content, permission and deployment checks are real.\nDraft\nexpert review\napproved publication\n→\n→\nAdmin actions have server-side authorization and audit logs\nOne GitHub repo, one existing DentPrep backend\nCloudflare live revision, auth, real device QA before release\n56 / 72"
+    },
+    {
+      "slide": 57,
+      "pdf_page": 87,
+      "title": "S43 / Admin: content queue — /admin",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS43 / Admin: content queue\nEdit drafts without auto-publishing\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAdmin: content queue\n15 draft lessons\n30 draft MCQs\n15 draft clinical cases\nUnder review items\nAdd draft / Edit / Archive\nHome\nStudy\nPractice\nInterview\nProfile\nAdmin\nEXISTS\nRoute: /admin\nPRIMARY USER ACTION\nEdit and submit for expert review\nWHAT MUST HAPPEN\nAdmin role verified server-side; audit trail\nDATA + INTEGRATION\ncontent tables, RLS, audit\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Admin role assignment missing\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n57 / 72"
+    },
+    {
+      "slide": 58,
+      "pdf_page": 88,
+      "title": "S44 / Admin: question editor — /admin/questions/:id",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS44 / Admin: question editor\nRemove ambiguity, require source & rationale\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAdmin: question editor\nQuestion stem\nFour answer options\nSingle vs multi correct\nAnswer rationale and citations\nSave as draft\nHome\nStudy\nPractice\nInterview\nProfile\nAdmin\nEXISTS\nRoute: /admin/questions/:id\nPRIMARY USER ACTION\nEdit, preview and submit review\nWHAT MUST HAPPEN\nMCQ with OLP + leukoplakia must be corrected\nDATA + INTEGRATION\nquestions, answer_options, review\nIMPLEMENTATION STATUS / CHECK\nEXISTS · Add academic rules\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n58 / 72"
+    },
+    {
+      "slide": 59,
+      "pdf_page": 89,
+      "title": "S45 / Clinical reviewer approval — /admin/reviews",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS45 / Clinical reviewer approval\nMedical correctness publication gate\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nClinical reviewer\napproval\nContent revision\nSource URLs and year\nReviewer name and signoff\nConflicts and notes\nApprove / Return to draft\nHome\nStudy\nPractice\nInterview\nProfile\nReviewer\nNEW\nRoute: /admin/reviews\nPRIMARY USER ACTION\nApprove only when role and review satisfied\nWHAT MUST HAPPEN\nVersioned audit, never fabricate expert review\nDATA + INTEGRATION\ncontent_reviews, reviewer_roles\nIMPLEMENTATION STATUS / CHECK\nNEW · Critical before public rollout\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n59 / 72"
+    },
+    {
+      "slide": 60,
+      "pdf_page": 90,
+      "title": "S46 / Admin official updates — /admin/notices",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nS46 / Admin official updates\nSeparate notices from educational speculation\n9:41\nDent Prep\nUPSC Dental Surgeon Preparation\nAdmin official updates\nOfficial UPSC link\nIssue / upload date\nVerified date\nCorrigendum status\nPublish notice\nHome\nStudy\nPractice\nInterview\nProfile\nAdmin\nPARTIAL\nRoute: /admin/notices\nPRIMARY USER ACTION\nLink, verify, publish\nWHAT MUST HAPPEN\nOnly UPSC primary sources marked official\nDATA + INTEGRATION\nrecruitment_notices, provenance\nIMPLEMENTATION STATUS / CHECK\nPARTIAL · More robust workflow\nAcceptance: exact navigation • accessible states • honest empty/loading/error messages • mobile & desktop checks\n60 / 72"
+    },
+    {
+      "slide": 61,
+      "pdf_page": 91,
+      "title": "Every arrow means an actual saved state, not simply a visually connected button.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nEnd-to-end flow A — daily learning loop\nEvery arrow means an actual saved state, not simply a visually connected button.\nStart\nOnboarding\nbaseline diagnostic\npersonalized 7/15/30-day plan.\n→\n→\nLearn\nDaily task\nsubject\nlesson\nobjective\nrecap\ncomplete.\n→\n→\n→\n→\n→\nPractice\nTopic MCQ\nserver-scored result\nexplanation\nreview/flag.\n→\n→\n→\nRevisit\nIncorrect notebook + spaced queue\nretry\nmastery trend.\n→\n→\nProve\nCross-device login/logout, real account isolation and no fake study streak.\n61 / 72"
+    },
+    {
+      "slide": 62,
+      "pdf_page": 92,
+      "title": "Keep clinical safety and access controls visible at every step.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nEnd-to-end flow B — clinical & interview\nKeep clinical safety and access controls visible at every step.\nClinical\nReviewed scenario\nprogressive history\nreasoning\nred flags\nexplanation.\n→\n→\n→\n→\nInterview\nChoose mode/time/text\nquestion\nanswer\nfollow-up\nsummary\nrevisit.\n→\n→\n→\n→\n→\nVoice\nSeparate permission\nstart/stop\ntranscript edit\nsave/delete; no silent recording.\n→\n→\n→\nFeedback\nCommunication improvement + verified clinical dimensions; no official UPSC mark predictions.\nPrivacy\nSession history belongs to account, delete/export on request, limited retention.\n62 / 72"
+    },
+    {
+      "slide": 63,
+      "pdf_page": 93,
+      "title": "Use categories as a study foundation, not a claimed official UPSC interview syllabus.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\n15 BDS subject groups — learning information architecture\nUse categories as a study foundation, not a claimed official UPSC interview syllabus.\nCLINICAL I\nOral Medicine & Radiology; OMFS; Conservative/Endodontics; Periodontology; Prosthodontics.\nCLINICAL II\nOrthodontics; Pediatric Dentistry; Oral Pathology; Public Health Dentistry.\nMEDICAL CORE\nGeneral Medicine/Surgery; Pharmacology & Materials; Anatomy, Physiology, Biochemistry and\nMicrobiology.\nSAFETY\nMedical Emergencies; Infection Control & Dental Ethics.\nPUBLIC SERVICE\nCGHS, public OPD, government healthcare and professional interview readiness.\n63 / 72"
+    },
+    {
+      "slide": 64,
+      "pdf_page": 94,
+      "title": "All items are original reviewed practice questions unless an official source is verified.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nQuestion bank quality — mandatory acceptance\nAll items are original reviewed practice questions unless an official source is verified.\nQUESTION TYPE\nSingle best answer / multiple select / short viva / case-based / ethical scenario — type clearly\nstated.\nMETADATA\nSubject, topic, learning objective, difficulty, correct answer, rationale, published version and\ncitations.\nDEFECT CHECK\nPrevent multiple accepted answers to a single-answer item; e.g. OLP and leukoplakia both\nclassify as OPMDs.\nREVIEW\nQualified reviewer identity and status; flagged/disputed items withdrawn until corrected.\nSECURITY\nDo not reveal answer keys until appropriate stage; use authoritative server scoring.\n64 / 72"
+    },
+    {
+      "slide": 65,
+      "pdf_page": 95,
+      "title": "Quantity alone must never be used as a launch metric.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nContent rollout — clinically safe quality gates\nQuantity alone must never be used as a launch metric.\nCURRENT DB\n15 subjects published; 15 lessons / 30 MCQs / 15 cases remain drafts (verified 23 Nov 2026).\nPHASE 1\nReview existing draft content and only publish approved examples; ensure quizzes have\nenough items.\nPHASE 2\nExpand high-yield BDS coverage and structured English viva prompts with citations and\nreviewed date.\nPHASE 3\nRecruit a qualified dental subject reviewer and maintain a visible revision / dispute workflow.\nPHASE 4\nUse learning analytics to identify content gaps; update when UPSC issues new official notices.\n65 / 72"
+    },
+    {
+      "slide": 66,
+      "pdf_page": 96,
+      "title": "No replacement repository, new database, or duplicate dashboard.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nProduct architecture — preserve existing implementation\nNo replacement repository, new database, or duplicate dashboard.\nSOURCE\nGitHub: gauravjoshi2999/dentprep, latest main with PR #1–#10 already merged.\nAPP\nReact 19, TypeScript, TanStack Start SSR, Tailwind; existing reusable components and routes.\nBACKEND\nExisting Lovable/Supabase database + RLS; audit schema and migrations before modifying.\nHOSTING\nExisting Cloudflare Worker deploy path; use explicit production Git revision verification.\nANDROID\nTWA/PWA configuration exists; verified origin, app signing and real-device QA needed.\n66 / 72"
+    },
+    {
+      "slide": 67,
+      "pdf_page": 97,
+      "title": "Use real data QA after unit tests and visual matching.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nAcceptance and test matrix\nUse real data QA after unit tests and visual matching.\nFUNCTION\nEvery button has meaningful result; forms persist; error/empty/loading/retry states.\nCONTENT\nAll public facts cited; MCQs unambiguous; no unpublished clinical content leaked.\nAUTH\nCandidate data isolated; admin gated; reset-password and OAuth redirect allowlist correct.\nDEVICE\n360 / 390 / 430px mobile + tablet + 1440px desktop; PWA install/offline and TWA testing.\nRELEASE\nCI green\nPR review\nsafe merge\nCloudflare deployment\nlive SHA/asset/route checks.\n→\n→\n→\n→\n67 / 72"
+    },
+    {
+      "slide": 68,
+      "pdf_page": 98,
+      "title": "The repository and associated backend are the source of truth, not an earlier chat plan.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nWork handoff — avoid redoing already completed tasks\nThe repository and associated backend are the source of truth, not an earlier chat plan.\nBASELINE FIRST\nRead latest main, all merged/open PRs, CI runs, database schema/counts, Cloudflare deploy\nstatus.\nCLASSIFY EACH FEATURE\nImplemented / Partial / Missing / Blocked, linked to file paths and tests.\nDIFF AGAINST CANVA\nRecreate visual language from screenshots, but keep feature and medical facts grounded.\nMAKE SMALL PRS\nOne module at a time: implement\nunit/browser/real device test\nPR\nmerge\nlive QA.\n→\n→\n→\n→\nCONTINUE\nNever duplicate Bite or DentPrep repo; do not publish drafts, expose secrets or claim fake\ncompletion.\n68 / 72"
+    },
+    {
+      "slide": 69,
+      "pdf_page": 99,
+      "title": "The build and actual production deployment must be treated separately.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nRelease gates and dependencies\nThe build and actual production deployment must be treated separately.\nGATE 1\nGitHub CI passed and clean latest main; no accidental production secret in repo.\nGATE 2\nCloudflare Free account authorised, necessary Worker token & ID in GitHub environment\nsecrets.\nGATE 3\nDentPrep backend public URL and publishable key configured; no Bite environment reuse.\nGATE 4\nManual deployment and live revision verified; account sign-in and redirect QA passes.\nGATE 5\nDental review before public case/MCQ lessons; Android signed build only after verified origin.\n69 / 72"
+    },
+    {
+      "slide": 70,
+      "pdf_page": 100,
+      "title": "Prioritize exam usefulness and safe production launch, not cosmetic duplication.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nImplementation order for ChatGPT Work\nPrioritize exam usefulness and safe production launch, not cosmetic duplication.\n01 / AUDIT\nLatest code and merged PRs; route-by-route snapshot, DB/RLS, CI and Cloudflare access.\n02 / DEPLOY\nRelease current main to user-authorized Cloudflare, verify actual SHA and auth.\n03 / CONTENT\nStructured English lessons, verified MCQs/cases, admin dental review workflow.\n04 / INTERVIEW\nSecure AI text follow-up, optional voice, transparent coaching and safe fallbacks.\n05 / FINISH\nExact visual QA, accessible mobile UX, Android/TWA signed builds, source-linked release report.\n70 / 72"
+    },
+    {
+      "slide": 71,
+      "pdf_page": 101,
+      "title": "Functional, medically responsible and deployment-verified, not simply visually similar.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nDefinition of done — no false 100%\nFunctional, medically responsible and deployment-verified, not simply visually similar.\nUSER SUCCESS\nCandidate can log in, study, test, review, rehearse, track progress and resume across devices.\nACADEMIC QUALITY\nPublished material reviewed, sourced and corrected; official recruitment details clearly marked.\nUI MATCH\nHome, library, test and interview match the four references by visual QA and shared design\ntokens.\nPRODUCTION\nReal deployment, database isolation, notifications and accessibility verified.\nRELEASE\nSigned Android deliverable + PWA supported; final status report lists known caveats.\n71 / 72"
+    },
+    {
+      "slide": 72,
+      "pdf_page": 102,
+      "title": "Evidence is linked; editable source is saved in Canva and PowerPoint.",
+      "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nPrimary sources + design provenance\nEvidence is linked; editable source is saved in Canva and PowerPoint.\nUPSC Advertisement 13/2026\nhttps://upsc.gov.in/uploads/2026/11/AdvtNo-13-2026-Engl-131126_0.pdf\nUPSC recruitment procedures\nhttps://upsc.gov.in/about-us/divisions/recruitment/\nUPSC Recruitment Test notices\nhttps://upsc.gov.in/recruitment-tests/notice/\nDental BDS regulations\nhttps://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf\nOPMD academic reference\nhttps://www.ncbi.nlm.nih.gov/books/NBK611818/\nDentPrep source code\nhttps://github.com/gauravjoshi2999/dentprep\nCloudflare release gate\nhttps://github.com/gauravjoshi2999/dentprep/issues/8\n72 / 72"
+    }
+  ]
+}

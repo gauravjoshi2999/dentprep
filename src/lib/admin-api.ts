@@ -4,7 +4,7 @@ import type { Tables } from "@/integrations/supabase/types";
 
 // Narrow boundary for additive RPCs, without hand-editing Lovable-generated database types.
 async function invoke(
-  name: "admin_question_options" | "admin_save_question",
+  name: "admin_question_options" | "admin_save_question" | "admin_questions",
   args: Record<string, unknown>,
 ) {
   const rpc = supabase.rpc.bind(supabase) as unknown as (
@@ -23,6 +23,21 @@ const optionSchema = z.object({
   is_correct: z.boolean(),
   sort_order: z.number(),
 });
+export async function adminQuestions(): Promise<Tables<"questions">[]> {
+  const schema = z.object({
+    id: z.string().uuid(),
+    subject_id: z.string().uuid(),
+    topic: z.string(),
+    stem: z.string(),
+    explanation: z.string(),
+    source_note: z.string(),
+    difficulty: z.enum(["easy", "medium", "hard"]),
+    status: z.enum(["draft", "in_review", "published", "archived"]),
+    created_at: z.string(),
+    updated_at: z.string(),
+  });
+  return z.array(schema).parse(await invoke("admin_questions", {}));
+}
 export async function adminQuestionOptions(id: string): Promise<Tables<"answer_options">[]> {
   return z.array(optionSchema).parse(await invoke("admin_question_options", { p_question_id: id }));
 }

@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchQuestions } from "@/lib/queries";
+import { fetchAttemptDetails } from "@/lib/attempt-api";
 import { useUserId } from "@/lib/auth";
 import { formatDuration } from "@/lib/dates";
 import { RequireUser } from "@/components/app/study-shell";
@@ -51,18 +52,14 @@ function Attempt() {
         .maybeSingle();
       if (error) throw error;
       if (!attempt) return null;
-      const { data: answers, error: answerError } = await supabase
-        .from("test_answers")
-        .select("question_id, selected_option_id, is_correct")
-        .eq("attempt_id", attemptId)
-        .eq("user_id", userId);
-      if (answerError) throw answerError;
-      return { attempt, answers, questions: await fetchQuestions(attempt.question_ids) };
+      const details = await fetchAttemptDetails(attemptId);
+      return { attempt, ...details, questions: await fetchQuestions(attempt.question_ids) };
     },
   });
   const attempt = query.data?.attempt;
   const question = query.data?.questions[index];
   const answer = query.data?.answers.find((a) => a.question_id === question?.id);
+  const review = query.data?.reviews.find((r) => r.question_id === question?.id);
   const immediate = attempt && ["practice", "daily", "revision"].includes(attempt.mode);
   const locked = immediate && !!answer;
   const remaining =
@@ -123,6 +120,7 @@ function Attempt() {
     const t = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(t);
   }, [attempt?.status, attempt?.timed]);
+  const submitNow = submit.mutate;
   useEffect(() => {
     if (
       remaining === 0 &&
@@ -131,9 +129,9 @@ function Attempt() {
       !save.isPending
     ) {
       autoSubmitted.current = true;
-      submit.mutate();
+      submitNow();
     }
-  }, [remaining, attempt?.status, save.isPending, submit.mutate]);
+  }, [remaining, attempt?.status, save.isPending, submitNow]);
   function go(next: number) {
     setIndex(next);
     setChoice(null);
@@ -174,6 +172,7 @@ function Attempt() {
         <div className="grid gap-4">
           {query.data.questions.map((q, i) => {
             const a = query.data?.answers.find((row) => row.question_id === q.id);
+            const reviewed = query.data?.reviews.find((row) => row.question_id === q.id);
             return (
               <section className="surface p-5" key={q.id}>
                 <div className="mb-3 flex items-start justify-between gap-3">
@@ -189,9 +188,13 @@ function Attempt() {
                     ? `${a.is_correct ? "Correct" : "Needs revision"} · Your answer: ${q.answer_options.find((o) => o.id === a.selected_option_id)?.body ?? "Unavailable"}`
                     : "Unanswered"}
                 </p>
-                <Markdown>{q.explanation}</Markdown>
-                {q.source_note && (
-                  <p className="mt-3 text-xs text-muted-foreground">Source note: {q.source_note}</p>
+                <Markdown>
+                  {reviewed?.explanation ?? "The reviewed explanation is no longer available."}
+                </Markdown>
+                {reviewed?.source_note && (
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    Source note: {reviewed.source_note}
+                  </p>
                 )}
               </section>
             );
@@ -201,13 +204,44 @@ function Attempt() {
     );
   return (
     <>
-      <AppHero eyebrow="Independent MCQ practice" title={attempt.title} description="Answer carefully and save each response. This is not an official UPSC test." actions={remaining !== null && <span role="timer" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold"><Clock3 className="h-4 w-4" />{formatDuration(remaining)} remaining</span>} />
+      <AppHero
+        eyebrow="Independent MCQ practice"
+        title={attempt.title}
+        description="Answer carefully and save each response. This is not an official UPSC test."
+        actions={
+          remaining !== null && (
+            <span
+              role="timer"
+              className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold"
+            >
+              <Clock3 className="h-4 w-4" />
+              {formatDuration(remaining)} remaining
+            </span>
+          )
+        }
+      />
       <div className="mb-5 flex items-center justify-between gap-4" aria-label="Test progress">
-        <span className="text-sm font-extrabold">Question {index + 1} of {query.data.questions.length}</span>
-        <span className="text-sm font-semibold text-teal">{query.data.answers.length} answers saved</span>
+        <span className="text-sm font-extrabold">
+          Question {index + 1} of {query.data.questions.length}
+        </span>
+        <span className="text-sm font-semibold text-teal">
+          {query.data.answers.length} answers saved
+        </span>
       </div>
-      <div className="mb-5 h-2.5 overflow-hidden rounded-full bg-border" role="progressbar" aria-label="Saved answer progress" aria-valuemin={0} aria-valuemax={attempt.total} aria-valuenow={query.data.answers.length}>
-        <div className="h-full rounded-full bg-teal transition-[width]" style={{ width: `${attempt.total ? Math.round(100 * query.data.answers.length / attempt.total) : 0}%` }} />
+      <div
+        className="mb-5 h-2.5 overflow-hidden rounded-full bg-border"
+        role="progressbar"
+        aria-label="Saved answer progress"
+        aria-valuemin={0}
+        aria-valuemax={attempt.total}
+        aria-valuenow={query.data.answers.length}
+      >
+        <div
+          className="h-full rounded-full bg-teal transition-[width]"
+          style={{
+            width: `${attempt.total ? Math.round((100 * query.data.answers.length) / attempt.total) : 0}%`,
+          }}
+        />
       </div>
       <div className="mb-5 flex flex-wrap gap-2" aria-label="Question navigation">
         {query.data.questions.map((q, i) => (
@@ -234,7 +268,10 @@ function Attempt() {
         <section className="surface mx-auto max-w-4xl border-teal/20 p-5 sm:p-8">
           <div className="mb-5 flex items-start justify-between gap-4">
             <h2 className="text-xl font-extrabold">
-              <span className="mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-soft align-middle text-base text-teal">Q{index + 1}</span>{question.stem}
+              <span className="mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-soft align-middle text-base text-teal">
+                Q{index + 1}
+              </span>
+              {question.stem}
             </h2>
             <BookmarkButton itemType="question" itemId={question.id} compact />
           </div>
@@ -269,20 +306,38 @@ function Attempt() {
                   ? "Correct"
                   : "Review this explanation"}
               </p>
-              <Markdown>{feedback?.explanation ?? question.explanation}</Markdown>
+              <Markdown>
+                {feedback?.explanation ??
+                  review?.explanation ??
+                  "The reviewed explanation is no longer available."}
+              </Markdown>
             </div>
           )}
           <div className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-            <Button variant="outline" disabled={index === 0 || save.isPending || submit.isPending} onClick={() => go(index - 1)}><ArrowLeft className="mr-1 h-4 w-4" />Previous</Button>
             <Button
-              disabled={!choice || !!locked || save.isPending || submit.isPending || remaining === 0}
+              variant="outline"
+              disabled={index === 0 || save.isPending || submit.isPending}
+              onClick={() => go(index - 1)}
+            >
+              <ArrowLeft className="mr-1 h-4 w-4" />
+              Previous
+            </Button>
+            <Button
+              disabled={
+                !choice || !!locked || save.isPending || submit.isPending || remaining === 0
+              }
               onClick={() => save.mutate()}
             >
               {save.isPending ? "Saving…" : "Save answer"}
             </Button>
             {index + 1 < query.data.questions.length && (
-              <Button variant="outline" disabled={save.isPending || submit.isPending} onClick={() => go(index + 1)}>
-                {choice ? "Next without saving" : "Skip for now"} <ArrowRight className="ml-1 h-4 w-4" />
+              <Button
+                variant="outline"
+                disabled={save.isPending || submit.isPending}
+                onClick={() => go(index + 1)}
+              >
+                {choice ? "Next without saving" : "Skip for now"}{" "}
+                <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             )}
           </div>

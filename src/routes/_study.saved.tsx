@@ -35,7 +35,7 @@ function Saved() {
         ids("question").length
           ? supabase
               .from("questions")
-              .select("id,stem,explanation")
+              .select("id,stem")
               .eq("status", "published")
               .in("id", ids("question"))
           : Promise.resolve({ data: [], error: null }),
@@ -109,14 +109,12 @@ function Saved() {
                   </Link>
                 )}
                 {question && (
-                  <details className="mt-4 text-sm">
-                    <summary className="cursor-pointer font-semibold text-teal">
-                      Review explanation
-                    </summary>
-                    <p className="mt-3 whitespace-pre-wrap text-muted-foreground">
-                      {question.explanation}
-                    </p>
-                  </details>
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    Explanations appear after you answer in practice or submit a test.{" "}
+                    <Link to="/practice" className="font-semibold text-teal">
+                      Open practice
+                    </Link>
+                  </p>
                 )}
                 {clinicalCase && (
                   <Link to="/cases" className="mt-4 block text-sm font-semibold text-teal">

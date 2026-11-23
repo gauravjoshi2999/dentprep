@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import { useUserId } from "@/lib/auth";
 import { isAdminQuery } from "@/lib/queries";
-import { adminQuestionOptions, adminSaveQuestion } from "@/lib/admin-api";
+import { adminQuestionOptions, adminQuestions, adminSaveQuestion } from "@/lib/admin-api";
 import { RequireUser } from "@/components/app/study-shell";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice, PageHeader } from "@/components/app/common";
 import { Button } from "@/components/ui/button";
@@ -46,6 +46,7 @@ function Admin() {
   const content = useQuery({
     queryKey: ["admin-content", userId, kind],
     queryFn: async () => {
+      if (kind === "questions") return adminQuestions();
       const { data, error } = await supabase
         .from(kind)
         .select("*")

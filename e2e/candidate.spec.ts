@@ -36,7 +36,7 @@ const subjects = [
   },
 ];
 
-async function mockBackend(page: Page, signedIn = false, withQuestion = false) {
+async function mockBackend(page: Page, signedIn = false, withQuestion = false, admin = false) {
   // Isolated test-only records: these tests never create accounts or publish clinical content.
   if (signedIn)
     await page.addInitScript(
@@ -48,6 +48,7 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false) {
   let plan: Record<string, unknown> | null = null;
   let tasks: Record<string, unknown>[] = [];
   const interviews: Record<string, unknown>[] = [];
+  const drafts: Record<string, unknown>[] = [];
   const question = {
     id: questionId,
     subject_id: subjectId,
@@ -79,8 +80,15 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false) {
       });
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
-    else if (path.endsWith("/rpc/has_role")) data = false;
-    else if (path.endsWith("/rpc/start_attempt")) data = attemptId;
+    else if (path.endsWith("/rpc/has_role")) data = admin;
+    else if (path.endsWith("/rpc/admin_save_question")) {
+      expect(admin).toBe(true);
+      expect(["draft", "in_review"]).toContain(body.p_question.status);
+      expect(body.p_options).toHaveLength(4);
+      expect(body.p_options.filter((o: { is_correct: boolean }) => o.is_correct)).toHaveLength(1);
+      drafts.push(body.p_question);
+      data = body.p_question.id;
+    } else if (path.endsWith("/rpc/start_attempt")) data = attemptId;
     else if (path.endsWith("/rpc/record_answer")) {
       answered = true;
       data = { is_correct: true, correct_option_id: optionId, explanation: question.explanation };
@@ -91,11 +99,21 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false) {
       data = url.searchParams.has("slug") ? subjects[0] : subjects;
     else if (path.endsWith("/profiles")) data = { id: userId, full_name: "QA Candidate" };
     else if (path.endsWith("/questions")) {
-      expect(url.searchParams.get("status")).toBe("eq.published");
-      data = withQuestion ? [question] : [];
+      if (url.searchParams.has("status")) {
+        expect(url.searchParams.get("status")).toBe("eq.published");
+        data = withQuestion ? [question] : [];
+      } else {
+        expect(admin).toBe(true);
+        data = drafts;
+      }
     } else if (path.endsWith("/lessons")) {
-      expect(url.searchParams.get("status")).toBe("eq.published");
-      data = null;
+      if (url.searchParams.has("slug")) {
+        expect(url.searchParams.get("status")).toBe("eq.published");
+        data = null;
+      } else {
+        expect(admin).toBe(true);
+        data = [];
+      }
     } else if (path.endsWith("/attempts")) {
       const a = {
         id: attemptId,
@@ -239,4 +257,33 @@ test("interview answers and reflections survive a saved session reload", async (
     /contribute to public service/,
   );
   await expect(page.getByText("Completed session", { exact: false })).toBeVisible();
+});
+
+test("ordinary candidates cannot access the content administration screen", async ({ page }) => {
+  await mockBackend(page, true);
+  await page.goto("/admin");
+  await expect(page.getByText("Administrator access required")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add draft", exact: true })).toHaveCount(0);
+});
+
+test("administrators save MCQs through the draft-only transactional API", async ({ page }) => {
+  await mockBackend(page, true, false, true);
+  await page.goto("/admin");
+  await page.getByRole("button", { name: "MCQs", exact: true }).click();
+  await page.getByRole("button", { name: "Add draft", exact: true }).click();
+  await page
+    .getByLabel("Question stem", { exact: true })
+    .fill("QA original study routine question");
+  await page
+    .getByLabel("Answer explanation", { exact: true })
+    .fill("QA explanation for a study routine.");
+  for (const [i, label] of ["A", "B", "C", "D"].entries())
+    await page.getByLabel(`Answer option ${label}`, { exact: true }).fill(`QA option ${i + 1}`);
+  await page.getByLabel("Workflow status").selectOption("in_review");
+  await expect(page.getByRole("option", { name: "Published", exact: true })).toHaveCount(0);
+  await page.getByRole("button", { name: "Save draft content" }).click();
+  await expect(
+    page.getByRole("heading", { name: "QA original study routine question", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText("in review", { exact: true })).toBeVisible();
 });

@@ -28,6 +28,8 @@ jobs:
         run: npm run typecheck
       - name: Run tests
         run: npm test
+      - name: Test live resource verification
+        run: npm run test:release
       - name: Prepare and validate deployable Worker (no publication)
         run: |
           npm run build:release -- --allow-test-backend

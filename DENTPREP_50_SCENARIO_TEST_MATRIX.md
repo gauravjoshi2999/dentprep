@@ -397,11 +397,13 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 - Priority: P0; status: **PASS**.
 - Expected / steps: Expected SHA matches /api/health, SSR, CSS/JS hashes, PWA/routes; rollback on unrecovered 404.
-- Actual / evidence: Fresh CLI exact revision/SSR/CSS/JS/routes/PWA PASS at `e3b3ee74db3e8357175189a0907a8463ccae24af`; production 45251461187 SUCCESS, artifact 14854928788. Later checkpoints resolve their exact revision from live health and the SHA-specific artifact.
+- Actual / evidence: Fresh CLI exact revision/SSR/CSS/JS/routes/PWA PASS at `cc140559ff628371d7cc1ca65c044f00369be20a`; production 45253304850 SUCCESS, artifact 14857143951. Later checkpoints resolve their exact revision from live health and the SHA-specific artifact.
 - Fixture/environment: isolated mocked CI or rollback SQL only unless explicitly recorded otherwise.
 - Retest / fix PR: pending.
 
 ## T49 — Real Android + desktop
+
+- Partial native evidence: PR #24 main Android assemble/lint 45253304800 SUCCESS; artifact 14856519438 downloaded, actual APK hash/compiled live URL/package and web/native receipt verified. Standard debug signature only. Physical install/accounts, production identity and asset-links ownership remain BLOCKED/NOT RUN.
 
 - Priority: P2; status: **BLOCKED**.
 - Expected / steps: Real user login, saved data, voice consent, navigation, PWA and Android signing on physical device.

@@ -1,0 +1,32 @@
+{
+  "classification": "CODE / CI / downloaded binary inspection; debug only",
+  "pr": 24,
+  "head": "910d20d3ea187474ac8885e842f907089b8f8314",
+  "merge": "cc140559ff628371d7cc1ca65c044f00369be20a",
+  "artifact_id": 14856519438,
+  "run_id": 45253304800,
+  "qa": {
+    "verification": "PASS: actual main debug APK hash, compiled manifest URL/package, matching web/native revision receipt and no keystore artifact",
+    "apk_bytes": 4847544,
+    "apk_sha256": "da4f3260f83ea8b260efa794d21c03ff8bc1cce3d55e2c4b793a37f2153a255b",
+    "debug_certificate_sha256": "915fd15343fd68611a2061d37251636fbaeed981b9942b5781a87b3b60be131b",
+    "evidence": {
+      "artifactType": "debug APK for testing; not a production release",
+      "launchUrl": "https://dentprep.gauravjoshi2999.workers.dev/dashboard",
+      "verifiedWebRevision": "cc140559ff628371d7cc1ca65c044f00369be20a",
+      "nativeBuildRevision": "cc140559ff628371d7cc1ca65c044f00369be20a",
+      "run": "https://github.com/gauravjoshi2999/dentprep/actions/runs/45253304800",
+      "productionSigning": "NOT CONFIGURED",
+      "assetLinksOwnership": "NOT VERIFIED",
+      "physicalDeviceAndAccountAcceptance": "NOT RUN",
+      "capturedAt": "2026-11-23T19:54:30.379Z"
+    },
+    "artifact_file_names": [
+      "android/app/build/outputs/apk/debug/app-debug.apk",
+      "android/app/build/reports/lint-results-debug.html",
+      "android-debug-certificate.txt",
+      "android-debug-SHA256.txt",
+      "android-debug-evidence.json"
+    ]
+  }
+}

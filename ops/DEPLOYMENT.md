@@ -12,6 +12,8 @@ This is a hosting configuration for the existing application and repository, not
 
 `/api/health` is a no-cache liveness receipt with only the app name, status and a validated full commit SHA. It does not query the database, reveal environment values, or certify auth/content. An unversioned build returns HTTP 503 so it cannot pass a release check.
 
+Cloudflare serves the offline HTML file at its extensionless canonical URL. The live verifier allows only that exact same-origin `.html` redirect and still requires HTTP 200 at the target. Health/API redirects, login redirects and redirects to another host fail. `npm run test:release` covers this behavior.
+
 `--allow-test-backend` is only for CI packaging/dry-run verification, never a real deployment. Never run `deploy:worker` on a build using that option.
 
 ## CI for subsequent releases

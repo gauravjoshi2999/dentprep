@@ -32,7 +32,15 @@ try {
       for (const route of routes) {
         const page = await context.newPage();
         const pageErrors = [];
+        const consoleErrors = [];
         const failedAssets = [];
+        const redacted = text => String(text)
+          .replace(/sb_(?:publishable|secret)_[A-Za-z0-9_-]+/g, "[redacted-api-key]")
+          .replace(/Bearer\\s+[^\\s]+/gi, "Bearer [redacted]")
+          .slice(0, 650);
+        page.on("console", message => {
+          if (message.type() === "error" && consoleErrors.length < 6) consoleErrors.push(redacted(message.text()));
+        });
         page.on("pageerror", error => pageErrors.push(String(error?.message ?? error).slice(0, 500)));
         page.on("response", response => {
           const url = new URL(response.url());
@@ -56,6 +64,7 @@ try {
             rootBoundary: rootBoundary > 0,
             bodyExcerpt: appText.slice(0, 140).replace(/\s+/g, " "),
             pageErrors: pageErrors.slice(0, 4),
+            consoleErrors: consoleErrors.slice(0, 5),
             failedAssets: failedAssets.slice(0, 5),
           };
           if ((response?.status() ?? 0) >= 400 || rootBoundary || pageErrors.length || failedAssets.length) failed = true;

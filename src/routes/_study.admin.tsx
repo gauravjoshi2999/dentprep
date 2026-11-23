@@ -96,8 +96,9 @@ function Admin() {
         description="Create original drafts, edit educational content and submit it for professional review."
       />
       <Notice className="mb-6" title="Publication requires a separate clinical review">
-        This editor saves draft or in-review content only. A status-change record is an audit trail;
-        it does not certify medical review. Existing clinical drafts remain unpublished.
+        This editor saves draft or in-review content only. Publication is locked until an
+        independently verified, versioned professional review workflow is available. A workflow
+        status change does not certify medical review. Existing clinical drafts remain unpublished.
       </Notice>
       <div className="mb-6 flex flex-wrap items-center gap-3">
         {(

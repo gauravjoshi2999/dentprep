@@ -27,7 +27,9 @@ Statuses are conservative: Partial = existing implementation with missing accept
 
 ## Q004 — Exam ki date announce nahi hui toh study kaise chalegi?
 
-- SOURCE: Q&A, PDF p.6; status: **Missing**.
+- Implementation: renewable-cycle/history/carry source and rollback SQL QA implemented; CI/production rollout and actual account/device acceptance pending. No full adaptive/official-date behavior claimed.
+
+- SOURCE: Q&A, PDF p.6; status: **Partial**.
 - Required: Exam-date-unknown mode hamesha available rahe. Syllabus mastery aur revision indefinite chalte rahein; official date verified hone par hi countdown aur priority reshuffle ho.
 - Code/data: /dashboard, /login; profiles, attempts; src/lib/auth.tsx.
 - Acceptance: T01,T06-T10,T48; see scenario matrix for actual evidence.
@@ -358,7 +360,9 @@ Evidence: PR #18, deployed `98bf0db3f477c066adda862f31b8257ddf4c2937`; T25 SQL/R
 
 ## Q051 — 7-day aur 30-day plan ka matlab padhai bas itne din hai?
 
-- SOURCE: Q&A, PDF p.11; status: **Missing**.
+- Implementation: renewable-cycle/history/carry source and rollback SQL QA implemented; CI/production rollout and actual account/device acceptance pending. No full adaptive/official-date behavior claimed.
+
+- SOURCE: Q&A, PDF p.11; status: **Partial**.
 - Required: Nahi. Ye renewable planning cycles hain; exam-date-unknown mode mein cycles indefinitely continue. Next cycle previous work and overdue tasks ko carry forward kare.
 - Code/data: /plan; study_plans, study_tasks, profiles.
 - Acceptance: T17-T20,T50; see scenario matrix for actual evidence.
@@ -379,7 +383,9 @@ Evidence: PR #18, deployed `98bf0db3f477c066adda862f31b8257ddf4c2937`; T25 SQL/R
 
 ## Q054 — Agar 10 din gap ho jaaye toh?
 
-- SOURCE: Q&A, PDF p.11; status: **Missing**.
+- Implementation: renewable-cycle/history/carry source and rollback SQL QA implemented; CI/production rollout and actual account/device acceptance pending. No full adaptive/official-date behavior claimed.
+
+- SOURCE: Q&A, PDF p.11; status: **Partial**.
 - Required: No guilt/pop-up spam: missed tasks reschedule, prioritize due revisions, offer short restart plan; historical record remains unchanged.
 - Code/data: /plan; study_plans, study_tasks, profiles.
 - Acceptance: T17-T20,T50; see scenario matrix for actual evidence.
@@ -400,7 +406,9 @@ Evidence: PR #18, deployed `98bf0db3f477c066adda862f31b8257ddf4c2937`; T25 SQL/R
 
 ## Q057 — Kya plan automatic renew ho sakta hai?
 
-- SOURCE: Q&A, PDF p.11; status: **Missing**.
+- Implementation: renewable-cycle/history/carry source and rollback SQL QA implemented; CI/production rollout and actual account/device acceptance pending. No full adaptive/official-date behavior claimed.
+
+- SOURCE: Q&A, PDF p.11; status: **Partial**.
 - Required: When cycle ends, create reviewed next cycle automatically or with user acceptance per settings. Never silently duplicate tasks or reset completed topics.
 - Code/data: /plan; study_plans, study_tasks, profiles.
 - Acceptance: T17-T20,T50; see scenario matrix for actual evidence.

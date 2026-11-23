@@ -4,11 +4,33 @@ import { computeStreak } from "@/lib/dates";
 import { nextInterval, scorePercent } from "@/lib/scoring";
 
 const subjects: PlannerSubject[] = [
-  { id: "s1", name: "Oral Surgery", lessons: [{ id: "l1", title: "Exodontia", est_minutes: 15 }, { id: "l2", title: "Infections", est_minutes: 15 }] },
-  { id: "s2", name: "Periodontics", lessons: [{ id: "l3", title: "Classification", est_minutes: 15 }, { id: "l4", title: "Therapy", est_minutes: 15 }] },
+  {
+    id: "s1",
+    name: "Oral Surgery",
+    lessons: [
+      { id: "l1", title: "Exodontia", est_minutes: 15 },
+      { id: "l2", title: "Infections", est_minutes: 15 },
+    ],
+  },
+  {
+    id: "s2",
+    name: "Periodontics",
+    lessons: [
+      { id: "l3", title: "Classification", est_minutes: 15 },
+      { id: "l4", title: "Therapy", est_minutes: 15 },
+    ],
+  },
   { id: "s3", name: "Emergencies", lessons: [{ id: "l5", title: "Syncope", est_minutes: 15 }] },
 ];
-const base = { startDate: "2026-11-23", goals: ["interview" as const], subjects, completedLessonIds: [], revisionDueCount: 0 };
+const base = {
+  startDate: "2026-11-23",
+  goals: ["interview" as const],
+  subjects,
+  completedLessonIds: [],
+  revisionDueCount: 0,
+  availableQuestionCount: 30,
+  availableCaseCount: 1,
+};
 
 describe("study planner", () => {
   it("creates tasks only within the chosen 7/15/30 day window", () => {
@@ -33,14 +55,22 @@ describe("study planner", () => {
   });
 
   it("skips lessons already completed", () => {
-    const plan = generatePlan({ ...base, lengthDays: 7, dailyHours: 3, weakSubjectIds: [], completedLessonIds: ["l1"] });
+    const plan = generatePlan({
+      ...base,
+      lengthDays: 7,
+      dailyHours: 3,
+      weakSubjectIds: [],
+      completedLessonIds: ["l1"],
+    });
     expect(plan.some((t) => t.lesson_id === "l1" && t.task_type === "lesson")).toBe(false);
   });
 
   it("revises a lesson 1 and 3 days after it is first studied", () => {
     const plan = generatePlan({ ...base, lengthDays: 7, dailyHours: 3, weakSubjectIds: [] });
     const studied = plan.find((t) => t.task_type === "lesson" && t.lesson_id === "l1");
-    const revDays = plan.filter((t) => t.task_type === "revision" && t.lesson_id === "l1").map((t) => t.day_index);
+    const revDays = plan
+      .filter((t) => t.task_type === "revision" && t.lesson_id === "l1")
+      .map((t) => t.day_index);
     expect(studied?.day_index).toBe(0);
     expect(revDays).toEqual(expect.arrayContaining([1, 3]));
   });
@@ -51,16 +81,37 @@ describe("study planner", () => {
   });
 
   it("does not schedule unavailable clinical content or empty days", () => {
-    const plan = generatePlan({ ...base, subjects: [], lengthDays: 7, dailyHours: 0.5, weakSubjectIds: [], availableQuestionCount: 0, availableCaseCount: 0 });
-    expect(plan.some(t => ["lesson", "practice", "test", "case"].includes(t.task_type))).toBe(false);
-    expect(new Set(plan.map(t => t.day_index)).size).toBe(7);
-    expect(plan.every(t => t.minutes > 0 && t.minutes <= 30)).toBe(true);
-    expect(plan.some(t => t.title.includes("AI"))).toBe(false);
+    const plan = generatePlan({
+      ...base,
+      subjects: [],
+      lengthDays: 7,
+      dailyHours: 0.5,
+      weakSubjectIds: [],
+      availableQuestionCount: 0,
+      availableCaseCount: 0,
+    });
+    expect(plan.some((t) => ["lesson", "practice", "test", "case"].includes(t.task_type))).toBe(
+      false,
+    );
+    expect(new Set(plan.map((t) => t.day_index)).size).toBe(7);
+    expect(plan.every((t) => t.minutes > 0 && t.minutes <= 30)).toBe(true);
+    expect(plan.some((t) => t.title.includes("AI"))).toBe(false);
   });
 
   it("rejects invalid dates and non-finite time budgets", () => {
-    for (const dailyHours of [NaN, Infinity, 0, -2, 9]) expect(() => generatePlan({ ...base, lengthDays: 7, dailyHours, weakSubjectIds: [] })).toThrow();
-    expect(() => generatePlan({ ...base, startDate: "2026-02-31", lengthDays: 7, dailyHours: 2, weakSubjectIds: [] })).toThrow();
+    for (const dailyHours of [NaN, Infinity, 0, -2, 9])
+      expect(() =>
+        generatePlan({ ...base, lengthDays: 7, dailyHours, weakSubjectIds: [] }),
+      ).toThrow();
+    expect(() =>
+      generatePlan({
+        ...base,
+        startDate: "2026-02-31",
+        lengthDays: 7,
+        dailyHours: 2,
+        weakSubjectIds: [],
+      }),
+    ).toThrow();
   });
 });
 

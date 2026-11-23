@@ -1,0 +1,740 @@
+{
+  "before_counts": {
+    "plans": 1,
+    "tasks": 30,
+    "users": 1
+  },
+  "captured_at": "2026-11-23T19:13:40.450829+00:00",
+  "column_grants": [
+    {
+      "table": "study_plans",
+      "grantee": "anon",
+      "privilege": "INSERT",
+      "is_grantable": "NO",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "anon",
+      "privilege": "UPDATE",
+      "is_grantable": "NO",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "authenticated",
+      "privilege": "INSERT",
+      "is_grantable": "NO",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "authenticated",
+      "privilege": "UPDATE",
+      "is_grantable": "NO",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "postgres",
+      "privilege": "INSERT",
+      "is_grantable": "YES",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "postgres",
+      "privilege": "UPDATE",
+      "is_grantable": "YES",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "service_role",
+      "privilege": "INSERT",
+      "is_grantable": "NO",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_plans",
+      "grantee": "service_role",
+      "privilege": "UPDATE",
+      "is_grantable": "NO",
+      "columns": [
+        "active",
+        "created_at",
+        "daily_hours",
+        "goals",
+        "id",
+        "length_days",
+        "start_date",
+        "user_id",
+        "weak_subject_ids"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "anon",
+      "privilege": "INSERT",
+      "is_grantable": "NO",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "anon",
+      "privilege": "UPDATE",
+      "is_grantable": "NO",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "authenticated",
+      "privilege": "INSERT",
+      "is_grantable": "NO",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "authenticated",
+      "privilege": "UPDATE",
+      "is_grantable": "NO",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "postgres",
+      "privilege": "INSERT",
+      "is_grantable": "YES",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "postgres",
+      "privilege": "UPDATE",
+      "is_grantable": "YES",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "service_role",
+      "privilege": "INSERT",
+      "is_grantable": "NO",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    },
+    {
+      "table": "study_tasks",
+      "grantee": "service_role",
+      "privilege": "UPDATE",
+      "is_grantable": "NO",
+      "columns": [
+        "day_index",
+        "done",
+        "done_at",
+        "id",
+        "lesson_id",
+        "minutes",
+        "plan_id",
+        "subject_id",
+        "task_date",
+        "task_type",
+        "title",
+        "user_id"
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "definition": "CHECK ((length_days = ANY (ARRAY[7, 15, 30])))",
+      "name": "study_plans_length_days_check",
+      "table": "study_plans"
+    },
+    {
+      "definition": "PRIMARY KEY (id)",
+      "name": "study_plans_pkey",
+      "table": "study_plans"
+    },
+    {
+      "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE SET NULL",
+      "name": "study_tasks_lesson_id_fkey",
+      "table": "study_tasks"
+    },
+    {
+      "definition": "PRIMARY KEY (id)",
+      "name": "study_tasks_pkey",
+      "table": "study_tasks"
+    },
+    {
+      "definition": "FOREIGN KEY (plan_id) REFERENCES study_plans(id) ON DELETE CASCADE",
+      "name": "study_tasks_plan_id_fkey",
+      "table": "study_tasks"
+    },
+    {
+      "definition": "FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE SET NULL",
+      "name": "study_tasks_subject_id_fkey",
+      "table": "study_tasks"
+    },
+    {
+      "definition": "CHECK ((task_type = ANY (ARRAY['lesson'::text, 'practice'::text, 'revision'::text, 'interview'::text, 'case'::text, 'test'::text])))",
+      "name": "study_tasks_task_type_check",
+      "table": "study_tasks"
+    }
+  ],
+  "grants": [
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "INSERT",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "SELECT",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "DELETE",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_plans",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "INSERT",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "SELECT",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "UPDATE",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "DELETE",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "YES"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "anon",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "authenticated",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "INSERT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "SELECT",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "UPDATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "DELETE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "TRUNCATE",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "REFERENCES",
+      "is_grantable": "NO"
+    },
+    {
+      "table_name": "study_tasks",
+      "grantor": "postgres",
+      "grantee": "service_role",
+      "privilege_type": "TRIGGER",
+      "is_grantable": "NO"
+    }
+  ],
+  "lineage_absent_before": true,
+  "verification": "PASS: rollback-only 7/15/30 cycles, owner boundaries, carry once, history, retry, stale save, atomic budget failures and contract permissions",
+  "note": "Grant metadata only; information_schema column privileges include inherited table-level grants. No user rows, credentials or transcripts."
+}

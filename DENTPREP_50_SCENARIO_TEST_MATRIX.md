@@ -78,6 +78,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T10 — Cross-account isolation
 
+- Partial technical evidence: PR #20 identity-scoped private editor cleanup + same-account refresh regression tests, 28 unit tests, production 45246246768 SUCCESS. Query/DB checks do not replace the still-blocked actual A/B browser scenario.
+
 - Priority: P0; status: **BLOCKED**.
 - Expected / steps: A logs out, B logs in; cached progress, answers, interviews and profile A must not appear for B.
 - Actual / evidence: Cloud Browser URL-policy authority blocked the login-page observation. Human account/device or reviewed-content/provider gate still needed.
@@ -150,6 +152,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T19 — Study plan renew
 
+- Partial implementation evidence: continuous-cycle unit tests and real rollback-only SQL cover 7/15/30 saves, carry once, history, owned queue, retry/stale save and atomic daily budget failure. Production application and CI fixture results are pending this checkpoint. Real account/cross-device scenario remains NOT RUN. See `ops/STUDY_CYCLE_ROLLOUT.md`.
+
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: 7/15/30 day plan cycles complete and renew indefinitely without study deadline or duplicate tasks.
 - Actual / evidence: Existing CI has partial coverage; full scenario has not been executed to this specification.
@@ -157,6 +161,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 - Retest / fix PR: pending.
 
 ## T20 — Carry-forward
+
+- Partial implementation evidence: continuous-cycle unit tests and real rollback-only SQL cover 7/15/30 saves, carry once, history, owned queue, retry/stale save and atomic daily budget failure. Production application and CI fixture results are pending this checkpoint. Real account/cross-device scenario remains NOT RUN. See `ops/STUDY_CYCLE_ROLLOUT.md`.
 
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: Missed/overdue tasks reschedule, revision queue updates, no loss of historic completion.

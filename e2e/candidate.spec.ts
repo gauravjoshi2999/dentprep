@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { randomUUID } from "node:crypto";
 
 const userId = "11111111-1111-4111-8111-111111111111";
 const subjectId = "22222222-2222-4222-8222-222222222222";
@@ -53,6 +54,8 @@ async function mockBackend(
   let answered = false;
   let plan: Record<string, unknown> | null = null;
   let tasks: Record<string, unknown>[] = [];
+  const history: Record<string, unknown>[] = [];
+  const carriedSources = new Set<string>();
   const interviews: Record<string, unknown>[] = [];
   const drafts: Record<string, unknown>[] = [];
   const question = {
@@ -87,7 +90,21 @@ async function mockBackend(
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
     else if (path.endsWith("/rpc/has_role")) data = admin;
-    else if (path.endsWith("/rpc/admin_questions")) {
+    else if (path.endsWith("/rpc/pending_study_tasks")) {
+      const pending = tasks.filter((t) => !t.done && !carriedSources.has(String(t.id)));
+      data = { total_pending: pending.length, tasks: pending };
+    } else if (path.endsWith("/rpc/save_study_cycle")) {
+      expect(body.p_previous_plan_id).toBe(plan?.id ?? null);
+      if (plan) history.unshift({ ...plan, active: false });
+      plan = { ...body.p_plan, id: body.p_id, user_id: userId, active: true };
+      tasks.push(
+        ...body.p_tasks.map((t: Record<string, unknown>) => {
+          if (t.source_task_id) carriedSources.add(String(t.source_task_id));
+          return { ...t, id: randomUUID(), plan_id: body.p_id, user_id: userId, done: false };
+        }),
+      );
+      data = body.p_id;
+    } else if (path.endsWith("/rpc/admin_questions")) {
       expect(admin).toBe(true);
       data = drafts.map((d) => ({
         topic: "",
@@ -188,22 +205,18 @@ async function mockBackend(
       expect(url.searchParams.get("select")).not.toContain("is_correct");
       data = [];
     } else if (path.endsWith("/study_plans")) {
-      if (method === "POST") plan = body;
-      if (method === "PATCH" && plan && url.searchParams.get("id")?.startsWith("eq."))
-        plan = { ...plan, ...body };
-      data = method === "GET" && plan?.["active"] ? plan : null;
+      expect(method).toBe("GET");
+      data = url.searchParams.get("active") === "eq.false" ? history : plan;
     } else if (path.endsWith("/study_tasks")) {
-      if (method === "POST")
-        tasks = body.map((t: Record<string, unknown>, i: number) => ({
-          ...t,
-          id: `task-${i}`,
-          done: false,
-        }));
+      expect(["GET", "PATCH"]).toContain(method);
       if (method === "PATCH")
         tasks = tasks.map((t) =>
           url.searchParams.get("id") === `eq.${t["id"]}` ? { ...t, ...body } : t,
         );
-      data = method === "GET" ? tasks : null;
+      data =
+        method === "GET"
+          ? tasks.filter((t) => url.searchParams.get("plan_id") === `eq.${t.plan_id}`)
+          : null;
     } else if (path.endsWith("/interview_sessions")) {
       if (method === "POST")
         interviews.push({ ...body, status: "active", started_at: "2026-11-23T10:00:00Z" });
@@ -305,6 +318,44 @@ test("study plans use available content and persist task completion", async ({ p
     .first()
     .check();
   await expect(page.getByText("1/7 tasks done", { exact: false })).toBeVisible();
+});
+
+test("next study cycle carries unfinished work and retains original completion history", async ({
+  page,
+}) => {
+  await mockBackend(page, true);
+  await page.goto("/plan");
+  await page.getByLabel("Daily hours").fill("0.5");
+  await page.getByRole("button", { name: "Generate and save study plan" }).click();
+  await page
+    .getByRole("checkbox", {
+      name: "Complete Review your study goals and official recruitment information",
+    })
+    .first()
+    .check();
+  await expect(page.getByText("1/7 tasks done", { exact: false })).toBeVisible();
+  await page.getByRole("button", { name: "Plan next cycle", exact: true }).click();
+  await expect(
+    page.getByRole("checkbox", { name: /Carry unfinished tasks forward \(6 available\)/ }),
+  ).toBeChecked();
+  await page.getByLabel("Plan length").selectOption("15");
+  await page.getByRole("button", { name: "Generate and save study plan" }).click();
+  await expect(page.getByText(/6 unfinished tasks continued\./)).toBeVisible();
+  await expect(page.getByText("Day 15", { exact: true })).toBeVisible();
+  await expect(page.getByRole("checkbox", { name: /^Complete Continue:/ })).toHaveCount(6);
+  await page.getByText("Previous cycles", { exact: true }).click();
+  await page.getByLabel("Choose previous cycle").selectOption({ index: 1 });
+  await expect(page.getByText("Historical completion: 1/7 tasks", { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole("checkbox", { name: /^Complete Continue:/ })).toHaveCount(6);
+  await page.getByRole("button", { name: "Plan next cycle", exact: true }).click();
+  // Six source rows remain as history; they must not return in the unresolved queue.
+  await expect(
+    page.getByRole("checkbox", { name: /Carry unfinished tasks forward \(18 available\)/ }),
+  ).toBeChecked();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
 });
 
 test("interview answers and reflections survive a saved session reload", async ({ page }) => {

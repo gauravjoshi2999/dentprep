@@ -1,8 +1,10 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { generatePlan, type PlanGoal, type PlanLength } from "@/lib/planner";
+import { type PlanGoal, type PlanLength } from "@/lib/planner";
+import { generateCycle, type CycleTask } from "@/lib/study-cycles";
+import { pendingStudyTasks, saveStudyCycle } from "@/lib/study-cycle-api";
 import {
   casesQuery,
   logActivity,
@@ -12,7 +14,7 @@ import {
   revisionQuery,
   subjectsQuery,
 } from "@/lib/queries";
-import { istToday, formatDate } from "@/lib/dates";
+import { istToday, formatDate, addDays } from "@/lib/dates";
 import { useUserId } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { RequireUser } from "@/components/app/study-shell";
@@ -42,70 +44,98 @@ function Plan() {
   const revision = useQuery(revisionQuery(userId));
   const questions = useQuery(questionMetaQuery());
   const cases = useQuery(casesQuery());
+  const pending = useQuery({
+    queryKey: ["pending-study-tasks", userId],
+    queryFn: pendingStudyTasks,
+  });
   const [length, setLength] = useState<PlanLength>(7);
   const [hours, setHours] = useState(2);
   const [startDate, setStartDate] = useState(istToday());
   const [selectedGoals, setSelectedGoals] = useState<PlanGoal[]>(["interview"]);
   const [weak, setWeak] = useState<string[]>([]);
   const [creating, setCreating] = useState(false);
+  const [carry, setCarry] = useState(true);
+  const [cycleSummary, setCycleSummary] = useState<string | null>(null);
+  const request = useRef<{
+    fingerprint: string;
+    id: string;
+    previous: string | null;
+    settings: Parameters<typeof saveStudyCycle>[2];
+    tasks: CycleTask[];
+    carried: number;
+    deferred: number;
+  } | null>(null);
   const [pendingTask, setPendingTask] = useState<{ id: string; done: boolean } | null>(null);
   const save = useMutation({
     mutationFn: async () => {
-      const tasks = generatePlan({
-        lengthDays: length,
-        startDate,
-        dailyHours: hours,
-        goals: selectedGoals,
-        subjects: subjects.data ?? [],
-        weakSubjectIds: weak,
-        completedLessonIds:
-          progress.data?.filter((p) => p.status === "completed").map((p) => p.lesson_id) ?? [],
-        revisionDueCount: revision.data?.filter((r) => r.due_date <= istToday()).length ?? 0,
-        availableQuestionCount: questions.data?.length ?? 0,
-        availableCaseCount: cases.data?.length ?? 0,
-      });
-      // Build the replacement privately first. The previous plan remains usable if an insert fails.
-      const id = crypto.randomUUID();
-      const { error } = await supabase.from("study_plans").insert({
-        id,
-        user_id: userId,
-        active: false,
+      const settings = {
         length_days: length,
         start_date: startDate,
         daily_hours: hours,
         goals: selectedGoals,
         weak_subject_ids: weak,
-      });
-      if (error) throw error;
-      const inserted = await supabase
-        .from("study_tasks")
-        .insert(tasks.map((t) => ({ ...t, user_id: userId, plan_id: id })));
-      if (inserted.error) {
-        await supabase.from("study_plans").delete().eq("id", id).eq("user_id", userId);
-        throw inserted.error;
+      };
+      const fingerprint = JSON.stringify({ settings, carry });
+      // Retain the entire intent on a lost response; retrying must not create a second cycle.
+      if (request.current?.fingerprint === fingerprint) {
+        const old = request.current;
+        await saveStudyCycle(old.id, old.previous, old.settings, old.tasks);
+        return old;
       }
-      const activated = await supabase
-        .from("study_plans")
-        .update({ active: true })
-        .eq("id", id)
-        .eq("user_id", userId);
-      if (activated.error) throw activated.error;
-      const deactivated = await supabase
-        .from("study_plans")
-        .update({ active: false })
-        .eq("user_id", userId)
-        .neq("id", id)
-        .eq("active", true);
-      if (deactivated.error)
-        toast.message("Your new plan is saved. Older plans could not be marked inactive.");
-      await logActivity();
+      const cycle = generateCycle(
+        {
+          lengthDays: length,
+          startDate,
+          dailyHours: hours,
+          goals: selectedGoals,
+          subjects: subjects.data ?? [],
+          weakSubjectIds: weak,
+          completedLessonIds:
+            progress.data?.filter((p) => p.status === "completed").map((p) => p.lesson_id) ?? [],
+          revisionDueCount:
+            revision.data?.filter(
+              (r) =>
+                r.due_date <= istToday() && questions.data?.some((q) => q.id === r.question_id),
+            ).length ?? 0,
+          availableQuestionCount: questions.data?.length ?? 0,
+          availableCaseCount: cases.data?.length ?? 0,
+        },
+        carry ? (pending.data?.tasks ?? []) : [],
+      );
+      const intent = {
+        fingerprint,
+        id: crypto.randomUUID(),
+        previous: plan.data?.plan.id ?? null,
+        settings,
+        ...cycle,
+        deferred: carry
+          ? cycle.deferred +
+            Math.max(0, (pending.data?.total_pending ?? 0) - (pending.data?.tasks.length ?? 0))
+          : (pending.data?.total_pending ?? 0),
+      };
+      request.current = intent;
+      await saveStudyCycle(intent.id, intent.previous, intent.settings, intent.tasks);
+      return intent;
     },
-    onSuccess: () => {
+    onSuccess: (saved) => {
       setCreating(false);
-      void qc.invalidateQueries({ queryKey: ["plan", userId] });
-      toast.success("Your study plan is ready");
+      request.current = null;
+      setCycleSummary(
+        `${saved.carried} unfinished tasks continued. ${saved.deferred} historical unfinished tasks were not scheduled and remain in your history/queue; unavailable content is not scheduled.`,
+      );
+      for (const key of ["plan", "pending-study-tasks", "plan-history"])
+        void qc.invalidateQueries({ queryKey: [key, userId] });
+      toast.success("Your next study cycle is ready");
     },
-    onError: (e) => toast.error(e.message),
+    onError: (e) => {
+      toast.error(e.message);
+      void qc.invalidateQueries({ queryKey: ["plan", userId] });
+      if (e.message.includes("cycle changed") || e.message.includes("unfinished task changed")) {
+        void qc.invalidateQueries({ queryKey: ["pending-study-tasks", userId] });
+        request.current = null;
+        setCreating(false);
+      }
+    },
   });
   const toggle = useMutation({
     mutationFn: async ({ id, done }: { id: string; done: boolean }) => {
@@ -120,11 +150,12 @@ function Plan() {
     onSuccess: async () => {
       await qc.invalidateQueries({ queryKey: ["plan", userId] });
       void qc.invalidateQueries({ queryKey: ["activity", userId] });
+      void qc.invalidateQueries({ queryKey: ["pending-study-tasks", userId] });
     },
     onError: (e) => toast.error(e.message),
     onSettled: () => setPendingTask(null),
   });
-  const queries = [plan, subjects, progress, revision, questions, cases];
+  const queries = [plan, subjects, progress, revision, questions, cases, pending];
   if (queries.some((q) => q.isPending)) return <LoadingBlock />;
   const failed = queries.find((q) => q.isError);
   if (failed)
@@ -135,6 +166,23 @@ function Plan() {
     e.preventDefault();
     save.mutate();
   }
+  function nextCycle() {
+    if (plan.data) {
+      setLength(plan.data.plan.length_days as PlanLength);
+      setHours(plan.data.plan.daily_hours);
+      const chosen = plan.data.plan.goals.filter((g): g is PlanGoal =>
+        goals.some(([id]) => id === g),
+      );
+      setSelectedGoals(chosen.length ? chosen : ["interview"]);
+      setWeak(
+        plan.data.plan.weak_subject_ids.filter((id) => subjects.data?.some((s) => s.id === id)),
+      );
+    }
+    setStartDate(istToday());
+    setCarry(true);
+    request.current = null;
+    setCreating(true);
+  }
   return (
     <>
       <PageHeader
@@ -142,105 +190,131 @@ function Plan() {
         description="Prioritize weaker subjects and revisit lessons at spaced intervals. Only published learning content is scheduled."
         actions={
           plan.data && (
-            <Button variant="outline" onClick={() => setCreating(!creating)}>
-              {creating ? "Keep current plan" : "Create replacement plan"}
+            <Button
+              variant="outline"
+              disabled={save.isPending || toggle.isPending}
+              onClick={() =>
+                creating ? (setCreating(false), (request.current = null)) : nextCycle()
+              }
+            >
+              {creating ? "Keep current cycle" : "Plan next cycle"}
             </Button>
           )
         }
       />
+      <Notice className="mb-6" title="Renewable planning cycles">
+        No exam date has been set for this plan. A 7, 15 or 30-day cycle is not your course duration
+        or an official UPSC deadline. Continue with another cycle whenever needed; completed history
+        is retained.
+      </Notice>
+      {cycleSummary && <Notice className="mb-6">{cycleSummary}</Notice>}
       {!questions.data?.length && !subjects.data?.some((s) => s.lessons.length) && (
         <Notice className="mb-6" title="Clinical content is awaiting review">
           Your plan can include study-goal review and general interview communication. Lessons and
-          question sessions will become available after publication. Create a replacement plan when
-          new material is released.
+          question sessions will become available after publication. Plan another cycle when new
+          material is released.
         </Notice>
       )}
       {(!plan.data || creating) && (
         <form onSubmit={submit} className="surface mb-7 grid gap-5 p-5 sm:p-7">
-          <div className="grid gap-4 sm:grid-cols-3">
-            <label className="grid gap-2 text-sm font-semibold">
-              Plan length
-              <select
-                className="study-input"
-                value={length}
-                onChange={(e) => setLength(Number(e.target.value) as PlanLength)}
-              >
-                {[7, 15, 30].map((n) => (
-                  <option key={n} value={n}>
-                    {n} days
-                  </option>
-                ))}
-              </select>
+          <fieldset disabled={save.isPending || toggle.isPending} className="contents">
+            <label className="flex items-start gap-3 text-sm">
+              <input type="checkbox" checked={carry} onChange={(e) => setCarry(e.target.checked)} />
+              <span>
+                Carry unfinished tasks forward ({pending.data?.total_pending ?? 0} available).
+                Original history is retained. Learning material must still be published and fit your
+                daily time.{" "}
+                {(pending.data?.total_pending ?? 0) > 1000 &&
+                  "The oldest 1,000 tasks are considered first; the remaining queue is retained."}
+              </span>
             </label>
-            <label className="grid gap-2 text-sm font-semibold">
-              Daily hours
-              <input
-                className="study-input"
-                type="number"
-                step={0.5}
-                min={0.5}
-                max={8}
-                required
-                value={hours}
-                onChange={(e) => setHours(Number(e.target.value))}
-              />
-            </label>
-            <label className="grid gap-2 text-sm font-semibold">
-              Start date
-              <input
-                className="study-input"
-                type="date"
-                required
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-              />
-            </label>
-          </div>
-          <fieldset>
-            <legend className="mb-3 text-sm font-bold">Preparation goals</legend>
-            <div className="flex flex-wrap gap-3">
-              {goals.map(([id, label]) => (
-                <label
-                  key={id}
-                  className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm"
+            <div className="grid gap-4 sm:grid-cols-3">
+              <label className="grid gap-2 text-sm font-semibold">
+                Plan length
+                <select
+                  className="study-input"
+                  value={length}
+                  onChange={(e) => setLength(Number(e.target.value) as PlanLength)}
                 >
-                  <input
-                    type="checkbox"
-                    checked={selectedGoals.includes(id)}
-                    onChange={(e) =>
-                      setSelectedGoals(
-                        e.target.checked
-                          ? [...selectedGoals, id]
-                          : selectedGoals.filter((g) => g !== id),
-                      )
-                    }
-                  />
-                  {label}
-                </label>
-              ))}
+                  {[7, 15, 30].map((n) => (
+                    <option key={n} value={n}>
+                      {n} days
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="grid gap-2 text-sm font-semibold">
+                Daily hours
+                <input
+                  className="study-input"
+                  type="number"
+                  step={0.5}
+                  min={0.5}
+                  max={8}
+                  required
+                  value={hours}
+                  onChange={(e) => setHours(Number(e.target.value))}
+                />
+              </label>
+              <label className="grid gap-2 text-sm font-semibold">
+                Start date
+                <input
+                  className="study-input"
+                  type="date"
+                  required
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+              </label>
             </div>
+            <fieldset>
+              <legend className="mb-3 text-sm font-bold">Preparation goals</legend>
+              <div className="flex flex-wrap gap-3">
+                {goals.map(([id, label]) => (
+                  <label
+                    key={id}
+                    className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedGoals.includes(id)}
+                      onChange={(e) =>
+                        setSelectedGoals(
+                          e.target.checked
+                            ? [...selectedGoals, id]
+                            : selectedGoals.filter((g) => g !== id),
+                        )
+                      }
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend className="mb-3 text-sm font-bold">Subjects needing more attention</legend>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {subjects.data?.map((s) => (
+                  <label key={s.id} className="flex items-start gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      className="mt-1"
+                      checked={weak.includes(s.id)}
+                      onChange={(e) =>
+                        setWeak(
+                          e.target.checked ? [...weak, s.id] : weak.filter((id) => id !== s.id),
+                        )
+                      }
+                    />
+                    {s.name}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <Button type="submit" size="lg" disabled={save.isPending || !selectedGoals.length}>
+              {save.isPending ? "Saving plan…" : "Generate and save study plan"}
+            </Button>
           </fieldset>
-          <fieldset>
-            <legend className="mb-3 text-sm font-bold">Subjects needing more attention</legend>
-            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {subjects.data?.map((s) => (
-                <label key={s.id} className="flex items-start gap-2 text-sm">
-                  <input
-                    type="checkbox"
-                    className="mt-1"
-                    checked={weak.includes(s.id)}
-                    onChange={(e) =>
-                      setWeak(e.target.checked ? [...weak, s.id] : weak.filter((id) => id !== s.id))
-                    }
-                  />
-                  {s.name}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-          <Button type="submit" size="lg" disabled={save.isPending || !selectedGoals.length}>
-            {save.isPending ? "Saving plan…" : "Generate and save study plan"}
-          </Button>
         </form>
       )}
       {plan.data && (
@@ -250,6 +324,12 @@ function Plan() {
             · Up to {plan.data.plan.daily_hours} hours per day ·{" "}
             {plan.data.tasks.filter((t) => t.done).length}/{plan.data.tasks.length} tasks done.
             Marking a task done does not mark its lesson complete.
+          </p>
+          <p className="mb-5 text-sm text-muted-foreground">
+            Cycle ends{" "}
+            {formatDate(addDays(plan.data.plan.start_date, plan.data.plan.length_days - 1))}. You
+            can start a new cycle after completion or restart after a gap. Task completion is not
+            evidence of clinical mastery.
           </p>
           <div className="grid items-start gap-4 lg:grid-cols-2">
             {Array.from({ length: plan.data.plan.length_days }, (_, day) => {
@@ -274,7 +354,7 @@ function Plan() {
                             type="checkbox"
                             className="mt-1 h-4 w-4"
                             checked={pendingTask?.id === t.id ? pendingTask.done : t.done}
-                            disabled={toggle.isPending}
+                            disabled={toggle.isPending || save.isPending}
                             onChange={(e) => {
                               const value = { id: t.id, done: e.target.checked };
                               setPendingTask(value);
@@ -328,6 +408,100 @@ function Plan() {
           </div>
         </>
       )}
+      <CycleHistory userId={userId} />
     </>
+  );
+}
+
+function CycleHistory({ userId }: { userId: string }) {
+  const [limit, setLimit] = useState(20);
+  const [selected, setSelected] = useState("");
+  const history = useQuery({
+    queryKey: ["plan-history", userId, limit],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("study_plans")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("active", false)
+        .order("created_at", { ascending: false })
+        .limit(limit);
+      if (error) throw error;
+      return data;
+    },
+  });
+  const oldTasks = useQuery({
+    queryKey: ["historical-tasks", userId, selected],
+    enabled: !!selected,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("study_tasks")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("plan_id", selected)
+        .order("day_index");
+      if (error) throw error;
+      return data;
+    },
+  });
+  return (
+    <details className="surface mt-7 p-5">
+      <summary className="cursor-pointer font-bold">Previous cycles</summary>
+      <p className="mt-3 text-sm text-muted-foreground">
+        Original schedules and completion are shown as recorded. Continuing unfinished work does not
+        rewrite its earlier completion state. History is read-only here.
+      </p>
+      {history.isPending ? (
+        <LoadingBlock />
+      ) : history.isError ? (
+        <ErrorBlock error={history.error} />
+      ) : !history.data.length ? (
+        <p className="mt-3 text-sm">No previous cycles yet.</p>
+      ) : (
+        <>
+          <label className="mt-4 grid gap-2 text-sm font-semibold">
+            Choose previous cycle
+            <select
+              className="study-input"
+              value={selected}
+              onChange={(e) => setSelected(e.target.value)}
+            >
+              <option value="">Choose a cycle</option>
+              {history.data.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.length_days} days from {formatDate(p.start_date)}
+                </option>
+              ))}
+            </select>
+          </label>
+          {history.data.length === limit && (
+            <Button className="mt-3" variant="outline" onClick={() => setLimit(limit + 20)}>
+              Load older cycles
+            </Button>
+          )}
+          {selected &&
+            (oldTasks.isPending ? (
+              <LoadingBlock />
+            ) : oldTasks.isError ? (
+              <ErrorBlock error={oldTasks.error} />
+            ) : (
+              <div className="mt-4">
+                <p className="text-sm font-bold">
+                  Historical completion: {oldTasks.data?.filter((t) => t.done).length}/
+                  {oldTasks.data?.length} tasks
+                </p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {oldTasks.data?.map((t) => (
+                    <li key={t.id}>
+                      {t.done ? "Completed" : "Unfinished at that schedule"} · {t.title} ·{" "}
+                      {formatDate(t.task_date)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+        </>
+      )}
+    </details>
   );
 }

@@ -72,5 +72,6 @@ jobs:
       - name: Verify live UI in clean mobile and desktop browsers
         env:
           DENTPREP_LIVE_ORIGIN: ${{ inputs.production_url || steps.deploy.outputs.worker_url }}
+          DENTPREP_EXPECTED_REVISION: ${{ github.sha }}
         timeout-minutes: 4
         run: node scripts/diagnose-live-browser.mjs

@@ -69,3 +69,8 @@ jobs:
           test -n "$RELEASE_URL" || { echo 'The deployed Worker URL could not be verified.'; exit 1; }
           npm run verify:deployment -- "$RELEASE_URL" "$GITHUB_SHA"
           printf 'Verified DentPrep release `%s`\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify live UI in clean mobile and desktop browsers
+        env:
+          DENTPREP_LIVE_ORIGIN: ${{ inputs.production_url || steps.deploy.outputs.worker_url }}
+        timeout-minutes: 4
+        run: node scripts/diagnose-live-browser.mjs

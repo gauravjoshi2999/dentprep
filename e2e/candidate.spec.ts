@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page, type Route } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 
 const userId = "11111111-1111-4111-8111-111111111111";
@@ -318,6 +318,66 @@ test("study plans use available content and persist task completion", async ({ p
     .first()
     .check();
   await expect(page.getByText("1/7 tasks done", { exact: false })).toBeVisible();
+});
+
+test("topic reports show honest empty states and explain distinct-question revision suggestions", async ({
+  page,
+}) => {
+  await mockBackend(page, true);
+  await page.goto("/progress");
+  await expect(page.getByText("No published-question evidence yet", { exact: true })).toBeVisible();
+  const pool = Array.from({ length: 5 }, (_, i) => ({
+    id: `64444444-4444-4444-8444-${String(i).padStart(12, "0")}`,
+    subject_id: subjectId,
+    topic: "Study routines",
+    difficulty: "easy",
+  }));
+  const respond = (json: unknown) => async (route: Route) => {
+    if (route.request().method() === "OPTIONS") return route.fallback();
+    return route.fulfill({ json, headers: { "access-control-allow-origin": "*" } });
+  };
+  await page.route("https://example.supabase.co/rest/v1/questions**", respond(pool));
+  await page.route(
+    "https://example.supabase.co/rest/v1/rpc/candidate_answer_history",
+    respond(
+      pool.map((q, i) => ({
+        question_id: q.id,
+        is_correct: i < 2,
+        answered_at: "2026-11-23T10:00:00Z",
+        attempt_id: attemptId,
+      })),
+    ),
+  );
+  await page.route(
+    "https://example.supabase.co/rest/v1/attempts**",
+    respond([
+      {
+        id: attemptId,
+        user_id: userId,
+        status: "submitted",
+        title: "QA study-routine practice",
+        correct: 2,
+        answered: 5,
+        total: 5,
+        score_pct: 40,
+        started_at: "2026-11-23T10:00:00Z",
+      },
+    ]),
+  );
+  await page.reload();
+  const evidence = page.getByRole("region", { name: "Subject and topic practice evidence" });
+  await expect(
+    evidence.getByRole("row", {
+      name: /Study foundations Study routines 2\/5 40% Revise this topic/,
+    }),
+  ).toBeVisible();
+  await expect(evidence.getByText(/not validated mastery, clinical competence/)).toBeVisible();
+  await expect(
+    evidence.getByRole("link", { name: "Choose subjects to prioritize in your next cycle" }),
+  ).toHaveAttribute("href", "/plan");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
 });
 
 test("next study cycle carries unfinished work and retains original completion history", async ({

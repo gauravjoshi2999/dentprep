@@ -28,3 +28,7 @@ PR #20, head `ce90671c5f9979b2118f1be4f04583ba52d2fb1f`, merge/live `889cb9bcf67
 ## P1-01 accepted release
 
 PR #21, head `e25caad72e74c2f508f33a72d518243801b3eca4`, merge/live `15a68141d84ee813c3e383cb30ec24d502a549d4`. PR CI 45247389604, main CI 45247885358 and production [45247885359](https://github.com/gauravjoshi2999/dentprep/actions/runs/45247885359) SUCCESS. Artifact `14853939298`. Fresh exact-SHA CLI verification PASS. Expand/contract and native rollback regression PASS, original 1 user/1 plan/30 tasks retained; owned lineage empty before actual learner renewal. Full clinical/adaptive/real-device gates remain separate.
+
+## Score/revision integrity accepted release
+
+PR #22, head `621cc0834803f9bdbb4a63782eed6c35fcbbe949`, merge/live `137985adfeeaea1114d803b0688f8c2ac063f6e2`. PR CI 45248990949, main CI 45249547705 and production [45249547837](https://github.com/gauravjoshi2999/dentprep/actions/runs/45249547837) SUCCESS; artifact `14855490953`. Exact-SHA CLI PASS. Native regression and grant/search-path enforcement PASS, QA rows rolled back, publication guard enabled; 1 user and original clinical draft counts unchanged. Separate real-account, regrading/versioning and clinical-validation gates remain pending.

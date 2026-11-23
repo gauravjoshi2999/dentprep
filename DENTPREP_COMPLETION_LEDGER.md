@@ -99,3 +99,19 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 
 - Existing RLS already denies candidate score/answer INSERT/UPDATE; this audit found no confirmed direct score-forgery bypass. Least-privilege grant hardening and a native score/revision regression are prepared, not applied.
 - Native execution is temporarily rate-limited by the Lovable free-plan MCP action window; the rejected query was explicitly not executed. No paid upgrade, provider key or data write is inferred. Finish the rollback-only test before merging/applying this task.
+
+## Accepted milestone: release-critical score/revision integrity
+
+- [PR #22](https://github.com/gauravjoshi2999/dentprep/pull/22), head `621cc0834803f9bdbb4a63782eed6c35fcbbe949`, merge/live `137985adfeeaea1114d803b0688f8c2ac063f6e2`.
+- PR CI 45248990949, main CI 45249547705 and production 45249547837 SUCCESS; artifact `14855490953`; fresh CLI exact-SHA SSR/assets/routes/PWA PASS. 35 unit + 11 release tests and 21 desktop/mobile fixtures pass (one intentional desktop mobile-navigation skip).
+- Native rollback QA before and after grant hardening PASS: all-correct/wrong/skipped, mixed denominator 33.33, duplicate/empty rejection, exam answer change, immutable submit, repeat-submit/revision idempotency, wrong next-day due date, successful 3-day revision and original result preservation, cross-user boundaries and direct-write denials.
+- Existing RLS already blocked candidate score/answer writes; no direct score-forgery bypass was established. Narrowed redundant grants and server revision-result writes, pinned `submit_attempt` search path. Scoring arithmetic/function bodies unchanged; owned read and own-attempt deletion retained. Continued due-question tasks retain the practice destination.
+- Backend enforcement applied only after compatible deployment; the cooldown-rejected queries were not executed. Final native state: 1 user, 0 attempts/answers/revisions, QA absent; 15 lesson/30 question/15 case drafts, 0 published clinical items, guard enabled. No learner/content rows rewritten.
+- Native nonclinical fixture setup temporarily disabled the question guard in its uncommitted transaction, restored it before candidate tests and rolled back. No durable publication bypass or medical material was introduced. Score-version/regrading provenance, medical validity and actual account/device QA remain pending.
+
+## P1-03 practice evidence pre-merge checkpoint
+
+- Branch `feat/topic-practice-evidence`: `/progress` groups the latest submitted result per distinct current published question by subject/topic. Retaking one question fifty times gives one-item evidence; unknown/withdrawn metadata is excluded with counts, and missing topic tags are not called weak concepts.
+- Five distinct questions and below 70% are explicitly labelled product triage heuristics. No unseen diagnostic, clinical mastery, official pass mark or selection prediction is claimed. Full session totals/history remain unchanged.
+- TypeScript, 44 unit tests (nine evidence regressions), changed-source lint and source security pass locally; desktop/mobile nonclinical report fixture added. PR/CI/live pending. No DB change for this feature.
+- Source-reference inspection is logged in `DENTPREP_SOURCE_VERIFICATION.md`; historical BDS regulations were retrieved, amendment currency remains unverified, and UPSC recruitment facts were not reverified in this task. This does not approve any clinical draft.

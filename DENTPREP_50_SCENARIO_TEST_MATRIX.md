@@ -144,6 +144,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T18 — Weak topic detection
 
+- Partial implementation: latest distinct-question evidence and explicit 5-item/70% product heuristics (not validated mastery), nine unit regressions including fifty retakes counting once, missing/withdrawn tags and sparse samples. Mobile/desktop fixture and CI/live are pending. Actual content/longitudinal validity remains NOT RUN.
+
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: Seed errors in known topics; verify tags and formula-based recommendation with explanation.
 - Actual / evidence: Existing CI has partial coverage; full scenario has not been executed to this specification.
@@ -214,6 +216,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T26 — Score arithmetic
 
+- Partial native evidence: PR #22, live `137985adfeeaea1114d803b0688f8c2ac063f6e2`, release 45249547837 SUCCESS. Rollback-only scoring/revision regression passed before/after grant enforcement; mixed 33.33, all-correct/wrong/skipped, duplicate/empty rejection, repeat submit, preserved old result, next-day wrong queue and 3-day successful revision verified. All nonclinical fixtures rolled back, publication guard enabled. Actual account/device and full score-version/regrading scenario remain NOT RUN.
+
 - Priority: P0; status: **NOT RUN**.
 - Expected / steps: Validate correct/attempted/skipped/total, duplicate answer, empty denominator, result versioning.
 - Actual / evidence: Existing CI has partial coverage; full scenario has not been executed to this specification.
@@ -221,6 +225,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 - Retest / fix PR: pending.
 
 ## T27 — Wrong-answer revision
+
+- Partial native evidence: PR #22, live `137985adfeeaea1114d803b0688f8c2ac063f6e2`, release 45249547837 SUCCESS. Rollback-only scoring/revision regression passed before/after grant enforcement; mixed 33.33, all-correct/wrong/skipped, duplicate/empty rejection, repeat submit, preserved old result, next-day wrong queue and 3-day successful revision verified. All nonclinical fixtures rolled back, publication guard enabled. Actual account/device and full score-version/regrading scenario remain NOT RUN.
 
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: Wrong questions enter private queue, fix on retry, original attempt unchanged, due dates accurate.

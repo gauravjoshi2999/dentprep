@@ -17,6 +17,7 @@ import { EmptyState, IndependentDisclaimer, LoadingBlock } from "./common";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { PwaTools } from "./pwa-tools";
 
 const destinations = [
   ["/dashboard", "Dashboard", Home],
@@ -95,6 +96,7 @@ export function StudyShell() {
         <Outlet />
       </main>
       <footer className="mx-auto max-w-7xl border-t border-border px-4 py-6 sm:px-6">
+        <PwaTools />
         <IndependentDisclaimer />
       </footer>
     </div>

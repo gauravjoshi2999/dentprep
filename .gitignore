@@ -36,3 +36,9 @@ dist-ssr
 !.env.example
 test-results/
 playwright-report/
+public/sw.js
+android/.gradle/
+android/**/build/
+android/local.properties
+*.jks
+*.keystore

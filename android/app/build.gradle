@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+
+def launchValue = providers.gradleProperty('dentprepUrl').orElse('https://example.invalid/').get()
+def launchUri = new URI(launchValue)
+if (launchUri.scheme != 'https' || !launchUri.host || launchUri.userInfo || launchUri.query || launchUri.fragment || launchUri.port != -1) {
+    throw new GradleException('dentprepUrl must be a public HTTPS URL without credentials, a port, query or fragment.')
+}
+def assetStatement = groovy.json.JsonOutput.toJson([[relation: ['delegate_permission/common.handle_all_urls'], target: [namespace: 'web', site: 'https://' + launchUri.host]]])
+
+android {
+    namespace 'in.dentprep.app'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'in.dentprep.app'
+        minSdk 23
+        targetSdk 36
+        versionCode 1
+        versionName '0.1.0'
+        manifestPlaceholders = [dentprepUrl: launchValue, dentprepHost: launchUri.host]
+        resValue 'string', 'asset_statements', assetStatement.replace('"', '\\"')
+    }
+    buildTypes { release { minifyEnabled false } }
+}
+dependencies { implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.7.4' }

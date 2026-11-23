@@ -36,3 +36,9 @@ PR #22, head `621cc0834803f9bdbb4a63782eed6c35fcbbe949`, merge/live `137985adfee
 ## P1-03 accepted release
 
 PR #23, head `cdb8029d31911d60288c3e6ffa221d56c9356017`, merge/live `e3b3ee74db3e8357175189a0907a8463ccae24af`. Main CI 45251461255 and production [45251461187](https://github.com/gauravjoshi2999/dentprep/actions/runs/45251461187) SUCCESS; artifact `14854928788`. 44 unit/11 release/23 nonclinical fixture browser passes, one intentional desktop skip. Fresh exact-SHA CLI PASS. No DB change. Native draft isolation also passed with 1 real user/15-30-15 drafts/three guards intact and all synthetic rows rolled back. This remains technical acceptance, not medical/real-device validation.
+
+## Android/main accepted checkpoint
+
+PR #24 final head `910d20d3ea187474ac8885e842f907089b8f8314`, merge/native/web `cc140559ff628371d7cc1ca65c044f00369be20a`. Main CI 45253304791, production [45253304850](https://github.com/gauravjoshi2999/dentprep/actions/runs/45253304850) and Android [45253304800](https://github.com/gauravjoshi2999/dentprep/actions/runs/45253304800) SUCCESS. Web artifact `14857143951`, Android artifact `14856519438`. Exact-SHA CLI PASS. Actual downloaded APK checksum/compiled URL/package and matching web/native receipt PASS; `ops/qa/android-debug-pr24.json` preserves inspection evidence. Debug APK SHA-256 `da4f3260f83ea8b260efa794d21c03ff8bc1cce3d55e2c4b793a37f2153a255b`.
+
+The debug artifact is retained seven days and may need rebuilding later. Production signing, asset-links ownership, physical installation/accounts and store release are not passed. Handoff-only commits must still pass required CI/release; their exact SHA is in the workflow's release artifact and final PR verification comment, rather than a self-referential source file.

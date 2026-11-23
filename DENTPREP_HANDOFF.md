@@ -1,7 +1,13 @@
-# DentPrep handoff
+# DentPrep final master-session handoff
 
-Canonical continuation: `DENTPREP_NEXT_ACTIONS.md`; production truth and accepted milestones: `DENTPREP_COMPLETION_LEDGER.md`. Both must be updated after each accepted task.
+Production: https://dentprep.gauravjoshi2999.workers.dev . Existing repository/backend only; no Bite changes. Canonical continuation: [DENTPREP_NEXT_ACTIONS.md](DENTPREP_NEXT_ACTIONS.md). Verified milestones and exact evidence: [DENTPREP_COMPLETION_LEDGER.md](DENTPREP_COMPLETION_LEDGER.md), [DENTPREP_RELEASE_EVIDENCE.md](DENTPREP_RELEASE_EVIDENCE.md).
 
-This session applies the PRIORITY-FIRST MISSION and MANDATORY HANDOFF PROTOCOL from the supplied Final Master PDF. Q&A requirements, all 72 slides, 50 software scenarios and 20 separate academic gates are indexed in the repository. Missing evidence remains NOT RUN or BLOCKED.
+Accepted implementation/native checkpoint: `cc140559ff628371d7cc1ca65c044f00369be20a` (PR #24). Main web CI/production/Android build passed. The later handoff-only source commit has its actual live SHA/run in the release workflow's SHA-specific artifact and verification comment; resolve current truth there and `/api/health` before writing.
 
-Preserve the existing backend, RLS, production data, Git history and the independent exam/source distinction. Never modify Bite/restaurant-os. Never publish clinical drafts or infer qualified review from an administrator status change. Browser dictation is not a conversational AI service. A configured Android build is not signed-device acceptance.
+Completed technical PRs #18–24: phase-aware confidential answers, database publication lock, account-switch private-state reset, renewable 7/15/30 cycles with carry/history, native score/revision checks and grants, distinct-question topic reports, actual debug APK against the verified live origin. TypeScript, 44 unit tests, 11 release tests, 23 desktop/mobile nonclinical fixtures (one intentional skip), native rollback role tests, SSR/assets/PWA/live checks and Android assemble/lint/binary checks passed. These are not actual candidate, clinical, visual, microphone or physical-device approval.
+
+Debug APK: [main Android build 45253304800](https://github.com/gauravjoshi2999/dentprep/actions/runs/45253304800), artifact `14856519438` (seven-day retention). SHA-256: `da4f3260f83ea8b260efa794d21c03ff8bc1cce3d55e2c4b793a37f2153a255b`. Standard debug identity; production signing/asset links/device acceptance still missing.
+
+The Final Master PDF's PRIORITY-FIRST MISSION and MANDATORY HANDOFF PROTOCOL were applied. All 100 Q&A, 50 scenarios, 20 separate academic gates, 72 slides and four reference images are indexed. They are requirements, not proof of completion. Clinical drafts remain 15 lessons/30 MCQs/15 cases at the last native audit, with publication locked and synthetic fixtures rolled back.
+
+Next: P1 source/unit/topic/outcome + independent-review evidence registry. P0 actual auth/account/visual QA is blocked by explicit Cloud Browser URL policy; Android production identity and physical acceptance need authorized owner/hardware steps. Full learning validity, live AI provider, current official-source checks and disaster recovery remain pending. The exact next three tasks, files, tools, acceptance tests and normal-chat message are in the continuation file. No paid action, fabricated review/official score/selection guarantee, production APK or background work is claimed.

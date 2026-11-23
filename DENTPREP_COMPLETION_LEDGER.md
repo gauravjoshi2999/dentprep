@@ -137,3 +137,20 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 ## Clarification: manual source import
 
 The repository README already records that this is a manual import and Lovable Git settings were not connected. The current stale editor snapshot is consistent with that workflow, not evidence that a previously working synchronization suddenly broke. Preserve GitHub as production source and the existing Lovable backend; do not create a replacement repository to obtain sync. The connector cannot configure syncing this existing repo, and no editor/live equivalence is claimed.
+
+## Accepted milestone: P2 Android debug target and binary QA
+
+- [PR #24](https://github.com/gauravjoshi2999/dentprep/pull/24), final head `910d20d3ea187474ac8885e842f907089b8f8314` (earlier preserved commit `c838e28dfc5a144bd3487e9e2e85c5d6ea79baf9`), merge/native/web checkpoint `cc140559ff628371d7cc1ca65c044f00369be20a`.
+- Latest-head web CI 45252576023 and Android 45252575855 SUCCESS. Main web CI 45253304791, production 45253304850 and Android assemble/lint 45253304800 SUCCESS. Exact main web/SSR/assets/routes/PWA CLI PASS.
+- Web artifact `14857143951`; seven-day Android artifact `14856519438` (`dentprep-android-debug-cc140559ff628371d7cc1ca65c044f00369be20a`). The APK is 4,847,544 bytes, SHA-256 `da4f3260f83ea8b260efa794d21c03ff8bc1cce3d55e2c4b793a37f2153a255b`.
+- Downloaded and inspected the actual main artifact: checksum matches APK bytes, compiled manifest has the live `/dashboard` and `in.dentprep.app`, no placeholder/no keystore included, parsed JSON matches both native and verified web `cc140559…`. Permanent inspection receipt: `ops/qa/android-debug-pr24.json`.
+- Standard debug certificate only. Production signing, Digital Asset Links, physical phone/account installation and Play Store release remain NOT CONFIGURED / NOT RUN. Do not publish the debug certificate as production ownership proof.
+- No backend or clinical content change. Existing Cloudflare origin/backend/repository preserved. Web updates use that same origin; native wrapper updates need a new APK.
+
+## Final master-session checkpoint
+
+Seven focused implementation/QA PRs #18–24 were safely merged and verified. The supplied 100 Q&A / 50 software scenarios / 20 academic gates / 72 slides / four reference images are indexed, not certified complete. Accepted implementation checkpoint is `cc140559…`; any subsequent handoff-only commit has its exact live revision/run in the automatically generated SHA-specific release artifact and PR verification comment. A tracked file cannot embed its own eventual commit SHA.
+
+No unfinished backend migration is left pending. Confidential columns, clinical publication guards, atomic study-cycle permissions and server score/revision grants are enforced. Existing data was preserved by additive changes and rollback-only native fixtures. Metadata backups and these dry runs are not a complete disaster-recovery restore exercise; that separate exercise remains NOT RUN.
+
+Full approved curriculum, independent clinical sign-off, unseen diagnostic/adaptive mastery, delayed-retention/student pilots, score-content version/regrading provenance, current UPSC/corrigendum checks, actual account/device/visual acceptance and live AI-provider integration remain pending or BLOCKED. No 100%, official UPSC score, clinical competence, production APK or background continuation is claimed. Next three concrete tasks and normal-chat continuation are in `DENTPREP_NEXT_ACTIONS.md`.

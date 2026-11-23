@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { Fragment, createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
@@ -46,7 +46,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, [router, queryClient]);
 
-  return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={state}>
+      {/* Account changes must also discard local editors, pending forms and active dictation.
+          Same-account token refresh keeps the key, preserving unsaved work. */}
+      <Fragment key={state.user?.id ?? "guest"}>{children}</Fragment>
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {

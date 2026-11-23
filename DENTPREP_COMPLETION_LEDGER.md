@@ -14,7 +14,7 @@
 | ID | Priority | Learner impact / risk | Smallest safe deliverable | Status / evidence |
 | --- | --- | --- | --- | --- |
 | P0-01 | P0 | Test answers can be inferred from public question explanations or own in-progress correctness columns | Safe question projections, owned phase-aware attempt RPCs, submitted-only history, DB column enforcement and rollback-only negative tests | DONE technical gate — PR #18, live `98bf0db…`, enforced columns + rollback/RPC/CI/REST tests; see milestone below |
-| P0-02 | P0 | Content review is a UI workflow, not accountable clinical sign-off | Deny publication until independent qualified, versioned approval can be enforced | Missing technical publication gate; all existing clinical content remains draft |
+| P0-02 | P0 | Content review is a UI workflow, not accountable clinical sign-off | Deny publication until independent qualified, versioned approval can be enforced | DONE safety interlock — PR #19; qualified approval workflow remains BLOCKED |
 | P0-03 | P0 | Real-account auth/privacy acceptance lacks evidence | Real registration/login/recovery/account-switch/admin QA with authorized accounts | BLOCKED: Cloud Browser failed opening live login, then URL-policy authority denied observation; no automated workaround attempted |
 | P1-01 | P1 | Study plans stop at one cycle; source coverage is incomplete | Renewable cycles with history, carry-forward and honest workload | Missing; existing 7/15/30 planner must be extended, not duplicated |
 | P1-02 | P1 | Learners have outlines but no approved clinical lessons/questions/cases | Source/outcome coverage, review queue, independent professional sign-off | BLOCKED for publication: qualified author/reviewer evidence absent |
@@ -51,3 +51,17 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 - Real-backend installation + regression test ran in a single transaction ending in ROLLBACK and passed. It tested a trusted synthetic admin and an audit row that cannot count as clinical sign-off. No guard or fixture rows persisted from the dry run.
 - Installation stops if any clinical material is already published. Before-state: zero published clinical items and no publication-approval trigger in the audited metadata. Recovery keeps the interlock through an application rollback; no existing rows need rewriting.
 - This is a publication lock, not an approval workflow. E04 and qualified clinical publication remain BLOCKED. Production activation is pending PR/CI.
+
+## Accepted milestone: P0-02 clinical publication safety lock
+
+- [PR #19](https://github.com/gauravjoshi2999/dentprep/pull/19), code `b18a0279e71b16711c41bcf24a00e86879f67bd4`, merge/live `a6ea77536aade2356a051f0b6c089aa012fcd586`.
+- PR CI 45242774973, main CI 45243391738 and production 45243391806: SUCCESS, including complete required live guest browser checks. Exact evidence artifact ID `14852357391`.
+- Real DB guard install and rollback-only regression passed. Three table trigger objects (six INSERT/UPDATE event rows) deny publication. Direct admin inserts/updates were blocked despite a workflow audit row; draft/in_review/archive/editor flows passed.
+- Final DB state: 1 auth user, 15 lesson drafts, 30 question drafts, 15 case drafts, 0 published clinical items; synthetic QA user absent. Explanation/correctness grants remain denied. Existing data was not rewritten.
+- Clinical author/reviewer/source/version approval is still missing. This lock does not turn any clinical approval gate into PASS.
+
+## New P0 finding: local state on direct account switch
+
+- Query cache clears, but interview transcript/editor component state previously survived a direct A-to-B auth identity change. Fragment identity scoping now discards private editors and runs unmount cleanup; same-account token refresh preserves drafts.
+- Two regression tests verify account-change/logout cleanup and same-account refresh preservation. Local TypeScript and all 28 unit tests pass. CI/production are pending this task's PR.
+- Continuous-cycle draft work is paused without any database application while this privacy issue takes priority.

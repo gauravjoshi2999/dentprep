@@ -1,0 +1,312 @@
+{
+  "captured_on": "2026-11-23",
+  "project_id": "7e700199-451a-4c24-bbea-d410d796df0b",
+  "purpose": "Pre-change function/grant metadata only. No user rows or secrets.",
+  "snapshot": {
+    "rows": [
+      {
+        "security_details": {
+          "answer_columns": [
+            {
+              "column": "id",
+              "nullable": "NO",
+              "type": "uuid"
+            },
+            {
+              "column": "attempt_id",
+              "nullable": "NO",
+              "type": "uuid"
+            },
+            {
+              "column": "user_id",
+              "nullable": "NO",
+              "type": "uuid"
+            },
+            {
+              "column": "question_id",
+              "nullable": "NO",
+              "type": "uuid"
+            },
+            {
+              "column": "selected_option_id",
+              "nullable": "YES",
+              "type": "uuid"
+            },
+            {
+              "column": "is_correct",
+              "nullable": "NO",
+              "type": "boolean"
+            },
+            {
+              "column": "answered_at",
+              "nullable": "NO",
+              "type": "timestamp with time zone"
+            }
+          ],
+          "functions": [
+            {
+              "definition": "CREATE OR REPLACE FUNCTION public.admin_question_options(p_question_id uuid)\n RETURNS SETOF answer_options\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\nBEGIN\n  IF auth.uid() IS NULL OR NOT public.has_role(auth.uid(),'admin') THEN RAISE EXCEPTION 'Forbidden'; END IF;\n  RETURN QUERY SELECT * FROM public.answer_options WHERE question_id = p_question_id ORDER BY sort_order;\nEND; $function$\n",
+              "name": "admin_question_options",
+              "signature": "p_question_id uuid"
+            },
+            {
+              "definition": "CREATE OR REPLACE FUNCTION public.admin_save_question(p_question jsonb, p_options jsonb)\n RETURNS uuid\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\nDECLARE v_id uuid; v_status public.content_status; o jsonb; v_index int := 0; v_option_id uuid; v_count int;\nBEGIN\n  IF auth.uid() IS NULL OR NOT public.has_role(auth.uid(),'admin') THEN RAISE EXCEPTION 'Forbidden'; END IF;\n  v_id := coalesce((p_question->>'id')::uuid,gen_random_uuid());\n  v_status := coalesce(p_question->>'status','draft')::public.content_status;\n  IF v_status NOT IN ('draft','in_review') THEN RAISE EXCEPTION 'This editor cannot publish questions'; END IF;\n  IF coalesce(length(trim(p_question->>'stem')),0) NOT BETWEEN 1 AND 1000 OR coalesce(length(trim(p_question->>'explanation')),0) NOT BETWEEN 1 AND 100000 THEN RAISE EXCEPTION 'Question and explanation are required'; END IF;\n  IF jsonb_typeof(p_options) IS DISTINCT FROM 'array' OR jsonb_array_length(p_options) <> 4 THEN RAISE EXCEPTION 'Provide four options'; END IF;\n  IF (SELECT count(*) FROM jsonb_array_elements(p_options) e WHERE (e->>'is_correct')::boolean) <> 1 THEN RAISE EXCEPTION 'Choose one correct option'; END IF;\n  INSERT INTO public.questions(id,subject_id,stem,explanation,source_note,difficulty,status)\n  VALUES(v_id,(p_question->>'subject_id')::uuid,trim(p_question->>'stem'),p_question->>'explanation',left(coalesce(p_question->>'source_note',''),15000),coalesce(p_question->>'difficulty','medium')::public.difficulty_level,'draft')\n  ON CONFLICT(id) DO UPDATE SET subject_id=EXCLUDED.subject_id,stem=EXCLUDED.stem,explanation=EXCLUDED.explanation,source_note=EXCLUDED.source_note,difficulty=EXCLUDED.difficulty,status='draft';\n  FOR o IN SELECT value FROM jsonb_array_elements(p_options) LOOP\n    IF coalesce(length(trim(o->>'body')),0) NOT BETWEEN 1 AND 3000 THEN RAISE EXCEPTION 'All option texts are required'; END IF;\n    v_option_id := coalesce((o->>'id')::uuid,gen_random_uuid());\n    INSERT INTO public.answer_options(id,question_id,label,body,is_correct,sort_order)\n    VALUES(v_option_id,v_id,chr(65+v_index),trim(o->>'body'),(o->>'is_correct')::boolean,v_index)\n    ON CONFLICT(id) DO UPDATE SET label=EXCLUDED.label,body=EXCLUDED.body,is_correct=EXCLUDED.is_correct,sort_order=EXCLUDED.sort_order WHERE public.answer_options.question_id=v_id;\n    GET DIAGNOSTICS v_count = ROW_COUNT;\n    IF v_count <> 1 THEN RAISE EXCEPTION 'An option belongs to another question'; END IF;\n    v_index := v_index + 1;\n  END LOOP;\n  IF (SELECT count(*) FROM public.answer_options WHERE question_id=v_id) <> 4 THEN RAISE EXCEPTION 'Existing question requires an option review'; END IF;\n  UPDATE public.questions SET status=v_status WHERE id=v_id;\n  RETURN v_id;\nEND; $function$\n",
+              "name": "admin_save_question",
+              "signature": "p_question jsonb, p_options jsonb"
+            },
+            {
+              "definition": "CREATE OR REPLACE FUNCTION public.record_answer(p_attempt_id uuid, p_question_id uuid, p_option_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'pg_catalog', 'public'\nAS $function$\nDECLARE a public.attempts; v_correct boolean; v_correct_id uuid; v_expl text;\nBEGIN\n  IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Not signed in'; END IF;\n  -- Serialize answer writes with submit_attempt, so a submitted score cannot race a late answer.\n  SELECT * INTO a FROM public.attempts WHERE id = p_attempt_id AND user_id = auth.uid() FOR UPDATE;\n  IF NOT FOUND THEN RAISE EXCEPTION 'Attempt not found'; END IF;\n  IF a.status <> 'in_progress' THEN RAISE EXCEPTION 'Attempt already submitted'; END IF;\n  IF a.timed AND clock_timestamp() >= a.started_at + make_interval(secs => a.time_limit_sec) THEN RAISE EXCEPTION 'Time limit ended; submit this session'; END IF;\n  IF p_question_id IS NULL OR NOT (p_question_id = ANY(a.question_ids)) THEN RAISE EXCEPTION 'Question not in this attempt'; END IF;\n  IF a.mode IN ('practice','daily','revision') AND EXISTS(SELECT 1 FROM public.test_answers WHERE attempt_id = p_attempt_id AND question_id = p_question_id) THEN RAISE EXCEPTION 'Already answered'; END IF;\n  SELECT o.is_correct INTO v_correct FROM public.answer_options o JOIN public.questions q ON q.id = o.question_id\n  JOIN public.subjects s ON s.id = q.subject_id\n  WHERE o.id = p_option_id AND o.question_id = p_question_id AND q.status = 'published' AND s.status = 'published';\n  IF NOT FOUND THEN RAISE EXCEPTION 'Question or option is unavailable'; END IF;\n  INSERT INTO public.test_answers(attempt_id,user_id,question_id,selected_option_id,is_correct)\n  VALUES(p_attempt_id,auth.uid(),p_question_id,p_option_id,v_correct)\n  ON CONFLICT(attempt_id,question_id) DO UPDATE SET selected_option_id = EXCLUDED.selected_option_id, is_correct = EXCLUDED.is_correct, answered_at = now();\n  IF a.mode IN ('practice','daily','revision') THEN\n    SELECT id INTO v_correct_id FROM public.answer_options WHERE question_id = p_question_id AND is_correct LIMIT 1;\n    SELECT explanation INTO v_expl FROM public.questions WHERE id = p_question_id;\n    RETURN jsonb_build_object('is_correct',v_correct,'correct_option_id',v_correct_id,'explanation',v_expl);\n  END IF;\n  RETURN jsonb_build_object('saved',true);\nEND; $function$\n",
+              "name": "record_answer",
+              "signature": "p_attempt_id uuid, p_question_id uuid, p_option_id uuid"
+            },
+            {
+              "definition": "CREATE OR REPLACE FUNCTION public.submit_attempt(p_attempt_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nDECLARE a public.attempts; v_answered int; v_correct int; v_today date := (now() AT TIME ZONE 'Asia/Kolkata')::date; r record;\nBEGIN\n  SELECT * INTO a FROM public.attempts WHERE id = p_attempt_id AND user_id = auth.uid() FOR UPDATE;\n  IF NOT FOUND THEN RAISE EXCEPTION 'Attempt not found'; END IF;\n  IF a.status = 'submitted' THEN\n    RETURN jsonb_build_object('total', a.total, 'answered', a.answered, 'correct', a.correct, 'score_pct', a.score_pct);\n  END IF;\n  SELECT count(*), count(*) FILTER (WHERE is_correct) INTO v_answered, v_correct FROM public.test_answers WHERE attempt_id = p_attempt_id;\n  UPDATE public.attempts SET status = 'submitted', answered = v_answered, correct = v_correct,\n    score_pct = CASE WHEN total > 0 THEN round(100.0 * v_correct / total, 2) ELSE 0 END,\n    submitted_at = now(), duration_sec = GREATEST(0, EXTRACT(EPOCH FROM (now() - started_at))::int)\n  WHERE id = p_attempt_id;\n  -- Spaced repetition update\n  FOR r IN SELECT question_id, is_correct FROM public.test_answers WHERE attempt_id = p_attempt_id LOOP\n    IF r.is_correct THEN\n      UPDATE public.revision_schedule SET\n        repetitions = repetitions + 1,\n        interval_days = CASE WHEN repetitions = 0 THEN 3 WHEN repetitions = 1 THEN 7 ELSE LEAST(60, interval_days * 2) END,\n        due_date = v_today + (CASE WHEN repetitions = 0 THEN 3 WHEN repetitions = 1 THEN 7 ELSE LEAST(60, interval_days * 2) END),\n        last_result = true, updated_at = now()\n      WHERE user_id = auth.uid() AND question_id = r.question_id;\n    ELSE\n      INSERT INTO public.revision_schedule (user_id, question_id, due_date, interval_days, repetitions, lapses, last_result)\n      VALUES (auth.uid(), r.question_id, v_today + 1, 1, 0, 1, false)\n      ON CONFLICT (user_id, question_id) DO UPDATE SET due_date = v_today + 1, interval_days = 1, repetitions = 0,\n        lapses = public.revision_schedule.lapses + 1, last_result = false, updated_at = now();\n    END IF;\n  END LOOP;\n  PERFORM public.log_activity();\n  SELECT * INTO a FROM public.attempts WHERE id = p_attempt_id;\n  RETURN jsonb_build_object('total', a.total, 'answered', a.answered, 'correct', a.correct, 'score_pct', a.score_pct);\nEND; $function$\n",
+              "name": "submit_attempt",
+              "signature": "p_attempt_id uuid"
+            }
+          ],
+          "grants": [
+            {
+              "column": "answered_at",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "attempt_id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "created_at",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "difficulty",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "explanation",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "is_correct",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "question_id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "selected_option_id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "source_note",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "status",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "stem",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "subject_id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "topic",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "updated_at",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "user_id",
+              "grantee": "anon",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "answered_at",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "attempt_id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "created_at",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "difficulty",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "explanation",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "is_correct",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "question_id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "selected_option_id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            },
+            {
+              "column": "source_note",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "status",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "stem",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "subject_id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "topic",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "updated_at",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "questions"
+            },
+            {
+              "column": "user_id",
+              "grantee": "authenticated",
+              "privilege": "SELECT",
+              "table": "test_answers"
+            }
+          ],
+          "review_columns": [
+            {
+              "column": "id",
+              "type": "uuid"
+            },
+            {
+              "column": "entity_type",
+              "type": "text"
+            },
+            {
+              "column": "entity_id",
+              "type": "uuid"
+            },
+            {
+              "column": "from_status",
+              "type": "USER-DEFINED"
+            },
+            {
+              "column": "to_status",
+              "type": "USER-DEFINED"
+            },
+            {
+              "column": "note",
+              "type": "text"
+            },
+            {
+              "column": "reviewer_id",
+              "type": "uuid"
+            },
+            {
+              "column": "created_at",
+              "type": "timestamp with time zone"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

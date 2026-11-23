@@ -36,7 +36,13 @@ const subjects = [
   },
 ];
 
-async function mockBackend(page: Page, signedIn = false, withQuestion = false, admin = false) {
+async function mockBackend(
+  page: Page,
+  signedIn = false,
+  withQuestion = false,
+  admin = false,
+  exam = false,
+) {
   // Isolated test-only records: these tests never create accounts or publish clinical content.
   if (signedIn)
     await page.addInitScript(
@@ -81,7 +87,49 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false, a
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
     else if (path.endsWith("/rpc/has_role")) data = admin;
-    else if (path.endsWith("/rpc/admin_save_question")) {
+    else if (path.endsWith("/rpc/admin_questions")) {
+      expect(admin).toBe(true);
+      data = drafts.map((d) => ({
+        topic: "",
+        created_at: "2026-11-23T10:00:00Z",
+        updated_at: "2026-11-23T10:00:00Z",
+        ...d,
+      }));
+    } else if (path.endsWith("/rpc/candidate_answer_history")) {
+      data = submitted
+        ? [
+            {
+              question_id: questionId,
+              is_correct: true,
+              attempt_id: attemptId,
+              answered_at: "2026-11-23T10:00:00Z",
+            },
+          ]
+        : [];
+    } else if (path.endsWith("/rpc/candidate_attempt_details")) {
+      data = {
+        answers: answered
+          ? [
+              {
+                question_id: questionId,
+                selected_option_id: optionId,
+                is_correct: submitted || !exam ? true : null,
+              },
+            ]
+          : [],
+        reviews:
+          submitted || (answered && !exam)
+            ? [
+                {
+                  question_id: questionId,
+                  explanation: question.explanation,
+                  source_note: question.source_note,
+                  correct_option_id: optionId,
+                },
+              ]
+            : [],
+      };
+    } else if (path.endsWith("/rpc/admin_save_question")) {
       expect(admin).toBe(true);
       expect(["draft", "in_review"]).toContain(body.p_question.status);
       expect(body.p_options).toHaveLength(4);
@@ -91,7 +139,9 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false, a
     } else if (path.endsWith("/rpc/start_attempt")) data = attemptId;
     else if (path.endsWith("/rpc/record_answer")) {
       answered = true;
-      data = { is_correct: true, correct_option_id: optionId, explanation: question.explanation };
+      data = exam
+        ? { saved: true }
+        : { is_correct: true, correct_option_id: optionId, explanation: question.explanation };
     } else if (path.endsWith("/rpc/submit_attempt")) {
       submitted = true;
       data = { total: 1, answered: 1, correct: 1, score_pct: 100 };
@@ -101,7 +151,10 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false, a
     else if (path.endsWith("/questions")) {
       if (url.searchParams.has("status")) {
         expect(url.searchParams.get("status")).toBe("eq.published");
-        data = withQuestion ? [question] : [];
+        expect(url.searchParams.get("select")).not.toContain("explanation");
+        expect(url.searchParams.get("select")).not.toContain("*");
+        const { explanation: _explanation, source_note: _source, ...safe } = question;
+        data = withQuestion ? [safe] : [];
       } else {
         expect(admin).toBe(true);
         data = drafts;
@@ -119,7 +172,7 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false, a
         id: attemptId,
         user_id: userId,
         title: "MCQ practice",
-        mode: "practice",
+        mode: exam ? "custom" : "practice",
         question_ids: [questionId],
         total: 1,
         answered: answered ? 1 : 0,
@@ -131,18 +184,10 @@ async function mockBackend(page: Page, signedIn = false, withQuestion = false, a
         duration_sec: 60,
       };
       data = url.searchParams.has("id") ? a : submitted ? [a] : [];
-    } else if (path.endsWith("/test_answers"))
-      data = answered
-        ? [
-            {
-              question_id: questionId,
-              selected_option_id: optionId,
-              is_correct: true,
-              attempt_id: attemptId,
-            },
-          ]
-        : [];
-    else if (path.endsWith("/study_plans")) {
+    } else if (path.endsWith("/test_answers")) {
+      expect(url.searchParams.get("select")).not.toContain("is_correct");
+      data = [];
+    } else if (path.endsWith("/study_plans")) {
       if (method === "POST") plan = body;
       if (method === "PATCH" && plan && url.searchParams.get("id")?.startsWith("eq."))
         plan = { ...plan, ...body };
@@ -225,6 +270,26 @@ test("practice saves answers through RPCs and displays the submitted score", asy
   ).toBeVisible();
 });
 
+test("exam saves and resumes without correctness or explanations until submission", async ({
+  page,
+}) => {
+  await mockBackend(page, true, true, false, true);
+  const explanation = "A regular study slot makes practice easier to repeat.";
+  await page.goto(`/attempt/${attemptId}`);
+  await expect(page.getByRole("heading", { name: /Which action helps/ })).toBeVisible();
+  await expect(page.getByText(explanation, { exact: true })).toHaveCount(0);
+  await page.getByRole("radio", { name: /Set a regular study slot/ }).check();
+  await page.getByRole("button", { name: "Save answer", exact: true }).click();
+  await expect(page.getByText("1 answers saved", { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("1 answers saved", { exact: true })).toBeVisible();
+  await expect(page.getByText(explanation, { exact: true })).toHaveCount(0);
+  await expect(page.getByText("Correct", { exact: true })).toHaveCount(0);
+  await page.getByRole("button", { name: "Finish and view result" }).click();
+  await expect(page.getByText("100%", { exact: true })).toBeVisible();
+  await expect(page.getByText(explanation, { exact: true })).toBeVisible();
+});
+
 test("study plans use available content and persist task completion", async ({ page }) => {
   await mockBackend(page, true);
   await page.goto("/plan");
@@ -290,8 +355,13 @@ test("administrators save MCQs through the draft-only transactional API", async 
   await expect(page.getByText("in review", { exact: true })).toBeVisible();
 });
 
-test("approved mobile visual navigation uses real pages and honest study data", async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== "mobile", "Mobile navigation is intentionally hidden on desktop.");
+test("approved mobile visual navigation uses real pages and honest study data", async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== "mobile",
+    "Mobile navigation is intentionally hidden on desktop.",
+  );
   await mockBackend(page, true);
   await page.goto("/dashboard");
   const nav = page.getByRole("navigation", { name: "Mobile primary navigation" });
@@ -306,5 +376,7 @@ test("approved mobile visual navigation uses real pages and honest study data", 
   await expect(page.getByText(/Voice and AI clinical scoring are not enabled/)).toBeVisible();
   await nav.getByRole("button", { name: "Profile" }).click();
   await expect(page.getByRole("region", { name: "Profile shortcuts" })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
 });

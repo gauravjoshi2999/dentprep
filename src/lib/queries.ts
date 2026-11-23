@@ -1,6 +1,7 @@
 import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
+import { fetchAnswerHistory } from "@/lib/attempt-api";
 
 export type Subject = Tables<"subjects">;
 export type Lesson = Tables<"lessons">;
@@ -81,7 +82,7 @@ export const questionMetaQuery = () =>
       ) as QuestionMeta[],
   });
 
-export type QuestionWithOptions = Question & {
+export type QuestionWithOptions = Omit<Question, "explanation" | "source_note"> & {
   answer_options: Pick<AnswerOption, "id" | "label" | "body" | "sort_order">[];
 };
 export async function fetchQuestions(ids: string[]): Promise<QuestionWithOptions[]> {
@@ -89,7 +90,9 @@ export async function fetchQuestions(ids: string[]): Promise<QuestionWithOptions
   const rows = must(
     await supabase
       .from("questions")
-      .select("*, answer_options(id, label, body, sort_order)")
+      .select(
+        "id,subject_id,topic,stem,difficulty,status,created_at,updated_at,answer_options(id,label,body,sort_order)",
+      )
       .eq("status", "published")
       .in("id", ids),
   ) as QuestionWithOptions[];
@@ -164,15 +167,7 @@ export const attemptsQuery = (userId: string) =>
 export const answersQuery = (userId: string) =>
   queryOptions({
     queryKey: ["answers", userId],
-    queryFn: async () =>
-      must(
-        await supabase
-          .from("test_answers")
-          .select("question_id, is_correct, answered_at, attempt_id")
-          .eq("user_id", userId)
-          .order("answered_at", { ascending: false })
-          .limit(1000),
-      ),
+    queryFn: fetchAnswerHistory,
   });
 
 export const activityQuery = (userId: string) =>

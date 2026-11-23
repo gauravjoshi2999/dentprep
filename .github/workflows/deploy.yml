@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       production_url:
-        description: Optional: custom HTTPS origin; leave blank to verify the exact workers.dev URL returned by Wrangler
+        description: "Optional custom HTTPS origin; leave blank to verify the exact workers.dev URL returned by Wrangler"
         required: false
         type: string
 permissions:

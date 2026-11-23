@@ -1,6 +1,6 @@
 # Android build configuration
 
-This is a Trusted Web Activity wrapper around the existing HTTPS DentPrep app. It uses the browser's existing login/session and the same SSR application. No second frontend or bundled server is created. Java 17, Gradle 8.13, Android Gradle Plugin 8.13.2 and Android Browser Helper 2.7.4 are pinned. Minimum Android API is 23; target/compile API is 36.
+This is a Trusted Web Activity wrapper around the existing HTTPS DentPrep app. It uses the browser's existing login/session and the same SSR application. No second frontend or bundled server is created. Java 17, Gradle 8.13, Android Gradle Plugin 8.13.2 and Android Browser Helper 2.7.4 are pinned. Minimum Android API is 24, matching the published helper artifact; target/compile API is 36.
 
 Run `gradle --no-daemon :app:assembleDebug :app:lintDebug -PdentprepUrl=https://YOUR_VERIFIED_DENTPREP_HOST/dashboard` from this folder after installing Android SDK platform 36. The GitHub Android workflow performs the same checks. Without a URL it builds against `https://example.invalid/` strictly to verify configuration; this APK is not a usable DentPrep release.
 

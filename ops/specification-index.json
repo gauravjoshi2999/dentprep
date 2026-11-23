@@ -34,9 +34,10 @@
       "page": 6,
       "question": "Exam ki date announce nahi hui toh study kaise chalegi?",
       "required_behavior": "Exam-date-unknown mode hamesha available rahe. Syllabus mastery aur revision indefinite chalte rahein; official date verified hone par hi countdown aur priority reshuffle ho.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/dashboard, /login; profiles, attempts; src/lib/auth.tsx",
-      "acceptance": "T01,T06-T10,T48"
+      "acceptance": "T01,T06-T10,T48",
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q005",
@@ -457,9 +458,10 @@
       "page": 11,
       "question": "7-day aur 30-day plan ka matlab padhai bas itne din hai?",
       "required_behavior": "Nahi. Ye renewable planning cycles hain; exam-date-unknown mode mein cycles indefinitely continue. Next cycle previous work and overdue tasks ko carry forward kare.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/plan; study_plans, study_tasks, profiles",
-      "acceptance": "T17-T20,T50"
+      "acceptance": "T17-T20,T50",
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q052",
@@ -484,9 +486,10 @@
       "page": 11,
       "question": "Agar 10 din gap ho jaaye toh?",
       "required_behavior": "No guilt/pop-up spam: missed tasks reschedule, prioritize due revisions, offer short restart plan; historical record remains unchanged.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/plan; study_plans, study_tasks, profiles",
-      "acceptance": "T17-T20,T50"
+      "acceptance": "T17-T20,T50",
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q055",
@@ -511,9 +514,10 @@
       "page": 11,
       "question": "Kya plan automatic renew ho sakta hai?",
       "required_behavior": "When cycle ends, create reviewed next cycle automatically or with user acceptance per settings. Never silently duplicate tasks or reset completed topics.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/plan; study_plans, study_tasks, profiles",
-      "acceptance": "T17-T20,T50"
+      "acceptance": "T17-T20,T50",
+      "implementation_note": "Renewable cycles/history/carry implemented and rollback SQL tested; PR/CI/rollout and actual account/device acceptance pending. Full adaptive/official-date behavior is not claimed."
     },
     {
       "id": "Q058",

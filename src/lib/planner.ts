@@ -58,8 +58,8 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
   )
     throw new Error("Choose a valid start date.");
   const budget = Math.max(30, Math.round(input.dailyHours * 60));
-  const hasQuestions = (input.availableQuestionCount ?? 30) > 0;
-  const hasCases = (input.availableCaseCount ?? 1) > 0;
+  const hasQuestions = (input.availableQuestionCount ?? 0) > 0;
+  const hasCases = (input.availableCaseCount ?? 0) > 0;
   const completed = new Set(input.completedLessonIds);
   const weak = new Set(input.weakSubjectIds);
 
@@ -118,7 +118,7 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
     }
 
     // Wrong-answer revision on day 1 when items are due
-    if (day === 0 && input.revisionDueCount > 0) {
+    if (day === 0 && hasQuestions && input.revisionDueCount > 0) {
       push({
         task_type: "revision",
         subject_id: null,

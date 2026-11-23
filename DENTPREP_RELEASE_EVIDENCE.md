@@ -20,3 +20,7 @@ Current verified application revision at this checkpoint: `98bf0db3f477c066adda8
 ## P0-02 accepted release
 
 Merge/live `a6ea77536aade2356a051f0b6c089aa012fcd586`, PR #19; production [45243391806](https://github.com/gauravjoshi2999/dentprep/actions/runs/45243391806) SUCCESS; exact-release artifact `14852357391`. Native DB regression confirmed publication lock and unchanged draft/user counts with no persisted QA user. No reviewed medical material was published.
+
+## P0-04 account-local state isolation release
+
+PR #20, head `ce90671c5f9979b2118f1be4f04583ba52d2fb1f`, merge/live `889cb9bcf6767a31a0ca5bf8460a47bb56aabb6b`. PR CI 45245114228 SUCCESS; production [45246246768](https://github.com/gauravjoshi2999/dentprep/actions/runs/45246246768) SUCCESS; artifact `14853303268`. Fresh CLI exact revision/SSR/assets/routes/PWA PASS. Main CI 45246246939 SUCCESS (19 fixture browser tests passed, one intentional desktop skip). No database mutation. Real-account browser/device gate remains BLOCKED.

@@ -11,14 +11,15 @@
 
 ## Current prioritized findings
 
-| ID | Priority | Learner impact / risk | Smallest safe deliverable | Status / evidence |
-| --- | --- | --- | --- | --- |
-| P0-01 | P0 | Test answers can be inferred from public question explanations or own in-progress correctness columns | Safe question projections, owned phase-aware attempt RPCs, submitted-only history, DB column enforcement and rollback-only negative tests | DONE technical gate — PR #18, live `98bf0db…`, enforced columns + rollback/RPC/CI/REST tests; see milestone below |
-| P0-02 | P0 | Content review is a UI workflow, not accountable clinical sign-off | Deny publication until independent qualified, versioned approval can be enforced | DONE safety interlock — PR #19; qualified approval workflow remains BLOCKED |
-| P0-03 | P0 | Real-account auth/privacy acceptance lacks evidence | Real registration/login/recovery/account-switch/admin QA with authorized accounts | BLOCKED: Cloud Browser failed opening live login, then URL-policy authority denied observation; no automated workaround attempted |
-| P1-01 | P1 | Study plans stop at one cycle; source coverage is incomplete | Renewable cycles with history, carry-forward and honest workload | Missing; existing 7/15/30 planner must be extended, not duplicated |
-| P1-02 | P1 | Learners have outlines but no approved clinical lessons/questions/cases | Source/outcome coverage, review queue, independent professional sign-off | BLOCKED for publication: qualified author/reviewer evidence absent |
-| P2-01 | P2 | Live AI and real devices cannot be inferred from mock tests | Authorized provider proxy/evaluation and actual hardware acceptance | BLOCKED: provider/consent/cost decision, reviewer and physical devices |
+| ID    | Priority | Learner impact / risk                                                                                 | Smallest safe deliverable                                                                                                                 | Status / evidence                                                                                                                 |
+| ----- | -------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| P0-01 | P0       | Test answers can be inferred from public question explanations or own in-progress correctness columns | Safe question projections, owned phase-aware attempt RPCs, submitted-only history, DB column enforcement and rollback-only negative tests | DONE technical gate — PR #18, live `98bf0db…`, enforced columns + rollback/RPC/CI/REST tests; see milestone below                 |
+| P0-02 | P0       | Content review is a UI workflow, not accountable clinical sign-off                                    | Deny publication until independent qualified, versioned approval can be enforced                                                          | DONE safety interlock — PR #19; qualified approval workflow remains BLOCKED                                                       |
+| P0-03 | P0       | Real-account auth/privacy acceptance lacks evidence                                                   | Real registration/login/recovery/account-switch/admin QA with authorized accounts                                                         | BLOCKED: Cloud Browser failed opening live login, then URL-policy authority denied observation; no automated workaround attempted |
+| P0-04 | P0       | Local private form state could survive a direct account switch                                        | Remount private editor/dictation subtree on identity change; preserve token refresh                                                       | PR #20 merged/live; automated evidence below; real-account acceptance remains BLOCKED                                             |
+| P1-01 | P1       | Study plans stop at one cycle; source coverage is incomplete                                          | Renewable cycles with history, carry-forward and honest workload                                                                          | Implementation and rollback-only DB QA complete; PR/CI/rollout pending                                                            |
+| P1-02 | P1       | Learners have outlines but no approved clinical lessons/questions/cases                               | Source/outcome coverage, review queue, independent professional sign-off                                                                  | BLOCKED for publication: qualified author/reviewer evidence absent                                                                |
+| P2-01 | P2       | Live AI and real devices cannot be inferred from mock tests                                           | Authorized provider proxy/evaluation and actual hardware acceptance                                                                       | BLOCKED: provider/consent/cost decision, reviewer and physical devices                                                            |
 
 ## Completion rules
 
@@ -65,3 +66,16 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 - Query cache clears, but interview transcript/editor component state previously survived a direct A-to-B auth identity change. Fragment identity scoping now discards private editors and runs unmount cleanup; same-account token refresh preserves drafts.
 - Two regression tests verify account-change/logout cleanup and same-account refresh preservation. Local TypeScript and all 28 unit tests pass. CI/production are pending this task's PR.
 - Continuous-cycle draft work is paused without any database application while this privacy issue takes priority.
+
+## Accepted release: P0-04 account-local state isolation
+
+- [PR #20](https://github.com/gauravjoshi2999/dentprep/pull/20), head `ce90671c5f9979b2118f1be4f04583ba52d2fb1f`, merge/live `889cb9bcf6767a31a0ca5bf8460a47bb56aabb6b`.
+- PR CI 45245114228 SUCCESS (28 unit tests including identity-change/logout cleanup and same-account refresh preservation). Main CI 45246246939 SUCCESS; 19 desktop/mobile fixture browser tests passed, with one intentional desktop skip for mobile-only navigation.
+- Production 45246246768 SUCCESS; artifact `14853303268`. Fresh CLI verified exact live SHA, SSR/assets/routes/PWA. No DB change. Actual A/B account/device tests remain BLOCKED by the recorded browser policy restriction.
+
+## P1-01 pre-merge implementation checkpoint
+
+- Branch `feat/continuous-study-cycles`; additive owned lineage and atomic cycle RPC, client retry intent, 7/15/30 renewals, carry queue, original completion history, workload/availability limits. No P1 DB changes applied at this checkpoint.
+- Before metadata: `ops/backups/2026-11-23-study-cycles.json`; original production counts 1 user / 1 plan / 30 tasks. `ops/STUDY_CYCLE_ROLLOUT.md` defines expand before client, contract after compatible live release, recovery without deleting history.
+- Real backend dry run passed owner/anonymous/cross-user boundaries, retry idempotency, stale saves, carry once, all three cycle lengths, completed timestamps, missing lessons and daily-budget atomic rejection. All synthetic data and DDL rolled back. Advisory locking is implemented; concurrent load testing is not claimed.
+- TypeScript, 35 unit tests, 11 release tests, changed-source lint and source checks pass locally. Desktop/mobile fixture renewal/history test added; full CI/release are pending. No private learner content exported and no clinical material published.

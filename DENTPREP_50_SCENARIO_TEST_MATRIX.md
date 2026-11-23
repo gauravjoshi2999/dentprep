@@ -104,11 +104,11 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T13 — Draft visibility
 
-- Priority: P0; status: **NOT RUN**.
-- Expected / steps: Unapproved lessons/MCQs/cases remain inaccessible by direct URL/API; include RLS negative test. DentPrep | Independent education | Verified-source work handoff
-- Actual / evidence: Existing CI has partial coverage; full scenario has not been executed to this specification.
-- Fixture/environment: isolated mocked CI or rollback SQL only unless explicitly recorded otherwise.
-- Retest / fix PR: pending.
+- Priority: P0; status: **PASS for the native RLS isolation gate**. Actual account/browser/device acceptance remains separately BLOCKED.
+- Expected: unapproved lessons/MCQs/cases inaccessible through candidate/public data access; linked options/sources must not escape.
+- Actual: `ops/verify-draft-isolation.sql` on the real existing backend passed anonymous/candidate draft and in-review read denials, linked-option/source denials, candidate draft mutation denial and trusted admin reads. No trigger disabled or clinical fixture published.
+- All synthetic records/status edits rolled back; 1 real user, 15/30/15 drafts and three enabled publication guards preserved. Source is recorded in this checkpoint PR; existing CI also covers unavailable direct lesson route with nonclinical mock data.
+- Scope: native API role boundaries and existing fixture route coverage. No actual candidate account or physical device is represented as tested.
 
 ## T14 — Lesson progress
 
@@ -144,7 +144,7 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T18 — Weak topic detection
 
-- Partial implementation: latest distinct-question evidence and explicit 5-item/70% product heuristics (not validated mastery), nine unit regressions including fifty retakes counting once, missing/withdrawn tags and sparse samples. Mobile/desktop fixture and CI/live are pending. Actual content/longitudinal validity remains NOT RUN.
+- Partial implementation: latest distinct-question evidence and explicit 5-item/70% product heuristics (not validated mastery), nine unit regressions including fifty retakes counting once, missing/withdrawn tags and sparse samples. PR #23 / live `e3b3ee74db3e8357175189a0907a8463ccae24af`, 44 unit tests, 23 desktop/mobile fixture passes and production 45251461187 SUCCESS. Actual candidate/content/longitudinal validity remains NOT RUN.
 
 - Priority: P1; status: **NOT RUN**.
 - Expected / steps: Seed errors in known topics; verify tags and formula-based recommendation with explanation.
@@ -397,7 +397,7 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 - Priority: P0; status: **PASS**.
 - Expected / steps: Expected SHA matches /api/health, SSR, CSS/JS hashes, PWA/routes; rollback on unrecovered 404.
-- Actual / evidence: Live CLI verified exact health revision, SSR, CSS/JS, routes and PWA against baseline; release run 45231986266 SUCCESS.
+- Actual / evidence: Fresh CLI exact revision/SSR/CSS/JS/routes/PWA PASS at `e3b3ee74db3e8357175189a0907a8463ccae24af`; production 45251461187 SUCCESS, artifact 14854928788. Later checkpoints resolve their exact revision from live health and the SHA-specific artifact.
 - Fixture/environment: isolated mocked CI or rollback SQL only unless explicitly recorded otherwise.
 - Retest / fix PR: pending.
 

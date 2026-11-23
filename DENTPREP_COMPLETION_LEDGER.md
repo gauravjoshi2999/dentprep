@@ -115,3 +115,25 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 - Five distinct questions and below 70% are explicitly labelled product triage heuristics. No unseen diagnostic, clinical mastery, official pass mark or selection prediction is claimed. Full session totals/history remain unchanged.
 - TypeScript, 44 unit tests (nine evidence regressions), changed-source lint and source security pass locally; desktop/mobile nonclinical report fixture added. PR/CI/live pending. No DB change for this feature.
 - Source-reference inspection is logged in `DENTPREP_SOURCE_VERIFICATION.md`; historical BDS regulations were retrieved, amendment currency remains unverified, and UPSC recruitment facts were not reverified in this task. This does not approve any clinical draft.
+
+## Accepted milestone: P1-03 transparent subject/topic practice evidence
+
+- [PR #23](https://github.com/gauravjoshi2999/dentprep/pull/23), head `cdb8029d31911d60288c3e6ffa221d56c9356017`, merge/live `e3b3ee74db3e8357175189a0907a8463ccae24af`.
+- PR CI 45250860733, branch CI 45250851887, main CI 45251461255 and production 45251461187 SUCCESS; release artifact `14854928788`. Fresh CLI exact-SHA SSR/assets/routes/PWA PASS.
+- 44 unit tests, 11 release tests and 23 desktop/mobile nonclinical browser fixtures PASS (one intentional desktop mobile-navigation skip). Report fixture verifies truthful empty state and a five-item 40% revision suggestion with its heuristic disclosure; unit cases cover retakes, latest outcomes, sparse/missing/withdrawn tags and conservative timestamp ties.
+- No DB or content change. Existing session history/totals retained. Full unseen diagnostic, adaptive prerequisites, current curriculum coverage, real-account/device and clinical/longitudinal validation remain pending.
+
+## P0 draft-isolation technical QA
+
+- `ops/verify-draft-isolation.sql` passed on the native existing DB after the free-plan cooldown. Anonymous and candidate roles cannot read draft or in-review lessons/questions/cases, options or source rows; candidate draft mutation is denied; trusted admin draft reads work.
+- All synthetic accounts/content/sources/status changes rolled back. Final state: 1 real user, 15/30/15 draft counts, all three publication guards enabled. No trigger was disabled and no clinical fixture was published for this regression.
+- This is the RLS/data-access gate. Actual signed-in browser and physical-device scenarios remain separately BLOCKED.
+
+## P2 Android launch-target implementation checkpoint
+
+- Existing wrapper still defaulted to example.invalid despite the verified Cloudflare origin. Default now points to that same app's `/dashboard`; CI verifies the exact prior/current web revision before building, runs Gradle debug+lint, and records APK checksum/debug certificate and explicit acceptance limits.
+- Branch `fix/android-live-launch-target`; CI/native build and live acceptance are pending. No production signing identity, Digital Asset Links, private keystore, paid publishing service or second frontend/backend is created. A debug artifact is not a production/physical-device PASS.
+
+## Clarification: manual source import
+
+The repository README already records that this is a manual import and Lovable Git settings were not connected. The current stale editor snapshot is consistent with that workflow, not evidence that a previously working synchronization suddenly broke. Preserve GitHub as production source and the existing Lovable backend; do not create a replacement repository to obtain sync. The connector cannot configure syncing this existing repo, and no editor/live equivalence is claimed.

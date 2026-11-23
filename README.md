@@ -22,7 +22,7 @@ The manifest and service worker support installation on compatible HTTPS browser
 
 Candidates can explicitly save a published lesson with a recorded review date on their device. Offline notes are plain text and show their review/save dates; they can become stale, so reconnect to check for updates or withdrawal. The reading shelf lets users remove each copy. Offline quizzes, scoring, account changes and interviews are unavailable. Build-time hashing updates the worker whenever offline assets change. Development registration is opt-in with `VITE_ENABLE_PWA=true`.
 
-The separate [Android configuration](android/README.md) builds a Trusted Web Activity wrapper against the deployed SSR app. The default `example.invalid` URL is configuration verification only. A usable release needs a verified production URL, signing certificate, Digital Asset Links and physical-device QA; no production APK or Play Store release is claimed.
+The separate [Android configuration](android/README.md) builds a Trusted Web Activity wrapper against the deployed SSR app. The default URL now points at the verified Cloudflare `/dashboard` route; the Android workflow verifies the web revision and builds a debug artifact. A usable release needs a verified production URL, signing certificate, Digital Asset Links and physical-device QA; no production APK or Play Store release is claimed.
 
 ## Stack
 

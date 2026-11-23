@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { releaseHealth } from "./lib/release-health";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -49,6 +50,8 @@ function isH3SwallowedErrorBody(body: string): boolean {
 // twice and renders garbled.
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const health = releaseHealth(request, import.meta.env["VITE_DENTPREP_REVISION"]);
+    if (health) return health;
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

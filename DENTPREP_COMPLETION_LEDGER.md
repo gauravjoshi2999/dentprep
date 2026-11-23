@@ -131,7 +131,7 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 
 ## P2 Android launch-target implementation checkpoint
 
-- Existing wrapper still defaulted to example.invalid despite the verified Cloudflare origin. Default now points to that same app's `/dashboard`; CI verifies the exact prior/current web revision before building, runs Gradle debug+lint, and records APK checksum/debug certificate and explicit acceptance limits.
+- Existing wrapper still defaulted to example.invalid despite the verified Cloudflare origin. Default now points to that same app's `/dashboard`; CI runs Gradle debug+lint and verifies the exact prior/current web revision before accepting the artifact, and records APK checksum/debug certificate and explicit acceptance limits.
 - Branch `fix/android-live-launch-target`; CI/native build and live acceptance are pending. No production signing identity, Digital Asset Links, private keystore, paid publishing service or second frontend/backend is created. A debug artifact is not a production/physical-device PASS.
 
 ## Clarification: manual source import

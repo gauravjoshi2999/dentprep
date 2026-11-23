@@ -25,20 +25,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Verify launch origin and exact existing live web release
+      - name: Validate known DentPrep launch origin
         run: |
           node --input-type=module <<'JS'
           const url = new URL(process.env.DENTPREP_APP_URL);
           if (url.origin !== 'https://dentprep.gauravjoshi2999.workers.dev' || url.username || url.password || url.search || url.hash || !['/', '/dashboard'].includes(url.pathname)) throw Error('Use the verified DentPrep HTTPS origin and root/dashboard route.');
           JS
-          # Main's compatible web release may still be running. Every bounded retry
-          # must verify the whole exact release; never accept a different revision.
-          for attempt in 1 2 3; do
-            if node scripts/verify-deployment.mjs https://dentprep.gauravjoshi2999.workers.dev "$EXPECTED_WEB_REVISION"; then
-              exit 0
-            fi
-          done
-          exit 1
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -53,6 +45,16 @@ jobs:
       - name: Build debug APK against verified live DentPrep and run lint
         working-directory: android
         run: gradle --no-daemon :app:assembleDebug :app:lintDebug -PdentprepUrl="$DENTPREP_APP_URL"
+      - name: Verify exact live web release before accepting the APK
+        run: |
+          # Main's compatible web release may still be running. Every bounded retry
+          # must verify the whole exact release; never accept a different revision.
+          for attempt in 1 2 3; do
+            if node scripts/verify-deployment.mjs https://dentprep.gauravjoshi2999.workers.dev "$EXPECTED_WEB_REVISION"; then
+              exit 0
+            fi
+          done
+          exit 1
       - name: Record debug signature, checksum and acceptance limits
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs android/app/build/outputs/apk/debug/app-debug.apk > android-debug-certificate.txt

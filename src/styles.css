@@ -8,6 +8,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer components {
+  .study-input { @apply w-full rounded-lg border border-input bg-card px-3 py-2.5 text-base font-normal text-foreground outline-none focus:ring-2 focus:ring-ring disabled:opacity-50; }
+}
+
 /* DentPrep design system — deep navy + clinical teal, white spacious surfaces. */
 @theme inline {
   --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;

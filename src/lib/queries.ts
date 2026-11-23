@@ -30,9 +30,13 @@ export const subjectsQuery = () =>
           .from("subjects")
           .select("*, lessons(id, slug, title, summary, est_minutes, sort_order)")
           .eq("status", "published")
+          .eq("lessons.status", "published")
           .order("sort_order"),
       ) as SubjectWithLessons[];
-      return rows.map((s) => ({ ...s, lessons: [...s.lessons].sort((a, b) => a.sort_order - b.sort_order) }));
+      return rows.map((s) => ({
+        ...s,
+        lessons: [...s.lessons].sort((a, b) => a.sort_order - b.sort_order),
+      }));
     },
   });
 
@@ -41,13 +45,23 @@ export const lessonQuery = (subjectSlug: string, lessonSlug: string) =>
     queryKey: ["lesson", subjectSlug, lessonSlug],
     staleTime: 5 * 60_000,
     queryFn: async () => {
-      const subRes = await supabase.from("subjects").select("*").eq("slug", subjectSlug).maybeSingle();
+      const subRes = await supabase
+        .from("subjects")
+        .select("*")
+        .eq("slug", subjectSlug)
+        .eq("status", "published")
+        .maybeSingle();
       if (subRes.error) throw new Error(subRes.error.message);
       const subject = subRes.data;
       if (!subject) return null;
-      const lesson = must(
-        await supabase.from("lessons").select("*").eq("subject_id", subject.id).eq("slug", lessonSlug).maybeSingle(),
-      );
+      const { data: lesson, error } = await supabase
+        .from("lessons")
+        .select("*")
+        .eq("subject_id", subject.id)
+        .eq("slug", lessonSlug)
+        .eq("status", "published")
+        .maybeSingle();
+      if (error) throw error;
       if (!lesson) return null;
       return { subject, lesson };
     },
@@ -59,25 +73,47 @@ export const questionMetaQuery = () =>
     queryKey: ["question-meta"],
     staleTime: 5 * 60_000,
     queryFn: async () =>
-      must(await supabase.from("questions").select("id, subject_id, difficulty, topic").eq("status", "published")) as QuestionMeta[],
+      must(
+        await supabase
+          .from("questions")
+          .select("id, subject_id, difficulty, topic")
+          .eq("status", "published"),
+      ) as QuestionMeta[],
   });
 
-export type QuestionWithOptions = Question & { answer_options: Pick<AnswerOption, "id" | "label" | "body" | "sort_order">[] };
+export type QuestionWithOptions = Question & {
+  answer_options: Pick<AnswerOption, "id" | "label" | "body" | "sort_order">[];
+};
 export async function fetchQuestions(ids: string[]): Promise<QuestionWithOptions[]> {
   if (ids.length === 0) return [];
   const rows = must(
-    await supabase.from("questions").select("*, answer_options(id, label, body, sort_order)").in("id", ids),
+    await supabase
+      .from("questions")
+      .select("*, answer_options(id, label, body, sort_order)")
+      .eq("status", "published")
+      .in("id", ids),
   ) as QuestionWithOptions[];
   const order = new Map(ids.map((id, i) => [id, i]));
   return rows
-    .map((q) => ({ ...q, answer_options: [...q.answer_options].sort((a, b) => a.sort_order - b.sort_order) }))
+    .map((q) => ({
+      ...q,
+      answer_options: [...q.answer_options].sort((a, b) => a.sort_order - b.sort_order),
+    }))
     .sort((a, b) => (order.get(a.id) ?? 0) - (order.get(b.id) ?? 0));
 }
 
 export const profileQuery = (userId: string) =>
   queryOptions({
     queryKey: ["profile", userId],
-    queryFn: async () => must(await supabase.from("profiles").select("*").eq("id", userId).maybeSingle()),
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
   });
 
 export const isAdminQuery = (userId: string) =>
@@ -94,14 +130,21 @@ export const isAdminQuery = (userId: string) =>
 export const progressQuery = (userId: string) =>
   queryOptions({
     queryKey: ["progress", userId],
-    queryFn: async () => must(await supabase.from("topic_progress").select("*").eq("user_id", userId)),
+    queryFn: async () =>
+      must(await supabase.from("topic_progress").select("*").eq("user_id", userId)),
   });
 
 export const bookmarksQuery = (userId: string) =>
   queryOptions({
     queryKey: ["bookmarks", userId],
     queryFn: async () =>
-      must(await supabase.from("bookmarks").select("*").eq("user_id", userId).order("created_at", { ascending: false })),
+      must(
+        await supabase
+          .from("bookmarks")
+          .select("*")
+          .eq("user_id", userId)
+          .order("created_at", { ascending: false }),
+      ),
   });
 
 export const attemptsQuery = (userId: string) =>
@@ -136,13 +179,27 @@ export const activityQuery = (userId: string) =>
   queryOptions({
     queryKey: ["activity", userId],
     queryFn: async () =>
-      must(await supabase.from("daily_activity").select("day, actions").eq("user_id", userId).order("day", { ascending: false }).limit(120)),
+      must(
+        await supabase
+          .from("daily_activity")
+          .select("day, actions")
+          .eq("user_id", userId)
+          .order("day", { ascending: false })
+          .limit(120),
+      ),
   });
 
 export const revisionQuery = (userId: string) =>
   queryOptions({
     queryKey: ["revision", userId],
-    queryFn: async () => must(await supabase.from("revision_schedule").select("*").eq("user_id", userId).order("due_date")),
+    queryFn: async () =>
+      must(
+        await supabase
+          .from("revision_schedule")
+          .select("*")
+          .eq("user_id", userId)
+          .order("due_date"),
+      ),
   });
 
 export const casesQuery = () =>
@@ -162,8 +219,16 @@ export const casesQuery = () =>
 export const caseQuery = (slug: string) =>
   queryOptions({
     queryKey: ["case", slug],
-    queryFn: async () =>
-      must(await supabase.from("clinical_cases").select("*, subjects(name, slug)").eq("slug", slug).maybeSingle()),
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("clinical_cases")
+        .select("*, subjects(name, slug)")
+        .eq("status", "published")
+        .eq("slug", slug)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
   });
 
 export const noticesQuery = () =>
@@ -172,11 +237,21 @@ export const noticesQuery = () =>
     staleTime: 5 * 60_000,
     queryFn: async () => {
       const notices = must(
-        await supabase.from("recruitment_notices").select("*").eq("status", "published").order("published_on", { ascending: false }),
+        await supabase
+          .from("recruitment_notices")
+          .select("*")
+          .eq("status", "published")
+          .order("published_on", { ascending: false }),
       );
       const ids = notices.map((n) => n.id);
       const sources = ids.length
-        ? must(await supabase.from("content_sources").select("*").eq("entity_type", "notice").in("entity_id", ids))
+        ? must(
+            await supabase
+              .from("content_sources")
+              .select("*")
+              .eq("entity_type", "notice")
+              .in("entity_id", ids),
+          )
         : [];
       return notices.map((n) => ({ ...n, sources: sources.filter((s) => s.entity_id === n.id) }));
     },
@@ -198,7 +273,12 @@ export const planQuery = (userId: string) =>
       const plan = planRes.data;
       if (!plan) return null;
       const tasks = must(
-        await supabase.from("study_tasks").select("*").eq("plan_id", plan.id).order("day_index").order("task_type"),
+        await supabase
+          .from("study_tasks")
+          .select("*")
+          .eq("plan_id", plan.id)
+          .order("day_index")
+          .order("task_type"),
       );
       return { plan, tasks };
     },
@@ -211,7 +291,9 @@ export const interviewSessionsQuery = (userId: string) =>
       must(
         await supabase
           .from("interview_sessions")
-          .select("id, mode, duration_min, status, question_count, started_at, ended_at, interview_feedback(overall)")
+          .select(
+            "id, mode, duration_min, status, question_count, started_at, ended_at, interview_feedback(overall)",
+          )
           .eq("user_id", userId)
           .order("started_at", { ascending: false })
           .limit(50),

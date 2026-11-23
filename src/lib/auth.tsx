@@ -14,16 +14,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AuthState>({ session: null, user: null, ready: false });
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setState({ session: data.session, user: data.session?.user ?? null, ready: true });
-    });
+    let active = true;
+    let receivedEvent = false;
+    let previousUserId: string | null | undefined;
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!active) return;
+      receivedEvent = true;
+      const userId = session?.user.id ?? null;
+      // Remove private queries on logout/account switches, including cached drafts and transcripts.
+      if (previousUserId !== undefined && previousUserId !== userId) queryClient.clear();
+      previousUserId = userId;
       setState({ session, user: session?.user ?? null, ready: true });
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-      router.invalidate();
-      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+      queueMicrotask(() => {
+        if (active) void router.invalidate();
+      });
     });
-    return () => data.subscription.unsubscribe();
+    void supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        if (!active || receivedEvent) return;
+        previousUserId = data.session?.user.id ?? null;
+        setState({ session: data.session, user: data.session?.user ?? null, ready: true });
+      })
+      .catch(() => {
+        if (active && !receivedEvent) setState({ session: null, user: null, ready: true });
+      });
+    return () => {
+      active = false;
+      data.subscription.unsubscribe();
+    };
   }, [router, queryClient]);
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;

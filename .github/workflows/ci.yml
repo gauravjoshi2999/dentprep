@@ -30,3 +30,14 @@ jobs:
         run: npm test
       - name: Build site
         run: npm run build
+      - name: Install browser for acceptance tests
+        run: npx playwright install --with-deps chromium
+      - name: Browser acceptance tests
+        run: npm run test:browser
+      - name: Keep failure traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-failure-traces
+          path: test-results/
+          retention-days: 7

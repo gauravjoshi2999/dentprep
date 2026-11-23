@@ -7,8 +7,10 @@ import { useUserId } from "@/lib/auth";
 import { istToday, shuffle } from "@/lib/dates";
 import { supabase } from "@/integrations/supabase/client";
 import { RequireUser } from "@/components/app/study-shell";
-import { EmptyState, ErrorBlock, LoadingBlock, Notice, PageHeader } from "@/components/app/common";
+import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { Button } from "@/components/ui/button";
+import { AppHero } from "@/components/app/app-hero";
+import { ClipboardCheck, Timer, RotateCcw } from "lucide-react";
 
 export const Route = createFileRoute("/_study/practice")({
   component: () => (
@@ -76,10 +78,11 @@ function Practice() {
   const unfinished = attempts.data?.filter((a) => a.status === "in_progress") ?? [];
   return (
     <>
-      <PageHeader
-        title="Practice with purpose"
-        description="Choose a subject, take an independent practice test, or revisit questions from your revision queue."
-      />
+      <AppHero eyebrow="MCQ practice" title="Practice with purpose" description="Choose a subject and build accuracy with reviewed, original DentPrep questions." />
+      <div className="mb-6 grid grid-cols-2 gap-3">
+        <div className="surface bg-teal-soft/50 p-4"><ClipboardCheck className="mb-2 h-6 w-6 text-teal" /><p className="text-sm font-semibold">Completed tests</p><p className="text-2xl font-black">{attempts.data?.filter((a) => a.status === "submitted").length ?? 0}</p></div>
+        <div className="surface bg-blue-50/70 p-4 dark:bg-card"><RotateCcw className="mb-2 h-6 w-6 text-teal" /><p className="text-sm font-semibold">Due for revision</p><p className="text-2xl font-black">{dueIds.size}</p></div>
+      </div>
       <Notice className="mb-6">
         These are DentPrep practice sessions. Scores and timers do not represent an official UPSC
         assessment or exam pattern.
@@ -176,7 +179,7 @@ function Practice() {
           </div>
           {mode === "custom" && (
             <label className="grid max-w-xs gap-2 text-sm font-semibold">
-              Time limit (minutes)
+              <span className="flex items-center gap-2"><Timer className="h-4 w-4 text-teal" /> Time limit (minutes)</span>
               <input
                 className="study-input"
                 type="number"

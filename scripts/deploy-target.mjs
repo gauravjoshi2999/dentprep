@@ -7,10 +7,10 @@ export function deployedWorkerOrigin(output, expectedWorker = "dentprep") {
   if (!/^[a-z][a-z0-9-]{0,62}$/.test(expectedWorker)) {
     throw new Error("Invalid expected Worker name");
   }
-  const urls = output.match(/https:\/\/[a-zA-Z0-9.-]+\.workers\.dev(?:\/)?/g) ?? [];
+  const urls = output.match(/https:\/\/[^\\s"\x27<>]+/g) ?? [];
   const accepted = new Set();
   for (const candidate of urls) {
-    const url = new URL(candidate);
+    let url;\n    try { url = new URL(candidate.replace(/[),;]+$/, "")); } catch { continue; }
     const suffix = ".workers.dev";
     if (!url.hostname.endsWith(suffix)) continue;
     const firstPart = url.hostname.slice(0, -suffix.length);

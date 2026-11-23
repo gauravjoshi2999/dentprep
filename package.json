@@ -14,7 +14,12 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "check:security": "node scripts/check-security.mjs",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "build:release": "node scripts/build-release.mjs",
+    "check:worker": "wrangler deploy --config .output/release.wrangler.json --dry-run --outdir .output/worker-dry-run",
+    "deploy:worker": "node scripts/deploy-worker.mjs",
+    "verify:deployment": "node scripts/verify-deployment.mjs",
+    "test:worker": "node scripts/check-built-worker.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1",
@@ -104,7 +109,8 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "8.1.5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "4.166.0"
   },
   "engines": {
     "node": ">=24 <25"

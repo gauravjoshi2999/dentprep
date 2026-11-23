@@ -4,7 +4,7 @@ Independent English-medium BDS revision, clinical reasoning and UPSC Dental Surg
 
 ## Project status (23 November 2026)
 
-This repository is a **manual import** of the user's existing [DentPrep Learning Hub Lovable project](https://lovable.dev/projects/7e700199-451a-4c24-bbea-d410d796df0b), with a functional database-backed landing page on this import branch. A Lovable → GitHub automatic synchronization is **not yet verified**. Do not treat a GitHub commit as a Lovable live deployment.
+This repository is a **manual import** of the user's existing [DentPrep Learning Hub Lovable project](https://lovable.dev/projects/7e700199-451a-4c24-bbea-d410d796df0b), with the implemented application merged into `main`. On 23 November, the signed-in Lovable Git settings confirmed that this project is not connected: Lovable can create a new repository but cannot import this existing one. Keep this repository and its history; do not create a replacement merely to enable sync. Do not treat a GitHub commit as a Lovable live deployment.
 
 Existing backend: 15 published subject categories and a verified UPSC notice; 15 draft learning lessons, 30 draft original practice questions (four options each), and 15 draft clinical case outlines. **Draft clinical material is not medically reviewed and must not be published automatically.**
 
@@ -37,6 +37,8 @@ React 19, TypeScript, TanStack Start, Tailwind CSS, Lovable Cloud / Supabase Pos
 5. Run `npm run check:security`, `npm run typecheck`, `npm test` and `npm run build` before merging changes.
 
 **Deployment note:** This project uses TanStack Start SSR and server middleware. Do not host it as a purely static GitHub Pages site without a separate deployment strategy. Provide the intended runtime and Supabase settings when deploying to a supported host.
+
+The [Cloudflare release instructions](ops/DEPLOYMENT.md) use the existing Nitro Worker output and the same backend. `npm run build:release` requires a clean committed checkout, validates the public backend configuration and embeds that commit in `/api/health`. `npm run verify:deployment -- https://your-host.example FULL_GIT_SHA` checks the actual live server revision, SSR homepage, script/style assets, public routes and PWA. These checks do not claim authenticated acceptance or medical review.
 
 ## Safety rules
 

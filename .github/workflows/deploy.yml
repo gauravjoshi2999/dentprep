@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       production_url:
-        description: Existing DentPrep HTTPS origin to verify after deployment
-        required: true
+        description: Optional: custom HTTPS origin; leave blank to verify the exact workers.dev URL returned by Wrangler
+        required: false
         type: string
 permissions:
   contents: read
@@ -25,11 +25,22 @@ jobs:
         with:
           node-version: "24"
           cache: npm
-      - name: Validate configured host
+      - name: Validate optional custom host
         env:
           RELEASE_URL: ${{ inputs.production_url }}
         run: |
-          node --input-type=module -e 'const u = new URL(process.env.RELEASE_URL); if (u.protocol !== "https:" || u.username || u.password || u.search || u.hash || u.pathname !== "/") throw Error("Expected an HTTPS origin");'
+          if [ -n "$RELEASE_URL" ]; then
+            node --input-type=module -e 'const u = new URL(process.env.RELEASE_URL); if (u.protocol !== "https:" || u.username || u.password || u.search || u.hash || u.pathname !== "/") throw Error("Expected an HTTPS origin");'
+          fi
+      - name: Confirm configured release prerequisites (presence only)
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$VITE_SUPABASE_URL" || { echo 'Set the DentPrep backend URL in the production environment variables.'; exit 1; }
+          test -n "$VITE_SUPABASE_PUBLISHABLE_KEY" || { echo 'Set the DentPrep public backend key in the production environment variables.'; exit 1; }
+          test -n "$CF_TOKEN" || { echo 'Add CLOUDFLARE_API_TOKEN in the production environment secrets.'; exit 1; }
+          test -n "$CF_ACCOUNT" || { echo 'Add CLOUDFLARE_ACCOUNT_ID in the production environment secrets.'; exit 1; }
       - run: npm ci --no-audit --no-fund
       - run: npm run check:security
       - run: npm run typecheck
@@ -42,16 +53,17 @@ jobs:
         run: npm run check:worker
       - run: npm run test:worker
       - name: Deploy tested source
+        id: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WRANGLER_SEND_METRICS: "false"
         run: |
-          test -n "$CLOUDFLARE_API_TOKEN" && test -n "$CLOUDFLARE_ACCOUNT_ID"
           npm run deploy:worker
       - name: Verify actual live revision and SSR
         env:
-          RELEASE_URL: ${{ inputs.production_url }}
+          RELEASE_URL: ${{ inputs.production_url || steps.deploy.outputs.worker_url }}
         run: |
+          test -n "$RELEASE_URL" || { echo 'The deployed Worker URL could not be verified.'; exit 1; }
           npm run verify:deployment -- "$RELEASE_URL" "$GITHUB_SHA"
           printf 'Verified DentPrep release `%s`\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"

@@ -20,7 +20,7 @@
     "deploy:worker": "node scripts/deploy-worker.mjs",
     "verify:deployment": "node scripts/verify-deployment.mjs",
     "test:worker": "node scripts/check-built-worker.mjs",
-    "test:release": "node --test scripts/read-deployment.test.mjs"
+    "test:release": "node --test scripts/read-deployment.test.mjs scripts/deploy-target.test.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1",

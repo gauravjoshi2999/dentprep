@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { communicationFeedback, promptsFor, transcriptSchema } from "@/lib/interview";
+import { communicationFeedback, isPracticeDuration, practiceDurations, promptsFor, transcriptSchema } from "@/lib/interview";
 
 describe("independent interview practice", () => {
   it("returns communication guidance without an invented assessment score", () => {
@@ -8,6 +8,12 @@ describe("independent interview practice", () => {
     expect(result).not.toHaveProperty("score");
     expect(result).not.toHaveProperty("clinical_accuracy");
     expect(promptsFor("full_mock").length).toBe(5);
+  });
+  it("offers only database-supported practice time goals", () => {
+    expect(practiceDurations).toEqual([5, 15, 30]);
+    expect(practiceDurations.every((minutes) => isPracticeDuration(minutes))).toBe(true);
+    expect(isPracticeDuration(45)).toBe(false);
+    expect(isPracticeDuration(0)).toBe(false);
   });
   it("rejects invalid or oversized saved transcript payloads", () => {
     expect(transcriptSchema.safeParse({ answer: "invalid" }).success).toBe(false);

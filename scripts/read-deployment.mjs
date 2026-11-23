@@ -6,6 +6,7 @@ export function createReleaseReader(origin, fetcher = fetch) {
     assert.equal(url.origin, origin.origin, "Release checks must remain on the deployed origin.");
     const options = {
       redirect: "manual",
+      cache: "no-store",
       signal: AbortSignal.timeout(20_000),
       headers: { "cache-control": "no-cache" },
     };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, BookOpen, CalendarDays, ExternalLink, GraduationCap, HeartPulse, Menu, ShieldCheck, X } from "lucide-react";
 import { Brand, ToothDiagram } from "@/components/app/brand";
@@ -35,10 +35,12 @@ function Home() {
             <a className="text-sm font-semibold hover:text-teal" href="#subjects">Study subjects</a>
             <a className="text-sm font-semibold hover:text-teal" href="#notices">Official notices</a>
             <a className="text-sm font-semibold hover:text-teal" href="#about">About</a>
+            <Link className="text-sm font-semibold text-teal" to="/dashboard">My study space</Link>
           </nav>
           <button aria-label="Toggle navigation" aria-controls="dentprep-mobile-nav" aria-expanded={menuOpen} type="button" className="rounded-lg border border-border p-2 md:hidden" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
         </div>
         {menuOpen && <nav id="dentprep-mobile-nav" aria-label="Mobile navigation" className="flex flex-col border-t border-border p-3 md:hidden">
+          <Link to="/dashboard" className="rounded-lg px-3 py-3 text-sm font-semibold text-teal">My study space</Link>
           {([["#subjects","Study subjects"],["#notices","Official notices"],["#about","About"]] as const).map(([url,label]) => (
             <a key={url} href={url} className="rounded-lg px-3 py-3 text-sm font-semibold hover:bg-muted" onClick={() => setMenuOpen(false)}>{label}</a>
           ))}

@@ -49,6 +49,19 @@ describe("study planner", () => {
     const plan = generatePlan({ ...base, lengthDays: 7, dailyHours: 2, weakSubjectIds: [] });
     expect(plan.some((t) => t.task_type === "test" && t.day_index === 6)).toBe(true);
   });
+
+  it("does not schedule unavailable clinical content or empty days", () => {
+    const plan = generatePlan({ ...base, subjects: [], lengthDays: 7, dailyHours: 0.5, weakSubjectIds: [], availableQuestionCount: 0, availableCaseCount: 0 });
+    expect(plan.some(t => ["lesson", "practice", "test", "case"].includes(t.task_type))).toBe(false);
+    expect(new Set(plan.map(t => t.day_index)).size).toBe(7);
+    expect(plan.every(t => t.minutes > 0 && t.minutes <= 30)).toBe(true);
+    expect(plan.some(t => t.title.includes("AI"))).toBe(false);
+  });
+
+  it("rejects invalid dates and non-finite time budgets", () => {
+    for (const dailyHours of [NaN, Infinity, 0, -2, 9]) expect(() => generatePlan({ ...base, lengthDays: 7, dailyHours, weakSubjectIds: [] })).toThrow();
+    expect(() => generatePlan({ ...base, startDate: "2026-02-31", lengthDays: 7, dailyHours: 2, weakSubjectIds: [] })).toThrow();
+  });
 });
 
 describe("scoring and streaks", () => {

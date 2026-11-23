@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "check:security": "node scripts/check-security.mjs"
+    "check:security": "node scripts/check-security.mjs",
+    "test:browser": "playwright test"
   },
   "overrides": {
     "rolldown": "1.2.1",
@@ -81,6 +82,7 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "2.27.2",
+    "@playwright/test": "1.61.1",
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/react": "^16.0.0",
     "@types/node": "^22.16.5",

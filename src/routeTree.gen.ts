@@ -10,33 +10,192 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StudyRouteImport } from './routes/_study'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StudyCasesRouteImport } from './routes/_study.cases'
+import { Route as StudyDashboardRouteImport } from './routes/_study.dashboard'
+import { Route as StudyInterviewsRouteImport } from './routes/_study.interviews'
+import { Route as StudyLibraryRouteImport } from './routes/_study.library'
+import { Route as StudyPlanRouteImport } from './routes/_study.plan'
+import { Route as StudyPracticeRouteImport } from './routes/_study.practice'
+import { Route as StudyProgressRouteImport } from './routes/_study.progress'
+import { Route as StudySavedRouteImport } from './routes/_study.saved'
+import { Route as StudyAttemptAttemptIdRouteImport } from './routes/_study.attempt.$attemptId'
+import { Route as StudyLessonSubjectSlugLessonSlugRouteImport } from './routes/_study.lesson.$subjectSlug.$lessonSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudyRoute = StudyRouteImport.update({
+  id: '/_study',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudyCasesRoute = StudyCasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyDashboardRoute = StudyDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyInterviewsRoute = StudyInterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyLibraryRoute = StudyLibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyPlanRoute = StudyPlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyPracticeRoute = StudyPracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyProgressRoute = StudyProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudySavedRoute = StudySavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyAttemptAttemptIdRoute = StudyAttemptAttemptIdRouteImport.update({
+  id: '/attempt/$attemptId',
+  path: '/attempt/$attemptId',
+  getParentRoute: () => StudyRoute,
+} as any)
+const StudyLessonSubjectSlugLessonSlugRoute =
+  StudyLessonSubjectSlugLessonSlugRouteImport.update({
+    id: '/lesson/$subjectSlug/$lessonSlug',
+    path: '/lesson/$subjectSlug/$lessonSlug',
+    getParentRoute: () => StudyRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/cases': typeof StudyCasesRoute
+  '/dashboard': typeof StudyDashboardRoute
+  '/interviews': typeof StudyInterviewsRoute
+  '/library': typeof StudyLibraryRoute
+  '/plan': typeof StudyPlanRoute
+  '/practice': typeof StudyPracticeRoute
+  '/progress': typeof StudyProgressRoute
+  '/saved': typeof StudySavedRoute
+  '/attempt/$attemptId': typeof StudyAttemptAttemptIdRoute
+  '/lesson/$subjectSlug/$lessonSlug': typeof StudyLessonSubjectSlugLessonSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/cases': typeof StudyCasesRoute
+  '/dashboard': typeof StudyDashboardRoute
+  '/interviews': typeof StudyInterviewsRoute
+  '/library': typeof StudyLibraryRoute
+  '/plan': typeof StudyPlanRoute
+  '/practice': typeof StudyPracticeRoute
+  '/progress': typeof StudyProgressRoute
+  '/saved': typeof StudySavedRoute
+  '/attempt/$attemptId': typeof StudyAttemptAttemptIdRoute
+  '/lesson/$subjectSlug/$lessonSlug': typeof StudyLessonSubjectSlugLessonSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_study': typeof StudyRouteWithChildren
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_study/cases': typeof StudyCasesRoute
+  '/_study/dashboard': typeof StudyDashboardRoute
+  '/_study/interviews': typeof StudyInterviewsRoute
+  '/_study/library': typeof StudyLibraryRoute
+  '/_study/plan': typeof StudyPlanRoute
+  '/_study/practice': typeof StudyPracticeRoute
+  '/_study/progress': typeof StudyProgressRoute
+  '/_study/saved': typeof StudySavedRoute
+  '/_study/attempt/$attemptId': typeof StudyAttemptAttemptIdRoute
+  '/_study/lesson/$subjectSlug/$lessonSlug': typeof StudyLessonSubjectSlugLessonSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/cases'
+    | '/dashboard'
+    | '/interviews'
+    | '/library'
+    | '/plan'
+    | '/practice'
+    | '/progress'
+    | '/saved'
+    | '/attempt/$attemptId'
+    | '/lesson/$subjectSlug/$lessonSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/cases'
+    | '/dashboard'
+    | '/interviews'
+    | '/library'
+    | '/plan'
+    | '/practice'
+    | '/progress'
+    | '/saved'
+    | '/attempt/$attemptId'
+    | '/lesson/$subjectSlug/$lessonSlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/_study'
+    | '/login'
+    | '/reset-password'
+    | '/_study/cases'
+    | '/_study/dashboard'
+    | '/_study/interviews'
+    | '/_study/library'
+    | '/_study/plan'
+    | '/_study/practice'
+    | '/_study/progress'
+    | '/_study/saved'
+    | '/_study/attempt/$attemptId'
+    | '/_study/lesson/$subjectSlug/$lessonSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  StudyRoute: typeof StudyRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +207,133 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_study': {
+      id: '/_study'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof StudyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_study/cases': {
+      id: '/_study/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof StudyCasesRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/dashboard': {
+      id: '/_study/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof StudyDashboardRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/interviews': {
+      id: '/_study/interviews'
+      path: '/interviews'
+      fullPath: '/interviews'
+      preLoaderRoute: typeof StudyInterviewsRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/library': {
+      id: '/_study/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof StudyLibraryRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/plan': {
+      id: '/_study/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof StudyPlanRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/practice': {
+      id: '/_study/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof StudyPracticeRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/progress': {
+      id: '/_study/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof StudyProgressRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/saved': {
+      id: '/_study/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof StudySavedRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/attempt/$attemptId': {
+      id: '/_study/attempt/$attemptId'
+      path: '/attempt/$attemptId'
+      fullPath: '/attempt/$attemptId'
+      preLoaderRoute: typeof StudyAttemptAttemptIdRouteImport
+      parentRoute: typeof StudyRoute
+    }
+    '/_study/lesson/$subjectSlug/$lessonSlug': {
+      id: '/_study/lesson/$subjectSlug/$lessonSlug'
+      path: '/lesson/$subjectSlug/$lessonSlug'
+      fullPath: '/lesson/$subjectSlug/$lessonSlug'
+      preLoaderRoute: typeof StudyLessonSubjectSlugLessonSlugRouteImport
+      parentRoute: typeof StudyRoute
+    }
   }
 }
 
+interface StudyRouteChildren {
+  StudyCasesRoute: typeof StudyCasesRoute
+  StudyDashboardRoute: typeof StudyDashboardRoute
+  StudyInterviewsRoute: typeof StudyInterviewsRoute
+  StudyLibraryRoute: typeof StudyLibraryRoute
+  StudyPlanRoute: typeof StudyPlanRoute
+  StudyPracticeRoute: typeof StudyPracticeRoute
+  StudyProgressRoute: typeof StudyProgressRoute
+  StudySavedRoute: typeof StudySavedRoute
+  StudyAttemptAttemptIdRoute: typeof StudyAttemptAttemptIdRoute
+  StudyLessonSubjectSlugLessonSlugRoute: typeof StudyLessonSubjectSlugLessonSlugRoute
+}
+
+const StudyRouteChildren: StudyRouteChildren = {
+  StudyCasesRoute: StudyCasesRoute,
+  StudyDashboardRoute: StudyDashboardRoute,
+  StudyInterviewsRoute: StudyInterviewsRoute,
+  StudyLibraryRoute: StudyLibraryRoute,
+  StudyPlanRoute: StudyPlanRoute,
+  StudyPracticeRoute: StudyPracticeRoute,
+  StudyProgressRoute: StudyProgressRoute,
+  StudySavedRoute: StudySavedRoute,
+  StudyAttemptAttemptIdRoute: StudyAttemptAttemptIdRoute,
+  StudyLessonSubjectSlugLessonSlugRoute: StudyLessonSubjectSlugLessonSlugRoute,
+}
+
+const StudyRouteWithChildren = StudyRoute._addFileChildren(StudyRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  StudyRoute: StudyRouteWithChildren,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

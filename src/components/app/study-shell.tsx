@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { isAdminQuery } from "@/lib/queries";
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import {
   BookOpen,
@@ -29,6 +31,7 @@ const destinations = [
 export function StudyShell() {
   const { user, ready } = useAuth();
   const navigate = useNavigate();
+  const admin = useQuery({ ...isAdminQuery(user?.id ?? ""), enabled: !!user });
   return (
     <div className="min-h-screen bg-background">
       <a
@@ -43,6 +46,11 @@ export function StudyShell() {
             <Brand />
           </Link>
           <div className="flex items-center gap-3 text-sm">
+            {admin.data && (
+              <Link to="/admin" className="font-semibold text-teal">
+                Admin
+              </Link>
+            )}
             {ready &&
               (user ? (
                 <Button

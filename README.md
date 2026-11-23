@@ -6,7 +6,15 @@ Independent English-medium BDS revision, clinical reasoning and UPSC Dental Surg
 
 This repository is a **manual import** of the user's existing [DentPrep Learning Hub Lovable project](https://lovable.dev/projects/7e700199-451a-4c24-bbea-d410d796df0b), with a functional database-backed landing page on this import branch. A Lovable → GitHub automatic synchronization is **not yet verified**. Do not treat a GitHub commit as a Lovable live deployment.
 
-Existing backend: 15 published subject categories and a verified UPSC notice; 15 draft learning lessons, 30 draft original practice questions (four options each), and 15 draft clinical case outlines. **Draft clinical material is not medically reviewed and must not be published automatically.** The complete candidate learning flows, AI interviews, and Android APK are not yet implemented.
+Existing backend: 15 published subject categories and a verified UPSC notice; 15 draft learning lessons, 30 draft original practice questions (four options each), and 15 draft clinical case outlines. **Draft clinical material is not medically reviewed and must not be published automatically.**
+
+Implemented candidate routes include `/dashboard`, `/library`, lesson reading, completion/bookmarks, `/practice`, server-scored sessions, `/progress`, `/saved`, 7/15/30-day `/plan`, and private text interview communication rehearsals at `/interviews`. The latter uses rule-based prompts, not AI assessment. Clinical teaching stays unavailable until content review.
+
+`/admin` uses database role checks and RLS. It creates/edits drafts, submits content for review, archives and restores content, and shows a status-change audit trail. It cannot certify clinical review or publish content. There are no automatically assigned administrator accounts.
+
+Database hardening is recorded in `ops/harden-learning-access.sql` and verified by rollback-only adversarial checks in `ops/verify-learning-access.sql`. It restricts public RPC execution, hides direct correct-answer flags, validates question sets, enforces timer expiry and serializes answer writes with submission. Admin question edits use an atomic, permission-checked RPC. These scripts are applied through the existing Lovable database connection; generated migration files are preserved.
+
+CI runs source checks, TypeScript, unit tests, SSR build and Chromium acceptance tests for desktop and mobile viewports. Browser tests use isolated mocked backend data. Real production sign-in, physical-device acceptance and deployment are separate checks.
 
 ## Stack
 

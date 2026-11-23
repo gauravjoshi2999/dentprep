@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as StudyRouteImport } from './routes/_study'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StudyAdminRouteImport } from './routes/_study.admin'
 import { Route as StudyCasesRouteImport } from './routes/_study.cases'
 import { Route as StudyDashboardRouteImport } from './routes/_study.dashboard'
 import { Route as StudyInterviewsRouteImport } from './routes/_study.interviews'
@@ -42,6 +43,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
+} as any)
+const StudyAdminRoute = StudyAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => StudyRoute,
 } as any)
 const StudyCasesRoute = StudyCasesRouteImport.update({
   id: '/cases',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof StudyAdminRoute
   '/cases': typeof StudyCasesRoute
   '/dashboard': typeof StudyDashboardRoute
   '/interviews': typeof StudyInterviewsRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof StudyAdminRoute
   '/cases': typeof StudyCasesRoute
   '/dashboard': typeof StudyDashboardRoute
   '/interviews': typeof StudyInterviewsRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/_study': typeof StudyRouteWithChildren
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_study/admin': typeof StudyAdminRoute
   '/_study/cases': typeof StudyCasesRoute
   '/_study/dashboard': typeof StudyDashboardRoute
   '/_study/interviews': typeof StudyInterviewsRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/reset-password'
+    | '/admin'
     | '/cases'
     | '/dashboard'
     | '/interviews'
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/reset-password'
+    | '/admin'
     | '/cases'
     | '/dashboard'
     | '/interviews'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '/_study'
     | '/login'
     | '/reset-password'
+    | '/_study/admin'
     | '/_study/cases'
     | '/_study/dashboard'
     | '/_study/interviews'
@@ -227,6 +239,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_study/admin': {
+      id: '/_study/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof StudyAdminRouteImport
+      parentRoute: typeof StudyRoute
     }
     '/_study/cases': {
       id: '/_study/cases'
@@ -302,6 +321,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface StudyRouteChildren {
+  StudyAdminRoute: typeof StudyAdminRoute
   StudyCasesRoute: typeof StudyCasesRoute
   StudyDashboardRoute: typeof StudyDashboardRoute
   StudyInterviewsRoute: typeof StudyInterviewsRoute
@@ -315,6 +335,7 @@ interface StudyRouteChildren {
 }
 
 const StudyRouteChildren: StudyRouteChildren = {
+  StudyAdminRoute: StudyAdminRoute,
   StudyCasesRoute: StudyCasesRoute,
   StudyDashboardRoute: StudyDashboardRoute,
   StudyInterviewsRoute: StudyInterviewsRoute,

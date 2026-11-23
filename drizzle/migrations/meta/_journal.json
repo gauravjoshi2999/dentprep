@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795437104828,
+      "tag": "0000_dentprep_core_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795437141601,
+      "tag": "0001_seed_subjects_and_notices",
+      "breakpoints": true
+    }
+  ]
+}

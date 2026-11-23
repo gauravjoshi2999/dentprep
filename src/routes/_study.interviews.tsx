@@ -6,10 +6,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useUserId } from "@/lib/auth";
 import {
   communicationFeedback,
+  isPracticeDuration,
+  practiceDurations,
   promptsFor,
   transcriptSchema,
   type CommunicationMode,
   type InterviewEntry,
+  type PracticeDuration,
 } from "@/lib/interview";
 import { formatDate } from "@/lib/dates";
 import { RequireUser } from "@/components/app/study-shell";
@@ -41,6 +44,7 @@ function Interviews() {
     },
   });
   const [mode, setMode] = useState<CommunicationMode>("general");
+  const [durationMin, setDurationMin] = useState<PracticeDuration>(15);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [entries, setEntries] = useState<InterviewEntry[]>([]);
   const [finished, setFinished] = useState(false);
@@ -82,7 +86,7 @@ function Interviews() {
         id,
         user_id: userId,
         mode,
-        duration_min: 15,
+        duration_min: durationMin,
         transcript: initial,
         question_count: 0,
       });
@@ -120,7 +124,7 @@ function Interviews() {
         <section className="surface p-5 sm:p-7">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
             <p className="font-semibold">
-              Question {index + 1} of {entries.length} ·{" "}
+              Question {index + 1} of {entries.length} · {durationMin}-min practice goal ·{" "}
               {finished ? "Completed session" : dirty ? "Unsaved changes" : "Saved"}
             </p>
             <div className="flex gap-2">
@@ -225,7 +229,7 @@ function Interviews() {
         </section>
       ) : (
         <>
-          <section className="surface mb-6 grid gap-5 p-5 sm:grid-cols-[1fr_auto] sm:items-end sm:p-7">
+          <section className="surface mb-6 grid gap-5 p-5 sm:grid-cols-2 sm:p-7 lg:grid-cols-[minmax(0,1fr)_200px_auto] lg:items-end">
             <label className="grid gap-2 font-semibold">
               Practice format
               <select
@@ -238,9 +242,27 @@ function Interviews() {
                 <option value="full_mock">Full communication rehearsal</option>
               </select>
             </label>
+            <label className="grid gap-2 font-semibold">
+              Practice time goal
+              <select
+                className="study-input"
+                value={durationMin}
+                onChange={(e) => {
+                  const next = Number(e.target.value);
+                  if (isPracticeDuration(next)) setDurationMin(next);
+                }}
+              >
+                {practiceDurations.map((minutes) => (
+                  <option value={minutes} key={minutes}>{minutes} minutes</option>
+                ))}
+              </select>
+            </label>
             <Button disabled={start.isPending} size="lg" onClick={() => start.mutate()}>
               {start.isPending ? "Starting…" : "Start text practice"}
             </Button>
+            <p className="text-xs text-muted-foreground sm:col-span-2 lg:col-span-3">
+              This is a suggested rehearsal target, not an enforced timer or an official UPSC duration.
+            </p>
           </section>
           <h2 className="mb-4 text-xl font-bold">Your practice history</h2>
           {sessions.isPending ? (
@@ -266,6 +288,7 @@ function Interviews() {
                     setSessionId(s.id);
                     setEntries(parsed.data);
                     setMode(s.mode as CommunicationMode);
+                    if (isPracticeDuration(s.duration_min)) setDurationMin(s.duration_min);
                     setFinished(s.status === "completed");
                     setDirty(false);
                     setReview(false);
@@ -274,7 +297,7 @@ function Interviews() {
                 >
                   <strong className="capitalize">{s.mode.replaceAll("_", " ")}</strong>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    {formatDate(s.started_at)} · {s.question_count} answers · {s.status}
+                    {formatDate(s.started_at)} · {s.duration_min}-min goal · {s.question_count} answers · {s.status}
                   </p>
                   <span className="mt-3 block text-sm font-semibold text-teal">
                     {s.status === "completed" ? "Review practice" : "Continue draft"} →

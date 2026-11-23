@@ -48,6 +48,11 @@ export const communicationPrompts = {
   ],
 };
 export type CommunicationMode = "general" | "english" | "full_mock";
+export const practiceDurations = [5, 15, 30] as const;
+export type PracticeDuration = (typeof practiceDurations)[number];
+export function isPracticeDuration(value: number): value is PracticeDuration {
+  return practiceDurations.some((item) => item === value);
+}
 export function promptsFor(mode: string) {
   if (mode === "english") return communicationPrompts.english;
   if (mode === "full_mock")

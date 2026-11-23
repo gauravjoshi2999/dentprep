@@ -49,8 +49,14 @@ function createSupabaseFetch(supabaseUrl: string, supabaseKey: string): typeof f
 function createSupabaseClient() {
   // Use import.meta.env for client-side (Vite build-time replacement)
   // Fall back to process.env for SSR (server-side rendering)
-  const SUPABASE_URL = import.meta.env['VITE_SUPABASE_URL'] || process.env['SUPABASE_URL'];
-  const SUPABASE_PUBLISHABLE_KEY = import.meta.env['VITE_SUPABASE_PUBLISHABLE_KEY'] || process.env['SUPABASE_PUBLISHABLE_KEY'];
+  // Vite only replaces full static import.meta.env.VITE_* references in production.
+  // Dynamic/bracket access silently becomes undefined in the compiled browser bundle.
+  // Never fall back to process.env in a browser: runtime Worker vars are server-only.
+  const server = typeof window === 'undefined' && typeof process !== 'undefined';
+  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ||
+    (server ? process.env['SUPABASE_URL'] : undefined);
+  const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    (server ? process.env['SUPABASE_PUBLISHABLE_KEY'] : undefined);
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     const missing = [

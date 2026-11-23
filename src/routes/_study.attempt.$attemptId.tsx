@@ -18,6 +18,8 @@ import {
 import { BookmarkButton } from "@/components/app/bookmark-button";
 import { Markdown } from "@/components/app/markdown";
 import { Button } from "@/components/ui/button";
+import { AppHero } from "@/components/app/app-hero";
+import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
 
 export const Route = createFileRoute("/_study/attempt/$attemptId")({
   component: () => (
@@ -199,18 +201,14 @@ function Attempt() {
     );
   return (
     <>
-      <PageHeader
-        eyebrow="Independent practice"
-        title={attempt.title}
-        description={`${query.data.answers.length} of ${attempt.total} answers saved`}
-        actions={
-          remaining !== null && (
-            <span role="timer" className="rounded-lg bg-muted px-4 py-3 font-bold">
-              {formatDuration(remaining)} remaining
-            </span>
-          )
-        }
-      />
+      <AppHero eyebrow="Independent MCQ practice" title={attempt.title} description="Answer carefully and save each response. This is not an official UPSC test." actions={remaining !== null && <span role="timer" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold"><Clock3 className="h-4 w-4" />{formatDuration(remaining)} remaining</span>} />
+      <div className="mb-5 flex items-center justify-between gap-4" aria-label="Test progress">
+        <span className="text-sm font-extrabold">Question {index + 1} of {query.data.questions.length}</span>
+        <span className="text-sm font-semibold text-teal">{query.data.answers.length} answers saved</span>
+      </div>
+      <div className="mb-5 h-2.5 overflow-hidden rounded-full bg-border" role="progressbar" aria-label="Saved answer progress" aria-valuemin={0} aria-valuemax={attempt.total} aria-valuenow={query.data.answers.length}>
+        <div className="h-full rounded-full bg-teal transition-[width]" style={{ width: `${attempt.total ? Math.round(100 * query.data.answers.length / attempt.total) : 0}%` }} />
+      </div>
       <div className="mb-5 flex flex-wrap gap-2" aria-label="Question navigation">
         {query.data.questions.map((q, i) => (
           <Button
@@ -233,10 +231,10 @@ function Attempt() {
         ))}
       </div>
       {question ? (
-        <section className="surface mx-auto max-w-4xl p-5 sm:p-8">
+        <section className="surface mx-auto max-w-4xl border-teal/20 p-5 sm:p-8">
           <div className="mb-5 flex items-start justify-between gap-4">
-            <h2 className="text-xl font-bold">
-              {index + 1}. {question.stem}
+            <h2 className="text-xl font-extrabold">
+              <span className="mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-soft align-middle text-base text-teal">Q{index + 1}</span>{question.stem}
             </h2>
             <BookmarkButton itemType="question" itemId={question.id} compact />
           </div>
@@ -248,7 +246,7 @@ function Attempt() {
             {question.answer_options.map((o) => (
               <label
                 key={o.id}
-                className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 ${(choice ?? answer?.selected_option_id) === o.id ? "border-teal bg-teal-soft" : "border-border"}`}
+                className={`flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border p-4 transition hover:border-teal/70 ${(choice ?? answer?.selected_option_id) === o.id ? "border-teal bg-teal-soft shadow-card" : "border-border bg-card"}`}
               >
                 <input
                   type="radio"
@@ -274,22 +272,17 @@ function Attempt() {
               <Markdown>{feedback?.explanation ?? question.explanation}</Markdown>
             </div>
           )}
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            <Button variant="outline" disabled={index === 0 || save.isPending || submit.isPending} onClick={() => go(index - 1)}><ArrowLeft className="mr-1 h-4 w-4" />Previous</Button>
             <Button
-              disabled={
-                !choice || !!locked || save.isPending || submit.isPending || remaining === 0
-              }
+              disabled={!choice || !!locked || save.isPending || submit.isPending || remaining === 0}
               onClick={() => save.mutate()}
             >
               {save.isPending ? "Saving…" : "Save answer"}
             </Button>
             {index + 1 < query.data.questions.length && (
-              <Button
-                variant="outline"
-                disabled={save.isPending || submit.isPending}
-                onClick={() => go(index + 1)}
-              >
-                Next question →
+              <Button variant="outline" disabled={save.isPending || submit.isPending} onClick={() => go(index + 1)}>
+                {choice ? "Next without saving" : "Skip for now"} <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             )}
           </div>

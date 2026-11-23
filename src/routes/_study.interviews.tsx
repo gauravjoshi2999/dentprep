@@ -16,8 +16,10 @@ import {
 } from "@/lib/interview";
 import { formatDate } from "@/lib/dates";
 import { RequireUser } from "@/components/app/study-shell";
-import { EmptyState, ErrorBlock, LoadingBlock, Notice, PageHeader } from "@/components/app/common";
+import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { Button } from "@/components/ui/button";
+import { AppHero } from "@/components/app/app-hero";
+import { MessageSquareText, Sparkles, MicOff, ListChecks } from "lucide-react";
 
 export const Route = createFileRoute("/_study/interviews")({
   component: () => (
@@ -111,10 +113,7 @@ function Interviews() {
   const feedback = communicationFeedback(current?.answer ?? "");
   return (
     <>
-      <PageHeader
-        title="Interview communication studio"
-        description="Rehearse your answers in English, reflect on structure and keep a private practice history."
-      />
+      <AppHero eyebrow="Interview preparation" title="Interview communication studio" description="Practise structured answers in English. Save your reflections and review your progress." />
       <Notice className="mb-6" title="Self-guided practice">
         Feedback here uses simple length and structure prompts. AI assessment, clinical viva,
         emergency simulations and voice interviews are not enabled. Nothing here is an official UPSC
@@ -145,11 +144,11 @@ function Interviews() {
               )}
             </div>
           </div>
-          <h2 className="mb-5 text-xl font-bold">{current.prompt}</h2>
+          <div className="mb-5 rounded-2xl bg-blue-50 p-5 dark:bg-muted"><div className="mb-3 flex items-center gap-2 text-xs font-bold text-teal"><Sparkles className="h-4 w-4" /> DENTPREP PRACTICE PROMPT · Question {index + 1}</div><h2 className="text-lg font-extrabold sm:text-xl">{current.prompt}</h2></div>
           <label className="grid gap-2 text-sm font-semibold">
             Your answer
             <textarea
-              className="study-input min-h-48"
+              className="study-input min-h-48 bg-teal-soft/30"
               maxLength={10000}
               value={current.answer}
               readOnly={finished}
@@ -163,7 +162,7 @@ function Interviews() {
             draft or Finish.
           </p>
           <Button className="mt-4" variant="outline" onClick={() => setReview(!review)}>
-            {review ? "Hide practice guide" : "Review answer structure"}
+            <ListChecks className="mr-2 h-4 w-4" />{review ? "Hide feedback guide" : "View structure feedback"}
           </Button>
           {review && (
             <div className="mt-5 grid gap-4 rounded-xl bg-muted p-5">
@@ -229,40 +228,28 @@ function Interviews() {
         </section>
       ) : (
         <>
-          <section className="surface mb-6 grid gap-5 p-5 sm:grid-cols-2 sm:p-7 lg:grid-cols-[minmax(0,1fr)_200px_auto] lg:items-end">
-            <label className="grid gap-2 font-semibold">
-              Practice format
-              <select
-                className="study-input"
-                value={mode}
-                onChange={(e) => setMode(e.target.value as CommunicationMode)}
-              >
-                <option value="general">General public service interview</option>
-                <option value="english">English communication</option>
-                <option value="full_mock">Full communication rehearsal</option>
-              </select>
-            </label>
-            <label className="grid gap-2 font-semibold">
-              Practice time goal
-              <select
-                className="study-input"
-                value={durationMin}
-                onChange={(e) => {
-                  const next = Number(e.target.value);
-                  if (isPracticeDuration(next)) setDurationMin(next);
-                }}
-              >
-                {practiceDurations.map((minutes) => (
-                  <option value={minutes} key={minutes}>{minutes} minutes</option>
-                ))}
-              </select>
-            </label>
-            <Button disabled={start.isPending} size="lg" onClick={() => start.mutate()}>
-              {start.isPending ? "Starting…" : "Start text practice"}
-            </Button>
-            <p className="text-xs text-muted-foreground sm:col-span-2 lg:col-span-3">
-              This is a suggested rehearsal target, not an enforced timer or an official UPSC duration.
-            </p>
+          <section className="surface mb-6 p-5 sm:p-7">
+            <h2 className="mb-4 flex items-center gap-2 text-lg font-extrabold"><MessageSquareText className="h-5 w-5 text-teal" />Choose your interview practice</h2>
+            <div className="mb-6 grid grid-cols-3 gap-2" aria-label="Interview practice format">
+              {([
+                ["general", "General UPSC"],
+                ["english", "English"],
+                ["full_mock", "Full rehearsal"],
+              ] as const).map(([value, label]) => (
+                <button type="button" key={value} aria-pressed={mode === value} onClick={() => setMode(value)} className={`min-h-16 rounded-xl border p-2 text-center text-xs font-bold transition sm:text-sm ${mode === value ? "border-teal bg-teal text-white" : "border-border bg-teal-soft/40 hover:border-teal"}`}>{label}</button>
+              ))}
+            </div>
+            <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
+              <fieldset>
+                <legend className="mb-2 text-sm font-bold">Practice time goal</legend>
+                <div className="flex flex-wrap gap-2">{practiceDurations.map((minutes) => <button type="button" key={minutes} aria-pressed={durationMin === minutes} onClick={() => setDurationMin(minutes)} className={`rounded-xl border px-4 py-2 text-sm font-bold ${durationMin === minutes ? "border-teal bg-teal text-white" : "border-border hover:border-teal"}`}>{minutes} min</button>)}</div>
+              </fieldset>
+              <Button disabled={start.isPending} size="lg" onClick={() => start.mutate()}>
+                {start.isPending ? "Starting…" : "Start text practice"}
+              </Button>
+            </div>
+            <div className="mt-5 flex items-center gap-2 rounded-xl bg-muted p-3 text-xs text-muted-foreground"><MicOff className="h-4 w-4 shrink-0" />Voice and AI clinical scoring are not enabled. Feedback is a self-guided structure checklist, not an official interview score.</div>
+            <p className="mt-3 text-xs text-muted-foreground">The duration is a suggested practice goal, not an enforced timer or UPSC timing.</p>
           </section>
           <h2 className="mb-4 text-xl font-bold">Your practice history</h2>
           {sessions.isPending ? (

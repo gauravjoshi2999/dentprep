@@ -287,3 +287,22 @@ test("administrators save MCQs through the draft-only transactional API", async 
   ).toBeVisible();
   await expect(page.getByText("in review", { exact: true })).toBeVisible();
 });
+
+test("approved mobile visual navigation uses real pages and honest study data", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "Mobile navigation is intentionally hidden on desktop.");
+  await mockBackend(page, true);
+  await page.goto("/dashboard");
+  const nav = page.getByRole("navigation", { name: "Mobile primary navigation" });
+  await expect(nav).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Home" })).toBeVisible();
+  await nav.getByRole("link", { name: "Study" }).click();
+  await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Clinical", exact: true })).toBeVisible();
+  await expect(page.getByText("0 published lessons")).toBeVisible();
+  await nav.getByRole("link", { name: "Interview" }).click();
+  await expect(page.getByRole("heading", { name: "Interview communication studio" })).toBeVisible();
+  await expect(page.getByText(/Voice and AI clinical scoring are not enabled/)).toBeVisible();
+  await nav.getByRole("button", { name: "Profile" }).click();
+  await expect(page.getByRole("region", { name: "Profile shortcuts" })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});

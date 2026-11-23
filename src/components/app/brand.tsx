@@ -2,26 +2,25 @@ import { cn } from "@/lib/utils";
 
 export function ToothMark({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" aria-hidden="true" className={cn("h-8 w-8", className)}>
-      <rect width="32" height="32" rx="9" className="fill-teal" />
-      <path
-        d="M10.2 8.5c2-1 3.7-.3 5.8.6 2.1-.9 3.8-1.6 5.8-.6 2.6 1.3 2.9 4.8 1.9 7.9-.6 1.9-1 3.3-1.3 5.6-.3 2.2-1.1 3.6-2.2 3.6-1.3 0-1.6-1.6-2-3.6-.3-1.4-.9-2.3-2.2-2.3s-1.9.9-2.2 2.3c-.4 2-.7 3.6-2 3.6-1.1 0-1.9-1.4-2.2-3.6-.3-2.3-.7-3.7-1.3-5.6-1-3.1-.7-6.6 1.9-7.9Z"
-        className="fill-teal-foreground"
-      />
+    <svg viewBox="0 0 40 40" aria-hidden="true" className={cn("h-10 w-10", className)} fill="none">
+      <path d="M9 14c-2.7 3.3-1.5 7.8-.1 12.2.9 2.8 1.2 8.5 4.3 8.5 3.2 0 2.6-9.2 6.9-9.2 4.2 0 3.7 9.2 6.9 9.2 3.1 0 3.4-5.7 4.3-8.5 1.4-4.4 2.6-8.9-.1-12.2-3.2-4.1-7.6-2.6-11.1-1.2-3.5-1.4-7.9-2.9-11.1 1.2Z" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="m6 9 14-6 14 6-14 6L6 9Z" fill="#29d8c1" stroke="#29d8c1" strokeWidth="1.2" strokeLinejoin="round" />
+      <path d="M12 12.5v4.5c4.5 3.5 11.5 3.5 16 0v-4.5" stroke="#29d8c1" strokeWidth="2" strokeLinecap="round" />
+      <path d="M34 9v8" stroke="#29d8c1" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
 
 export function Brand({ className, light }: { className?: string; light?: boolean }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
+    <span className={cn("inline-flex items-center gap-2.5", light ? "text-white" : "text-navy", className)}>
       <ToothMark />
       <span className="flex flex-col leading-none">
-        <span className={cn("font-display text-lg font-extrabold tracking-tight", light ? "text-navy-foreground" : "text-foreground")}>
-          DentPrep
+        <span className="font-display text-xl font-extrabold tracking-tight">
+          Dent<span className="text-teal">Prep</span>
         </span>
-        <span className={cn("text-[10px] font-semibold uppercase tracking-[0.14em]", light ? "text-navy-foreground/70" : "text-muted-foreground")}>
-          UPSC Dental Surgeon
+        <span className={cn("mt-1 text-[9px] font-semibold tracking-[0.03em]", light ? "text-white/80" : "text-muted-foreground")}>
+          UPSC Dental Surgeon Preparation
         </span>
       </span>
     </span>

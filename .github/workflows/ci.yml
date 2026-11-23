@@ -40,6 +40,11 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Browser acceptance tests
         run: npm run test:browser
+      - name: Diagnose live production in real mobile and desktop browsers (read-only)
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        timeout-minutes: 4
+        run: node scripts/diagnose-live-browser.mjs
       - name: Keep failure traces
         if: failure()
         uses: actions/upload-artifact@v4

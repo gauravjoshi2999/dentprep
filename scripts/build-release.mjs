@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { loadEnv } from "vite";
 
 // Only public backend configuration is carried to this host. No service-role key is needed.
@@ -57,6 +57,22 @@ execFileSync("npm", ["run", "build"], {
     VITE_DENTPREP_REVISION: revision,
   },
 });
+// Fail the release before upload if the browser bundle omitted the public client
+// configuration. Server-side Wrangler vars cannot fix a missing Vite browser define.
+const clientChunks = (await readdir(".output/public/assets"))
+  .filter((name) => name.startsWith("client-") && name.endsWith(".js"));
+if (!clientChunks.length) {
+  throw new Error("No browser client bundle found; refuse to publish.");
+}
+const bundledClients = await Promise.all(
+  clientChunks.map((file) => readFile(".output/public/assets/" + file, "utf8")),
+);
+if (!bundledClients.some((bundle) => bundle.includes(url) && bundle.includes(key))) {
+  throw new Error(
+    "Browser Supabase public URL/key were not inlined at build time. " +
+      "Use static import.meta.env.VITE_* property references; refuse to publish.",
+  );
+}
 const generated = JSON.parse(await readFile(".output/server/wrangler.json", "utf8"));
 if (generated.main !== "index.mjs" || generated.assets?.binding !== "ASSETS") {
   throw new Error("Unexpected Nitro output; inspect it before deploying.");

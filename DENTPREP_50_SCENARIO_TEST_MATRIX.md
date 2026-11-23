@@ -336,11 +336,10 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T42 — Clinical review gate
 
-- Priority: P0; status: **BLOCKED**.
-- Expected / steps: Draft -> reviewed -> approved -> published sign-off and audit; cannot self-approve if policy disallows.
-- Actual / evidence: Cloud Browser URL-policy authority blocked the login-page observation. Human account/device or reviewed-content/provider gate still needed.
-- Fixture/environment: isolated mocked CI or rollback SQL only unless explicitly recorded otherwise.
-- Retest / fix PR: pending.
+- Priority: P0; status: **BLOCKED** for the complete qualified approval workflow.
+- Technical subcase PASS: PR #19 / live `a6ea77536aade2356a051f0b6c089aa012fcd586`; three DB guards reject unreviewed admin INSERT/UPDATE even when a workflow log exists. Draft/in_review/archive preserved. Synthetic real-DB QA identities and records rolled back.
+- Missing: independently verified author/reviewer credentials, versioned source and professional approval workflow; no clinical approval or publishing PASS is asserted.
+- Actual: 15 / 30 / 15 drafts, zero clinical publications, one auth user, QA user absent. Production 45243391806 SUCCESS.
 
 ## T43 — RLS private data
 

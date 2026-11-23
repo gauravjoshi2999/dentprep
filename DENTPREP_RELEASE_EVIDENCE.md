@@ -16,3 +16,7 @@ The required production workflow now writes a SHA-specific `dentprep-release-SHA
 ## P0-01 accepted release
 
 Current verified application revision at this checkpoint: `98bf0db3f477c066adda862f31b8257ddf4c2937`; [PR #18](https://github.com/gauravjoshi2999/dentprep/pull/18). Required production run [45241181580](https://github.com/gauravjoshi2999/dentprep/actions/runs/45241181580) passed and produced artifact `14849954993`. Exact same live origin. Backend column enforcement followed deployment and passed real rollback-only SQL tests plus live REST permission denials. See completion ledger for counts/scope; no clinical approval or physical-device acceptance is claimed.
+
+## P0-02 accepted release
+
+Merge/live `a6ea77536aade2356a051f0b6c089aa012fcd586`, PR #19; production [45243391806](https://github.com/gauravjoshi2999/dentprep/actions/runs/45243391806) SUCCESS; exact-release artifact `14852357391`. Native DB regression confirmed publication lock and unchanged draft/user counts with no persisted QA user. No reviewed medical material was published.

@@ -1,10 +1,10 @@
 # DentPrep — next actions
 
-Read the completion ledger first; recheck main and live SHA before writing. Last accepted application checkpoint: `98bf0db3f477c066adda862f31b8257ddf4c2937` (PR #18; production 45241181580 SUCCESS). P0-01 is complete; do not redo it.
+Read the completion ledger first; recheck main and live SHA before writing. Last accepted application checkpoint: `a6ea77536aade2356a051f0b6c089aa012fcd586` (PR #19; production 45243391806 SUCCESS). P0-01 confidentiality and P0-02 publication interlock are complete technical gates; do not redo them.
 
 ## Next three tasks
 
-1. **P0-02: enforce clinical publication gate.** Files: `ops/` publication guard and admin review boundary. Current status-change log is not a qualified review. Acceptance: candidate and admin API cannot publish unreviewed content or modify a published version without review; archive remains available; no existing drafts/data lost. Qualified reviewer identity and accountable sign-off remain BLOCKED until supplied. Normal chat can implement technical enforcement; it cannot provide medical approval.
+1. **P0: direct account-switch local-state privacy.** Files: `src/lib/auth.tsx`, `src/test/auth.test.tsx`. Remount private editors/dictation on identity change; preserve same-account refresh. Two local regressions and 28 unit tests pass; finish PR/CI/production before marking complete. Normal chat can implement/test via GitHub; actual account/device acceptance still needs permitted browser access.
 2. **P1-01: continuous study cycles.** Files: planner, `/plan`, study plan/task persistence. Preserve completed history, carry overdue tasks once, keep budget realistic, make unknown exam date the default, and separate lesson completion from mastery. Acceptance: 7/15/30 renewal, concurrent/idempotent save, long gap restart, empty approved pool, immutable history. Normal chat can implement/test; actual cross-device QA still needs permitted browser/hardware access.
 
 3. **P1-02: curriculum and review evidence.** Map subject/unit/topic/outcome to drafts, sources and independent reviewer evidence. Do not publish or claim clinical accuracy. Normal chat can build source/coverage/review tools; only qualified accountable humans can approve content.

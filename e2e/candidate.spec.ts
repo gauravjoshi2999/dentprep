@@ -246,6 +246,8 @@ test("interview answers and reflections survive a saved session reload", async (
   await mockBackend(page, true);
   await page.goto("/interviews");
   await page.getByRole("button", { name: "Start text practice" }).click();
+  await expect(page.getByRole("region", { name: "Optional voice answer dictation" })).toBeVisible();
+  await expect(page.getByText(/DentPrep does not.*store the raw audio/)).toBeVisible();
   await page
     .getByLabel("Your answer", { exact: true })
     .fill("I want to contribute to public service and build a consistent learning routine.");

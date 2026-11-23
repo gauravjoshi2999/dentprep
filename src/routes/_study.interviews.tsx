@@ -18,6 +18,7 @@ import { formatDate } from "@/lib/dates";
 import { RequireUser } from "@/components/app/study-shell";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { Button } from "@/components/ui/button";
+import { BrowserDictation } from "@/components/app/browser-dictation";
 import { AppHero } from "@/components/app/app-hero";
 import { MessageSquareText, Sparkles, MicOff, ListChecks } from "lucide-react";
 
@@ -157,6 +158,13 @@ function Interviews() {
               placeholder="Write your response as you would say it in the interview."
             />
           </label>
+          <BrowserDictation key={`${sessionId}:${index}`} disabled={finished || save.isPending} onTranscript={(spoken) => {
+            setEntries((previous) => previous.map((entry, i) => i === index ? {
+              ...entry,
+              answer: [entry.answer.trim(), spoken].filter(Boolean).join(" ").slice(0, 10000),
+            } : entry));
+            setDirty(true);
+          }} />
           <p className="mt-2 text-xs text-muted-foreground">
             {feedback.words} words · Your answer is saved to your account only when you press Save
             draft or Finish.

@@ -26,19 +26,17 @@ function Lesson() {
   const complete = useMutation({
     mutationFn: async () => {
       if (!user || !lesson) throw new Error("Sign in to save progress.");
-      const { error } = await supabase
-        .from("topic_progress")
-        .upsert(
-          {
-            user_id: user.id,
-            lesson_id: lesson.id,
-            subject_id: lesson.subject_id,
-            status: completed ? "in_progress" : "completed",
-            last_viewed_at: new Date().toISOString(),
-            completed_at: completed ? null : new Date().toISOString(),
-          },
-          { onConflict: "user_id,lesson_id" },
-        );
+      const { error } = await supabase.from("topic_progress").upsert(
+        {
+          user_id: user.id,
+          lesson_id: lesson.id,
+          subject_id: lesson.subject_id,
+          status: completed ? "in_progress" : "completed",
+          last_viewed_at: new Date().toISOString(),
+          completed_at: completed ? null : new Date().toISOString(),
+        },
+        { onConflict: "user_id,lesson_id" },
+      );
       if (error) throw error;
       await logActivity();
     },

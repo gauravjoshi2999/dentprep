@@ -235,7 +235,7 @@ test("interview answers and reflections survive a saved session reload", async (
   await page.getByRole("button", { name: "Finish and save practice" }).click();
   await page.getByRole("button", { name: "Back to sessions" }).click();
   await page.getByRole("button", { name: /general.*1 answers.*completed/ }).click();
-  await expect(page.getByLabel("Your answer", { exact: true })).toHaveValue(
+  await expect(page.getByRole("textbox", { name: "Your answer", exact: true })).toHaveValue(
     /contribute to public service/,
   );
   await expect(page.getByText("Completed session", { exact: false })).toBeVisible();

@@ -48,6 +48,7 @@ function Plan() {
   const [selectedGoals, setSelectedGoals] = useState<PlanGoal[]>(["interview"]);
   const [weak, setWeak] = useState<string[]>([]);
   const [creating, setCreating] = useState(false);
+  const [pendingTask, setPendingTask] = useState<{ id: string; done: boolean } | null>(null);
   const save = useMutation({
     mutationFn: async () => {
       const tasks = generatePlan({
@@ -65,18 +66,16 @@ function Plan() {
       });
       // Build the replacement privately first. The previous plan remains usable if an insert fails.
       const id = crypto.randomUUID();
-      const { error } = await supabase
-        .from("study_plans")
-        .insert({
-          id,
-          user_id: userId,
-          active: false,
-          length_days: length,
-          start_date: startDate,
-          daily_hours: hours,
-          goals: selectedGoals,
-          weak_subject_ids: weak,
-        });
+      const { error } = await supabase.from("study_plans").insert({
+        id,
+        user_id: userId,
+        active: false,
+        length_days: length,
+        start_date: startDate,
+        daily_hours: hours,
+        goals: selectedGoals,
+        weak_subject_ids: weak,
+      });
       if (error) throw error;
       const inserted = await supabase
         .from("study_tasks")
@@ -118,11 +117,12 @@ function Plan() {
       if (error) throw error;
       await logActivity();
     },
-    onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ["plan", userId] });
+    onSuccess: async () => {
+      await qc.invalidateQueries({ queryKey: ["plan", userId] });
       void qc.invalidateQueries({ queryKey: ["activity", userId] });
     },
     onError: (e) => toast.error(e.message),
+    onSettled: () => setPendingTask(null),
   });
   const queries = [plan, subjects, progress, revision, questions, cases];
   if (queries.some((q) => q.isPending)) return <LoadingBlock />;
@@ -273,9 +273,13 @@ function Plan() {
                             aria-label={`Complete ${t.title}`}
                             type="checkbox"
                             className="mt-1 h-4 w-4"
-                            checked={t.done}
+                            checked={pendingTask?.id === t.id ? pendingTask.done : t.done}
                             disabled={toggle.isPending}
-                            onChange={(e) => toggle.mutate({ id: t.id, done: e.target.checked })}
+                            onChange={(e) => {
+                              const value = { id: t.id, done: e.target.checked };
+                              setPendingTask(value);
+                              toggle.mutate(value);
+                            }}
                           />
                           <div className="min-w-0">
                             <p

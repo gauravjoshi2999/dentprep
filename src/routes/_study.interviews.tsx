@@ -78,16 +78,14 @@ function Interviews() {
     mutationFn: async () => {
       const id = crypto.randomUUID();
       const initial = prompts.map((p) => ({ prompt: p.prompt, answer: "", reflection: "" }));
-      const { error } = await supabase
-        .from("interview_sessions")
-        .insert({
-          id,
-          user_id: userId,
-          mode,
-          duration_min: 15,
-          transcript: initial,
-          question_count: 0,
-        });
+      const { error } = await supabase.from("interview_sessions").insert({
+        id,
+        user_id: userId,
+        mode,
+        duration_min: 15,
+        transcript: initial,
+        question_count: 0,
+      });
       if (error) throw error;
       return { id, initial };
     },

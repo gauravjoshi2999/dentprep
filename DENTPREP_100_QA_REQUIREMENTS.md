@@ -237,10 +237,12 @@ Statuses are conservative: Partial = existing implementation with missing accept
 
 ## Q034 — Kya option reveal test se pehle ho sakta hai?
 
-- SOURCE: Q&A, PDF p.9; status: **Partial**.
+- SOURCE: Q&A, PDF p.9; status: **Done (technical access gate)**.
 - Required: Exam simulation mode me never; practice mode me answer save hone ke baad explanation optional. Browser/network replay se correctness prematurely leak na ho.
 - Code/data: /practice, /attempt/:id, /saved; questions, test_answers, attempts.
 - Acceptance: T21-T28; see scenario matrix for actual evidence.
+
+Evidence: PR #18, deployed `98bf0db3f477c066adda862f31b8257ddf4c2937`; T25 SQL/REST/CI negative and reveal-stage tests. Reviewed clinical content is a separate blocked gate.
 
 ## Q035 — Kya random questions difficulty balanced rahenge?
 

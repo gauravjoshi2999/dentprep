@@ -304,7 +304,7 @@
       "page": 9,
       "question": "Kya option reveal test se pehle ho sakta hai?",
       "required_behavior": "Exam simulation mode me never; practice mode me answer save hone ke baad explanation optional. Browser/network replay se correctness prematurely leak na ho.",
-      "status": "Partial",
+      "status": "Done (technical access gate; PR #18 / T25)",
       "code_area": "/practice, /attempt/:id, /saved; questions, test_answers, attempts",
       "acceptance": "T21-T28"
     },

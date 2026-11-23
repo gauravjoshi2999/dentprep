@@ -12,3 +12,7 @@
 For each new accepted task append code head/PR/merge, CI logs, database installation/enforcement, deployed revision/URL and live verifier result. Actual auth, mic, clinical review and hardware tests remain separate gates. Never put tokens or raw user data here.
 
 The required production workflow now writes a SHA-specific `dentprep-release-SHA` artifact after its required checks and a final fresh health comparison. This provides the exact revision/run/time of the checkpoint deployment without an impossible self-referencing commit SHA inside this Markdown file. Tracked ledger snapshots state their verified baseline; always use live health and the latest successful workflow artifact to resolve current production truth.
+
+## P0-01 accepted release
+
+Current verified application revision at this checkpoint: `98bf0db3f477c066adda862f31b8257ddf4c2937`; [PR #18](https://github.com/gauravjoshi2999/dentprep/pull/18). Required production run [45241181580](https://github.com/gauravjoshi2999/dentprep/actions/runs/45241181580) passed and produced artifact `14849954993`. Exact same live origin. Backend column enforcement followed deployment and passed real rollback-only SQL tests plus live REST permission denials. See completion ledger for counts/scope; no clinical approval or physical-device acceptance is claimed.

@@ -13,7 +13,7 @@
 
 | ID | Priority | Learner impact / risk | Smallest safe deliverable | Status / evidence |
 | --- | --- | --- | --- | --- |
-| P0-01 | P0 | Test answers can be inferred from public question explanations or own in-progress correctness columns | Safe question projections, owned phase-aware attempt RPCs, submitted-only history, DB column enforcement and rollback-only negative tests | FAIL confirmed by current DB grants + `queries.ts`, attempt and saved routes; implementation in progress |
+| P0-01 | P0 | Test answers can be inferred from public question explanations or own in-progress correctness columns | Safe question projections, owned phase-aware attempt RPCs, submitted-only history, DB column enforcement and rollback-only negative tests | DONE technical gate — PR #18, live `98bf0db…`, enforced columns + rollback/RPC/CI/REST tests; see milestone below |
 | P0-02 | P0 | Content review is a UI workflow, not accountable clinical sign-off | Deny publication until independent qualified, versioned approval can be enforced | Missing technical publication gate; all existing clinical content remains draft |
 | P0-03 | P0 | Real-account auth/privacy acceptance lacks evidence | Real registration/login/recovery/account-switch/admin QA with authorized accounts | BLOCKED: Cloud Browser failed opening live login, then URL-policy authority denied observation; no automated workaround attempted |
 | P1-01 | P1 | Study plans stop at one cycle; source coverage is incomplete | Renewable cycles with history, carry-forward and honest workload | Missing; existing 7/15/30 planner must be extended, not duplicated |
@@ -34,3 +34,20 @@ After each accepted task, append branch/head/PR, test logs, merge/deployed SHA, 
 - Live-backend dry run: additive functions + column enforcement + `ops/verify-attempt-access.sql` passed anonymous/owner/admin boundaries, pre-submit confidentiality, exam answer changes/resume, practice feedback, submitted analytics and score/idempotency. All DDL and synthetic rows were rolled back.
 - Before-state function/grant metadata is captured in `ops/backups/2026-11-23-attempt-access.json`; see `ops/ATTEMPT_ACCESS_ROLLOUT.md` for ordered expand/contract and recovery.
 - CI adds a desktop/mobile exam save/reload/submission regression using an isolated non-clinical fixture. CI PASS and live enforcement are still pending; T25 remains FAIL until those gates finish.
+
+## Accepted milestone: P0-01 exam confidentiality
+
+- Code head `d72d9266b8801fbee1725e91994ec68fd451b8bf`, [PR #18](https://github.com/gauravjoshi2999/dentprep/pull/18), merge and verified live `98bf0db3f477c066adda862f31b8257ddf4c2937`.
+- PR CI [45240674091](https://github.com/gauravjoshi2999/dentprep/actions/runs/45240674091) and main CI [45241181695](https://github.com/gauravjoshi2999/dentprep/actions/runs/45241181695): SUCCESS. 26 unit + 11 release tests, 19 passing desktop/mobile fixture browser tests (one desktop-only skip for the intentionally mobile navigation case), type/security/build/Worker checks.
+- Production [45241181580](https://github.com/gauravjoshi2999/dentprep/actions/runs/45241181580): SUCCESS, exact SHA/SSR/assets/routes/PWA and full guest mobile/desktop suite. Release artifact ID `14849954993`, name `dentprep-release-98bf0db3f477c066adda862f31b8257ddf4c2937`.
+- Backend expand installed before merge; column restrictions activated only after compatible deployment passed. The rollback-only test passed on the real DB; additional publication-guard dry run passed and rolled its DDL/fixtures back. Existing clinical records stay draft; no user/content rows were rewritten by this task.
+- Live REST: safe public question text 200/0 rows; hidden explanation/correctness 401/42501; draft questions/cases 200/0 rows; private RPC anonymous 401. Candidate/admin boundaries and score/idempotency verified using transaction-local synthetic roles.
+- Source exposure audit: 251 unique historical text blobs and current public build assets scanned; no checked private-key/token patterns. Manual auth/device and clinical approval remain BLOCKED, not inferred from these checks.
+- Next safe task: P0-02 publication interlock. Qualified approval workflow remains missing; block direct admin/API publication in the meantime.
+
+## P0-02 pre-merge checkpoint
+
+- Branch `fix/clinical-publication-interlock`: direct INSERT/UPDATE to published lessons/questions/cases is rejected by a DB trigger; existing draft/in_review/archive workflows remain usable.
+- Real-backend installation + regression test ran in a single transaction ending in ROLLBACK and passed. It tested a trusted synthetic admin and an audit row that cannot count as clinical sign-off. No guard or fixture rows persisted from the dry run.
+- Installation stops if any clinical material is already published. Before-state: zero published clinical items and no publication-approval trigger in the audited metadata. Recovery keeps the interlock through an application rollback; no existing rows need rewriting.
+- This is a publication lock, not an approval workflow. E04 and qualified clinical publication remain BLOCKED. Production activation is pending PR/CI.

@@ -198,11 +198,13 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T25 — Exam-mode confidentiality
 
-- Priority: P0; status: **FAIL**.
-- Expected / steps: No answer reveal before submission; look at response payload/API authorization and static assets.
-- Actual / evidence: 2026-11-23: database column grants expose questions.explanation and test_answers.is_correct before submission; fix in progress. Published MCQs=0.
-- Fixture/environment: isolated mocked CI or rollback SQL only unless explicitly recorded otherwise.
-- Retest / fix PR: pending.
+- Priority: P0; status: **PASS** for the technical confidentiality gate.
+- Expected: no answer review before exam submission; practice review only after a saved answer; inspect API and candidate payloads.
+- Actual: PR #18, head `d72d9266b8801fbee1725e91994ec68fd451b8bf`, merge/live `98bf0db3f477c066adda862f31b8257ddf4c2937`. Real DB rollback tests deny direct explanation/correctness, keep exam feedback null/empty across answer changes, permit owner-only submitted review and practice resume. All fixtures rolled back.
+- Browser fixture: exam save/reload/submit passed on desktop/mobile within 19 passing acceptance tests. This is isolated non-clinical mocked data, not real candidate/medical QA.
+- Live REST after contract: safe question projection HTTP 200 (0 public questions); explanation and correctness columns HTTP 401 / 42501; anonymous private RPC HTTP 401. Source projection and saved bookmarks cannot bypass the gate.
+- Release: https://github.com/gauravjoshi2999/dentprep/actions/runs/45241181580 — SUCCESS; exact deployed SHA, SSR/assets/PWA and guest mobile/desktop suite passed.
+- Retest: PASS, 2026-11-23 UTC. Reviewed clinical question-bank publication remains BLOCKED separately.
 
 ## T26 — Score arithmetic
 
@@ -350,11 +352,11 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 ## T44 — Secrets/exposure
 
-- Priority: P0; status: **NOT RUN**.
-- Expected / steps: Search built bundles, logs, Git history for service-role tokens and API secrets; ensure backend-only providers.
-- Actual / evidence: Existing CI has partial coverage; full scenario has not been executed to this specification.
-- Fixture/environment: isolated mocked CI or rollback SQL only unless explicitly recorded otherwise.
-- Retest / fix PR: pending.
+- Priority: P0; status: **PASS** for the automated source/build exposure checks.
+- Expected: inspect Git history, client assets and release handling for private env, service-role/provider secret exposure.
+- Actual: source-security check passed at PR #18. All fetched Git refs / 251 unique text blobs scanned: no private env paths, private keys, Supabase secret/service-role JWT or GitHub token patterns. Public build text assets also scanned without secret-pattern findings. Production deploy token is scoped to its deploy step; release artifact contains no environment dump.
+- Evidence: CI/release logs for `98bf0db3f477c066adda862f31b8257ddf4c2937`; backup and ledger files contain metadata only. No secret values printed or copied into this report.
+- Retest: PASS for those checks. This is pattern-based engineering evidence, not a claim that every possible future secret format is detectable.
 
 ## T45 — Network recovery
 

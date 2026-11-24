@@ -696,6 +696,8 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
   await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Dental Patients Taking Anticoagulants — professional guide" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Endodontic Clinical Resources — guidelines and terminology" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Clinical guidelines — periodontitis stages I–III" })).toBeVisible();
+  await expect(page.locator("#source-reading-efp-periodontitis-guidelines").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.efp.org/education/continuing-education/clinical-guidelines/");
   await expect(page.locator("#source-reading-aae-endodontic-resources").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aae.org/specialty/clinical-resources/guidelines-position-statements/");
   await expect(page.getByRole("heading", { name: "Infection Prevention Practices in Dental Settings" })).toBeVisible();
   const cdcCard = page.locator("#source-reading-cdc-dental-infection-prevention");

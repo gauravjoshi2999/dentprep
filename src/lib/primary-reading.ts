@@ -118,3 +118,23 @@ export const SIXTH_DENTAL_READING = {
     "Ask relevant faculty to reconcile case classification and Indian care context before making treatment decisions.",
   ],
 } as const;
+
+
+/** AAPD 2026–27 publisher directory, not a dental or Indian practice certification. */
+export const SEVENTH_DENTAL_READING = {
+  id: "aapd-pediatric-reference-2026",
+  subject: "Pediatric Dentistry",
+  subjectSlug: "pediatric-dentistry",
+  title: "Reference Manual of Pediatric Dentistry — 2026–27",
+  publisher: "American Academy of Pediatric Dentistry (AAPD)",
+  edition: "2026–27 publisher's current index; each document has its own revision date",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://www.aapd.org/research/oral-health-policies--recommendations/",
+  guideUrl: "https://www.aapd.org/research/oral-health-policies--recommendations/",
+  readingSteps: [
+    "Identify the current AAPD reference-manual year, document audience and publisher.",
+    "Find the headings for best practices, oral health policies and clinical practice guidelines.",
+    "Choose one age-appropriate topic and note the specific document's last revision date.",
+    "Discuss clinical interpretation, dosing and India-specific practice context with qualified pediatric dental faculty.",
+  ],
+} as const;

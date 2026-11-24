@@ -17,7 +17,7 @@ export function ReviewerProfileEditor({
   userId: string;
   existing: ClaimedReviewerProfile | null;
   onSaved: (profile: ClaimedReviewerProfile) => void;
-  onCancel?: () => void;
+  onCancel?: (() => void) | undefined;
 }) {
   const [name, setName] = useState(existing?.claimed_name ?? "");
   const [qualification, setQualification] = useState(existing?.claimed_qualification ?? "");

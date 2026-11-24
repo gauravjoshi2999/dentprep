@@ -717,6 +717,8 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
   await expect(page.getByRole("heading", { name: "Endodontic Clinical Resources — guidelines and terminology" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Clinical guidelines — periodontitis stages I–III" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Parameters of Care — Prosthodontic Diagnostic Index" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Reference Manual of Pediatric Dentistry — 2026–27" })).toBeVisible();
+  await expect(page.locator("#source-reading-aapd-pediatric-reference-2026").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aapd.org/research/oral-health-policies--recommendations/");
   await expect(page.locator("#source-reading-acp-prosthodontic-care").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.prosthodontics.org/acp-publications/parameters-of-care/");
   await expect(page.locator("#source-reading-efp-periodontitis-guidelines").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.efp.org/education/continuing-education/clinical-guidelines/");
   await expect(page.locator("#source-reading-aae-endodontic-resources").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aae.org/specialty/clinical-resources/guidelines-position-statements/");

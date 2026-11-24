@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BookOpen, CheckCircle2 } from "lucide-react";
-import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING } from "@/lib/primary-reading";
 import { Button } from "@/components/ui/button";
 import { ClinicalReviewRequest } from "./clinical-review-request";
 
-type SourceReading = typeof firstSource | typeof SECOND_DENTAL_READING | typeof THIRD_DENTAL_READING | typeof FOURTH_DENTAL_READING | typeof FIFTH_DENTAL_READING | typeof SIXTH_DENTAL_READING;
+type SourceReading = typeof firstSource | typeof SECOND_DENTAL_READING | typeof THIRD_DENTAL_READING | typeof FOURTH_DENTAL_READING | typeof FIFTH_DENTAL_READING | typeof SIXTH_DENTAL_READING | typeof SEVENTH_DENTAL_READING;
 
 export function PrimarySourceReading({ source = firstSource }: { source?: SourceReading }) {
   const isFirstReading = source.id === firstSource.id;

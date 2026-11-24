@@ -1,4 +1,5 @@
 import { addDays } from "./dates";
+import { STUDY_BRIEF_BY_SLUG } from "./subject-study-briefs";
 import { generatePlan, type PlannerInput, type PlannedTask, type TaskType } from "./planner";
 
 export type PendingStudyTask = PlannedTask & { id: string; plan_id: string; done: boolean };
@@ -16,6 +17,16 @@ export function generateCycle(input: PlannerInput, pending: PendingStudyTask[]) 
   const lessons = new Set(input.subjects.flatMap((s) => s.lessons.map((l) => l.id)));
   const subjects = new Set(input.subjects.map((s) => s.id));
   const types: TaskType[] = ["lesson", "practice", "revision", "interview", "case", "test"];
+  const sourceGuideTitles = new Set(input.subjects.flatMap(subject => {
+    const brief = STUDY_BRIEF_BY_SLUG.get(subject.slug ?? "");
+    return brief ? brief.chapters.flatMap(chapter => [
+      `Source study: ${subject.name} — ${chapter.title}`,
+      `Recall source: ${subject.name} — ${chapter.title}`,
+    ]) : [];
+  }));
+  const isGuidedReview = (t: PlannedTask) => t.task_type === "revision" &&
+    !!t.subject_id && !t.lesson_id &&
+    sourceGuideTitles.has(t.title.replace(/^(Continue: )+/, ""));
   const eligible = (t: PlannedTask) =>
     types.includes(t.task_type) &&
     Number.isFinite(t.minutes) &&
@@ -30,6 +41,7 @@ export function generateCycle(input: PlannerInput, pending: PendingStudyTask[]) 
       t.task_type === "revision" &&
       !t.lesson_id &&
       t.title.replace(/^(Continue: )+/, "") !== goalReview &&
+      !isGuidedReview(t) &&
       !(input.availableQuestionCount ?? 0)
     );
   let carried = 0;
@@ -53,6 +65,9 @@ export function generateCycle(input: PlannerInput, pending: PendingStudyTask[]) 
   }
   for (const t of fresh) {
     if (!eligible(t) || (minutes[t.day_index] ?? 0) + t.minutes > budget) continue;
+    // A carried source-study task takes precedence over the same fresh topic.
+    if (t.task_type === "revision" && t.title.startsWith("Source study:") &&
+      tasks.some(old => old.title.replace(/^(Continue: )+/, "") === t.title)) continue;
     if (
       t.task_type === "lesson" &&
       tasks.some((old) => old.task_type === "lesson" && old.lesson_id === t.lesson_id)

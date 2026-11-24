@@ -8,7 +8,7 @@ import { progressQuery } from "@/lib/queries";
 import { subjectsQuery } from "@/lib/queries";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { PrimarySourceReading } from "@/components/app/primary-source-reading";
-import { FIRST_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING, SECOND_DENTAL_READING } from "@/lib/primary-reading";
 import { STARTER_UNITS } from "@/lib/starter-quest";
 
 export const Route = createFileRoute("/_study/library")({
@@ -45,6 +45,12 @@ function Library() {
   const showReference =
     (category === "All" || category === "Clinical") &&
     `${FIRST_DENTAL_READING.subject} ${FIRST_DENTAL_READING.title} ${FIRST_DENTAL_READING.publisher}`
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+
+  const showOralSurgeryReading =
+    (category === "All" || category === "Clinical") &&
+    `${SECOND_DENTAL_READING.subject} ${SECOND_DENTAL_READING.title} ${SECOND_DENTAL_READING.publisher}`
       .toLowerCase()
       .includes(search.trim().toLowerCase());
   return (
@@ -102,6 +108,7 @@ function Library() {
         ))}
       </div>
       {showReference && <PrimarySourceReading />}
+      {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-extrabold">Study Library</h2>

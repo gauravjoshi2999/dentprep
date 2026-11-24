@@ -79,3 +79,22 @@ export const FOURTH_DENTAL_READING = {
     "List uncertain claims for an appropriately qualified Indian dental faculty review.",
   ],
 } as const;
+
+/** European professional guideline directory; not Indian clinical protocol or reviewed lesson. */
+export const FIFTH_DENTAL_READING = {
+  id: "efp-periodontitis-guidelines",
+  subject: "Periodontology",
+  subjectSlug: "periodontology",
+  title: "Clinical guidelines — periodontitis stages I–III",
+  publisher: "European Federation of Periodontology (EFP)",
+  edition: "EFP stage I–III guideline (2020); newer guideline topics also listed",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://www.efp.org/education/continuing-education/clinical-guidelines/",
+  guideUrl: "https://www.efp.org/education/continuing-education/clinical-guidelines/",
+  readingSteps: [
+    "Review the EFP index and distinguish stage I–III, stage IV and peri-implant guidelines.",
+    "Identify the date and scope of the particular EFP recommendation before noting it.",
+    "Create a recall note on how guideline scope differs from a complete BDS syllabus.",
+    "Ask qualified local faculty to verify clinical decisions and India-specific applicability.",
+  ],
+} as const;

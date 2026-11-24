@@ -14,7 +14,8 @@ describe("nonclinical starter catalog", () => {
     }
   });
   it("rejects duplicate units or invalid evidence", () => {
-    expect(starterCatalogErrors([STARTER_UNITS[0], STARTER_UNITS[0]])).toContain("Duplicate or empty ID");
-    expect(starterCatalogErrors([{...STARTER_UNITS[0], href:"http://example.test"}])).toContain("Missing evidence");
+    const first = STARTER_UNITS[0]!;
+    expect(starterCatalogErrors([first, first])).toContain("Duplicate or empty ID");
+    expect(starterCatalogErrors([{...STARTER_UNITS[0]!, href:"http://example.test"}])).toContain("Missing evidence");
   });
 });

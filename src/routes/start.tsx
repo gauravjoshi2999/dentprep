@@ -29,7 +29,7 @@ function DayOneStarter() {
   const [hint, setHint] = useState(false);
   const [finished, setFinished] = useState(false);
   const [save, setSave] = useState<"none" | "saving" | "saved" | "failed" | "guest">("none");
-  const unit = STARTER_UNITS[index];
+  const unit = STARTER_UNITS[index] ?? STARTER_UNITS[0]!;
   const correct = starterCorrect(unit, choice);
 
   function next() {

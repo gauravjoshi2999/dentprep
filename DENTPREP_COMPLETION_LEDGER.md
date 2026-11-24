@@ -1,5 +1,12 @@
 # DentPrep completion ledger
 
+## OMS-001 source preparation — 24 November 2026
+
+- Four existing Oral Surgery drafts have exact-fingerprint AI audits, eight directly opened institutional sources and an unchanged hash-bound v0.2 candidate. Findings and clinical uncertainties remain unresolved; no accepted medical verdict is implied.
+- Four private version-1 preparation records installed through the existing DentPrep backend; native rollback and post-install QA verify exact hashes, insertion/retry, stale/version/collision rejection and unchanged 15/30/15 drafts, zero clinical publication, three guards and evidence RLS. Receipt: `ops/qa/oms-source-preparation-2026-11-24.json`.
+- Required content CLI now validates enhanced preparation integrity and records four exact-item audits. Local checks: 50 content-safety tests, 65 Vitest tests, 19 release tests, typecheck and changed-TypeScript lint PASS. Software checks are not clinical accuracy or independent human approval.
+- Six exact reference-section links added to the learner's Oral Surgery reading path. Full exact-head CI, safe merge and production receipt are recorded in the final PR/Issue #27 acceptance comment; do not infer deployment from this source snapshot.
+
 ## Verified audit checkpoint — 23 November 2026
 
 - SOURCE: CODE / live service evidence. Repository: `gauravjoshi2999/dentprep` only. Main and live `/api/health`: `4b92b5e75f12f7b7254784c8a865fad305e8bf1f`.
@@ -188,3 +195,13 @@ Additional P0 safety finding: unreviewed labelled anatomical SVG was displayed b
 PR #29 merge `6c9651f31628464bf10f524b643a770b06148757`, main CI 45304836325 SUCCESS. Production workflow 45304836476 stopped before its deploy step: mobile signout fixture clicked then navigated without awaiting app completion (same failed private-view assertion on retry). Request cancellation is an inference, not observed proof: this failed production workflow did not retain traces. The test now includes a deliberately delayed successful logout response and waits for actual completion. Final PR CI had passed 29 browser fixtures; the release failure is retained, not called a verified release.
 
 Follow-up waits for actual app signout completion (home URL and signout control gone) before reloading a protected page; the protected-view and private-name assertions remain. No auth code, token handling, RLS or acceptance assertion is weakened. Production also preserves failed browser traces for seven days, matching existing CI practice. Require fresh full CI/release/exact-live verification; exact acceptance is in the PR comment/release receipt. Clinical safeguards and all 60 drafts unchanged.
+
+Direct-build source identity follow-up: public live verification returned HTTP 503 after the independent Cloudflare main build reported success, while the GitHub release stopped at browser acceptance. The public response body was not obtained; an unversioned build is an inference from the source gap, not a claimed private-log diagnosis. Existing `npm build` did not inject VITE_DENTPREP_REVISION; only build:release did. Both npm build entry points now resolve exact clean Git/platform commit, reject missing/conflicting/dirty identity, and inject revision before Vite starts. Cloudflare's documented WORKERS_CI_COMMIT_SHA is supported for immutable exports. The runtime health guard is unchanged and still rejects unversioned output. Eight source-identity regressions bring release tests to 19. Clinical gates unchanged; private dashboard access remains auto-review denied. Do not mark final deployment verified until its exact workflow/health/guest checks pass.
+
+## Student-focus and first source-reading tranche
+
+Baseline main/live `7cf6523599e5afbc78826cc67fc06fa11c5982c8`, main CI 45308115932 / production 45308115895 SUCCESS. OPEN PR #34 owns /start live-route verification; this tranche avoids those scripts. Founder asks to remove non-study priorities and confirms no independent reviewer is available. Source/flow work continues with clinical publication locked.
+
+UI consolidates primary navigation into Home/Study/Practice/Interview/Profile, retains saved/plan/reports in one responsive Profile panel, removes duplicate/empty/dashboard-news blocks and leads with a real available mission. Library reuses /start, adds the first clearly labelled external ADA 2026 reference plus session-only checklist, and honestly shows clinical review pending instead of repeated zero-count dead ends. The external reference is not a published DentPrep lesson or clinical mastery assessment. No DB/auth/score mutation or publication.
+
+OMR-001 is a blocked source-linked preparation packet for the existing first lesson. Current ADA 2026 update/guide was inspected; 2017 guide is archived, IARC edition and NICE full-text/local-context gaps remain. All 20 academic decisions stay BLOCKED, qualified_review null and publication_allowed false; CLI rejects self-publishing draft packets. Safe normal-chat continuation and excluded non-study work are in DENTPREP_STUDY_FOCUS_BACKLOG.md. Require exact-head full CI, safe merge and actual production verification; final accepted SHA/run/receipt is recorded in the PR comment/artifact. Clinical notes/MCQs/cases cannot be unlocked until genuine independent qualified approval.

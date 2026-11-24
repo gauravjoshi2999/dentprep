@@ -3,6 +3,7 @@ import { resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { evaluatePackage, GATE_IDS, POLICY_VERSION, packageDigest, digest, assertAppendOnlyHistory } from './content-safety.mjs';
+import { validateDraftPreparation } from './draft-preparation.mjs';
 
 const root = realpathSync(process.cwd());
 function read(path) {
@@ -17,6 +18,21 @@ const policy = read('content/quality-policy.json');
 const reviewers = read('content/reviewers.json').reviewers;
 const withdrawals = read('content/withdrawals.json').entries;
 const history = read('content/history/index.json').entries;
+const draftFiles = existsSync('content/drafts') ? readdirSync('content/drafts').filter(name => name.endsWith('.json')) : [];
+let exactItemAudits = 0;
+for (const name of draftFiles) {
+  const packet = read(`content/drafts/${name}`);
+  assert(packet.status === 'draft' && packet.publication_allowed === false && packet.qualified_review === null,
+    'Draft review preparation cannot claim publication or qualified clinical approval');
+  assert(Array.isArray(packet.academic_gates) && packet.academic_gates.length === 20 && GATE_IDS.every(id => packet.academic_gates.some(g => g.id === id && g.decision === 'BLOCKED')),
+    'Draft review packets retain all 20 unresolved academic checks');
+  if (packet.item_audits) {
+    assert(/^content\/preparation\/[A-Za-z0-9._-]+\.md$/.test(packet.revision_candidate?.path), 'Invalid revision candidate path');
+    const candidate = realpathSync(resolve(root, packet.revision_candidate.path));
+    assert(candidate.startsWith(`${root}${sep}content${sep}preparation${sep}`), 'Revision candidate escaped preparation directory');
+    exactItemAudits += validateDraftPreparation(packet, { inventory, candidateText: readFileSync(candidate, 'utf8'), today: new Date().toISOString().slice(0, 10) }).length;
+  }
+}
 // Required workflow checkout retains both parents; compare with the previously accepted tree.
 // A scratch fixture without git has no historical baseline, and cannot publish anything.
 let previousHistory = [];
@@ -76,6 +92,8 @@ const report = {
   curriculum_groups: curriculum.groups.length, proposed_outcomes: outcomes.length,
   reviewed_outcomes: outcomes.filter(o => o.status === 'reviewed').length,
   completeness: curriculum.status, draft_items_blocked: inventory.items.length,
+  prepared_review_packets: draftFiles.length,
+  exact_item_source_audits: exactItemAudits,
   clinical_release_packages: releases.length, trusted_reviewers: reviewers.length,
   clinical_publication: 'LOCKED — no database publishing capability; existing guards retained',
   academic_approval: 'NOT established by software checks',

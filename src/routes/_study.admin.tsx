@@ -83,6 +83,18 @@ function Admin() {
       return data;
     },
   });
+  const intake = useQuery({
+    queryKey: ["admin-clinical-feedback", userId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("clinical_feedback_submissions")
+        .select("id,source_title,source_edition,subject_slug,claimed_reviewer_name,claimed_qualification,claimed_registration,recommendation,feedback,status,created_at")
+        .order("created_at", { ascending: false })
+        .limit(50);
+      if (error) throw error;
+      return data;
+    },
+  });
   const archive = useMutation({
     mutationFn: async (row: Content) => {
       const { error } = await supabase
@@ -108,6 +120,36 @@ function Admin() {
         independently verified, versioned professional review workflow is available. A workflow
         status change does not certify medical review. Existing clinical drafts remain unpublished.
       </Notice>
+      <section className="surface mb-6 p-5" aria-label="Pending clinical reviewer feedback">
+        <h2 className="text-lg font-bold">Pending clinical feedback</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Submitted details are claimed, not credential-verified. These do not release or certify a lesson.
+          Confirm the reviewer independently and link corrections to the exact draft version before any approval.
+        </p>
+        {intake.isPending ? (
+          <p className="mt-3 text-sm">Loading submitted feedback…</p>
+        ) : intake.isError ? (
+          <p role="alert" className="mt-3 text-sm text-destructive">Private feedback is unavailable. Check the DentPrep database access policy.</p>
+        ) : intake.data?.length ? (
+          <div className="mt-4 grid gap-3">
+            {intake.data.map(entry => (
+              <article key={entry.id} className="rounded-lg border border-border p-4">
+                <p className="font-bold">{entry.source_title}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {entry.subject_slug} · {entry.source_edition} · {new Date(entry.created_at).toLocaleDateString()}
+                </p>
+                <p className="mt-2 text-sm"><strong>Claimed reviewer:</strong> {entry.claimed_reviewer_name} — {entry.claimed_qualification}</p>
+                <p className="mt-1 text-sm"><strong>Registration (unverified):</strong> {entry.claimed_registration}</p>
+                <p className="mt-1 text-sm"><strong>Recommendation:</strong> {entry.recommendation.replaceAll("_", " ")}</p>
+                <p className="mt-1 whitespace-pre-wrap break-words text-sm">{entry.feedback}</p>
+                <p className="mt-2 text-xs font-bold text-muted-foreground">
+                  {entry.status.replaceAll("_", " ")} · Receipt {entry.id}
+                </p>
+              </article>
+            ))}
+          </div>
+        ) : <p className="mt-3 text-sm text-muted-foreground">No submitted reviewer feedback yet.</p>}
+      </section>
       <div className="mb-6 flex flex-wrap items-center gap-3">
         {(
           [

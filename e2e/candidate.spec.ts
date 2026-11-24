@@ -61,6 +61,8 @@ async function mockBackend(
   const interviews: Record<string, unknown>[] = [];
   const drafts: Record<string, unknown>[] = [];
   const preparationRecords: Record<string, unknown>[] = [];
+  const clinicalFeedback: Record<string, unknown>[] = [];
+  let savedReviewerProfile: Record<string, unknown> | null = null;
   let preparationFingerprint = "a".repeat(64);
   let firstPreparationSave = true;
   const question = {
@@ -229,6 +231,41 @@ async function mockBackend(
     } else if (path.endsWith("/rpc/submit_attempt")) {
       submitted = true;
       data = { total: 1, answered: 1, correct: 1, score_pct: 100 };
+    } else if (path.endsWith("/clinical_reviewer_profiles")) {
+      if (method === "POST") {
+        expect(body).toMatchObject({
+          owner_user_id: userId,
+          claimed_name: "Test Dental Reviewer",
+          claimed_qualification: "MDS Test Specialty",
+          claimed_registration: "TEST-REG-123",
+          consent_confirmed: true,
+        });
+        savedReviewerProfile = body;
+        data = savedReviewerProfile;
+      } else {
+        expect(method).toBe("GET");
+        data = savedReviewerProfile;
+      }
+    } else if (path.endsWith("/clinical_feedback_submissions")) {
+      if (method === "POST") {
+        expect(body).toMatchObject({
+          submitted_by: userId,
+          source_id: "cdc-dental-infection-prevention",
+          subject_slug: "public-health-dentistry",
+          recommendation: "changes_requested",
+        });
+        expect(body.status).toBeUndefined();
+        expect(body.claimed_reviewer_name).toBe("Test Dental Reviewer");
+        expect(body.feedback).toContain("REVIEW SCOPE: PUBLISHER SOURCE READING ONLY");
+        expect(body.feedback).toContain("Q12");
+        expect(body.feedback).toContain("Guideline version verify again");
+        data = { id: "66666666-6666-4666-8666-666666666666", status: "pending_verification" };
+        clinicalFeedback.push({ ...body, ...data, created_at: "2026-11-24T00:00:00Z" });
+      } else {
+        expect(method).toBe("GET");
+        expect(admin).toBe(true);
+        data = clinicalFeedback;
+      }
     } else if (path.endsWith("/subjects"))
       data = url.searchParams.has("slug") ? subjects[0] : subjects;
     else if (path.endsWith("/profiles")) data = { id: userId, full_name: "QA Candidate" };
@@ -317,7 +354,7 @@ test("public library and protected pages behave on mobile and desktop", async ({
   await mockBackend(page);
   await page.goto("/library");
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
-  await expect(page.getByText("Lessons awaiting review")).toBeVisible();
+  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
   await page.getByRole("searchbox").fill("missing subject");
   await expect(page.getByText("No matching subjects")).toBeVisible();
   for (const path of ["/dashboard", "/practice", "/plan", "/progress", "/saved", "/interviews"]) {
@@ -337,8 +374,8 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await page.getByLabel("Email", { exact: true }).fill("qa@example.test");
   await page.getByLabel("Password", { exact: true }).fill("test-only-password");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Welcome, QA" })).toBeVisible();
-  await expect(page.getByText("Practice accuracy", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Welcome, Dr. QA" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Start your dental reference reading" })).toBeVisible();
   // A click dispatches the async handler; navigating immediately can cancel its logout request.
   // Wait for the app's completed-signout navigation and cleared control, then reload a private URL.
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
@@ -346,7 +383,7 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await expect(page.getByRole("button", { name: "Sign out", exact: true })).toHaveCount(0);
   await page.goto("/dashboard");
   await expect(page.getByText("Sign in to your study space")).toBeVisible();
-  await expect(page.getByText("Welcome, QA")).toHaveCount(0);
+  await expect(page.getByText("Welcome, Dr. QA")).toHaveCount(0);
 });
 
 test("practice saves answers through RPCs and displays the submitted score", async ({ page }) => {
@@ -400,6 +437,29 @@ test("study plans use available content and persist task completion", async ({ p
     .first()
     .check();
   await expect(page.getByText("1/7 tasks done", { exact: false })).toBeVisible();
+});
+
+test("subject-first plan studies official sources even when every clinical lesson is pending", async ({ page }) => {
+  await mockBackend(page, true);
+  await page.route("https://example.supabase.co/rest/v1/subjects**", async route => {
+    if (route.request().method() === "OPTIONS") return route.fallback();
+    return route.fulfill({ json: [{
+      id: subjectId, slug: "oral-maxillofacial-surgery", name: "Oral & Maxillofacial Surgery",
+      description: "Oral surgery", short_name: "Oral Surgery", status: "published",
+      sort_order: 2, lessons: [],
+    }], headers: { "access-control-allow-origin": "*" } });
+  });
+  await page.goto("/plan");
+  await expect(page.getByText("Clinical content is awaiting review")).toBeVisible();
+  await page.getByLabel("Daily hours").fill("0.5");
+  await page.getByRole("button", { name: "Generate and save study plan" }).click();
+  const sourceTask = page.getByRole("checkbox", { name: /Complete Source study: Oral & Maxillofacial Surgery/ }).first();
+  await expect(sourceTask).toBeVisible();
+  await expect(page.getByRole("checkbox", { name: /^Complete Work through one clinical decision case/ })).toHaveCount(0);
+  await expect(page.getByRole("checkbox", { name: /^Complete Custom timed practice/ })).toHaveCount(0);
+  const guideLink = page.getByRole("link", { name: "Open original source" }).first();
+  await guideLink.click();
+  await expect(page).toHaveURL(/\/library#source-reading-sdcep-anticoagulants-2022$/);
 });
 
 test("topic reports show honest empty states and explain distinct-question revision suggestions", async ({
@@ -629,7 +689,7 @@ test("approved mobile visual navigation uses real pages and honest study data", 
   await nav.getByRole("link", { name: "Study" }).click();
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Clinical", exact: true })).toBeVisible();
-  await expect(page.getByText("0 published lessons")).toBeVisible();
+  await expect(page.getByText("Clinical review pending", { exact: true })).toBeVisible();
   await nav.getByRole("link", { name: "Interview" }).click();
   await expect(page.getByRole("heading", { name: "Interview communication studio" })).toBeVisible();
   await expect(page.getByText(/Voice and AI clinical scoring are not enabled/)).toBeVisible();
@@ -683,4 +743,109 @@ test("Day 1 starter corrects mistakes and records signed-in activity only at com
   await page.getByRole("button", { name: "Finish Day 1 starter" }).click();
   await expect(page.getByText(/Today's activity was recorded in your account/)).toBeVisible();
   expect(activityRequests).toBe(1);
+});
+
+test("oral surgery source sections open exact references without exposing draft teaching", async ({ page }) => {
+  await mockBackend(page, true);
+  await page.goto("/library");
+  const card = page.locator("#source-reading-sdcep-anticoagulants-2022");
+  await card.getByText("Read the exact source sections", { exact: true }).click();
+  const sections = card.getByRole("list", { name: "Oral surgery source sections" });
+  await expect(sections.getByRole("link")).toHaveCount(6);
+  await expect(sections.getByRole("link", { name: /Assessment, consent and ongoing care/ }))
+    .toHaveAttribute("href", "https://www.ida.org.in/Accreditation/Details/ForPatientManagement");
+  await expect(sections.getByRole("link", { name: /Warfarin and other vitamin K antagonists/ }))
+    .toHaveAttribute("href", /\/warfarin-or-another-vitamin-k-antagonist\/$/);
+  await expect(sections.getByRole("link", { name: /Direct oral anticoagulants/ }))
+    .toHaveAttribute("href", /\/direct-oral-anticoagulants-doacs\/recommendations\/$/);
+  await expect(sections.getByText("UK · practice setting", { exact: true })).toBeVisible();
+  await expect(sections.getByText(/publication year not displayed/)).toBeVisible();
+  for (const link of await sections.getByRole("link").all()) {
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  }
+  await expect(card.getByText(/they do not approve a DentPrep lesson/)).toBeVisible();
+  await expect(page.getByText(/Provisional single-best answer/)).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test("study focus leads to an honest primary reading path and keeps tools in Profile", async ({ page }, testInfo) => {
+  await mockBackend(page, true);
+  await page.goto("/dashboard");
+  await expect(page.getByRole("heading", { name: "Start your dental reference reading" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Quick actions" })).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "Official recruitment notice" })).toHaveCount(0);
+  await page.getByRole("link", { name: "Start source reading" }).click();
+  await expect(page).toHaveURL(/\/library#primary-reading$/);
+  await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Dental Patients Taking Anticoagulants — professional guide" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Endodontic Clinical Resources — guidelines and terminology" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Clinical guidelines — periodontitis stages I–III" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Parameters of Care — Prosthodontic Diagnostic Index" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Reference Manual of Pediatric Dentistry — 2026–27" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Advice Sheets and Orthodontic Clinical Guidelines" })).toBeVisible();
+  await expect(page.locator("#source-reading-bos-orthodontic-guidelines").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://bos.org.uk/professionals-members/advice-sheets-and-guidelines/");
+  await expect(page.locator("#source-reading-aapd-pediatric-reference-2026").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aapd.org/research/oral-health-policies--recommendations/");
+  await expect(page.locator("#source-reading-acp-prosthodontic-care").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.prosthodontics.org/acp-publications/parameters-of-care/");
+  await expect(page.locator("#source-reading-efp-periodontitis-guidelines").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.efp.org/education/continuing-education/clinical-guidelines/");
+  await expect(page.locator("#source-reading-aae-endodontic-resources").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aae.org/specialty/clinical-resources/guidelines-position-statements/");
+  await expect(page.getByRole("heading", { name: "Infection Prevention Practices in Dental Settings" })).toBeVisible();
+  const cdcCard = page.locator("#source-reading-cdc-dental-infection-prevention");
+  await expect(cdcCard.getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
+    "href",
+    "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
+  );
+  const reviewerForm = cdcCard.getByRole("button", { name: /Doctor guided feedback/ });
+  await reviewerForm.click();
+  await expect(cdcCard.getByText("डॉक्टर को किसका review करना है?")).toBeVisible();
+  await expect(cdcCard.getByRole("button", { name: "Copy full question sheet" })).toBeVisible();
+  await cdcCard.getByRole("textbox", { name: "Doctor's name" }).fill("Test Dental Reviewer");
+  await cdcCard.getByRole("textbox", { name: "MDS qualification / relevant specialty" }).fill("MDS Test Specialty");
+  await cdcCard.getByRole("textbox", { name: "Dental council and registration number" }).fill("TEST-REG-123");
+  await cdcCard.getByRole("checkbox", { name: "Consent to save reviewer profile" }).check();
+  await cdcCard.getByRole("button", { name: "Save reviewer profile once" }).click();
+  await expect(cdcCard.getByRole("region", { name: "Saved reviewer profile" })).toBeVisible();
+
+  await cdcCard.getByRole("textbox", { name: "Exact source section or page" }).fill("CDC source section on Standard Precautions");
+  const questions = cdcCard.locator("[data-review-question]");
+  await expect(questions).toHaveCount(12);
+  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeDisabled();
+  for (const question of await questions.all()) await question.getByRole("radio", { name: "ठीक है" }).check();
+  await questions.first().getByRole("radio", { name: "सुधार जरूरी" }).check();
+  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeDisabled();
+  await questions.first().getByRole("textbox", { name: "Q1 reviewer note" }).fill("Guideline version verify again");
+  await cdcCard.getByRole("checkbox", { name: "Doctor reviewed this exact source" }).check();
+  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeEnabled();
+  await cdcCard.getByRole("button", { name: "Submit completed feedback" }).click();
+  await expect(cdcCard.getByText(/Feedback received · Pending independent verification/)).toBeVisible();
+
+  const endodonticsCard = page.locator("#source-reading-aae-endodontic-resources");
+  await endodonticsCard.getByRole("button", { name: /Doctor guided feedback/ }).click();
+  await expect(endodonticsCard.getByRole("region", { name: "Saved reviewer profile" })).toContainText("Test Dental Reviewer");
+  await expect(endodonticsCard.getByRole("textbox", { name: "Doctor's name" })).toHaveCount(0);
+  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
+  await expect(page.locator("#source-reading-sdcep-anticoagulants-2022").getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
+    "href",
+    "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/",
+  );
+  await expect(page.getByRole("group", { name: "Oral surgery reading checklist" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Open official guide (PDF)" })).toHaveAttribute("href", /^https:\/\/www\.ada\.org\/.*2026\/ada_oral_cancer_guideline\.pdf/);
+  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
+  const checklist = page.getByRole("group", { name: "Your reading checklist" });
+  await expect(checklist.getByRole("checkbox")).toHaveCount(4);
+  for (const checkbox of await checklist.getByRole("checkbox").all()) await checkbox.check();
+  await expect(page.getByText(/Reading checklist complete/)).toBeVisible();
+  await page.reload();
+  for (const checkbox of await page.getByRole("group", { name: "Your reading checklist" }).getByRole("checkbox").all()) await expect(checkbox).not.toBeChecked();
+  const navigation = page.getByRole("navigation", { name: testInfo.project.name === "mobile" ? "Mobile primary navigation" : "Learning navigation", exact: true });
+  await expect(navigation.getByRole("link")).toHaveCount(4);
+  await navigation.getByRole("button", { name: "Profile", exact: true }).click();
+  const profile = page.getByRole("region", { name: "Profile shortcuts" });
+  await expect(profile).toBeVisible();
+  await expect(profile.getByRole("link", { name: "My progress" })).toHaveAttribute("href", "/progress");
+  await expect(profile.getByRole("link", { name: "Saved questions & lessons" })).toHaveAttribute("href", "/saved");
+  await profile.getByRole("link", { name: "Study plan", exact: true }).click();
+  await expect(page).toHaveURL(/\/plan$/);
+  await expect(page.getByLabel("Daily hours")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

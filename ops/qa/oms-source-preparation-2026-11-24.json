@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "scope": "AI source preparation and software integrity; not medical truth or clinical approval",
+  "baseline_main": "8c7ee5ee090151b97be7abf1523c41e970d0919b",
+  "baseline_ci": 45348144142,
+  "baseline_production": 45348144184,
+  "packet": "content/drafts/OMS-001.review.json",
+  "existing_drafts_audited": 4,
+  "institutional_pages_opened": 8,
+  "learner_bibliographic_section_links": 6,
+  "candidate_version": "0.2",
+  "candidate_sha256": "cfb80a80452873395599314755ac0bf5a0fc790f9db73b529d11d1cf67e26c7b",
+  "owner_operated_sql": "ops/prepare-oms-source-evidence.sql",
+  "owner_operated_sql_sha256": "c4712ede2f906a252f8e3ec984db3db7761a2dd7963233ad64199a5998065a46",
+  "native_rollback_qa": {
+    "checked_at": "2026-11-24T07:43:54.370875+00:00",
+    "draft_cases": 15,
+    "draft_lessons": 15,
+    "draft_questions": 30,
+    "guards": 3,
+    "persisted_preparation_rows": 0,
+    "test": "PASS: native exact draft hashes; additive insertion; duplicate retry; stale fingerprint, changed-version and retry collision rejection; all fixtures rolled back"
+  },
+  "native_install": {
+    "checked_at": "2026-11-24T07:44:18.859049+00:00",
+    "clinical_draft_counts": {
+      "cases": 15,
+      "lessons": 15,
+      "questions": 30
+    },
+    "curriculum_evidence_rls": true,
+    "direct_candidate_evidence_insert": false,
+    "guards": 3,
+    "published_clinical": 0,
+    "records": [
+      {
+        "ai_provenance": true,
+        "created_by_null": true,
+        "entity_id": "9ca96a5b-6cc9-43e1-b7fe-9346dcf101e2",
+        "kind": "case",
+        "matches_current_draft": true,
+        "version": 1
+      },
+      {
+        "ai_provenance": true,
+        "created_by_null": true,
+        "entity_id": "cd7a294f-a0ae-48bb-8fc0-be2ba24afdbe",
+        "kind": "lesson",
+        "matches_current_draft": true,
+        "version": 1
+      },
+      {
+        "ai_provenance": true,
+        "created_by_null": true,
+        "entity_id": "6fac07ab-bc4a-463c-8d9d-7e262b9165b1",
+        "kind": "question",
+        "matches_current_draft": true,
+        "version": 1
+      },
+      {
+        "ai_provenance": true,
+        "created_by_null": true,
+        "entity_id": "dc25b46f-5eea-419c-a51b-53009d7cfd17",
+        "kind": "question",
+        "matches_current_draft": true,
+        "version": 1
+      }
+    ]
+  },
+  "native_post_install_qa": [
+    {
+      "result": {
+        "checked_at": "2026-11-24T07:44:47.836569+00:00",
+        "clinical_draft_counts": {
+          "cases": 15,
+          "lessons": 15,
+          "questions": 30
+        },
+        "curriculum_evidence_rls": true,
+        "direct_candidate_evidence_insert": false,
+        "guards": 3,
+        "published_clinical": 0,
+        "records": [
+          {
+            "ai_provenance": true,
+            "created_by_null": true,
+            "entity_id": "9ca96a5b-6cc9-43e1-b7fe-9346dcf101e2",
+            "kind": "case",
+            "matches_current_draft": true,
+            "version": 1
+          },
+          {
+            "ai_provenance": true,
+            "created_by_null": true,
+            "entity_id": "cd7a294f-a0ae-48bb-8fc0-be2ba24afdbe",
+            "kind": "lesson",
+            "matches_current_draft": true,
+            "version": 1
+          },
+          {
+            "ai_provenance": true,
+            "created_by_null": true,
+            "entity_id": "6fac07ab-bc4a-463c-8d9d-7e262b9165b1",
+            "kind": "question",
+            "matches_current_draft": true,
+            "version": 1
+          },
+          {
+            "ai_provenance": true,
+            "created_by_null": true,
+            "entity_id": "dc25b46f-5eea-419c-a51b-53009d7cfd17",
+            "kind": "question",
+            "matches_current_draft": true,
+            "version": 1
+          }
+        ]
+      }
+    }
+  ],
+  "local_validation": {
+    "content_safety_tests": 50,
+    "vitest_tests": 65,
+    "release_tests": 19,
+    "typecheck": "PASS after explicit optional-source handling",
+    "changed_typescript_lint": "PASS",
+    "full_browser_and_build": "Require exact-head GitHub CI; local browser binary unavailable"
+  },
+  "clinical_publication": "LOCKED; all 60 existing items draft; no professional approval, answer/content edits or source-currentness certification",
+  "protected_release_evidence": "Final exact PR/head/merge/CI/production/artifact in acceptance comment; this file cannot predict a future commit SHA",
+  "next": [
+    "Resolve OMR-001 source gaps without duplicating completed OMS preparation",
+    "Audit another untouched subject and record exact original-item/source versions",
+    "Independent qualified exact-content review and all 20 academic checks remain prerequisites to clinical publishing"
+  ]
+}

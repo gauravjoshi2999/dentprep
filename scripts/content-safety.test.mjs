@@ -120,3 +120,13 @@ test('required CLI fails an unsigned package in an isolated repository without t
     assert.equal(report.results[0].clinical_publication, 'LOCKED');
   } finally { rmSync(directory, { recursive: true, force: true }); }
 });
+test('a source-preparation packet cannot publish itself or claim qualified approval', () => {
+  const directory = mkdtempSync(resolve(tmpdir(), 'dentprep-draft-'));
+  try {
+    cpSync(new URL('../content', import.meta.url), resolve(directory, 'content'), { recursive: true });
+    writeFileSync(resolve(directory, 'content/drafts/qa-invalid.review.json'), JSON.stringify({ status: 'published', publication_allowed: true, qualified_review: { claimed: true } }));
+    const result = spawnSync(process.execPath, [fileURLToPath(new URL('./check-content-release.mjs', import.meta.url))], { cwd: directory, encoding: 'utf8' });
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /cannot claim publication or qualified clinical approval/);
+  } finally { rmSync(directory, { recursive: true, force: true }); }
+});

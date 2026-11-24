@@ -25,13 +25,14 @@ function Library() {
   const progress = useQuery({ ...progressQuery(user?.id ?? ""), enabled: !!user });
   const categories = ["All", "Clinical", "Basics", "Public Health"] as const;
   const categoryOf = (name: string) =>
-    /public health|community/i.test(name)
+    SUBJECT_STUDY_BRIEFS.find(brief => brief.name === name)?.category ??
+    (/public health|community/i.test(name)
       ? "Public Health"
       : /anatomy|physiology|biochem|microbiol|pharmacolog|general medicine|general surgery/i.test(
             name,
           )
         ? "Basics"
-        : "Clinical";
+        : "Clinical");
   const visible =
     subjects.data?.filter(
       (s) =>
@@ -153,20 +154,11 @@ function Library() {
         ))}
       </div>
       <a href="#study-guides" className="mb-5 inline-block text-sm font-bold text-teal underline underline-offset-4">Jump to 15 subject study guides ↓</a>
-      {showReference && <PrimarySourceReading />}
-      {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
-      {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
-      {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
-      {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
-      {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
-      {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
-      {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
-      {extraReadings.map((source) => <PrimarySourceReading key={source.id} source={source} />)}
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">
-          <h2 id="study-guides" className="scroll-mt-6 text-xl font-extrabold">Study Library · 15 guided subject paths</h2>
+          <h2 id="study-guides" className="scroll-mt-6 text-xl font-extrabold">Study Library</h2>
           <span className="text-sm font-semibold text-teal">
-            {visible.length} {visible.length === 1 ? "Subject" : "Subjects"}
+            {visible.length} {visible.length === 1 ? "Subject" : "Subjects"} · 15 guided study paths
           </span>
         </div>
       )}
@@ -295,6 +287,19 @@ function Library() {
           )}
         </div>
       )}
+      <section aria-label="Original source readings and doctor feedback" className="mt-9">
+        <h2 className="mb-2 text-xl font-extrabold">Official source reading · 15 subjects</h2>
+        <p className="mb-5 text-sm text-muted-foreground">Read the original publisher material and send guided dentist feedback. This does not unlock or approve unreviewed clinical lessons.</p>
+      {showReference && <PrimarySourceReading />}
+      {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
+      {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
+      {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
+      {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
+      {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
+      {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
+      {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
+      {extraReadings.map((source) => <PrimarySourceReading key={source.id} source={source} />)}
+      </section>
     </>
   );
 }

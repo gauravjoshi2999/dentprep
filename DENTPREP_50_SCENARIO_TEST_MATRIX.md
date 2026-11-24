@@ -355,6 +355,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 
 - Partial P1-04 technical checkpoint: admin-only preparation records, immutable versions, stale lesson/option/case detection and publication-lock refusal passed rollback-only native tests. No clinical approval/reviewer is certified; full workflow remains BLOCKED. PR #26 registry install/native/CI/live PASS; Issue #27 moves future editorial work to offline reviewed packages, not learner-facing admin.
 
+- Medical-safety software: strict repository source/claim/dental-signature/20-gate package contract and 43 isolated nonclinical regressions. No publishing capability, real clinician or reviewed package supplied. Full clinical approval remains BLOCKED; future editor work follows OPEN Issue #27 and offline reviewed packages.
+
 ## T43 — RLS private data
 
 - Priority: P0; status: **NOT RUN**.

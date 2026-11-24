@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-11-24T01:07:38.882Z",
+  "policy_version": "dentprep-medical-content-v1",
+  "curriculum_groups": 15,
+  "proposed_outcomes": 90,
+  "reviewed_outcomes": 0,
+  "completeness": "INCOMPLETE_CANDIDATE_CATALOG",
+  "draft_items_blocked": 60,
+  "clinical_release_packages": 0,
+  "trusted_reviewers": 0,
+  "clinical_publication": "LOCKED — no database publishing capability; existing guards retained",
+  "academic_approval": "NOT established by software checks",
+  "results": []
+}

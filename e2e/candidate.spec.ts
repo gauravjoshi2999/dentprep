@@ -507,6 +507,7 @@ test("ordinary candidates cannot access the content administration screen", asyn
 
 async function createDraftQuestion(page: Page) {
   await page.goto("/admin");
+  await expect(page.getByRole("link", { name: "Admin", exact: true })).toHaveCount(0);
   await page.getByRole("button", { name: "MCQs", exact: true }).click();
   await page.getByRole("button", { name: "Add draft", exact: true }).click();
   await page

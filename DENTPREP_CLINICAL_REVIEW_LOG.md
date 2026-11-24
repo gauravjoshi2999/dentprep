@@ -1,5 +1,9 @@
 # Clinical review log
 
+24 November 2026 native metadata re-audit: all 60 clinical items remain draft, 0 published and 3 enabled guards. No item-level clinical source rows exist; the three source rows are recruitment-notice references. No new clinical approval is recorded. `content/draft-inventory.json` preserves per-item version fingerprints and blockers; question hashes also include explanations/options. MCQs have structurally four distinct options/one marked answer, which does not establish single-best-answer validity. Trusted reviewer roster and reviewed release directory remain empty.
+
+The offline package contract now covers claim-linked sources, source/year/section/review/version metadata, independently verified dental sign-off signatures, all 20 gate decisions, MCQ rationale/ambiguity/remediation, illustration bytes/rights/labels and immutable correction/withdrawal evidence. It cannot publish or replace the DB lock. Scientific verification and actual qualified review are still missing; see `ops/MEDICAL_CONTENT_RELEASE.md`.
+
 SOURCE: verified backend audit, 23 November 2026. Fifteen lessons, thirty original questions and fifteen clinical cases remain draft. Published clinical count: zero.
 
 | Content | Author evidence | Independent qualified reviewer | Sources/version/freshness | Publication |

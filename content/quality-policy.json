@@ -1,0 +1,126 @@
+{
+  "version": "dentprep-medical-content-v1",
+  "gates": [
+    {
+      "id": "E01",
+      "requirement": "Coverage: every essential subject/unit/topic maps to an outcome and reviewer; no unmapped mandatory area.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E02",
+      "requirement": "Content source: each factual claim points to authoritative edition/year/section or verified official notice.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E03",
+      "requirement": "Freshness: content older than configured review interval is flagged for inspection before continued clinical use.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E04",
+      "requirement": "Clinical sign-off: independent qualified reviewer sign-off mandatory before clinical content publication.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E05",
+      "requirement": "MCQ unambiguity: each item has one defensible best option in its stated context; other options explained.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E06",
+      "requirement": "Clinical safety: high-risk emergency content flags red flags and escalation; no unsafe free-form treatment instructions.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E07",
+      "requirement": "Diagram accuracy: anatomy image labels/orientation checked by expert, alt text accurate and licensing recorded.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E08",
+      "requirement": "Misconception correction: wrong answers generate explanation and linked remedial lesson, not only correct label.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E09",
+      "requirement": "Fresh retrieval: learning checked on unseen questions, not only repeats or answer exposure.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E10",
+      "requirement": "Delayed retention: configured 1/7/30-day follow-up retrieval probes store scores separately from immediate attempts.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E11",
+      "requirement": "Confidence calibration: user-reported confidence compared with performance, never mistaken for mastery.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E12",
+      "requirement": "Difficulty calibration: items reviewed for challenge and discrimination as sufficient anonymized data accumulates.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E13",
+      "requirement": "Feedback source: AI-generated factual critique tied to reviewed materials; unsupported claims flagged to reviewer.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E14",
+      "requirement": "Test bias: low-English-fluency learners evaluated for comprehension without penalizing legitimate clinical reasoning.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E15",
+      "requirement": "Case transfer: learner applies concepts in new synthetic cases, not only memorized stems.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E16",
+      "requirement": "Rubric agreement: AI evaluation cannot show precise scoring until clinically meaningful human validation passes.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E17",
+      "requirement": "Error reporting: student flags questionable question; review process records response and score correction if needed.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E18",
+      "requirement": "Official claims: UPSC details compared to latest notice/corrigenda at time of publication; no predicted RT scheme.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    },
+    {
+      "id": "E19",
+      "requirement": "Learning pilot: diverse consenting candidate cohort completes usability, comprehension, retrieval and retention tasks. DentPrep | Independent education | Verified-source work handoff",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived.",
+      "single_learner_adaptation": "Issue #27 replaces diverse-cohort product acceptance with a consenting single-learner pilot. No learning-validity claim is permitted without actual retrieval/retention evidence."
+    },
+    {
+      "id": "E20",
+      "requirement": "Graduation gate: no claim that a student is fully exam-ready until broad coverage, repeated evidence and clear caveats exist.",
+      "academic_status": "BLOCKED",
+      "software_gate": "Every release records a signed result and relevance; mandatory checks cannot be waived."
+    }
+  ]
+}

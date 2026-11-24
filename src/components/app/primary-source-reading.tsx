@@ -7,7 +7,6 @@ import {
   type DentalReading,
 } from "@/lib/primary-reading";
 import { Button } from "@/components/ui/button";
-import { ClinicalReviewRequest } from "./clinical-review-request";
 import { READING_SECTIONS } from "@/lib/reading-sections";
 
 type SourceReading = DentalReading;
@@ -41,15 +40,14 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
         </div>
       </div>
       <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-        Read the original professional reference on its publisher's website. This reading link is
-        separate from DentPrep lessons, which need independent dental review before they are
-        unlocked. Follow qualified guidance for applying a guideline in your own clinical setting.
+        Open the original reference and check its edition, intended audience and section. Use it to
+        check your study notes and keep track of updates on the publisher's website.
       </p>
       {isOralSurgeryReading && (
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           This source is written for UK professional practice. Do not transfer drug, INR, emergency
           service or procedure recommendations to India without individual assessment and current
-          local qualified guidance. Reading it does not unlock DentPrep clinical lessons.
+          local clinical protocols.
         </p>
       )}
       <div className="mt-5 flex flex-wrap items-center gap-4">
@@ -75,8 +73,8 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           </summary>
           <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
             Choose a section, read the original, then make your own recall note. These links were
-            checked on 24 November 2026; they do not approve a DentPrep lesson or verify your
-            clinical understanding. Check the publisher for later changes.
+            checked on 24 November 2026. Check the publisher for later changes and keep the source
+            context with your notes.
           </p>
           <ol className="mt-3 grid gap-3 sm:grid-cols-2" aria-label="Oral surgery source sections">
             {sections.map((section, index) => (
@@ -133,18 +131,10 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
         {checked.size === source.readingSteps.length && (
           <p role="status" className="mt-4 flex items-start gap-2 text-sm font-semibold text-teal">
             <CheckCircle2 className="h-5 w-5 shrink-0" />
-            Reading checklist complete. Bring your clinical questions to a qualified educator.
+            Reading checklist complete. Explain the concept from memory, then check your source.
           </p>
         )}
       </fieldset>
-      <ClinicalReviewRequest
-        subject={source.subject}
-        subjectSlug={source.subjectSlug}
-        sourceId={source.id}
-        sourceTitle={source.title}
-        sourceEdition={source.edition}
-        sourceUrl={source.guideUrl}
-      />
       <p className="mt-5 text-sm">
         <Link to="/interviews" className="font-semibold text-teal">
           Next: practise explaining your learning in English →

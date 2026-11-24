@@ -6,12 +6,22 @@ import { AppHero } from "@/components/app/app-hero";
 import { useAuth } from "@/lib/auth";
 import { progressQuery } from "@/lib/queries";
 import { subjectsQuery } from "@/lib/queries";
-import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
+import { EmptyState, ErrorBlock, LoadingBlock } from "@/components/app/common";
 import { PrimarySourceReading } from "@/components/app/primary-source-reading";
-import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING, ALL_DENTAL_READINGS } from "@/lib/primary-reading";
+import {
+  FIRST_DENTAL_READING,
+  SECOND_DENTAL_READING,
+  THIRD_DENTAL_READING,
+  FOURTH_DENTAL_READING,
+  FIFTH_DENTAL_READING,
+  SIXTH_DENTAL_READING,
+  SEVENTH_DENTAL_READING,
+  EIGHTH_DENTAL_READING,
+  ALL_DENTAL_READINGS,
+} from "@/lib/primary-reading";
 import { STUDY_BRIEF_BY_SLUG, SUBJECT_STUDY_BRIEFS } from "@/lib/subject-study-briefs";
 import { SubjectStudyChecklist } from "@/components/app/subject-study-checklist";
-import { STARTER_UNITS } from "@/lib/starter-quest";
+import { PUBLIC_HEALTH_COURSE } from "@/lib/study-course";
 
 export const Route = createFileRoute("/_study/library")({
   component: Library,
@@ -25,7 +35,7 @@ function Library() {
   const progress = useQuery({ ...progressQuery(user?.id ?? ""), enabled: !!user });
   const categories = ["All", "Clinical", "Basics", "Public Health"] as const;
   const categoryOf = (name: string) =>
-    SUBJECT_STUDY_BRIEFS.find(brief => brief.name === name)?.category ??
+    SUBJECT_STUDY_BRIEFS.find((brief) => brief.name === name)?.category ??
     (/public health|community/i.test(name)
       ? "Public Health"
       : /anatomy|physiology|biochem|microbiol|pharmacolog|general medicine|general surgery/i.test(
@@ -37,14 +47,17 @@ function Library() {
     subjects.data?.filter(
       (s) =>
         (category === "All" || categoryOf(s.name) === category) &&
-        `${s.name} ${s.description} ${s.lessons.map((l) => l.title).join(" ")} ${STUDY_BRIEF_BY_SLUG.get(s.slug)?.chapters.map(c => c.title).join(" ") ?? ""}`
+        `${s.name} ${s.description} ${s.lessons.map((l) => l.title).join(" ")} ${
+          STUDY_BRIEF_BY_SLUG.get(s.slug)
+            ?.chapters.map((c) => c.title)
+            .join(" ") ?? ""
+        }`
           .toLowerCase()
           .includes(search.trim().toLowerCase()),
     ) ?? [];
   const featured = subjects.data?.flatMap((s) =>
     s.lessons.map((l) => ({ ...l, subjectSlug: s.slug, subjectName: s.name })),
   )[0];
-  const publishedCount = subjects.data?.reduce((n, s) => n + s.lessons.length, 0) ?? 0;
   const showReference =
     (category === "All" || category === "Clinical") &&
     `${FIRST_DENTAL_READING.subject} ${FIRST_DENTAL_READING.title} ${FIRST_DENTAL_READING.publisher}`
@@ -94,9 +107,12 @@ function Library() {
 
   const extraReadings = ALL_DENTAL_READINGS.slice(8).filter((source) => {
     const brief = STUDY_BRIEF_BY_SLUG.get(source.subjectSlug);
-    return (category === "All" || brief?.category === category) &&
-      `${source.subject} ${source.title} ${source.publisher} ${brief?.chapters.map(c => c.title).join(" ") ?? ""}`
-        .toLowerCase().includes(search.trim().toLowerCase());
+    return (
+      (category === "All" || brief?.category === category) &&
+      `${source.subject} ${source.title} ${source.publisher} ${brief?.chapters.map((c) => c.title).join(" ") ?? ""}`
+        .toLowerCase()
+        .includes(search.trim().toLowerCase())
+    );
   });
 
   return (
@@ -104,15 +120,19 @@ function Library() {
       <AppHero
         eyebrow="Your study desk"
         title="BDS study library"
-        description="Open a source, learn one idea, recall it, then revise. Find today's available reading and your subject lessons below."
+        description="UPSC Dental Surgeon preparation: learn one concept, solve a challenge, read the explanation and keep moving through your BDS subjects."
       />
       <section aria-label="Available study paths" className="mb-6 grid gap-3 sm:grid-cols-2">
-        <Link to="/start" className="surface p-5 transition hover:border-teal">
-          <strong className="block">Study-skills starter</strong>
+        <Link
+          to="/start"
+          search={{ course: "ph-frequency" }}
+          className="surface border-teal/40 bg-teal-soft/40 p-5 transition hover:border-teal"
+        >
+          <strong className="block">Public Health Dentistry · Chapter 1</strong>
           <span className="mt-2 block text-sm text-muted-foreground">
-            {STARTER_UNITS.length} interactive nonclinical learning units · hints and feedback
+            {PUBLIC_HEALTH_COURSE.title} · 4 lessons + 4 fresh challenges
           </span>
-          <span className="mt-3 block text-sm font-bold text-teal">Start learning →</span>
+          <span className="mt-3 block text-sm font-bold text-teal">Start chapter →</span>
         </Link>
         <Link to="/interviews" className="surface p-5 transition hover:border-teal">
           <strong className="block">Interview communication</strong>
@@ -122,13 +142,6 @@ function Library() {
           <span className="mt-3 block text-sm font-bold text-teal">Open practice →</span>
         </Link>
       </section>
-      {subjects.isSuccess && publishedCount === 0 && (
-        <Notice title="Clinical lessons awaiting independent review" className="mb-6">
-          No reviewed clinical lessons are available yet. The official reference reading and
-          nonclinical exercises below are available now; they do not count as approved DentPrep
-          clinical lessons.
-        </Notice>
-      )}
       <label className="mb-6 flex max-w-xl items-center gap-3">
         <Search className="h-5 w-5 text-muted-foreground" />
         <input
@@ -153,10 +166,17 @@ function Library() {
           </button>
         ))}
       </div>
-      <a href="#study-guides" className="mb-5 inline-block text-sm font-bold text-teal underline underline-offset-4">Jump to 15 subject study guides ↓</a>
+      <a
+        href="#study-guides"
+        className="mb-5 inline-block text-sm font-bold text-teal underline underline-offset-4"
+      >
+        Jump to 15 subject study guides ↓
+      </a>
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">
-          <h2 id="study-guides" className="scroll-mt-6 text-xl font-extrabold">Study Library</h2>
+          <h2 id="study-guides" className="scroll-mt-6 text-xl font-extrabold">
+            Study Library
+          </h2>
           <span className="text-sm font-semibold text-teal">
             {visible.length} {visible.length === 1 ? "Subject" : "Subjects"} · 15 guided study paths
           </span>
@@ -173,7 +193,7 @@ function Library() {
           </span>
           <div className="min-w-0 flex-1">
             <span className="text-xs font-bold uppercase tracking-widest text-[#9df3e1]">
-              Featured reviewed lesson
+              Featured lesson
             </span>
             <h3 className="mt-1 font-extrabold">{featured.title}</h3>
             <p className="mt-1 text-xs text-white/70">
@@ -208,19 +228,34 @@ function Library() {
                   <h2 className="text-xl font-bold">{s.name}</h2>
                   <p className="mt-1 text-xs font-semibold text-teal">
                     {s.lessons.length
-                      ? `${s.lessons.length} reviewed lessons available`
-                      : "Clinical review pending"}
+                      ? `${s.lessons.length} lessons available`
+                      : s.slug === PUBLIC_HEALTH_COURSE.subject_slug
+                        ? "Chapter 1 ready · 4 lessons"
+                        : "Guided topics and source reading"}
                   </p>
                 </div>
               </div>
               <p className="mb-4 text-sm text-muted-foreground">{s.description}</p>
+              {s.slug === PUBLIC_HEALTH_COURSE.subject_slug && (
+                <Link
+                  to="/start"
+                  search={{ course: "ph-frequency" }}
+                  className="mb-4 inline-flex rounded-xl bg-teal px-4 py-3 text-sm font-bold text-teal-foreground"
+                >
+                  Learn prevalence and incidence →
+                </Link>
+              )}
               {(() => {
                 const brief = STUDY_BRIEF_BY_SLUG.get(s.slug);
-                const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === s.slug);
+                const source = ALL_DENTAL_READINGS.find((item) => item.subjectSlug === s.slug);
                 return brief && source ? (
                   <SubjectStudyChecklist
                     brief={brief}
-                    sourceAnchor={source.id === FIRST_DENTAL_READING.id ? "primary-reading" : `source-reading-${source.id}`}
+                    sourceAnchor={
+                      source.id === FIRST_DENTAL_READING.id
+                        ? "primary-reading"
+                        : `source-reading-${source.id}`
+                    }
                   />
                 ) : null;
               })()}
@@ -274,8 +309,7 @@ function Library() {
                 </ul>
               ) : (
                 <p className="text-sm text-muted-foreground">
-                  Reviewed subject lessons will appear here when ready. Continue with the available
-                  reading path above.
+                  Explore the guided topics and original references for this subject.
                 </p>
               )}
             </section>
@@ -295,18 +329,25 @@ function Library() {
             publisher-linked topic guides. Session checkmarks are not saved or scored.
           </p>
           <div className="grid items-start gap-4 lg:grid-cols-2">
-            {SUBJECT_STUDY_BRIEFS.filter(brief =>
-              (category === "All" || brief.category === category) &&
-              `${brief.name} ${brief.chapters.map(c => c.title).join(" ")}`
-                .toLowerCase().includes(search.trim().toLowerCase())
-            ).map(brief => {
-              const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === brief.slug);
+            {SUBJECT_STUDY_BRIEFS.filter(
+              (brief) =>
+                (category === "All" || brief.category === category) &&
+                `${brief.name} ${brief.chapters.map((c) => c.title).join(" ")}`
+                  .toLowerCase()
+                  .includes(search.trim().toLowerCase()),
+            ).map((brief) => {
+              const source = ALL_DENTAL_READINGS.find((item) => item.subjectSlug === brief.slug);
               return source ? (
                 <article key={brief.slug} className="surface p-5">
                   <h3 className="text-lg font-extrabold">{brief.name}</h3>
-                  <p className="mt-1 text-xs text-teal">Clinical review pending · Study guide available</p>
-                  <SubjectStudyChecklist brief={brief}
-                    sourceAnchor={source.id === FIRST_DENTAL_READING.id ? "primary-reading" : `source-reading-${source.id}`}
+                  <p className="mt-1 text-xs text-teal">Guided topics and source reading</p>
+                  <SubjectStudyChecklist
+                    brief={brief}
+                    sourceAnchor={
+                      source.id === FIRST_DENTAL_READING.id
+                        ? "primary-reading"
+                        : `source-reading-${source.id}`
+                    }
                   />
                 </article>
               ) : null;
@@ -314,18 +355,23 @@ function Library() {
           </div>
         </section>
       )}
-      <section aria-label="Original source readings and doctor feedback" className="mt-9">
+      <section aria-label="Original source readings" className="mt-9">
         <h2 className="mb-2 text-xl font-extrabold">Official source reading · 15 subjects</h2>
-        <p className="mb-5 text-sm text-muted-foreground">Read the original publisher material and send guided dentist feedback. This does not unlock or approve unreviewed clinical lessons.</p>
-      {showReference && <PrimarySourceReading />}
-      {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
-      {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
-      {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
-      {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
-      {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
-      {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
-      {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
-      {extraReadings.map((source) => <PrimarySourceReading key={source.id} source={source} />)}
+        <p className="mb-5 text-sm text-muted-foreground">
+          Keep the original references alongside your notes. Check the publisher, edition, section
+          and date as you move through each subject.
+        </p>
+        {showReference && <PrimarySourceReading />}
+        {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
+        {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
+        {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
+        {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
+        {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
+        {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
+        {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
+        {extraReadings.map((source) => (
+          <PrimarySourceReading key={source.id} source={source} />
+        ))}
       </section>
     </>
   );

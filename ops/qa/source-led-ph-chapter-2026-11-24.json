@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "scope": "First nonclinical exam-foundation chapter and removal of doctor-review friction from the learner flow",
+  "source_catalogue": "content/study/ph-frequency.v1.json",
+  "course": "ph-frequency",
+  "version": 1,
+  "chapter_topics": [
+    "survey comparability",
+    "matching denominators",
+    "point prevalence",
+    "new cases and incidence proportion"
+  ],
+  "lessons": 4,
+  "fresh_application_questions": 4,
+  "total_checks": 8,
+  "primary_sources": 6,
+  "authoring": "AI-assisted, primary-source checked",
+  "independent_clinical_approval_claimed": false,
+  "official_upsc_questions": false,
+  "complete_subject": false,
+  "native_rollback_qa": {
+    "checked_at": "2026-11-24T08:31:44.246717+00:00",
+    "clinical_guards": 3,
+    "published_clinical": 0,
+    "qa_users_absent": true,
+    "test": "PASS: owner isolation, anonymous denial, exact server grading, corrected retry, idempotency, stale revision and out-of-order rejection, version binding, reload and immutable first answers; fixtures rolled back"
+  },
+  "native_installation": {
+    "anonymous_state_access": false,
+    "checked_at": "2026-11-24T08:32:16.81965+00:00",
+    "direct_authenticated_write": false,
+    "installed": true,
+    "rls": true,
+    "rows": 0
+  },
+  "local_tests": {
+    "vitest": 67,
+    "content_integrity": 52,
+    "release": 19,
+    "typecheck": "PASS",
+    "changed_typescript_lint": "PASS",
+    "browser": "44 enumerated; exact-head full CI required"
+  },
+  "clinical_legacy": "All 60 original templates and three clinical publication guards unchanged; no clinical approval fields or signed roster altered",
+  "founder_override": "Remove student-facing doctor-review requirement/forms and repeated pending states; teach source-led BDS foundations for UPSC Dental Surgeon preparation",
+  "remaining": [
+    "Next bounded theory chapter/subject",
+    "Separate fresh 1/7/30-day retention",
+    "Quest progress integration in plan/reports",
+    "Actual private-account and physical-phone acceptance"
+  ],
+  "release_evidence": "Final PR and Issue #27 acceptance comment and exact-SHA production artifact; this source snapshot cannot predict its own future SHA"
+}

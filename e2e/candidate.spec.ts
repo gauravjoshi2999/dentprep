@@ -65,6 +65,8 @@ async function mockBackend(
   let savedReviewerProfile: Record<string, unknown> | null = null;
   let preparationFingerprint = "a".repeat(64);
   let firstPreparationSave = true;
+  const quest = { next_step: 0, first_correct: 0, first_choices: [] as number[], attempt_counts: [] as number[], revision: 0, completed_at: null as string | null, last_result: null as {step: number; choice: number; correct: boolean} | null };
+  let questRequestId = "";
   const question = {
     id: questionId,
     subject_id: subjectId,
@@ -101,6 +103,27 @@ async function mockBackend(
     }
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
+    else if (path.endsWith("/rpc/exam_quest_state")) data = quest;
+    else if (path.endsWith("/rpc/exam_quest_answer")) {
+      const keys = [1,0,2,1,0,2,0,2];
+      expect(body.p_course_id).toBe("ph-frequency");
+      expect(body.p_version).toBe(1);
+      if (questRequestId !== body.p_request_id) {
+        expect(body.p_expected_revision).toBe(quest.revision);
+        expect(body.p_step).toBe(quest.next_step);
+        const step = quest.next_step;
+        const first = quest.first_choices.length === step;
+        if (first) { quest.first_choices.push(body.p_choice); quest.attempt_counts.push(1); }
+        else quest.attempt_counts[step]! += 1;
+        const correct = body.p_choice === keys[step];
+        if (correct) { quest.next_step += 1; if (first) quest.first_correct += 1; }
+        quest.revision += 1;
+        quest.last_result = {step, choice: body.p_choice, correct};
+        quest.completed_at = quest.next_step === 8 ? "2026-11-24T08:00:00Z" : null;
+        questRequestId = body.p_request_id;
+      }
+      data = quest;
+    }
     else if (path.endsWith("/rpc/has_role")) data = admin;
     else if (path.endsWith("/rpc/admin_content_evidence")) {
       expect(admin).toBe(true);
@@ -354,7 +377,7 @@ test("public library and protected pages behave on mobile and desktop", async ({
   await mockBackend(page);
   await page.goto("/library");
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
-  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
+  await expect(page.getByRole("link", { name: /Public Health Dentistry · Chapter 1/ })).toBeVisible();
   await page.getByRole("searchbox").fill("missing subject");
   await expect(page.getByText("No matching subjects")).toBeVisible();
   for (const path of ["/dashboard", "/practice", "/plan", "/progress", "/saved", "/interviews"]) {
@@ -375,7 +398,7 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await page.getByLabel("Password", { exact: true }).fill("test-only-password");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Welcome, Dr. QA" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Start your dental reference reading" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Learn prevalence and incidence" })).toBeVisible();
   // A click dispatches the async handler; navigating immediately can cancel its logout request.
   // Wait for the app's completed-signout navigation and cleared control, then reload a private URL.
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
@@ -450,7 +473,7 @@ test("subject-first plan studies official sources even when every clinical lesso
     }], headers: { "access-control-allow-origin": "*" } });
   });
   await page.goto("/plan");
-  await expect(page.getByText("Clinical content is awaiting review")).toBeVisible();
+  await expect(page.getByText("Use your available study paths")).toBeVisible();
   await page.getByLabel("Daily hours").fill("0.5");
   await page.getByRole("button", { name: "Generate and save study plan" }).click();
   const sourceTask = page.getByRole("checkbox", { name: /Complete Source study: Oral & Maxillofacial Surgery/ }).first();
@@ -689,7 +712,7 @@ test("approved mobile visual navigation uses real pages and honest study data", 
   await nav.getByRole("link", { name: "Study" }).click();
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Clinical", exact: true })).toBeVisible();
-  await expect(page.getByText("Clinical review pending", { exact: true })).toBeVisible();
+  await expect(page.getByText("Clinical review pending", { exact: true })).toHaveCount(0);
   await nav.getByRole("link", { name: "Interview" }).click();
   await expect(page.getByRole("heading", { name: "Interview communication studio" })).toBeVisible();
   await expect(page.getByText(/Voice and AI clinical scoring are not enabled/)).toBeVisible();
@@ -764,7 +787,7 @@ test("oral surgery source sections open exact references without exposing draft 
     await expect(link).toHaveAttribute("target", "_blank");
     await expect(link).toHaveAttribute("rel", "noopener noreferrer");
   }
-  await expect(card.getByText(/they do not approve a DentPrep lesson/)).toBeVisible();
+  await expect(card.getByText(/Check the publisher for later changes/)).toBeVisible();
   await expect(page.getByText(/Provisional single-best answer/)).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
@@ -772,11 +795,13 @@ test("oral surgery source sections open exact references without exposing draft 
 test("study focus leads to an honest primary reading path and keeps tools in Profile", async ({ page }, testInfo) => {
   await mockBackend(page, true);
   await page.goto("/dashboard");
-  await expect(page.getByRole("heading", { name: "Start your dental reference reading" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Learn prevalence and incidence" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Quick actions" })).toHaveCount(0);
   await expect(page.getByRole("region", { name: "Official recruitment notice" })).toHaveCount(0);
-  await page.getByRole("link", { name: "Start source reading" }).click();
-  await expect(page).toHaveURL(/\/library#primary-reading$/);
+  await page.getByRole("link", { name: "Start Public Health chapter" }).click();
+  await expect(page).toHaveURL(/\/start\?course=ph-frequency$/);
+  await expect(page.getByRole("heading", { name: "Disease frequency: prevalence and incidence" })).toBeVisible();
+  await page.goto("/library");
   await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Dental Patients Taking Anticoagulants — professional guide" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Endodontic Clinical Resources — guidelines and terminology" })).toBeVisible();
@@ -795,42 +820,15 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
     "href",
     "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
   );
-  const reviewerForm = cdcCard.getByRole("button", { name: /Doctor guided feedback/ });
-  await reviewerForm.click();
-  await expect(cdcCard.getByText("डॉक्टर को किसका review करना है?")).toBeVisible();
-  await expect(cdcCard.getByRole("button", { name: "Copy full question sheet" })).toBeVisible();
-  await cdcCard.getByRole("textbox", { name: "Doctor's name" }).fill("Test Dental Reviewer");
-  await cdcCard.getByRole("textbox", { name: "MDS qualification / relevant specialty" }).fill("MDS Test Specialty");
-  await cdcCard.getByRole("textbox", { name: "Dental council and registration number" }).fill("TEST-REG-123");
-  await cdcCard.getByRole("checkbox", { name: "Consent to save reviewer profile" }).check();
-  await cdcCard.getByRole("button", { name: "Save reviewer profile once" }).click();
-  await expect(cdcCard.getByRole("region", { name: "Saved reviewer profile" })).toBeVisible();
-
-  await cdcCard.getByRole("textbox", { name: "Exact source section or page" }).fill("CDC source section on Standard Precautions");
-  const questions = cdcCard.locator("[data-review-question]");
-  await expect(questions).toHaveCount(12);
-  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeDisabled();
-  for (const question of await questions.all()) await question.getByRole("radio", { name: "ठीक है" }).check();
-  await questions.first().getByRole("radio", { name: "सुधार जरूरी" }).check();
-  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeDisabled();
-  await questions.first().getByRole("textbox", { name: "Q1 reviewer note" }).fill("Guideline version verify again");
-  await cdcCard.getByRole("checkbox", { name: "Doctor reviewed this exact source" }).check();
-  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeEnabled();
-  await cdcCard.getByRole("button", { name: "Submit completed feedback" }).click();
-  await expect(cdcCard.getByText(/Feedback received · Pending independent verification/)).toBeVisible();
-
-  const endodonticsCard = page.locator("#source-reading-aae-endodontic-resources");
-  await endodonticsCard.getByRole("button", { name: /Doctor guided feedback/ }).click();
-  await expect(endodonticsCard.getByRole("region", { name: "Saved reviewer profile" })).toContainText("Test Dental Reviewer");
-  await expect(endodonticsCard.getByRole("textbox", { name: "Doctor's name" })).toHaveCount(0);
-  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
+  await expect(page.getByRole("button", { name: /Doctor guided feedback/ })).toHaveCount(0);
+  await expect(page.getByText("Clinical review pending", { exact: true })).toHaveCount(0);
   await expect(page.locator("#source-reading-sdcep-anticoagulants-2022").getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
     "href",
     "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/",
   );
   await expect(page.getByRole("group", { name: "Oral surgery reading checklist" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Open official guide (PDF)" })).toHaveAttribute("href", /^https:\/\/www\.ada\.org\/.*2026\/ada_oral_cancer_guideline\.pdf/);
-  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
+  await expect(page.getByRole("link", { name: /Public Health Dentistry · Chapter 1/ })).toBeVisible();
   const checklist = page.getByRole("group", { name: "Your reading checklist" });
   await expect(checklist.getByRole("checkbox")).toHaveCount(4);
   for (const checkbox of await checklist.getByRole("checkbox").all()) await checkbox.check();
@@ -848,4 +846,61 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
   await expect(page).toHaveURL(/\/plan$/);
   await expect(page.getByLabel("Daily hours")).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+
+test("subject chapter saves first attempts, resumes after reload and keeps review from rewriting the score", async ({ page }) => {
+  await mockBackend(page, true);
+  let writes = 0;
+  page.on("request", request => { if (new URL(request.url()).pathname.endsWith("/rpc/exam_quest_answer")) writes += 1; });
+  await page.goto("/start?course=ph-frequency");
+  await expect(page.getByRole("heading", { name: "Make surveys comparable" })).toBeVisible();
+  await page.getByRole("button", { name: "Show hint" }).click();
+  await expect(page.getByText("Look for consistency.")).toBeVisible();
+  await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(0).click();
+  await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.getByText("Not quite — try another answer")).toBeVisible();
+  await expect(page.getByText("Changing definitions confounds comparison.")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Next challenge" })).toBeDisabled();
+  await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(1).click();
+  await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole("heading", { name: "Count people, then check the denominator" })).toBeVisible();
+  for (const answer of [0,2,1,0,2,0,2]) {
+    await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+    await page.getByRole("button", { name: "Check answer" }).click();
+    await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
+    if (await page.getByRole("button", { name: "Next challenge" }).count()) await page.getByRole("button", { name: "Next challenge" }).click();
+  }
+  await page.getByRole("button", { name: "Finish chapter" }).click();
+  await expect(page.getByText("First-attempt result: 7/8")).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("First-attempt result: 7/8")).toBeVisible();
+  await expect(page.getByText(/Your checkpoint and first-attempt result are saved/)).toBeVisible();
+  expect(writes).toBe(9);
+  await page.getByRole("button", { name: "Review chapter" }).click();
+  await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(1).click();
+  await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
+  expect(writes).toBe(9);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test("a lost answer response keeps the retry id and does not claim a saved result before acknowledgement", async ({ page }) => {
+  await mockBackend(page, true);
+  const requests: string[] = [];
+  await page.route("https://example.supabase.co/rest/v1/rpc/exam_quest_answer", async route => {
+    const body = route.request().postDataJSON(); requests.push(body.p_request_id);
+    if (requests.length === 1) return route.abort();
+    return route.fulfill({ json: { next_step: 1, first_correct: 1, first_choices: [1], attempt_counts: [1], revision: 1, completed_at: null, last_result: { step: 0, choice: 1, correct: true } }, headers: { "access-control-allow-origin": "*" } });
+  });
+  await page.goto("/start?course=ph-frequency");
+  await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(1).click();
+  await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.getByRole("alert")).toContainText("has not been confirmed saved");
+  await expect(page.getByRole("button", { name: "Next challenge" })).toBeDisabled();
+  await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
+  expect(requests).toHaveLength(2); expect(requests[0]).toBe(requests[1]);
 });

@@ -7,13 +7,16 @@ import type { SubjectStudyBrief } from "@/lib/subject-study-briefs";
  * preparation scaffold. They never update published clinical lesson status,
  * academic progress, attempt scores or medical review approval.
  */
-export function SubjectStudyChecklist({ brief, sourceAnchor }: {
+export function SubjectStudyChecklist({
+  brief,
+  sourceAnchor,
+}: {
   brief: SubjectStudyBrief;
   sourceAnchor: string;
 }) {
   const [done, setDone] = useState<Set<number>>(new Set());
   function toggle(index: number) {
-    setDone(previous => {
+    setDone((previous) => {
       const next = new Set(previous);
       if (next.has(index)) next.delete(index);
       else next.add(index);
@@ -23,22 +26,29 @@ export function SubjectStudyChecklist({ brief, sourceAnchor }: {
   const chapterRow = (chapter: SubjectStudyBrief["chapters"][number], index: number) => (
     <li key={chapter.title} className="rounded-lg border border-border/80 bg-card p-3">
       <label className="flex cursor-pointer items-start gap-2 text-sm font-semibold">
-        <input type="checkbox" className="mt-1 size-4 shrink-0 accent-teal"
-          checked={done.has(index)} onChange={() => toggle(index)}
-          aria-label={`Read: ${chapter.title}`} />
+        <input
+          type="checkbox"
+          className="mt-1 size-4 shrink-0 accent-teal"
+          checked={done.has(index)}
+          onChange={() => toggle(index)}
+          aria-label={`Read: ${chapter.title}`}
+        />
         <span>{chapter.title}</span>
       </label>
       <p className="mt-1 pl-6 text-xs leading-relaxed text-muted-foreground">{chapter.task}</p>
     </li>
   );
   return (
-    <section aria-label={`${brief.name} study guide`} className="mt-4 rounded-xl bg-muted/50 p-3 sm:p-4">
+    <section
+      aria-label={`${brief.name} study guide`}
+      className="mt-4 rounded-xl bg-muted/50 p-3 sm:p-4"
+    >
       <div className="flex items-start gap-2">
         <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-teal" aria-hidden="true" />
         <div>
           <h3 className="text-sm font-extrabold">Start today · 5 guided study topics</h3>
           <p className="mt-1 text-xs text-muted-foreground">
-            BDS-style preparation prompts · not reviewed DentPrep clinical lessons or official UPSC test syllabus
+            UPSC Dental Surgeon preparation · guided topic roadmap
           </p>
         </div>
       </div>
@@ -57,15 +67,20 @@ export function SubjectStudyChecklist({ brief, sourceAnchor }: {
         </ul>
         <h4 className="mt-4 text-sm font-bold">Active recall · explain without notes</h4>
         <ol className="mt-2 list-inside list-decimal space-y-2 text-sm text-muted-foreground">
-          {brief.recall.map((question) => <li key={question}>{question}</li>)}
+          {brief.recall.map((question) => (
+            <li key={question}>{question}</li>
+          ))}
         </ol>
         <p className="mt-3 text-xs text-muted-foreground">
-          These are self-study prompts without AI-scored answers. Check your original reference and discuss uncertain clinical claims with a qualified educator.
+          Use these recall prompts after studying. Check your explanation against the original
+          source.
         </p>
       </details>
-      <a href={`#${sourceAnchor}`}
-        className="mt-3 inline-block text-sm font-bold text-teal underline underline-offset-4">
-        Open publisher reference + doctor feedback ↓
+      <a
+        href={`#${sourceAnchor}`}
+        className="mt-3 inline-block text-sm font-bold text-teal underline underline-offset-4"
+      >
+        Open subject references ↓
       </a>
     </section>
   );

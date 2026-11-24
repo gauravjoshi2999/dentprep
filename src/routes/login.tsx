@@ -169,8 +169,8 @@ function Login() {
           </form>
         )}
         <p className="mt-6 text-xs text-muted-foreground">
-          DentPrep is independent of UPSC. Only reviewed clinical study material is available to
-          candidates.
+          Independent UPSC Dental Surgeon preparation with source-linked notes, practice and
+          personal study progress.
         </p>
       </div>
     </main>

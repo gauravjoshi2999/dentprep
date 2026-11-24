@@ -40,8 +40,9 @@ function Cases() {
           ))}
         </div>
       ) : (
-        <EmptyState title="Scenarios awaiting clinical review">
-          Draft cases remain private. Reviewed scenarios will appear here when published.
+        <EmptyState title="Case-based learning">
+          More case chapters are being prepared. Continue the available subject chapter and
+          source-reading paths.
         </EmptyState>
       )}
       {slug && <CaseDetails slug={slug} />}

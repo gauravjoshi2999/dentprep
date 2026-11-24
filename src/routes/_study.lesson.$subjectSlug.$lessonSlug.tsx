@@ -61,7 +61,7 @@ function Lesson() {
   if (!lesson)
     return (
       <EmptyState title="Lesson unavailable">
-        This lesson may be awaiting review or no longer published.{" "}
+        This lesson is not available in the current study catalogue.{" "}
         <Link to="/library" className="text-teal underline">
           Return to the study library.
         </Link>

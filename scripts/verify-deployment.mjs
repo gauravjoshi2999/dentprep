@@ -41,7 +41,7 @@ await verifyWithPropagationRetries(async (pass) => {
   const manifest = await read("/manifest.webmanifest", "json");
   assert.equal(manifest.short_name, "DentPrep");
   assert.equal(manifest.start_url, "/dashboard");
-  for (const path of ["/start", "/login", "/library", "/offline.html", "/sw.js"]) await read(path);
+  for (const path of ["/start", "/start?course=ph-frequency", "/login", "/library", "/offline.html", "/sw.js"]) await read(path);
 });
 console.log(`Verified live SSR, release ${revision}, assets, routes and PWA at ${origin.origin}.`);
 console.log(

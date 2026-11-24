@@ -87,9 +87,13 @@ function Plan() {
       // Skip already checked source-study topics across earlier cycles.
       // These are reading checkmarks, not verified clinical mastery.
       const { data: studied, error: studiedError } = await supabase
-        .from("study_tasks").select("title")
-        .eq("user_id", userId).eq("done", true)
-        .eq("task_type", "revision").like("title", "Source study:%").limit(200);
+        .from("study_tasks")
+        .select("title")
+        .eq("user_id", userId)
+        .eq("done", true)
+        .eq("task_type", "revision")
+        .like("title", "Source study:%")
+        .limit(200);
       if (studiedError) throw new Error(studiedError.message);
       const cycle = generateCycle(
         {
@@ -198,21 +202,25 @@ function Plan() {
     setCreating(true);
   }
   const dayOffset = Math.max(0, diffDays(istToday(), plan.data?.plan.start_date ?? istToday()));
-  const todayGuide = plan.data?.tasks.find(t => t.task_date === istToday() &&
-    /^(Continue: )*Source study:/.test(t.title));
-  const todaySubject = subjects.data?.find(s => s.id === todayGuide?.subject_id);
-  const currentBrief = STUDY_BRIEF_BY_SLUG.get(todaySubject?.slug ?? "") ??
+  const todayGuide = plan.data?.tasks.find(
+    (t) => t.task_date === istToday() && /^(Continue: )*Source study:/.test(t.title),
+  );
+  const todaySubject = subjects.data?.find((s) => s.id === todayGuide?.subject_id);
+  const currentBrief =
+    STUDY_BRIEF_BY_SLUG.get(todaySubject?.slug ?? "") ??
     SUBJECT_STUDY_BRIEFS[dayOffset % SUBJECT_STUDY_BRIEFS.length];
   const currentChapter = currentBrief
-    ? (currentBrief.chapters.find(chapter => todayGuide?.title.endsWith(` — ${chapter.title}`)) ??
+    ? (currentBrief.chapters.find((chapter) => todayGuide?.title.endsWith(` — ${chapter.title}`)) ??
       currentBrief.chapters[dayOffset % currentBrief.chapters.length])
     : undefined;
-  const currentSource = ALL_DENTAL_READINGS.find(source => source.subjectSlug === currentBrief?.slug);
+  const currentSource = ALL_DENTAL_READINGS.find(
+    (source) => source.subjectSlug === currentBrief?.slug,
+  );
   return (
     <>
       <PageHeader
         title="A plan that fits your day"
-        description="Learn one dental topic daily, use original sources, recall and revise. Scored clinical practice unlocks only after independent review."
+        description="Prepare for UPSC Dental Surgeon one topic at a time: learn, practise, check your explanation and revise."
         actions={
           plan.data && (
             <Button
@@ -234,32 +242,56 @@ function Plan() {
       </Notice>
       {cycleSummary && <Notice className="mb-6">{cycleSummary}</Notice>}
       {plan.data && currentBrief && currentSource && (
-        <section className="surface mb-6 border-teal/40 bg-teal-soft/20 p-5" aria-label="Today's dental subject focus">
-          <p className="text-xs font-bold uppercase tracking-widest text-teal">Available now · Today's dental study</p>
+        <section
+          className="surface mb-6 border-teal/40 bg-teal-soft/20 p-5"
+          aria-label="Today's dental subject focus"
+        >
+          <p className="text-xs font-bold uppercase tracking-widest text-teal">
+            Available now · Today's dental study
+          </p>
           <h2 className="mt-2 text-xl font-extrabold">{currentBrief.name}</h2>
           <p className="mt-2 text-sm font-semibold">{currentChapter?.title}</p>
           <p className="mt-1 text-sm text-muted-foreground">{currentChapter?.task}</p>
-          <p className="mt-2 text-xs text-muted-foreground">Original-source study, not an approved clinical lesson. Choose your daily tasks below, or create a new subject-focused schedule.</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Original-source study, not an approved clinical lesson. Choose your daily tasks below,
+            or create a new subject-focused schedule.
+          </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Link to="/library" hash={currentSource.id === "ada-oral-cancer-2026" ? "primary-reading" : `source-reading-${currentSource.id}`}
-              className="text-sm font-bold text-teal underline underline-offset-4">
+            <Link
+              to="/library"
+              hash={
+                currentSource.id === "ada-oral-cancer-2026"
+                  ? "primary-reading"
+                  : `source-reading-${currentSource.id}`
+              }
+              className="text-sm font-bold text-teal underline underline-offset-4"
+            >
               Open original source →
             </Link>
-            <Link to="/library" hash="study-guides" className="text-sm font-bold text-teal underline underline-offset-4">
+            <Link
+              to="/library"
+              hash="study-guides"
+              className="text-sm font-bold text-teal underline underline-offset-4"
+            >
               All 15 subject guides
             </Link>
           </div>
           {!creating && (
-            <Button className="mt-4" variant="outline" disabled={save.isPending || toggle.isPending}
-              onClick={startSubjectCycle}>Start subject-focused cycle</Button>
+            <Button
+              className="mt-4"
+              variant="outline"
+              disabled={save.isPending || toggle.isPending}
+              onClick={startSubjectCycle}
+            >
+              Start subject-focused cycle
+            </Button>
           )}
         </section>
       )}
       {!questions.data?.length && !subjects.data?.some((s) => s.lessons.length) && (
-        <Notice className="mb-6" title="Clinical content is awaiting review">
-          All 15 subject source-reading guides and non-scored recall are available now.
-          Clinical lessons, MCQ answer keys and cases remain locked until genuine review.
-          Use "Start subject-focused cycle" to replace repetitive planning without rewriting your history.
+        <Notice className="mb-6" title="Use your available study paths">
+          Start the interactive Public Health chapter or follow a source-reading guide across all 15
+          subjects. Your renewable study cycles preserve previous planning history.
         </Notice>
       )}
       {(!plan.data || creating) && (
@@ -269,8 +301,9 @@ function Plan() {
               <input type="checkbox" checked={carry} onChange={(e) => setCarry(e.target.checked)} />
               <span>
                 Carry unfinished tasks forward ({pending.data?.total_pending ?? 0} available).
-                Untick to start fresh subject-wise study instead of repeating old notice/interview tasks.
-                Original history stays saved. Only approved clinical questions/cases are scheduled.{" "}
+                Untick to start fresh subject-wise study instead of repeating old notice/interview
+                tasks. Original history stays saved. Only approved clinical questions/cases are
+                scheduled.{" "}
                 {(pending.data?.total_pending ?? 0) > 1000 &&
                   "The oldest 1,000 tasks are considered first; the remaining queue is retained."}
               </span>
@@ -427,12 +460,20 @@ function Plan() {
                               ) : t.task_type === "revision" &&
                                 /^(Continue: )*(Source study:|Recall source:)/.test(t.title) &&
                                 subject ? (
-                                <Link to="/library" hash={(() => {
-                                  const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === subject.slug);
-                                  return source?.id === "ada-oral-cancer-2026"
-                                    ? "primary-reading"
-                                    : source ? `source-reading-${source.id}` : "study-guides";
-                                })()} className="text-teal underline">
+                                <Link
+                                  to="/library"
+                                  hash={(() => {
+                                    const source = ALL_DENTAL_READINGS.find(
+                                      (item) => item.subjectSlug === subject.slug,
+                                    );
+                                    return source?.id === "ada-oral-cancer-2026"
+                                      ? "primary-reading"
+                                      : source
+                                        ? `source-reading-${source.id}`
+                                        : "study-guides";
+                                  })()}
+                                  className="text-teal underline"
+                                >
                                   Open original source
                                 </Link>
                               ) : t.task_type === "interview" ? (

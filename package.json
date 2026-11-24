@@ -21,8 +21,8 @@
     "verify:deployment": "node scripts/verify-deployment.mjs",
     "test:worker": "node scripts/check-built-worker.mjs",
     "test:release": "node --test scripts/read-deployment.test.mjs scripts/deploy-target.test.mjs scripts/verify-propagation.test.mjs scripts/build-revision.test.mjs",
-    "check:content": "node scripts/check-content-release.mjs",
-    "test:content": "node --test scripts/content-safety.test.mjs scripts/draft-preparation.test.mjs",
+    "check:content": "node scripts/check-content-release.mjs && node scripts/check-study-foundations.mjs",
+    "test:content": "node --test scripts/content-safety.test.mjs scripts/draft-preparation.test.mjs scripts/study-foundations.test.mjs",
     "prebuild": "npm run check:content",
     "prebuild:dev": "npm run check:content"
   },

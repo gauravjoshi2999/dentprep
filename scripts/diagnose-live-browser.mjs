@@ -26,7 +26,7 @@ if (expectedRevision && !/^[a-f0-9]{40}$/.test(expectedRevision)) {
   throw new Error("Expected Git revision must be 40 hex characters.");
 }
 
-const routes = ["/", "/start", "/dashboard", "/library", "/practice", "/interviews"];
+const routes = ["/", "/start", "/start?course=ph-frequency", "/dashboard", "/library", "/practice", "/interviews"];
 const browser = await chromium.launch({ headless: true });
 try {
   await verifyWithPropagationRetries(
@@ -72,6 +72,24 @@ try {
                 timeout: 20_000,
               });
               await page.waitForTimeout(2000);
+              let guestQuestAccepted = null;
+              // Only a protected exact-revision deployment can claim acceptance of a new feature.
+              // PR diagnostics observe the currently deployed baseline, before this chapter exists.
+              if (route === "/start?course=ph-frequency" && expectedRevision) {
+                await page.getByRole("heading", { name: "Disease frequency: prevalence and incidence", exact: true }).waitFor();
+                await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(0).click();
+                await page.getByRole("button", { name: "Check answer", exact: true }).click();
+                await page.getByText("Not quite — try another answer", { exact: true }).waitFor();
+                for (const answer of [1,0,2,1,0,2,0,2]) {
+                  await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+                  await page.getByRole("button", { name: "Check answer", exact: true }).click();
+                  await page.getByText("Correct — keep practicing this skill", { exact: true }).waitFor();
+                  if (await page.getByRole("button", { name: "Next challenge", exact: true }).count()) await page.getByRole("button", { name: "Next challenge", exact: true }).click();
+                }
+                await page.getByRole("button", { name: "Finish chapter", exact: true }).click();
+                await page.getByText("First-attempt result: 7/8", { exact: true }).waitFor();
+                guestQuestAccepted = true;
+              }
               const rootBoundary = await page.getByRole("heading", {
                 name: "This page didn't load",
               }).count();
@@ -82,6 +100,7 @@ try {
                 pass,
                 device,
                 route,
+                guestQuestAccepted,
                 http: response?.status(),
                 title: title.slice(0, 110),
                 rootBoundary: rootBoundary > 0,

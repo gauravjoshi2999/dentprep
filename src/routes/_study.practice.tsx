@@ -78,10 +78,24 @@ function Practice() {
   const unfinished = attempts.data?.filter((a) => a.status === "in_progress") ?? [];
   return (
     <>
-      <AppHero eyebrow="MCQ practice" title="Practice with purpose" description="Choose a subject and build accuracy with reviewed, original DentPrep questions." />
+      <AppHero
+        eyebrow="MCQ practice"
+        title="Practice with purpose"
+        description="Choose a subject and build accuracy with reviewed, original DentPrep questions."
+      />
       <div className="mb-6 grid grid-cols-2 gap-3">
-        <div className="surface bg-teal-soft/50 p-4"><ClipboardCheck className="mb-2 h-6 w-6 text-teal" /><p className="text-sm font-semibold">Completed tests</p><p className="text-2xl font-black">{attempts.data?.filter((a) => a.status === "submitted").length ?? 0}</p></div>
-        <div className="surface bg-blue-50/70 p-4 dark:bg-card"><RotateCcw className="mb-2 h-6 w-6 text-teal" /><p className="text-sm font-semibold">Due for revision</p><p className="text-2xl font-black">{dueIds.size}</p></div>
+        <div className="surface bg-teal-soft/50 p-4">
+          <ClipboardCheck className="mb-2 h-6 w-6 text-teal" />
+          <p className="text-sm font-semibold">Completed tests</p>
+          <p className="text-2xl font-black">
+            {attempts.data?.filter((a) => a.status === "submitted").length ?? 0}
+          </p>
+        </div>
+        <div className="surface bg-blue-50/70 p-4 dark:bg-card">
+          <RotateCcw className="mb-2 h-6 w-6 text-teal" />
+          <p className="text-sm font-semibold">Due for revision</p>
+          <p className="text-2xl font-black">{dueIds.size}</p>
+        </div>
       </div>
       <Notice className="mb-6">
         These are DentPrep practice sessions. Scores and timers do not represent an official UPSC
@@ -102,12 +116,16 @@ function Practice() {
         </section>
       )}
       {!questions.data?.length ? (
-        <EmptyState title="Question bank awaiting clinical review">
-          Practice questions are being prepared. Draft questions and answers stay private until
-          approved for publication.
+        <EmptyState title="Start with chapter practice">
+          Learn the concept, try an original question and check the explanation in the Public Health
+          chapter.
           <div className="mt-4">
-            <Link to="/library" className="font-semibold text-teal">
-              Explore the study subjects →
+            <Link
+              to="/start"
+              search={{ course: "ph-frequency" }}
+              className="font-semibold text-teal"
+            >
+              Practise Public Health foundations →
             </Link>
           </div>
         </EmptyState>
@@ -179,7 +197,9 @@ function Practice() {
           </div>
           {mode === "custom" && (
             <label className="grid max-w-xs gap-2 text-sm font-semibold">
-              <span className="flex items-center gap-2"><Timer className="h-4 w-4 text-teal" /> Time limit (minutes)</span>
+              <span className="flex items-center gap-2">
+                <Timer className="h-4 w-4 text-teal" /> Time limit (minutes)
+              </span>
               <input
                 className="study-input"
                 type="number"

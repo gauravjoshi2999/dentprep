@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "id": "ph-frequency",
+  "version": 1,
+  "subject_slug": "public-health-dentistry",
+  "subject": "Public Health Dentistry",
+  "title": "Disease frequency: prevalence and incidence",
+  "scope": "nonclinical_exam_foundation",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 15,
+  "checked_on": "2026-11-24",
+  "summary": "Four short English lessons, four fresh application challenges, hints and explanations. Learn to read dental-survey data.",
+  "sources": [
+    {
+      "id": "who-surveys",
+      "title": "Oral health surveys: basic methods",
+      "author_or_organization": "World Health Organization",
+      "edition": "5th edition",
+      "year": 2013,
+      "section": "Publication overview: standardized and comparable oral health surveys",
+      "url": "https://www.who.int/publications/i/item/9789241548649",
+      "content_version": "ISBN 9789241548649; publication 12 November 2013; overview checked 24 November 2026",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-counts",
+      "title": "Describing Epidemiologic Data",
+      "author_or_organization": "Robert E. Fontaine; US Centers for Disease Control and Prevention",
+      "edition": "CDC Field Epidemiology Manual, Chapter 6",
+      "year": 2024,
+      "section": "Counts and Rates (How Much?); Rates, Ratios, and Alternative Denominators",
+      "url": "https://www.cdc.gov/field-epi-manual/php/chapters/describing-epi-data.html",
+      "content_version": "Page dated 8 August 2024",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-prevalence",
+      "title": "Prevalence — Health, United States",
+      "author_or_organization": "CDC / National Center for Health Statistics",
+      "edition": "Sources and Definitions",
+      "year": 2023,
+      "section": "Prevalence definition",
+      "url": "https://www.cdc.gov/nchs/hus/sources-definitions/prevalence.htm",
+      "content_version": "Last reviewed 26 June 2023",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-incidence",
+      "title": "Incidence — Health, United States",
+      "author_or_organization": "CDC / National Center for Health Statistics",
+      "edition": "Sources and Definitions",
+      "year": 2022,
+      "section": "Incidence definition; identifying new cases and population changes",
+      "url": "https://www.cdc.gov/nchs/hus/sources-definitions/incidence.htm",
+      "content_version": "Last reviewed 12 August 2022",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-risk",
+      "title": "Principles of Epidemiology in Public Health Practice",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Third edition; archived teaching text",
+      "year": 2012,
+      "section": "Lesson 3, Section 2: Incidence proportion",
+      "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson3/section2.html",
+      "content_version": "Archived foundational methods text; not current clinical treatment guidance",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-glossary",
+      "title": "Epidemiology Glossary",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Public health surveillance and epidemiology glossary",
+      "year": 2024,
+      "section": "Prevalence rate; Proportion definitions",
+      "url": "https://www.cdc.gov/reproductive-health/glossary/index.html",
+      "content_version": "Page dated 15 May 2024",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "survey",
+      "title": "Make surveys comparable",
+      "phase": "learn",
+      "lesson": "Dental surveys need consistent measurement criteria. WHO's survey manual supports standardization so results can be compared. Record what was measured, in whom and when.",
+      "question": "Which approach best supports comparing two dental surveys?",
+      "choices": [
+        "Change the case definition between surveys",
+        "Use the same defined measurement criteria",
+        "Remove population and date information"
+      ],
+      "answer": 1,
+      "hint": "Look for consistency.",
+      "explanation": "Comparable measurement requires consistent criteria and clear context.",
+      "rationales": [
+        "Changing definitions confounds comparison.",
+        "Consistent criteria support comparison.",
+        "Missing context weakens interpretation."
+      ],
+      "source_ids": [
+        "who-surveys"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "denominator",
+      "title": "Count people, then check the denominator",
+      "phase": "learn",
+      "lesson": "A count alone does not describe the proportion affected. Relate cases to the population from which they arose. Use matching persons, place and time.",
+      "question": "Survey A records 20 affected people among 100 examined; B records 20 among 200. Which has the larger affected proportion?",
+      "choices": [
+        "A",
+        "B",
+        "They must be equal because counts match"
+      ],
+      "answer": 0,
+      "hint": "Compare 20/100 with 20/200.",
+      "explanation": "A: 20%. B: 10%. Equal counts can represent different proportions.",
+      "rationales": [
+        "20/100 is 20%.",
+        "20/200 is 10%.",
+        "The denominators differ."
+      ],
+      "source_ids": [
+        "cdc-counts"
+      ],
+      "calculation": {
+        "kind": "compare_proportions",
+        "numerators": [
+          20,
+          20
+        ],
+        "denominators": [
+          100,
+          200
+        ]
+      }
+    },
+    {
+      "id": "prevalence",
+      "title": "Point prevalence: who has the condition now?",
+      "phase": "learn",
+      "lesson": "Point prevalence describes existing cases at a specified time. Divide affected people by all people examined at that time. A one-day survey does not by itself identify when each condition began.",
+      "question": "In a fictional one-day dental survey, 30 of 150 examined people meet the stated condition definition. What is the prevalence?",
+      "choices": [
+        "80%",
+        "5%",
+        "20%"
+      ],
+      "answer": 2,
+      "hint": "Use 30 ÷ 150 × 100.",
+      "explanation": "30/150 × 100 = 20%. Include all 150 examined people, not just unaffected people.",
+      "rationales": [
+        "80% describes the unaffected proportion here.",
+        "5 is the inverse ratio, not the percentage.",
+        "The affected proportion is 20%."
+      ],
+      "source_ids": [
+        "cdc-prevalence",
+        "cdc-glossary"
+      ],
+      "calculation": {
+        "kind": "percentage",
+        "numerator": 30,
+        "denominator": 150,
+        "result": 20
+      }
+    },
+    {
+      "id": "incidence",
+      "title": "Incidence: identify new cases over time",
+      "phase": "learn",
+      "lesson": "Incidence concerns new cases beginning during a defined period. State the observation period and population at risk. Existing cases on a survey date alone do not establish incidence.",
+      "question": "Which information distinguishes incidence from a snapshot of existing cases?",
+      "choices": [
+        "The total number of clinic chairs",
+        "New cases arising during a defined follow-up period",
+        "Only the number of existing cases today"
+      ],
+      "answer": 1,
+      "hint": "Look for onset and elapsed time.",
+      "explanation": "Incidence requires identifying new cases within the stated period.",
+      "rationales": [
+        "Clinic capacity is not disease occurrence.",
+        "New cases and an observation period are central.",
+        "Existing cases alone describe a prevalence snapshot."
+      ],
+      "source_ids": [
+        "cdc-incidence"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "survey-transfer",
+      "title": "Apply it: a changed definition",
+      "phase": "apply",
+      "lesson": "Use the measurement principle in a new situation.",
+      "question": "Two surveys report different affected percentages but use different case definitions. What should you check before concluding that disease frequency changed?",
+      "choices": [
+        "Whether measurements are comparable",
+        "Which percentage has more decimal places",
+        "Whether both reports have colourful charts"
+      ],
+      "answer": 0,
+      "hint": "Check the method before comparing the result.",
+      "explanation": "A definition change may alter who is counted. Establish comparability first.",
+      "rationales": [
+        "Case definitions affect measurement.",
+        "Extra decimals do not repair incompatible criteria.",
+        "Presentation style does not establish comparability."
+      ],
+      "source_ids": [
+        "who-surveys"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "denominator-transfer",
+      "title": "Apply it: equal percentages",
+      "phase": "apply",
+      "lesson": "Work from the counts rather than memorising the previous answer.",
+      "question": "One fictional survey has 12 affected among 60 people; another has 30 among 150. Which statement is correct?",
+      "choices": [
+        "The second proportion is higher",
+        "The first proportion is higher",
+        "Both affected proportions are 20%"
+      ],
+      "answer": 2,
+      "hint": "Calculate both fractions.",
+      "explanation": "12/60 = 30/150 = 0.20. The raw counts differ, but the proportions match.",
+      "rationales": [
+        "30/150 is 20%.",
+        "12/60 is 20%.",
+        "Both fractions equal 20%."
+      ],
+      "source_ids": [
+        "cdc-counts"
+      ],
+      "calculation": {
+        "kind": "equal_proportions",
+        "numerators": [
+          12,
+          30
+        ],
+        "denominators": [
+          60,
+          150
+        ],
+        "result": 20
+      }
+    },
+    {
+      "id": "prevalence-transfer",
+      "title": "Apply it: a fresh survey",
+      "phase": "apply",
+      "lesson": "Now use a different numerator and denominator.",
+      "question": "On one stated survey date, 36 of 120 examined people meet a fictional dental condition definition. What proportion is affected?",
+      "choices": [
+        "30%",
+        "36%",
+        "120%"
+      ],
+      "answer": 0,
+      "hint": "Divide cases by everyone examined.",
+      "explanation": "36/120 × 100 = 30%. A case count is not automatically a percentage.",
+      "rationales": [
+        "The denominator is 120, giving 30%.",
+        "36 is the count, not the percentage.",
+        "A proportion cannot exceed 100%."
+      ],
+      "source_ids": [
+        "cdc-prevalence",
+        "cdc-glossary"
+      ],
+      "calculation": {
+        "kind": "percentage",
+        "numerator": 36,
+        "denominator": 120,
+        "result": 30
+      }
+    },
+    {
+      "id": "incidence-transfer",
+      "title": "Apply it: incidence proportion",
+      "phase": "apply",
+      "lesson": "For a closed cohort initially free of a condition, incidence proportion uses new cases divided by the initial at-risk population. This is a risk over a period, not a person-time incidence rate.",
+      "question": "All 60 initially condition-free people complete one year of follow-up; 6 develop the fictional condition. What is the one-year incidence proportion?",
+      "choices": [
+        "6%",
+        "90%",
+        "10%"
+      ],
+      "answer": 2,
+      "hint": "Use new cases ÷ initially at risk.",
+      "explanation": "6/60 × 100 = 10% over one year. Complete follow-up is an explicit assumption.",
+      "rationales": [
+        "6 is the new-case count.",
+        "90% remained free of the condition.",
+        "The one-year incidence proportion is 10%."
+      ],
+      "source_ids": [
+        "cdc-risk"
+      ],
+      "calculation": {
+        "kind": "percentage",
+        "numerator": 6,
+        "denominator": 60,
+        "result": 10
+      }
+    }
+  ]
+}

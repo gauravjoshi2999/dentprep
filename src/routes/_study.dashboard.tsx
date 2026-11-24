@@ -78,12 +78,12 @@ function Dashboard() {
         <h2 id="daily-mission-title" className="mt-2 text-2xl font-extrabold">
           {nextLesson
             ? nextLesson.title
-            : (availableLessons[0]?.title ?? "Start your dental reference reading")}
+            : (availableLessons[0]?.title ?? "Learn prevalence and incidence")}
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           {availableLessons.length
             ? "Read a reviewed lesson, explain it in your own words, then return to the source to check gaps."
-            : "An official Oral Medicine reference is ready to read. Follow its reading checklist, note your questions, then rehearse explaining your learning in English. DentPrep clinical lessons are awaiting independent review."}
+            : "Start Public Health Dentistry with four short lessons and four fresh challenges. Use hints, read why each answer works, and continue from your saved checkpoint when signed in."}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           {(nextLesson ?? availableLessons[0]) ? (
@@ -101,8 +101,8 @@ function Dashboard() {
             </Button>
           ) : (
             <Button asChild>
-              <Link to="/library" hash="primary-reading">
-                Start source reading
+              <Link to="/start" search={{ course: "ph-frequency" }}>
+                Start Public Health chapter
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

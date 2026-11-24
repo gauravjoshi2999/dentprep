@@ -1,4 +1,5 @@
 import { addDays } from "./dates";
+import { STUDY_BRIEF_BY_SLUG } from "./subject-study-briefs";
 
 export type PlanLength = 7 | 15 | 30;
 export type PlanGoal = "interview" | "recruitment_test" | "clinical" | "english";
@@ -7,6 +8,7 @@ export type TaskType = "lesson" | "practice" | "revision" | "interview" | "case"
 export type PlannerSubject = {
   id: string;
   name: string;
+  slug?: string;
   lessons: { id: string; title: string; est_minutes: number }[];
 };
 
@@ -21,6 +23,7 @@ export type PlannerInput = {
   revisionDueCount: number;
   availableQuestionCount?: number;
   availableCaseCount?: number;
+  completedGuideTitles?: string[]; // Actual checked source-study tasks in prior cycles
 };
 
 export type PlannedTask = {
@@ -77,8 +80,33 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
   const otherQueue = interleave(queueFor(input.subjects.filter((s) => !weak.has(s.id))));
   const lessonQueue = [...weakQueue, ...otherQueue];
 
+  // Unlike approved lessons, original-source reading guides are available before
+  // independent clinical sign-off. They never get a lesson_id or a practice score.
+  const completedGuides = new Set(
+    (input.completedGuideTitles ?? []).map(title => title.replace(/^(Continue: )+/, "")),
+  );
+  const guideSubjects = [
+    ...input.subjects.filter(s => weak.has(s.id)),
+    ...input.subjects.filter(s => !weak.has(s.id)),
+  ].map(subject => ({ subject, brief: STUDY_BRIEF_BY_SLUG.get(subject.slug ?? "") }))
+    .filter((entry): entry is { subject: PlannerSubject; brief: NonNullable<typeof entry.brief> } => !!entry.brief);
+  const guideQueue: { subject: PlannerSubject; title: string; recall: string }[] = [];
+  // Chapter waves mean a 15-day cycle samples all 15 subjects before
+  // concentrating only on one specialty; weak subjects lead each wave.
+  for (let chapterIndex = 0; chapterIndex < 5; chapterIndex++) {
+    for (const { subject, brief } of guideSubjects) {
+      const chapter = brief.chapters[chapterIndex];
+      if (!chapter) continue;
+      const title = `Source study: ${subject.name} — ${chapter.title}`;
+      if (!completedGuides.has(title)) {
+        guideQueue.push({ subject, title, recall: `Recall source: ${subject.name} — ${chapter.title}` });
+      }
+    }
+  }
+
   const tasks: PlannedTask[] = [];
   const studiedOn: { day: number; lesson: (typeof lessonQueue)[number] }[] = [];
+  const studiedGuides: { day: number; guide: (typeof guideQueue)[number] }[] = [];
   const wantsInterview = input.goals.includes("interview") || input.goals.includes("english");
   const wantsClinical = input.goals.includes("clinical");
 
@@ -113,6 +141,17 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
           lesson_id: s.lesson.id,
           title: `Revise: ${s.lesson.title}`,
           minutes: 15,
+        });
+      }
+    }
+
+    // Spaced source-recall prompts, separate from clinical or scored revision.
+    for (const item of studiedGuides) {
+      const offset = day - item.day;
+      if ((REVISION_OFFSETS as readonly number[]).includes(offset)) {
+        push({
+          task_type: "revision", subject_id: item.guide.subject.id, lesson_id: null,
+          title: item.guide.recall, minutes: 10,
         });
       }
     }
@@ -155,6 +194,28 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
       newLessons += 1;
     }
 
+    // Original-source learning: do not let zero approved lessons create empty
+    // repeated official-notice days. Only use a published subject and its
+    // existing nonclinical topic checklist; no clinical content is unlocked.
+    let newGuides = 0;
+    const guideMinutes = Math.min(35, Math.max(20, Math.round(budget / 3)));
+    while (newGuides < 2 && guideQueue.length > 0 && left >= guideMinutes) {
+      const next = guideQueue.shift();
+      if (!next) break;
+      push({
+        task_type: "revision", subject_id: next.subject.id, lesson_id: null,
+        title: next.title, minutes: guideMinutes,
+      });
+      if (left >= 10) {
+        push({
+          task_type: "revision", subject_id: next.subject.id, lesson_id: null,
+          title: next.recall, minutes: 10,
+        });
+      }
+      studiedGuides.push({ day, guide: next });
+      newGuides += 1;
+    }
+
     // Rotating skill slot
     if (wantsInterview && day % 2 === 1) {
       push({
@@ -162,7 +223,7 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
         subject_id: null,
         lesson_id: null,
         title: "Interview communication practice (15 min)",
-        minutes: 15,
+        minutes: Math.min(15, left),
       });
     } else if (hasCases && (wantsClinical || day % 3 === 2)) {
       push({

@@ -26,7 +26,7 @@ if (expectedRevision && !/^[a-f0-9]{40}$/.test(expectedRevision)) {
   throw new Error("Expected Git revision must be 40 hex characters.");
 }
 
-const routes = ["/", "/dashboard", "/library", "/practice", "/interviews"];
+const routes = ["/", "/start", "/dashboard", "/library", "/practice", "/interviews"];
 const browser = await chromium.launch({ headless: true });
 try {
   await verifyWithPropagationRetries(

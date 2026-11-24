@@ -287,6 +287,33 @@ function Library() {
           )}
         </div>
       )}
+      {(subjects.isError || (subjects.isSuccess && subjects.data?.length === 0)) && (
+        <section aria-label="Standalone study guides" className="mt-6">
+          <h2 className="text-xl font-extrabold">15 guided subject paths available</h2>
+          <p className="mb-5 mt-2 text-sm text-muted-foreground">
+            The approved lesson catalogue is not available, but you can still study these
+            publisher-linked topic guides. Session checkmarks are not saved or scored.
+          </p>
+          <div className="grid items-start gap-4 lg:grid-cols-2">
+            {SUBJECT_STUDY_BRIEFS.filter(brief =>
+              (category === "All" || brief.category === category) &&
+              `${brief.name} ${brief.chapters.map(c => c.title).join(" ")}`
+                .toLowerCase().includes(search.trim().toLowerCase())
+            ).map(brief => {
+              const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === brief.slug);
+              return source ? (
+                <article key={brief.slug} className="surface p-5">
+                  <h3 className="text-lg font-extrabold">{brief.name}</h3>
+                  <p className="mt-1 text-xs text-teal">Clinical review pending · Study guide available</p>
+                  <SubjectStudyChecklist brief={brief}
+                    sourceAnchor={source.id === FIRST_DENTAL_READING.id ? "primary-reading" : `source-reading-${source.id}`}
+                  />
+                </article>
+              ) : null;
+            })}
+          </div>
+        </section>
+      )}
       <section aria-label="Original source readings and doctor feedback" className="mt-9">
         <h2 className="mb-2 text-xl font-extrabold">Official source reading · 15 subjects</h2>
         <p className="mb-5 text-sm text-muted-foreground">Read the original publisher material and send guided dentist feedback. This does not unlock or approve unreviewed clinical lessons.</p>

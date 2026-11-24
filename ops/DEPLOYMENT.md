@@ -33,3 +33,7 @@ Add the final HTTPS origin and `/reset-password` redirect in the existing DentPr
 Permanent hosting account authorization, first deployment, correct auth redirect configuration, authenticated production acceptance and physical Android QA are still separate release gates. A usable Android build additionally needs the verified HTTPS URL, signing and Digital Asset Links described in `android/README.md`.
 
 References: [Cloudflare Workers configuration](https://developers.cloudflare.com/workers/wrangler/configuration/), [temporary deployment lifecycle](https://developers.cloudflare.com/workers/platform/claim-deployments/), [Nitro Cloudflare output](https://nitro.build/deploy/providers/cloudflare).
+
+## Exact identity for ordinary builds
+
+`npm run build` / `build:dev` now use scripts/build-app.mjs and the mandatory content-package prebuild hook. Source identity comes from clean Git or authenticated platform context (Cloudflare WORKERS_CI + WORKERS_CI_COMMIT_SHA, or GitHub Actions GITHUB_SHA). Missing/malformed/conflicting/dirty identity fails the build instead of producing a falsely healthy receipt. build:release still enforces public backend configuration, clean source and deployable package receipts. Health behavior remains fail-closed. Cloudflare source: https://developers.cloudflare.com/workers/ci-cd/builds/configuration/ . Private external build settings were not inspected.

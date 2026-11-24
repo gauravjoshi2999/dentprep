@@ -728,7 +728,7 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
   );
   const reviewerForm = cdcCard.getByRole("button", { name: "Submit senior dentist feedback" });
   await reviewerForm.click();
-  await expect(cdcCard.getByText("It is not a verified MDS sign-off", { exact: false })).toBeVisible();
+  await expect(cdcCard.getByText("This is not a verified MDS sign-off", { exact: false })).toBeVisible();
   await expect(cdcCard.getByRole("button", { name: "Copy worksheet" })).toBeVisible();
   await cdcCard.getByRole("textbox", { name: "Claimed reviewer's name" }).fill("Test Dental Reviewer");
   await cdcCard.getByRole("textbox", { name: "Qualification and specialty" }).fill("MDS Test Specialty");

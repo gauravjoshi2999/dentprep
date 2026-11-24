@@ -62,6 +62,7 @@ async function mockBackend(
   const drafts: Record<string, unknown>[] = [];
   const preparationRecords: Record<string, unknown>[] = [];
   const clinicalFeedback: Record<string, unknown>[] = [];
+  let savedReviewerProfile: Record<string, unknown> | null = null;
   let preparationFingerprint = "a".repeat(64);
   let firstPreparationSave = true;
   const question = {
@@ -230,6 +231,21 @@ async function mockBackend(
     } else if (path.endsWith("/rpc/submit_attempt")) {
       submitted = true;
       data = { total: 1, answered: 1, correct: 1, score_pct: 100 };
+    } else if (path.endsWith("/clinical_reviewer_profiles")) {
+      if (method === "POST") {
+        expect(body).toMatchObject({
+          owner_user_id: userId,
+          claimed_name: "Test Dental Reviewer",
+          claimed_qualification: "MDS Test Specialty",
+          claimed_registration: "TEST-REG-123",
+          consent_confirmed: true,
+        });
+        savedReviewerProfile = body;
+        data = savedReviewerProfile;
+      } else {
+        expect(method).toBe("GET");
+        data = savedReviewerProfile;
+      }
     } else if (path.endsWith("/clinical_feedback_submissions")) {
       if (method === "POST") {
         expect(body).toMatchObject({
@@ -240,7 +256,9 @@ async function mockBackend(
         });
         expect(body.status).toBeUndefined();
         expect(body.claimed_reviewer_name).toBe("Test Dental Reviewer");
-        expect(body.feedback).toContain("Source section requires corrections");
+        expect(body.feedback).toContain("REVIEW SCOPE: PUBLISHER SOURCE READING ONLY");
+        expect(body.feedback).toContain("Q12");
+        expect(body.feedback).toContain("Guideline version verify again");
         data = { id: "66666666-6666-4666-8666-666666666666", status: "pending_verification" };
         clinicalFeedback.push({ ...body, ...data, created_at: "2026-11-24T00:00:00Z" });
       } else {
@@ -730,17 +748,34 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
     "href",
     "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
   );
-  const reviewerForm = cdcCard.getByRole("button", { name: "Submit senior dentist feedback" });
+  const reviewerForm = cdcCard.getByRole("button", { name: /Doctor guided feedback/ });
   await reviewerForm.click();
-  await expect(cdcCard.getByText("This is not a verified MDS sign-off", { exact: false })).toBeVisible();
-  await expect(cdcCard.getByRole("button", { name: "Copy worksheet" })).toBeVisible();
-  await cdcCard.getByRole("textbox", { name: "Claimed reviewer's name" }).fill("Test Dental Reviewer");
-  await cdcCard.getByRole("textbox", { name: "Qualification and specialty" }).fill("MDS Test Specialty");
-  await cdcCard.getByRole("textbox", { name: "Council registration for private verification" }).fill("TEST-REG-123");
-  await cdcCard.getByRole("textbox", { name: "Corrections, claim IDs and exact source sections" }).fill("Source section requires corrections before qualified review.");
-  await cdcCard.getByRole("checkbox", { name: /I have the reviewer's consent/ }).check();
-  await cdcCard.getByRole("button", { name: "Submit feedback", exact: true }).click();
+  await expect(cdcCard.getByText("डॉक्टर को किसका review करना है?")).toBeVisible();
+  await expect(cdcCard.getByRole("button", { name: "Copy full question sheet" })).toBeVisible();
+  await cdcCard.getByRole("textbox", { name: "Doctor's name" }).fill("Test Dental Reviewer");
+  await cdcCard.getByRole("textbox", { name: "MDS qualification / relevant specialty" }).fill("MDS Test Specialty");
+  await cdcCard.getByRole("textbox", { name: "Dental council and registration number" }).fill("TEST-REG-123");
+  await cdcCard.getByRole("checkbox", { name: "Consent to save reviewer profile" }).check();
+  await cdcCard.getByRole("button", { name: "Save reviewer profile once" }).click();
+  await expect(cdcCard.getByRole("region", { name: "Saved reviewer profile" })).toBeVisible();
+
+  await cdcCard.getByRole("textbox", { name: "Exact source section or page" }).fill("CDC source section on Standard Precautions");
+  const questions = cdcCard.locator("[data-review-question]");
+  await expect(questions).toHaveCount(12);
+  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeDisabled();
+  for (const question of await questions.all()) await question.getByRole("radio", { name: "ठीक है" }).check();
+  await questions.first().getByRole("radio", { name: "सुधार जरूरी" }).check();
+  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeDisabled();
+  await questions.first().getByRole("textbox", { name: "Q1 reviewer note" }).fill("Guideline version verify again");
+  await cdcCard.getByRole("checkbox", { name: "Doctor reviewed this exact source" }).check();
+  await expect(cdcCard.getByRole("button", { name: "Submit completed feedback" })).toBeEnabled();
+  await cdcCard.getByRole("button", { name: "Submit completed feedback" }).click();
   await expect(cdcCard.getByText(/Feedback received · Pending independent verification/)).toBeVisible();
+
+  const endodonticsCard = page.locator("#source-reading-aae-endodontic-resources");
+  await endodonticsCard.getByRole("button", { name: /Doctor guided feedback/ }).click();
+  await expect(endodonticsCard.getByRole("region", { name: "Saved reviewer profile" })).toContainText("Test Dental Reviewer");
+  await expect(endodonticsCard.getByRole("textbox", { name: "Doctor's name" })).toHaveCount(0);
   await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
   await expect(page.locator("#source-reading-sdcep-anticoagulants-2022").getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
     "href",

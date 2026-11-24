@@ -34,7 +34,7 @@ DO $$ DECLARE d jsonb; e jsonb:='{"unit":"Study routines","topic":"Communication
   d:=public.admin_content_evidence('lesson','c6000000-0000-4000-8000-000000000001');
   IF d->>'mapping_state'<>'matches_draft' OR (d->>'current_version')::int<>1 OR jsonb_array_length(d->'history')<>1 THEN RAISE EXCEPTION 'Preparation not saved'; END IF;
   PERFORM public.admin_save_content_evidence('d6000000-0000-4000-8000-000000000001','lesson','c6000000-0000-4000-8000-000000000001',fp,0,e);
-  IF (SELECT count(*) FROM public.content_curriculum_evidence)<>1 THEN RAISE EXCEPTION 'Lost-response retry duplicated history'; END IF;
+  IF (SELECT count(*) FROM public.content_curriculum_evidence WHERE entity_type='lesson' AND entity_id='c6000000-0000-4000-8000-000000000001')<>1 THEN RAISE EXCEPTION 'Lost-response retry duplicated history'; END IF;
   denied:=false; BEGIN PERFORM public.admin_save_content_evidence('d6000000-0000-4000-8000-000000000001','lesson','c6000000-0000-4000-8000-000000000001',fp,0,e||'{"note":"Different request"}'); EXCEPTION WHEN raise_exception THEN denied:=SQLERRM LIKE '%different preparation request%'; END;
   IF NOT denied THEN RAISE EXCEPTION 'Same record id accepted different intent'; END IF;
   denied:=false; BEGIN PERFORM public.admin_save_content_evidence(gen_random_uuid(),'lesson','c6000000-0000-4000-8000-000000000001',fp,1,e||'{"clinical_approved":true}'); EXCEPTION WHEN raise_exception THEN denied:=true; END;
@@ -47,10 +47,10 @@ DO $$ DECLARE d jsonb; e jsonb:='{"unit":"Study routines","topic":"Communication
   IF NOT denied THEN RAISE EXCEPTION 'Duplicate outcomes recorded'; END IF;
   denied:=false; BEGIN PERFORM public.admin_save_content_evidence(gen_random_uuid(),'lesson','c6000000-0000-4000-8000-000000000001',fp,1,jsonb_set(e,'{unit}','123')); EXCEPTION WHEN raise_exception THEN denied:=true; END;
   IF NOT denied THEN RAISE EXCEPTION 'Non-text unit accepted'; END IF;
-  denied:=false; BEGIN UPDATE public.content_curriculum_evidence SET evidence=e||'{"clinical_approved":true}'; EXCEPTION WHEN insufficient_privilege THEN denied:=true; END;
+  denied:=false; BEGIN UPDATE public.content_curriculum_evidence SET evidence=e||'{"clinical_approved":true}' WHERE entity_id IN ('c6000000-0000-4000-8000-000000000001','c6000000-0000-4000-8000-000000000002','c6000000-0000-4000-8000-000000000003'); EXCEPTION WHEN insufficient_privilege THEN denied:=true; END;
   IF NOT denied THEN RAISE EXCEPTION 'Admin bypassed append-only API'; END IF;
   IF has_table_privilege('authenticated','public.content_curriculum_evidence','INSERT') THEN RAISE EXCEPTION 'Direct insert grant bypass remains'; END IF;
-  denied:=false; BEGIN DELETE FROM public.content_curriculum_evidence; EXCEPTION WHEN insufficient_privilege THEN denied:=true; END;
+  denied:=false; BEGIN DELETE FROM public.content_curriculum_evidence WHERE entity_id IN ('c6000000-0000-4000-8000-000000000001','c6000000-0000-4000-8000-000000000002','c6000000-0000-4000-8000-000000000003'); EXCEPTION WHEN insufficient_privilege THEN denied:=true; END;
   IF NOT denied THEN RAISE EXCEPTION 'History deletion allowed'; END IF;
   denied:=false; BEGIN PERFORM public._content_curriculum_snapshot('lesson','c6000000-0000-4000-8000-000000000001'); EXCEPTION WHEN insufficient_privilege THEN denied:=true; END;
   IF NOT denied THEN RAISE EXCEPTION 'Internal raw snapshot directly executable'; END IF;

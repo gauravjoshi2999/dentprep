@@ -78,7 +78,7 @@ Statuses are conservative: Partial = existing implementation with missing accept
 
 ## Q011 — Kaise confirm hoga ki saare essential topics cover hue?
 
-- Implementation checkpoint: private per-item unit/topic/outcome and source-edition/section preparation registry implemented with immutable revisions and stale content/option checks; native rollback QA and 51 unit tests pass. CI/live pending. Canonical coverage, source validity, qualified reviewer and next-review/approval workflow remain unverified.
+- Implementation checkpoint: private per-item unit/topic/outcome and source-edition/section preparation registry implemented with immutable revisions and stale content/option checks; native rollback QA, 51 unit/11 release/27 browser fixture tests, PR #26/main CI/production and fresh live verification PASS. Preparation registry installed. Canonical coverage, source validity, qualified reviewer and next-review/approval workflow remain unverified.
 
 - SOURCE: Q&A, PDF p.7; status: **Partial**.
 - Required: Blueprint ke 15 subject groups se subject->unit->topic->learning outcome coverage matrix banao. Har essential outcome ko reviewed lesson, retrieval question, case ya oral prompt se map karo; missing cells gap report mein dikhao.
@@ -94,7 +94,7 @@ Statuses are conservative: Partial = existing implementation with missing accept
 
 ## Q013 — Kya outdated medical information student ko sikh sakta hai?
 
-- Implementation checkpoint: private per-item unit/topic/outcome and source-edition/section preparation registry implemented with immutable revisions and stale content/option checks; native rollback QA and 51 unit tests pass. CI/live pending. Canonical coverage, source validity, qualified reviewer and next-review/approval workflow remain unverified.
+- Implementation checkpoint: private per-item unit/topic/outcome and source-edition/section preparation registry implemented with immutable revisions and stale content/option checks; native rollback QA, 51 unit/11 release/27 browser fixture tests, PR #26/main CI/production and fresh live verification PASS. Preparation registry installed. Canonical coverage, source validity, qualified reviewer and next-review/approval workflow remain unverified.
 
 - SOURCE: Q&A, PDF p.7; status: **Partial**.
 - Required: Har clinical item ke source version, review date aur next-review due date record ho. Guideline change par flagged content temporarily pause ho aur approved correction ke baad publish ho.
@@ -110,7 +110,7 @@ Statuses are conservative: Partial = existing implementation with missing accept
 
 ## Q015 — Kya primary sources aur textbooks ke citations honge?
 
-- Implementation checkpoint: private per-item unit/topic/outcome and source-edition/section preparation registry implemented with immutable revisions and stale content/option checks; native rollback QA and 51 unit tests pass. CI/live pending. Canonical coverage, source validity, qualified reviewer and next-review/approval workflow remain unverified.
+- Implementation checkpoint: private per-item unit/topic/outcome and source-edition/section preparation registry implemented with immutable revisions and stale content/option checks; native rollback QA, 51 unit/11 release/27 browser fixture tests, PR #26/main CI/production and fresh live verification PASS. Preparation registry installed. Canonical coverage, source validity, qualified reviewer and next-review/approval workflow remain unverified.
 
 - SOURCE: Q&A, PDF p.7; status: **Partial**.
 - Required: Haan. Each claim/lesson ke source title, edition/year, stable URL/identifier, relevant section, reviewed_on aur reviewer fields. Unsupported assertions ko source-needed status mile.

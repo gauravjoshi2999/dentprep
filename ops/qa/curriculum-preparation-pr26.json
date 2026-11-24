@@ -1,0 +1,49 @@
+{
+  "classification": "Technical evidence only; no medical approval",
+  "pr": 26,
+  "head": "7a0cb931fe64d57e72c8dba2db6ab1f2cd681c0b",
+  "merge": "1631f10f9742314c8d40345ab78bb9e9640aaa2a",
+  "origin": "https://dentprep.gauravjoshi2999.workers.dev",
+  "ci": 45298201707,
+  "production": 45298201836,
+  "release_artifact": 14877482269,
+  "release_receipt_inspected": true,
+  "release_verified_at": "2026-11-24T00:36:58.847Z",
+  "fresh_cli": "PASS",
+  "anonymous_checked_at": "2026-11-24T00:41:10.763Z",
+  "anonymous_denials": {
+    "admin_rpc": [
+      401,
+      "42501"
+    ],
+    "table": [
+      401,
+      "42501"
+    ],
+    "raw_helper": [
+      401,
+      "42501"
+    ]
+  },
+  "backend_install": "APPLIED through existing Lovable SQL; post-install rollback QA PASS",
+  "native": {
+    "public_tables": 23,
+    "rls_disabled": 0,
+    "clinical_guards": 3,
+    "actual_admins": 0,
+    "actual_records": 0,
+    "users": 1,
+    "qa_absent": true
+  },
+  "tests": {
+    "unit": 51,
+    "release": 11,
+    "fixture_browser": 27,
+    "intentional_desktop_skip": 1
+  },
+  "clinical_publication": "BLOCKED; drafts preserved",
+  "actual_account_browser": "BLOCKED by prior URL policy",
+  "physical_device": "NOT RUN",
+  "scope": "Issue #27 single-student tutor; no daily admin activation",
+  "note": "Sources in preparation are declarations, not verified claims. Scoped negative QA updates touch only synthetic IDs and all fixtures roll back."
+}

@@ -1,77 +1,227 @@
 {
   "classification": "CODE / live service / native rollback / CI and binary evidence; not medical approval",
   "source_spec_sha256": "25ebe945dec661912a9408c6c5118bf8851587b069f83b9e365efa974e7d49c1",
-  "last_implementation_revision": "cc140559ff628371d7cc1ca65c044f00369be20a",
+  "last_implementation_revision": "1631f10f9742314c8d40345ab78bb9e9640aaa2a",
   "live_origin": "https://dentprep.gauravjoshi2999.workers.dev",
-  "web_ci": 45253304791,
-  "production_run": 45253304850,
-  "web_artifact": 14857143951,
+  "web_ci": 45298201707,
+  "production_run": 45298201836,
+  "web_artifact": 14877482269,
   "android_run": 45253304800,
   "android_artifact": 14856519438,
   "passed_automated_counts": {
-    "unit": 44,
+    "unit": 51,
     "release": 11,
-    "fixture_browser": 23,
+    "fixture_browser": 27,
     "intentional_desktop_skip": 1
   },
   "requirements_count": 100,
   "requirements_states": {
-    "Partial": 58,
-    "Missing": 33,
+    "Partial": 61,
     "Blocked": 8,
+    "Missing": 30,
     "Done (technical access gate; PR #18 / T25)": 1
   },
   "software_scenarios": [
-    ["T01", "NOT RUN"],
-    ["T02", "NOT RUN"],
-    ["T03", "NOT RUN"],
-    ["T04", "BLOCKED"],
-    ["T05", "NOT RUN"],
-    ["T06", "BLOCKED"],
-    ["T07", "NOT RUN"],
-    ["T08", "BLOCKED"],
-    ["T09", "BLOCKED"],
-    ["T10", "BLOCKED"],
-    ["T11", "NOT RUN"],
-    ["T12", "NOT RUN"],
-    ["T13", "PASS for the native RLS isolation gate"],
-    ["T14", "BLOCKED"],
-    ["T15", "NOT RUN"],
-    ["T16", "BLOCKED"],
-    ["T17", "BLOCKED"],
-    ["T18", "NOT RUN"],
-    ["T19", "NOT RUN"],
-    ["T20", "NOT RUN"],
-    ["T21", "NOT RUN"],
-    ["T22", "NOT RUN"],
-    ["T23", "NOT RUN"],
-    ["T24", "NOT RUN"],
-    ["T25", "PASS"],
-    ["T26", "NOT RUN"],
-    ["T27", "NOT RUN"],
-    ["T28", "NOT RUN"],
-    ["T29", "BLOCKED"],
-    ["T30", "BLOCKED"],
-    ["T31", "NOT RUN"],
-    ["T32", "BLOCKED"],
-    ["T33", "BLOCKED"],
-    ["T34", "BLOCKED"],
-    ["T35", "BLOCKED"],
-    ["T36", "BLOCKED"],
-    ["T37", "BLOCKED"],
-    ["T38", "NOT RUN"],
-    ["T39", "BLOCKED"],
-    ["T40", "NOT RUN"],
-    ["T41", "NOT RUN"],
-    ["T42", "BLOCKED"],
-    ["T43", "NOT RUN"],
-    ["T44", "PASS"],
-    ["T45", "NOT RUN"],
-    ["T46", "NOT RUN"],
-    ["T47", "NOT RUN"],
-    ["T48", "PASS"],
-    ["T49", "BLOCKED"],
-    ["T50", "BLOCKED"]
+    [
+      "T01",
+      "NOT RUN"
+    ],
+    [
+      "T02",
+      "NOT RUN"
+    ],
+    [
+      "T03",
+      "NOT RUN"
+    ],
+    [
+      "T04",
+      "BLOCKED"
+    ],
+    [
+      "T05",
+      "NOT RUN"
+    ],
+    [
+      "T06",
+      "BLOCKED"
+    ],
+    [
+      "T07",
+      "NOT RUN"
+    ],
+    [
+      "T08",
+      "BLOCKED"
+    ],
+    [
+      "T09",
+      "BLOCKED"
+    ],
+    [
+      "T10",
+      "BLOCKED"
+    ],
+    [
+      "T11",
+      "NOT RUN"
+    ],
+    [
+      "T12",
+      "NOT RUN"
+    ],
+    [
+      "T13",
+      "PASS for the native RLS isolation gate"
+    ],
+    [
+      "T14",
+      "BLOCKED"
+    ],
+    [
+      "T15",
+      "NOT RUN"
+    ],
+    [
+      "T16",
+      "BLOCKED"
+    ],
+    [
+      "T17",
+      "BLOCKED"
+    ],
+    [
+      "T18",
+      "NOT RUN"
+    ],
+    [
+      "T19",
+      "NOT RUN"
+    ],
+    [
+      "T20",
+      "NOT RUN"
+    ],
+    [
+      "T21",
+      "NOT RUN"
+    ],
+    [
+      "T22",
+      "NOT RUN"
+    ],
+    [
+      "T23",
+      "NOT RUN"
+    ],
+    [
+      "T24",
+      "NOT RUN"
+    ],
+    [
+      "T25",
+      "PASS"
+    ],
+    [
+      "T26",
+      "NOT RUN"
+    ],
+    [
+      "T27",
+      "NOT RUN"
+    ],
+    [
+      "T28",
+      "NOT RUN"
+    ],
+    [
+      "T29",
+      "BLOCKED"
+    ],
+    [
+      "T30",
+      "BLOCKED"
+    ],
+    [
+      "T31",
+      "NOT RUN"
+    ],
+    [
+      "T32",
+      "BLOCKED"
+    ],
+    [
+      "T33",
+      "BLOCKED"
+    ],
+    [
+      "T34",
+      "BLOCKED"
+    ],
+    [
+      "T35",
+      "BLOCKED"
+    ],
+    [
+      "T36",
+      "BLOCKED"
+    ],
+    [
+      "T37",
+      "BLOCKED"
+    ],
+    [
+      "T38",
+      "NOT RUN"
+    ],
+    [
+      "T39",
+      "BLOCKED"
+    ],
+    [
+      "T40",
+      "NOT RUN"
+    ],
+    [
+      "T41",
+      "NOT RUN"
+    ],
+    [
+      "T42",
+      "BLOCKED"
+    ],
+    [
+      "T43",
+      "NOT RUN"
+    ],
+    [
+      "T44",
+      "PASS"
+    ],
+    [
+      "T45",
+      "NOT RUN"
+    ],
+    [
+      "T46",
+      "NOT RUN"
+    ],
+    [
+      "T47",
+      "NOT RUN"
+    ],
+    [
+      "T48",
+      "PASS"
+    ],
+    [
+      "T49",
+      "BLOCKED"
+    ],
+    [
+      "T50",
+      "BLOCKED"
+    ]
   ],
   "academic_gates": 20,
   "clinical_approval": "BLOCKED",
@@ -79,5 +229,6 @@
   "physical_device": "NOT RUN",
   "production_android_signing": "NOT CONFIGURED",
   "background_continuation": false,
-  "note": "Current exact source/live revision after this handoff-only commit is in its SHA-specific release artifact and PR verification comment; this records the last verified implementation/native checkpoint."
+  "note": "Current exact source/live revision after this handoff-only commit is in its SHA-specific release artifact and PR verification comment; this records the last verified implementation/native checkpoint.",
+  "scope_override": 27
 }

@@ -101,7 +101,7 @@
       "status": "Partial",
       "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
       "acceptance": "T11-T16,T42",
-      "implementation_note": "P1-04 private per-item unit/topic/outcome and source edition/section preparation metadata, immutable history and stale-content/options checks implemented; native rollback QA passes, CI/live pending. Not full curriculum coverage/source verification/qualified review/approval."
+      "implementation_note": "PR #26 live 1631f10f9742314c8d40345ab78bb9e9640aaa2a; registry installed/native/CI/live PASS. Private preparation only: not complete curriculum coverage, authoritative claim verification or qualified clinical approval. Issue #27 adapts future editorial work to offline packages."
     },
     {
       "id": "Q012",
@@ -120,7 +120,7 @@
       "status": "Partial",
       "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
       "acceptance": "T11-T16,T42",
-      "implementation_note": "P1-04 private per-item unit/topic/outcome and source edition/section preparation metadata, immutable history and stale-content/options checks implemented; native rollback QA passes, CI/live pending. Not full curriculum coverage/source verification/qualified review/approval."
+      "implementation_note": "PR #26 live 1631f10f9742314c8d40345ab78bb9e9640aaa2a; registry installed/native/CI/live PASS. Private preparation only: not complete curriculum coverage, authoritative claim verification or qualified clinical approval. Issue #27 adapts future editorial work to offline packages."
     },
     {
       "id": "Q014",
@@ -139,7 +139,7 @@
       "status": "Partial",
       "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
       "acceptance": "T11-T16,T42",
-      "implementation_note": "P1-04 private per-item unit/topic/outcome and source edition/section preparation metadata, immutable history and stale-content/options checks implemented; native rollback QA passes, CI/live pending. Not full curriculum coverage/source verification/qualified review/approval."
+      "implementation_note": "PR #26 live 1631f10f9742314c8d40345ab78bb9e9640aaa2a; registry installed/native/CI/live PASS. Private preparation only: not complete curriculum coverage, authoritative claim verification or qualified clinical approval. Issue #27 adapts future editorial work to offline packages."
     },
     {
       "id": "Q016",
@@ -1345,5 +1345,12 @@
       "title": "Evidence is linked; editable source is saved in Canva and PowerPoint.",
       "text": "DentPrep / 2026 · Editable Product Blueprint\nConcept visuals are examples; live metrics, official facts and medical content must be verified.\nPrimary sources + design provenance\nEvidence is linked; editable source is saved in Canva and PowerPoint.\nUPSC Advertisement 13/2026\nhttps://upsc.gov.in/uploads/2026/11/AdvtNo-13-2026-Engl-131126_0.pdf\nUPSC recruitment procedures\nhttps://upsc.gov.in/about-us/divisions/recruitment/\nUPSC Recruitment Test notices\nhttps://upsc.gov.in/recruitment-tests/notice/\nDental BDS regulations\nhttps://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf\nOPMD academic reference\nhttps://www.ncbi.nlm.nih.gov/books/NBK611818/\nDentPrep source code\nhttps://github.com/gauravjoshi2999/dentprep\nCloudflare release gate\nhttps://github.com/gauravjoshi2999/dentprep/issues/8\n72 / 72"
     }
-  ]
+  ],
+  "scope_override": {
+    "issue": 27,
+    "date": "2026-11-24",
+    "product": "single-student interactive tutor",
+    "document": "DENTPREP_SINGLE_LEARNER_SCOPE.md",
+    "clinical_rule": "No verified source + no required independent qualified approval = no clinical publication"
+  }
 }

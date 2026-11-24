@@ -63,7 +63,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
         </a>
       </div>
       <fieldset className="mt-6 rounded-xl bg-muted/60 p-4">
-        <legend className="px-1 text-sm font-bold">{isFirstReading ? "Your reading checklist" : "Oral surgery reading checklist"}</legend>
+        <legend className="px-1 text-sm font-bold">{isFirstReading ? "Your reading checklist" : isOralSurgeryReading ? "Oral surgery reading checklist" : `${source.subject} reading checklist`}</legend>
         <p className="mb-3 text-xs text-muted-foreground">
           For this session only; checklist ticks are not saved or assessed as clinical knowledge.
         </p>

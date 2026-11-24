@@ -16,7 +16,7 @@ const COMMON: ReviewQuestion[] = [
   },
   {
     id: "scope", section: "Source & scope",
-    question: "क्या source किन मरीजों/उम्र/clinical setting के लिए है, यह स्पष्ट है?",
+    question: "क्या source का patient/setting scope और आपकी specialty इस विषय की समीक्षा के लिए उचित हैं?",
     guidance: "UK/US guidelines को भारत का नियम या UPSC syllabus न मानें।",
   },
   {
@@ -96,6 +96,26 @@ const SPECIAL: Record<string, [ReviewQuestion, ReviewQuestion]> = {
   ],
 };
 
+/**
+ * Unresolved source-reconciliation questions from the existing OMS-001 and OMR-001
+ * preparation packets. These ask what additional evidence a reviewer would require;
+ * they do NOT expose or certify those actual unpublished drafts.
+ */
+const OPEN_CLINICAL_GAPS: Record<string, ReviewQuestion[]> = {
+  "sdcep-anticoagulants-2022": [
+    { id: "oms-history", section: "Subject-specific check", question: "OMS-001 हेतु दवा/anticoagulant का exact नाम, indication, आखिरी dose, history, allergy, renal/liver problems और prescriber coordination — क्या इस source से पूरा सत्यापन सम्भव है?", guidance: "अगर दूसरे textbook या India-specific evidence की जरूरत है, 'प्रमाण स्पष्ट नहीं' चुनकर बताइए।" },
+    { id: "oms-anatomy", section: "Subject-specific check", question: "OMS-001 के preoperative review में root morphology, radiograph, nerve/sinus proximity, mouth opening और local anaesthetic risks के लिए कौन-सा प्रमाणित source चाहिए?", guidance: "SDCEP anticoagulants guideline exodontia का complete anatomy/procedure textbook नहीं है; gaps चिन्हित करें।" },
+    { id: "oms-complication", section: "Subject-specific check", question: "OMS-001 के तत्काल और देर से bleeding, airway/hemodynamic red flags, post-op pain/swelling/fever और referral में कौन-सा verification बाकी है?", guidance: "Patient-specific treatment निर्देश न दें; exact source section और missing evidence लिखें।" },
+    { id: "oms-mcq", section: "Subject-specific check", question: "OMS-001 के दो proposed MCQ और anticoagulant case की single-best-answer reasoning के लिए किन अतिरिक्त original sources या specialist review की जरूरत है?", guidance: "Unpublished MCQ wording इस पेज पर दिखती नहीं; सिर्फ missing source requirements बताएं।" },
+  ],
+  "ada-oral-cancer-2026": [
+    { id: "omr-edition", section: "Subject-specific check", question: "OMR-001 के लिए ADA 2026 source सही लिया है या गलती से archived 2017 guidance मिलाई गई है?", guidance: "Original current edition और exact page/section दिखाकर जवाब दें।" },
+    { id: "omr-observations", section: "Subject-specific check", question: "OMR-001 हेतु oral examination, lesion documentation और cervical lymph-node assessment के exact evidence sections कौन-से हैं?", guidance: "जो बात ADA guide में नहीं है उसे बिना अन्य प्रमाण assume न करें।" },
+    { id: "omr-referral", section: "Subject-specific check", question: "OMR-001 में biopsy/referral, timing और diagnostic uncertainty को ADA, NICE और Indian context में कैसे अलग रखा जाए?", guidance: "UK pathway को universal India/UPSC rule न बनाएँ; gap पर अतिरिक्त evidence लिखें।" },
+    { id: "omr-coverage", section: "Subject-specific check", question: "OMR-001 के scope में OPMD classification, image rights/labels और MCQ rationales के लिए क्या extra review चाहिए?", guidance: "Unpublished teaching material इस पेज पर नहीं दिखता; यहाँ केवल required checks चिन्हित करें।" },
+  ],
+};
+
 export const REVIEW_CHOICES: { id: ReviewAnswer; label: string }[] = [
   { id: "ok", label: "ठीक है" },
   { id: "change", label: "सुधार जरूरी" },
@@ -105,7 +125,7 @@ export const REVIEW_CHOICES: { id: ReviewAnswer; label: string }[] = [
 
 export function reviewQuestions(sourceId: string): ReviewQuestion[] {
   const special = SPECIAL[sourceId];
-  return special ? [...COMMON, ...special] : [...COMMON];
+  return [...COMMON, ...(special ?? []), ...(OPEN_CLINICAL_GAPS[sourceId] ?? [])];
 }
 
 export function serializeGuidedReview(

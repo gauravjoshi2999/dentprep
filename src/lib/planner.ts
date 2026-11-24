@@ -88,8 +88,10 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
   const guideSubjects = [
     ...input.subjects.filter(s => weak.has(s.id)),
     ...input.subjects.filter(s => !weak.has(s.id)),
-  ].map(subject => ({ subject, brief: STUDY_BRIEF_BY_SLUG.get(subject.slug ?? "") }))
-    .filter((entry): entry is { subject: PlannerSubject; brief: NonNullable<typeof entry.brief> } => !!entry.brief);
+  ].flatMap(subject => {
+    const brief = STUDY_BRIEF_BY_SLUG.get(subject.slug ?? "");
+    return brief ? [{ subject, brief }] : [];
+  });
   const guideQueue: { subject: PlannerSubject; title: string; recall: string }[] = [];
   // Chapter waves mean a 15-day cycle samples all 15 subjects before
   // concentrating only on one specialty; weak subjects lead each wave.

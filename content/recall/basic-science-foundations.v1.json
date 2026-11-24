@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "basic-science-foundations-recall",
+  "version": 1,
+  "subject_slug": "basic-medical-sciences",
+  "subject": "Basic Medical Sciences",
+  "title": "Build the biological foundations · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "basic-science-foundations",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "homeostasis",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "1.5 Homeostasis; negative feedback",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+      "content_version": "homeostasis:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "membrane",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "3.1 The Cell Membrane; selective permeability",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane",
+      "content_version": "membrane:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "tissues",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "4.1 Types of Tissues",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-1-types-of-tissues",
+      "content_version": "tissues:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "immunity",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "21.2 Barrier Defenses and the Innate Immune Response",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response",
+      "content_version": "immunity:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A variable falls below its range and a response opposes that fall. Which feedback direction?",
+      "choices": [
+        "Negative feedback",
+        "Positive reinforcement of the fall",
+        "No response to deviation"
+      ],
+      "answer": 0,
+      "explanation": "Opposing the deviation defines negative feedback.",
+      "rationales": [
+        "This matches the response direction.",
+        "Reinforcement would amplify the deviation.",
+        "A response is explicitly present."
+      ],
+      "hint": "Retrieve the direction rule.",
+      "source_ids": [
+        "homeostasis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A new histology card describes a sheet covering a body surface. Which family?",
+      "choices": [
+        "Muscle",
+        "Epithelial",
+        "Nervous"
+      ],
+      "answer": 1,
+      "explanation": "Epithelium covers and lines surfaces.",
+      "rationales": [
+        "Muscle specializes in contraction.",
+        "This matches the covering sheet.",
+        "Nervous tissue specializes in signalling."
+      ],
+      "hint": "Recall tissue function.",
+      "source_ids": [
+        "tissues"
+      ],
+      "calculation": null
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "id": "perio-support",
+  "version": 1,
+  "subject_slug": "periodontology",
+  "subject": "Periodontology",
+  "title": "Protecting the tooth-supporting tissues",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Distinguish gingival inflammation, destructive disease, risk factors and stage-versus-grade language.",
+  "sources": [
+    {
+      "id": "gums",
+      "title": "Periodontal (Gum) Disease",
+      "author_or_organization": "National Institute of Dental and Craniofacial Research, NIH",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Overview; Causes; Risk Factors",
+      "url": "https://www.nidcr.nih.gov/health-info/gum-disease",
+      "content_version": "gums:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "aap",
+      "title": "Gum Disease Information",
+      "author_or_organization": "American Academy of Periodontology",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Gingivitis; Periodontitis; stage and grade overview",
+      "url": "https://www.perio.org/for-patients/gum-disease-information/",
+      "content_version": "aap:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "efp-classification",
+      "title": "Periodontitis: Guidance for Clinicians",
+      "author_or_organization": "Mariano Sanz; Maurizio Tonetti; European Federation of Periodontology",
+      "edition": "Published March 2019; 2017 World Workshop classification guidance",
+      "year": 2019,
+      "section": "Severity of disease; staging and grading, pages 2–6",
+      "url": "https://www.efp.org/fileadmin/uploads/efp/Documents/Campaigns/New_Classification/Guidance_Notes/report-02.pdf",
+      "content_version": "efp-classification:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "biofilm",
+      "title": "Distinguish plaque from calculus",
+      "phase": "learn",
+      "lesson": "Dental plaque is a bacterial biofilm on teeth. It can mineralize into calculus. Plaque and calculus are related but not interchangeable words: one is a biofilm, the other its hardened deposit. This distinction helps organize the causes of inflammation without treating every visible deposit as a complete periodontal diagnosis.",
+      "question": "What is calculus in this context?",
+      "choices": [
+        "New tooth enamel",
+        "Mineralized plaque",
+        "Normal pulp tissue"
+      ],
+      "answer": 1,
+      "explanation": "Calculus is the hardened deposit formed from plaque.",
+      "rationales": [
+        "It is not a new enamel layer.",
+        "Mineralization is the key distinction.",
+        "Pulp is internal soft tissue."
+      ],
+      "hint": "Recall what hardens.",
+      "source_ids": [
+        "gums"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "gingivitis",
+      "title": "Locate gingival inflammation",
+      "phase": "learn",
+      "lesson": "Gingivitis describes inflammation of the gingiva. Redness, swelling and bleeding can be features; discomfort may be limited. Gingivitis and periodontitis should not be used as synonyms. A symptom by itself does not establish the extent of supporting-tissue destruction. Read clinical findings together rather than assigning disease severity from pain alone.",
+      "question": "Which tissue is central to the term gingivitis?",
+      "choices": [
+        "Gingiva",
+        "Dental pulp",
+        "Nasal cartilage"
+      ],
+      "answer": 0,
+      "explanation": "Gingivitis names inflammation of the gingiva.",
+      "rationales": [
+        "This is the named tissue.",
+        "Pulp inflammation is a different concept.",
+        "This is not the periodontal tissue named."
+      ],
+      "hint": "Use the word root.",
+      "source_ids": [
+        "aap"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "attachment",
+      "title": "Recognize destructive periodontal disease",
+      "phase": "learn",
+      "lesson": "Periodontitis involves destruction of supporting tissues around teeth, including bone. It differs from inflammation confined to the gingiva. Clinical attachment and supporting bone matter when describing disease extent. These concepts explain why appearance alone is incomplete; this chapter does not teach a self-diagnosis rule or choose treatment.",
+      "question": "Which feature distinguishes destructive periodontal disease from gingival inflammation alone?",
+      "choices": [
+        "Tooth colour alone",
+        "Supporting-tissue destruction",
+        "A normal tooth name"
+      ],
+      "answer": 1,
+      "explanation": "Loss of supporting tissues is the relevant distinction.",
+      "rationales": [
+        "Colour alone does not establish destruction.",
+        "This identifies the central difference.",
+        "Naming conveys no disease extent."
+      ],
+      "hint": "Think attachment and bone.",
+      "source_ids": [
+        "aap",
+        "gums",
+        "efp-classification"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "classification",
+      "title": "Separate stage from grade",
+      "phase": "learn",
+      "lesson": "Periodontal classification uses stage to summarize severity and management complexity, and grade to describe progression-related information and risk. These labels need a full assessment. Do not infer a patient’s stage or grade from one symptom or a single study card. For exams, first remember the different questions each label addresses.",
+      "question": "Which pairing best matches stage and grade?",
+      "choices": [
+        "Stage: severity/complexity; grade: progression/risk",
+        "Stage: favourite colour; grade: appointment time",
+        "Both mean exactly the same thing"
+      ],
+      "answer": 0,
+      "explanation": "Stage and grade summarize different disease dimensions.",
+      "rationales": [
+        "The dimensions are distinguished correctly.",
+        "These are irrelevant properties.",
+        "They are not interchangeable labels."
+      ],
+      "hint": "Severity versus progression.",
+      "source_ids": [
+        "aap",
+        "efp-classification"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "biofilm-transfer",
+      "title": "Distinguish plaque from calculus · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which note most accurately separates plaque and calculus?",
+      "choices": [
+        "Both terms mean bacterial biofilm before hardening",
+        "Both terms mean mineralized deposit",
+        "Plaque is biofilm; calculus is its hardened deposit"
+      ],
+      "answer": 2,
+      "explanation": "Mineralization distinguishes calculus from the plaque biofilm.",
+      "rationales": [
+        "This omits the mineralized state.",
+        "This incorrectly makes all plaque mineralized.",
+        "This preserves the distinction."
+      ],
+      "hint": "Separate soft biofilm and hardened deposit.",
+      "source_ids": [
+        "gums"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "gingivitis-transfer",
+      "title": "Locate gingival inflammation · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement avoids overinterpreting symptoms in gingivitis?",
+      "choices": [
+        "Pain must be present in every case",
+        "Limited discomfort does not exclude gingival inflammation",
+        "Bleeding alone proves the extent of supporting bone loss"
+      ],
+      "answer": 1,
+      "explanation": "Gingivitis may cause limited discomfort; symptom presence alone does not quantify supporting-tissue destruction.",
+      "rationales": [
+        "Pain is not mandatory in every case.",
+        "This matches the source description.",
+        "Bone loss cannot be quantified from bleeding alone."
+      ],
+      "hint": "Do not turn one symptom into a universal rule.",
+      "source_ids": [
+        "aap"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "attachment-transfer",
+      "title": "Recognize destructive periodontal disease · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which paper finding adds evidence of destructive periodontal involvement beyond gingival inflammation alone?",
+      "choices": [
+        "A tooth shade change",
+        "Loss of supporting periodontal tissues",
+        "The patient reports little discomfort"
+      ],
+      "answer": 1,
+      "explanation": "Supporting-tissue destruction is the relevant distinction.",
+      "rationales": [
+        "Colour does not establish attachment loss.",
+        "This identifies the tissue destruction.",
+        "Discomfort alone does not establish disease extent."
+      ],
+      "hint": "Identify what supports the tooth.",
+      "source_ids": [
+        "aap",
+        "gums",
+        "efp-classification"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "classification-transfer",
+      "title": "Separate stage from grade · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which summary best distinguishes periodontal stage and grade?",
+      "choices": [
+        "Stage summarizes severity/complexity; grade summarizes progression-related information",
+        "Stage and grade are interchangeable severity labels",
+        "Grade counts teeth while stage records tooth shade"
+      ],
+      "answer": 0,
+      "explanation": "The two dimensions summarize different aspects of periodontitis.",
+      "rationales": [
+        "This preserves the intended distinction.",
+        "They are not interchangeable.",
+        "Neither definition is correct."
+      ],
+      "hint": "Recall the second classification dimension.",
+      "source_ids": [
+        "aap",
+        "efp-classification"
+      ],
+      "calculation": null
+    }
+  ]
+}

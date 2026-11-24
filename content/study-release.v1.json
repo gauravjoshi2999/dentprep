@@ -1,0 +1,150 @@
+{
+  "release_id": "all-subject-academic-introductions-v1",
+  "checked_on": "2026-11-24",
+  "authority": "Latest founder direction: source-led academic study; remove student doctor-review gate; preserve clinical draft protections",
+  "clinical_publication_authorized": false,
+  "complete_curriculum_claimed": false,
+  "independent_clinical_approval": null,
+  "gates": [
+    {
+      "id": "E01",
+      "original_requirement": "Coverage: every essential subject/unit/topic maps to an outcome and reviewer; no unmapped mandatory area.",
+      "decision": "SCOPED",
+      "scope": "15 subject introductions; 60 named teaching concepts. Essential BDS/official exam coverage remains incomplete.",
+      "evidence": "content/study/*.v1.json; content/curriculum.json remains candidate-only"
+    },
+    {
+      "id": "E02",
+      "original_requirement": "Content source: each factual claim points to authoritative edition/year/section or verified official notice.",
+      "decision": "SOURCE_CHECKED_AI",
+      "scope": "Per-unit links to inspected primary publishers; title, organization, edition/undated year, section, check date and content version recorded. This is an AI research check, not professional sign-off.",
+      "evidence": "content/study; content/recall; DENTPREP_ALL_SUBJECT_STUDY_RELEASE.md"
+    },
+    {
+      "id": "E03",
+      "original_requirement": "Freshness: content older than configured review interval is flagged for inspection before continued clinical use.",
+      "decision": "SCOPED",
+      "scope": "Sources checked 2026-11-24. Legacy high-risk clinical content is still draft; source checks do not authorize clinical use.",
+      "evidence": "Source checked_on and content_version; immutable content hashes"
+    },
+    {
+      "id": "E04",
+      "original_requirement": "Clinical sign-off: independent qualified reviewer sign-off mandatory before clinical content publication.",
+      "decision": "NOT_APPLICABLE_TO_ACADEMIC_SCOPE",
+      "scope": "No independent clinical approval claimed. No procedural, drug-dose or individualized treatment protocol is released; legacy clinical gates remain enforced.",
+      "evidence": "expert_approval_claimed:false; native guard_clinical_publication remains enabled"
+    },
+    {
+      "id": "E05",
+      "original_requirement": "MCQ unambiguity: each item has one defensible best option in its stated context; other options explained.",
+      "decision": "AUTHORING_CHECK",
+      "scope": "Single keyed answer and option rationales; original academic questions. Clinical and empirical psychometric validation not claimed.",
+      "evidence": "Each unit answer, explanation, rationales and source_ids; native grading QA"
+    },
+    {
+      "id": "E06",
+      "original_requirement": "Clinical safety: high-risk emergency content flags red flags and escalation; no unsafe free-form treatment instructions.",
+      "decision": "SCOPED",
+      "scope": "Emergency chapter teaches readiness and vocabulary only. No dosing, treatment algorithm or technique. It explicitly distinguishes theory from practical training.",
+      "evidence": "emergency-readiness.v1.json; unchanged clinical drafts"
+    },
+    {
+      "id": "E07",
+      "original_requirement": "Diagram accuracy: anatomy image labels/orientation checked by expert, alt text accurate and licensing recorded.",
+      "decision": "NOT_APPLICABLE",
+      "scope": "No new anatomical image is released. Original unavailable clinical illustrations are not certified by this change.",
+      "evidence": "Text-only source course packages"
+    },
+    {
+      "id": "E08",
+      "original_requirement": "Misconception correction: wrong answers generate explanation and linked remedial lesson, not only correct label.",
+      "decision": "IMPLEMENTED",
+      "scope": "Incorrect selections show verified-source concept explanation and the selected distractor rationale; all option rationales available. First mistakes link back to the relevant concept.",
+      "evidence": "guided-quest.tsx; source-study-report.tsx; course JSON"
+    },
+    {
+      "id": "E09",
+      "original_requirement": "Fresh retrieval: learning checked on unseen questions, not only repeats or answer exposure.",
+      "decision": "IMPLEMENTED_WITH_LIMIT",
+      "scope": "Four different application stems follow four teaching checks per chapter; two different retrieval questions follow later. Open study bundles are not secure unseen exam banks.",
+      "evidence": "Per-package unique stems; parent-versus-recall comparison"
+    },
+    {
+      "id": "E10",
+      "original_requirement": "Delayed retention: configured 1/7/30-day follow-up retrieval probes store scores separately from immediate attempts.",
+      "decision": "PARTIAL",
+      "scope": "One next-day check with two fresh questions, server-locked until 24 hours after saved completion; scores stored separately. Fresh 7/30-day probes are not yet authored.",
+      "evidence": "exam_study_access; independent recall course IDs; native delayed access tests"
+    },
+    {
+      "id": "E11",
+      "original_requirement": "Confidence calibration: user-reported confidence compared with performance, never mistaken for mastery.",
+      "decision": "DEFERRED",
+      "scope": "No confidence score is collected or represented as mastery in this introductory release.",
+      "evidence": "No confidence or competence score in chapter UI"
+    },
+    {
+      "id": "E12",
+      "original_requirement": "Difficulty calibration: items reviewed for challenge and discrimination as sufficient anonymized data accumulates.",
+      "decision": "NOT_VALIDATED",
+      "scope": "No empirical item difficulty/discrimination claim. Difficulty labels and accuracy certificates are not fabricated.",
+      "evidence": "Original small practice set; no cohort metrics"
+    },
+    {
+      "id": "E13",
+      "original_requirement": "Feedback source: AI-generated factual critique tied to reviewed materials; unsupported claims flagged to reviewer.",
+      "decision": "SCOPED",
+      "scope": "Feedback is authored against the linked sources. No live AI clinical evaluator or unsupported free-form critique is enabled.",
+      "evidence": "Immutable source-linked explanations; no paid AI endpoint"
+    },
+    {
+      "id": "E14",
+      "original_requirement": "Test bias: low-English-fluency learners evaluated for comprehension without penalizing legitimate clinical reasoning.",
+      "decision": "SCOPED",
+      "scope": "Text-based English notes and choices with hints; language is not independently scored. Comprehension and fairness pilot remain outstanding.",
+      "evidence": "Choice-based player, hints and explanations"
+    },
+    {
+      "id": "E15",
+      "original_requirement": "Case transfer: learner applies concepts in new synthetic cases, not only memorized stems.",
+      "decision": "IMPLEMENTED_WITH_LIMIT",
+      "scope": "Synthetic paper cases and comparison examples apply concepts. No patient case management competence is certified.",
+      "evidence": "apply units and next-day recall units"
+    },
+    {
+      "id": "E16",
+      "original_requirement": "Rubric agreement: AI evaluation cannot show precise scoring until clinically meaningful human validation passes.",
+      "decision": "NOT_APPLICABLE",
+      "scope": "No AI numerical interview/clinical evaluation or precise validated clinical rubric is introduced.",
+      "evidence": "Fixed original question keys only"
+    },
+    {
+      "id": "E17",
+      "original_requirement": "Error reporting: student flags questionable question; review process records response and score correction if needed.",
+      "decision": "IMPLEMENTED_WITH_LIMIT",
+      "scope": "GitHub issue draft includes course/version/unit. Registry withdrawal disables guest and signed-in entry; immutable versions and old scores retained. No automated retrospective score correction is claimed.",
+      "evidence": "studyIssueUrl; exam_study_availability; withdrawal QA"
+    },
+    {
+      "id": "E18",
+      "original_requirement": "Official claims: UPSC details compared to latest notice/corrigenda at time of publication; no predicted RT scheme.",
+      "decision": "IMPLEMENTED",
+      "scope": "Official source is UPSC portal; no vacancy, date, weightage or official syllabus asserted. Case-specific notices must be checked when an actual requirement is displayed.",
+      "evidence": "health-administration.v1.json; official_questions:false"
+    },
+    {
+      "id": "E19",
+      "original_requirement": "Learning pilot: diverse consenting candidate cohort completes usability, comprehension, retrieval and retention tasks. DentPrep | Independent education | Verified-source work handoff",
+      "decision": "NOT_VALIDATED",
+      "scope": "Automated mobile/desktop fixtures and public production guest tests are software acceptance, not a diverse consenting educational pilot.",
+      "evidence": "CI and public deployment QA evidence; no learning-pilot claim"
+    },
+    {
+      "id": "E20",
+      "original_requirement": "Graduation gate: no claim that a student is fully exam-ready until broad coverage, repeated evidence and clear caveats exist.",
+      "decision": "IMPLEMENTED",
+      "scope": "Every package complete_subject:false; reports distinguish first attempts, corrected attempts and recall. No exam readiness, medical competence or selection prediction.",
+      "evidence": "Course metadata, report and player scope copy"
+    }
+  ]
+}

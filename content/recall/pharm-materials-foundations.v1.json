@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "id": "pharm-materials-foundations-recall",
+  "version": 1,
+  "subject_slug": "pharmacology-dental-materials",
+  "subject": "Pharmacology & Dental Materials",
+  "title": "Separate drug handling from material structure · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "pharm-materials-foundations",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "pk",
+      "title": "Pharmacokinetics",
+      "author_or_organization": "Sean Grogan; Deanna Warner; Charles V. Preuss; StatPearls Publishing",
+      "edition": "Last updated 10 November 2026",
+      "year": 2026,
+      "section": "Introduction; absorption, distribution, metabolism and elimination",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557744/",
+      "content_version": "pk:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "materials",
+      "title": "Materials for Direct Restorations",
+      "author_or_organization": "American Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Direct restorations; resin-based composite and glass ionomer composition",
+      "url": "https://www.ada.org/resources/ada-library/oral-health-topics/materials-for-direct-restorations",
+      "content_version": "materials:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A fresh item asks how elimination changes drug concentration over time. Which branch?",
+      "choices": [
+        "Pharmacokinetics",
+        "Receptor-mediated pharmacodynamics",
+        "Only receptor affinity independent of concentration-time behaviour"
+      ],
+      "answer": 0,
+      "explanation": "Elimination and concentration-time behaviour are pharmacokinetic.",
+      "rationales": [
+        "This is ADME-related handling.",
+        "This concerns mechanism/effect.",
+        "Affinity is not the stated elimination question."
+      ],
+      "hint": "Handling versus effects.",
+      "source_ids": [
+        "pk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which two phases belong to a resin-based composite description?",
+      "choices": [
+        "Glass and polyacid only, with no resin matrix",
+        "Resin matrix and inorganic filler",
+        "A single pure metal without other phases"
+      ],
+      "answer": 1,
+      "explanation": "A resin composite contains a resin matrix and filler phase.",
+      "rationales": [
+        "This is closer to conventional glass-ionomer chemistry.",
+        "This gives the relevant combination.",
+        "A pure metal is not a resin composite."
+      ],
+      "hint": "Recall two phases.",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    }
+  ]
+}

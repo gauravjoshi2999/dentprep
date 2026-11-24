@@ -1,0 +1,242 @@
+[
+  {
+    "course_id": "basic-science-foundations",
+    "content_version": 1,
+    "subject_slug": "basic-medical-sciences",
+    "content_sha256": "096c0473bdceab5db5318a402fe84e47de47c86ae5155fbc3c943c3f819af8c5",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "emergency-readiness",
+    "content_version": 1,
+    "subject_slug": "medical-emergencies",
+    "content_sha256": "91bc17ec92324baf0816460af96580d5f1e44920e8192e18439b00a8beaade9f",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "endo-tooth-foundations",
+    "content_version": 1,
+    "subject_slug": "conservative-endodontics",
+    "content_sha256": "e952aa064c32cd63b0d689c49542b1f918978194a7b78d0dae1385081a4838f1",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "health-administration",
+    "content_version": 1,
+    "subject_slug": "govt-healthcare-administration",
+    "content_sha256": "941a20c2688292adbfa047ccb76a0e3f4526906c2ef0edd17f0879e1e5f6a641",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "infection-ethics-foundations",
+    "content_version": 1,
+    "subject_slug": "infection-control-ethics",
+    "content_sha256": "dae37a25b5252e639a7ba9270bde8f3f94184ff9d8ac2aac8543c50977913a32",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "medicine-mechanisms",
+    "content_version": 1,
+    "subject_slug": "general-medicine-surgery",
+    "content_sha256": "05cf358706cb3f60f75bb67ee862272f1919a6d20d907dfd6da4c0736cbbbe8c",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "omr-observation",
+    "content_version": 1,
+    "subject_slug": "oral-medicine-radiology",
+    "content_sha256": "67b18147fd0a346e2ac8884f269559dfae41f2663beec379a1623accaa9fc56b",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "oms-assessment",
+    "content_version": 1,
+    "subject_slug": "oral-maxillofacial-surgery",
+    "content_sha256": "ef48c185dcf0add198dbbb273dc72fec14f270153b43ca06fff3ce9448c31346",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "ortho-bite",
+    "content_version": 1,
+    "subject_slug": "orthodontics",
+    "content_sha256": "5d3dde6f07390cec05050714aa8457b22b060bd8999f66d12f538b5c6b73d334",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "pathology-language",
+    "content_version": 1,
+    "subject_slug": "oral-pathology",
+    "content_sha256": "0c45f4712c447f85201ac245c04dfb72a43c5e4a8b9dae050ed949fc0bdc51cd",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "pediatric-foundations",
+    "content_version": 1,
+    "subject_slug": "pediatric-dentistry",
+    "content_sha256": "b9fc9562e601a2575491ca259fba9e03e47d4802d8c521b697f9d49ba2620f73",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "perio-support",
+    "content_version": 1,
+    "subject_slug": "periodontology",
+    "content_sha256": "b6e78f5a6df3f73a3ac1232fe3a432ef78ec8bcba4e7cce87c99f41f054656d4",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "ph-frequency",
+    "content_version": 1,
+    "subject_slug": "public-health-dentistry",
+    "content_sha256": "6e815ac3a46cc9e620c3976b7d78bafedd5c9cba1944e453058214b31ecad177",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "pharm-materials-foundations",
+    "content_version": 1,
+    "subject_slug": "pharmacology-dental-materials",
+    "content_sha256": "e5cb0b897e1106470e715f4fc1de7038fa9b92ddc350359d0e2dd69cab3ea81f",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "prostho-replacements",
+    "content_version": 1,
+    "subject_slug": "prosthodontics",
+    "content_sha256": "6799d52d761a8acc6eef728931749499bf8fd63f48aa7563e0b461efb5f69b8b",
+    "required_course_id": null,
+    "delay_hours": 0
+  },
+  {
+    "course_id": "basic-science-foundations-recall",
+    "content_version": 1,
+    "subject_slug": "basic-medical-sciences",
+    "content_sha256": "acafb3a13660d3d802a38cee9b549e5d7dbe8503980a2fb12290efec94bccd5a",
+    "required_course_id": "basic-science-foundations",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "emergency-readiness-recall",
+    "content_version": 1,
+    "subject_slug": "medical-emergencies",
+    "content_sha256": "8e926236952c2a693fad60e570ae14ac5e90bf5604517b36287b7d7545ee13cc",
+    "required_course_id": "emergency-readiness",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "endo-tooth-foundations-recall",
+    "content_version": 1,
+    "subject_slug": "conservative-endodontics",
+    "content_sha256": "42960a50e5f0992598e9cf1adb495ce7381b1bd237077277c4d935f88f264dad",
+    "required_course_id": "endo-tooth-foundations",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "health-administration-recall",
+    "content_version": 1,
+    "subject_slug": "govt-healthcare-administration",
+    "content_sha256": "5a3f3e9df5bce15d84f12071b897a0573a6acfc4fe29fafba18f6f501d5bd6dd",
+    "required_course_id": "health-administration",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "infection-ethics-foundations-recall",
+    "content_version": 1,
+    "subject_slug": "infection-control-ethics",
+    "content_sha256": "8c5afbadf4b00df1b6fcf0a0f9890e3511b67b5d1a07e4d7f9d517ce80331fc2",
+    "required_course_id": "infection-ethics-foundations",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "medicine-mechanisms-recall",
+    "content_version": 1,
+    "subject_slug": "general-medicine-surgery",
+    "content_sha256": "6c9f50cb7587451c8a190c1d23b464416c3b0b15958886f4755252e69cec44a6",
+    "required_course_id": "medicine-mechanisms",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "omr-observation-recall",
+    "content_version": 1,
+    "subject_slug": "oral-medicine-radiology",
+    "content_sha256": "7f66c8ed31c53a0d69c0646f903a5cbb6dcc6c0f0fecf90d84081455c77e8faa",
+    "required_course_id": "omr-observation",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "oms-assessment-recall",
+    "content_version": 1,
+    "subject_slug": "oral-maxillofacial-surgery",
+    "content_sha256": "064f132c1c615debe51c917628eda86dc335a5c015fda4f814e2234c431c8d87",
+    "required_course_id": "oms-assessment",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "ortho-bite-recall",
+    "content_version": 1,
+    "subject_slug": "orthodontics",
+    "content_sha256": "fc7f92f065097ce30d46fa9783dc6de8f1c7639da37945dc03e75ffa69eabfd4",
+    "required_course_id": "ortho-bite",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "pathology-language-recall",
+    "content_version": 1,
+    "subject_slug": "oral-pathology",
+    "content_sha256": "4ee5a2689aaae93c29e80e6472ae9d04efc472c1e5015502fa2fefb791bfadd2",
+    "required_course_id": "pathology-language",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "pediatric-foundations-recall",
+    "content_version": 1,
+    "subject_slug": "pediatric-dentistry",
+    "content_sha256": "96d1ef4b6e8e6631b5c808047117bc7c7ded9874b7865d1327cc597c97fe539d",
+    "required_course_id": "pediatric-foundations",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "perio-support-recall",
+    "content_version": 1,
+    "subject_slug": "periodontology",
+    "content_sha256": "6c1051f44c59ac2746d0f333f9bb328a13d3d61bb875f8c414893193f5a6a27f",
+    "required_course_id": "perio-support",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "ph-frequency-recall",
+    "content_version": 1,
+    "subject_slug": "public-health-dentistry",
+    "content_sha256": "46864e90b93c9f649b3cdab17e534db0e584aef43595ee7b4c74c28b2ebc24a6",
+    "required_course_id": "ph-frequency",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "pharm-materials-foundations-recall",
+    "content_version": 1,
+    "subject_slug": "pharmacology-dental-materials",
+    "content_sha256": "885e9dba6afcfd03db01504b170514b70cc6ed3dc3cb80c767264fa9a59c0279",
+    "required_course_id": "pharm-materials-foundations",
+    "delay_hours": 24
+  },
+  {
+    "course_id": "prostho-replacements-recall",
+    "content_version": 1,
+    "subject_slug": "prosthodontics",
+    "content_sha256": "f6da97576a9d347b736e705275a09a825f756b44d9104eee6e823ffbf40271b6",
+    "required_course_id": "prostho-replacements",
+    "delay_hours": 24
+  }
+]

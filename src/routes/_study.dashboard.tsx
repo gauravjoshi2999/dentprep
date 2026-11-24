@@ -1,3 +1,5 @@
+import { STUDY_COURSES } from "@/lib/study-course";
+import { questOverviewQuery } from "@/lib/quest-progress";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useUserId } from "@/lib/auth";
@@ -29,6 +31,7 @@ export const Route = createFileRoute("/_study/dashboard")({
 });
 function Dashboard() {
   const id = useUserId();
+  const chapterProgress = useQuery(questOverviewQuery(id));
   const profile = useQuery(profileQuery(id));
   const progress = useQuery(progressQuery(id));
   const attempts = useQuery(attemptsQuery(id));
@@ -59,6 +62,17 @@ function Dashboard() {
   const nextLesson = availableLessons.find(
     (l) => !progress.data?.some((p) => p.lesson_id === l.id && p.status === "completed"),
   );
+  const nextChapter =
+    STUDY_COURSES.find(
+      (course) =>
+        !chapterProgress.data?.some((row) => row.course_id === course.id && row.completed_at),
+    ) ?? STUDY_COURSES[0]!;
+  const completedChapters =
+    chapterProgress.data?.filter((row) => !row.required_course_id && row.completed_at).length ?? 0;
+  const dueRecalls =
+    chapterProgress.data?.filter(
+      (row) => row.required_course_id && row.available && !row.completed_at,
+    ).length ?? 0;
   const greetingName = studentGreetingName(profile.data?.full_name);
   const streak = computeStreak(activity.data?.map((a) => a.day) ?? []);
   return (
@@ -76,14 +90,12 @@ function Dashboard() {
           Today's learning mission
         </p>
         <h2 id="daily-mission-title" className="mt-2 text-2xl font-extrabold">
-          {nextLesson
-            ? nextLesson.title
-            : (availableLessons[0]?.title ?? "Learn prevalence and incidence")}
+          {nextLesson ? nextLesson.title : (availableLessons[0]?.title ?? nextChapter.title)}
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           {availableLessons.length
             ? "Read a reviewed lesson, explain it in your own words, then return to the source to check gaps."
-            : "Start Public Health Dentistry with four short lessons and four fresh challenges. Use hints, read why each answer works, and continue from your saved checkpoint when signed in."}
+            : "Study across all 15 subjects: read a short section, answer a question, understand the explanation and apply the idea again. Saved checkpoints let you continue across devices."}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           {(nextLesson ?? availableLessons[0]) ? (
@@ -101,8 +113,10 @@ function Dashboard() {
             </Button>
           ) : (
             <Button asChild>
-              <Link to="/start" search={{ course: "ph-frequency" }}>
-                Start Public Health chapter
+              <Link to="/start" search={{ course: nextChapter.id }}>
+                {completedChapters === STUDY_COURSES.length
+                  ? "Review a chapter"
+                  : "Continue subject chapter"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -116,6 +130,25 @@ function Dashboard() {
             {done} of {availableLessons.length} available lesson checklists completed.
           </p>
         )}
+      </section>
+      <section className="surface mb-6 p-5" aria-label="Chapter progress summary">
+        <h2 className="text-lg font-bold">Your subject journey</h2>
+        {chapterProgress.isError ? (
+          <p className="mt-2 text-sm">
+            Could not load saved chapter results.{" "}
+            <button className="text-teal underline" onClick={() => void chapterProgress.refetch()}>
+              Retry
+            </button>
+          </p>
+        ) : (
+          <p className="mt-2 text-sm">
+            {completedChapters}/15 introductory chapters completed · {dueRecalls} next-day recalls
+            due
+          </p>
+        )}
+        <Link to="/progress" className="mt-3 inline-block text-sm font-bold text-teal">
+          Results, mistakes and next-day recall →
+        </Link>
       </section>
       <div className="mb-7 grid grid-cols-2 gap-3">
         <Link

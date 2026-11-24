@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "id": "pathology-language",
+  "version": 1,
+  "subject_slug": "oral-pathology",
+  "subject": "Oral Pathology",
+  "title": "Separate description from disease behaviour",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Learn neoplasm, dysplasia, biopsy and metastasis without equating appearance with diagnosis.",
+  "sources": [
+    {
+      "id": "nci-neoplasm",
+      "title": "NCI Dictionary of Cancer Terms: neoplasm",
+      "author_or_organization": "US National Cancer Institute",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Definition; benign and malignant neoplasms",
+      "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/neoplasm",
+      "content_version": "nci-neoplasm:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nci-dysplasia",
+      "title": "NCI Dictionary of Cancer Terms: dysplasia",
+      "author_or_organization": "US National Cancer Institute",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Definition; cellular abnormality and possible progression",
+      "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/dysplasia",
+      "content_version": "nci-dysplasia:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nci-biopsy",
+      "title": "NCI Dictionary of Cancer Terms: biopsy",
+      "author_or_organization": "US National Cancer Institute",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Definition; tissue examination",
+      "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/biopsy",
+      "content_version": "nci-biopsy:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nci-cancer",
+      "title": "What Is Cancer?",
+      "author_or_organization": "US National Cancer Institute",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Differences between cancer cells and normal cells; invasion and metastasis",
+      "url": "https://www.cancer.gov/about-cancer/understanding/what-is-cancer",
+      "content_version": "nci-cancer:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "neoplasm",
+      "title": "A neoplasm is not automatically malignant",
+      "phase": "learn",
+      "lesson": "A neoplasm is an abnormal growth of tissue. The term includes benign and malignant examples. The word alone does not establish invasive behaviour or spread. When answering an exam definition, separate the category “neoplasm” from the additional evidence needed to characterize biological behaviour.",
+      "question": "Which statement about a neoplasm is correct?",
+      "choices": [
+        "Every neoplasm is malignant",
+        "It may be benign or malignant",
+        "It always means an infection"
+      ],
+      "answer": 1,
+      "explanation": "Neoplasm includes benign and malignant growths.",
+      "rationales": [
+        "Malignancy is not inherent in the term.",
+        "This preserves the category distinction.",
+        "Neoplasm is not synonymous with infection."
+      ],
+      "hint": "Separate growth from behaviour.",
+      "source_ids": [
+        "nci-neoplasm"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "dysplasia",
+      "title": "Dysplasia is cellular abnormality",
+      "phase": "learn",
+      "lesson": "Dysplasia describes abnormal cells within a tissue. It is not synonymous with cancer, although some dysplastic changes can progress. The nature and extent of abnormalities matter. A definition is not an individual prognosis; avoid replacing uncertainty with a claim that every dysplasia will progress or that none can.",
+      "question": "Which best describes dysplasia?",
+      "choices": [
+        "Abnormal cells that are not automatically cancer",
+        "A guarantee of metastasis",
+        "A normal enamel layer"
+      ],
+      "answer": 0,
+      "explanation": "Dysplasia denotes cellular abnormality, not automatic malignancy.",
+      "rationales": [
+        "This states the distinction.",
+        "Progression is not guaranteed.",
+        "Enamel is a different concept."
+      ],
+      "hint": "Avoid absolute progression claims.",
+      "source_ids": [
+        "nci-dysplasia"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "biopsy",
+      "title": "Understand tissue examination",
+      "phase": "learn",
+      "lesson": "Biopsy means obtaining cells or tissue for examination. A pathologist can assess cellular and tissue features that are not available from a surface description alone. The report is interpreted with clinical information. This explains the role of tissue evidence without teaching how to perform a biopsy or selecting a technique for a patient.",
+      "question": "Which type of evidence can a biopsy provide?",
+      "choices": [
+        "Only an appointment date",
+        "Cellular or tissue findings",
+        "Only a tooth shade"
+      ],
+      "answer": 1,
+      "explanation": "Biopsy material enables examination of cells or tissue.",
+      "rationales": [
+        "This is administrative information.",
+        "This is the evidence obtained.",
+        "Shade is a surface observation."
+      ],
+      "hint": "Think sample and examination.",
+      "source_ids": [
+        "nci-biopsy"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "spread",
+      "title": "Invasion and metastasis differ",
+      "phase": "learn",
+      "lesson": "Malignant cells can invade nearby tissue. Metastasis means spread to another body site and formation of secondary disease there. Local invasion and distant spread are related concepts but not synonyms. A metastatic tumour retains the identity of its primary cancer rather than being renamed solely for its new location.",
+      "question": "What does metastasis describe?",
+      "choices": [
+        "A normal tissue layer",
+        "Only a change in tooth colour",
+        "Spread of cancer to another body site"
+      ],
+      "answer": 2,
+      "explanation": "Metastasis concerns spread beyond the primary site.",
+      "rationales": [
+        "This is not disease spread.",
+        "Colour change alone is unrelated.",
+        "This describes the process."
+      ],
+      "hint": "Local versus distant behaviour.",
+      "source_ids": [
+        "nci-cancer"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "neoplasm-transfer",
+      "title": "A neoplasm is not automatically malignant · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A tissue growth is called a neoplasm without further characterization. Which inference is unjustified?",
+      "choices": [
+        "It represents abnormal growth",
+        "It must be malignant",
+        "Its behaviour may need further assessment"
+      ],
+      "answer": 1,
+      "explanation": "Neoplasm includes benign and malignant examples.",
+      "rationales": [
+        "This fits the category.",
+        "The word alone does not establish malignancy.",
+        "Further characterization can be needed."
+      ],
+      "hint": "What extra meaning does malignant add?",
+      "source_ids": [
+        "nci-neoplasm"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "dysplasia-transfer",
+      "title": "Dysplasia is cellular abnormality · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement overstates what the term dysplasia establishes?",
+      "choices": [
+        "Cells appear abnormal",
+        "Progression to cancer is inevitable",
+        "Dysplasia is not synonymous with cancer"
+      ],
+      "answer": 1,
+      "explanation": "Possible progression is not inevitable progression.",
+      "rationales": [
+        "This is part of the definition.",
+        "This adds an unsupported certainty.",
+        "This is an essential distinction."
+      ],
+      "hint": "Possibility is not certainty.",
+      "source_ids": [
+        "nci-dysplasia"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "biopsy-transfer",
+      "title": "Understand tissue examination · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which evidence can a tissue report add to a clinical photograph?",
+      "choices": [
+        "Microscopic cellular/tissue findings",
+        "The exact symptom duration without a history",
+        "A guaranteed complete clinical diagnosis independent of context"
+      ],
+      "answer": 0,
+      "explanation": "The report adds tissue-level findings, interpreted with clinical information.",
+      "rationales": [
+        "This is its additional evidence.",
+        "Duration still needs a history.",
+        "Clinical context remains relevant."
+      ],
+      "hint": "Recall the observation scale.",
+      "source_ids": [
+        "nci-biopsy"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "spread-transfer",
+      "title": "Invasion and metastasis differ · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A fictional primary cancer at site A forms a secondary deposit at site B. Which description is best?",
+      "choices": [
+        "Metastatic disease identified by its primary origin",
+        "A new unrelated primary at B solely because of location",
+        "A benign lesion solely because it moved"
+      ],
+      "answer": 0,
+      "explanation": "A metastatic deposit retains its primary cancer identity.",
+      "rationales": [
+        "This preserves the origin.",
+        "Location alone does not create a new primary identity.",
+        "Spread does not imply benignity."
+      ],
+      "hint": "Retain the primary identity.",
+      "source_ids": [
+        "nci-cancer"
+      ],
+      "calculation": null
+    }
+  ]
+}

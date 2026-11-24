@@ -1,5 +1,15 @@
 import { test, expect, type Page, type Route } from "@playwright/test";
 import { randomUUID } from "node:crypto";
+import { readFileSync, readdirSync } from "node:fs";
+const studyPackages = ["study", "recall"].flatMap((folder) =>
+  readdirSync(`content/${folder}`)
+    .filter((name) => name.endsWith(".json"))
+    .map((name) => JSON.parse(readFileSync(`content/${folder}/${name}`, "utf8"))),
+);
+const studyManifest = JSON.parse(readFileSync("content/study-manifest.json", "utf8"));
+const chapterPackages = studyPackages
+  .filter((course) => course.kind !== "retention")
+  .sort((a, b) => a.subject.localeCompare(b.subject));
 
 const userId = "11111111-1111-4111-8111-111111111111";
 const subjectId = "22222222-2222-4222-8222-222222222222";
@@ -45,6 +55,7 @@ async function mockBackend(
   exam = false,
   evidenceConflict = false,
   logoutDelayMs = 0,
+  nextDayDue = false,
 ) {
   // Isolated test-only records: these tests never create accounts or publish clinical content.
   if (signedIn)
@@ -65,8 +76,49 @@ async function mockBackend(
   let savedReviewerProfile: Record<string, unknown> | null = null;
   let preparationFingerprint = "a".repeat(64);
   let firstPreparationSave = true;
-  const quest = { next_step: 0, first_correct: 0, first_choices: [] as number[], attempt_counts: [] as number[], revision: 0, completed_at: null as string | null, last_result: null as {step: number; choice: number; correct: boolean} | null };
-  let questRequestId = "";
+  const quest = {
+    total_steps: 8,
+    content_sha256: studyManifest.find((entry: any) => entry.course_id === "ph-frequency")
+      .content_sha256,
+    next_step: 0,
+    first_correct: 0,
+    first_choices: [] as number[],
+    attempt_counts: [] as number[],
+    revision: 0,
+    completed_at: null as string | null,
+    last_result: null as { step: number; choice: number; correct: boolean } | null,
+  };
+  const quests = new Map(
+    studyPackages.map((course) => [
+      course.id,
+      course.id === "ph-frequency"
+        ? quest
+        : {
+            ...quest,
+            total_steps: course.units.length,
+            content_sha256: studyManifest.find((entry: any) => entry.course_id === course.id)
+              .content_sha256,
+            first_choices: [],
+            attempt_counts: [],
+          },
+    ]),
+  );
+  if (nextDayDue) {
+    const parent = quests.get("oms-assessment")!;
+    Object.assign(parent, {
+      next_step: 8,
+      first_correct: 8,
+      first_choices: studyPackages
+        .find((course) => course.id === "oms-assessment")
+        .units.map((unit: any) => unit.answer),
+      attempt_counts: Array(8).fill(1),
+      revision: 8,
+      completed_at: new Date(Date.now() - 25 * 3600000).toISOString(),
+    });
+  }
+  const questRequestIds = new Map<string, string>();
+  const studyBookmarks = new Set<string>();
+
   const question = {
     id: questionId,
     subject_id: subjectId,
@@ -103,28 +155,74 @@ async function mockBackend(
     }
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
-    else if (path.endsWith("/rpc/exam_quest_state")) data = quest;
-    else if (path.endsWith("/rpc/exam_quest_answer")) {
-      const keys = [1,0,2,1,0,2,0,2];
-      expect(body.p_course_id).toBe("ph-frequency");
+    else if (path.endsWith("/rpc/exam_study_availability"))
+      data = studyManifest.map(({ course_id, content_version, content_sha256 }: any) => ({
+        course_id,
+        content_version,
+        content_sha256,
+      }));
+    else if (path.endsWith("/rpc/exam_quest_overview"))
+      data = studyPackages.map((course) => {
+        const state = quests.get(course.id)!;
+        const parent = quests.get(course.required_course_id);
+        const availableAt = parent?.completed_at
+          ? new Date(new Date(parent.completed_at).getTime() + 86400000).toISOString()
+          : null;
+        return {
+          course_id: course.id,
+          content_version: 1,
+          ...state,
+          required_course_id: course.required_course_id ?? null,
+          available_at: availableAt,
+          available:
+            !course.required_course_id || (!!availableAt && Date.now() >= Date.parse(availableAt)),
+          bookmarked: studyBookmarks.has(course.id),
+        };
+      });
+    else if (path.endsWith("/rpc/exam_study_bookmark")) {
+      if (body.p_value) studyBookmarks.add(body.p_course_id);
+      else studyBookmarks.delete(body.p_course_id);
+      data = body.p_value;
+    } else if (path.endsWith("/rpc/exam_quest_state")) {
+      const course = studyPackages.find((course) => course.id === body.p_course_id)!;
+      if (course.required_course_id) {
+        const parent = quests.get(course.required_course_id);
+        if (!parent?.completed_at || Date.now() < Date.parse(parent.completed_at) + 86400000)
+          return route.fulfill({
+            status: 400,
+            json: {
+              message: "Complete and save the source chapter, then return after the 24-hour delay",
+            },
+            headers: { "access-control-allow-origin": "*" },
+          });
+      }
+      data = quests.get(body.p_course_id);
+    } else if (path.endsWith("/rpc/exam_quest_answer")) {
+      const course = studyPackages.find((course) => course.id === body.p_course_id)!;
+      const quest = quests.get(course.id)!;
+      const keys = course.units.map((unit: any) => unit.answer);
       expect(body.p_version).toBe(1);
-      if (questRequestId !== body.p_request_id) {
+      if (questRequestIds.get(course.id) !== body.p_request_id) {
         expect(body.p_expected_revision).toBe(quest.revision);
         expect(body.p_step).toBe(quest.next_step);
         const step = quest.next_step;
         const first = quest.first_choices.length === step;
-        if (first) { quest.first_choices.push(body.p_choice); quest.attempt_counts.push(1); }
-        else quest.attempt_counts[step]! += 1;
+        if (first) {
+          quest.first_choices.push(body.p_choice);
+          quest.attempt_counts.push(1);
+        } else quest.attempt_counts[step]! += 1;
         const correct = body.p_choice === keys[step];
-        if (correct) { quest.next_step += 1; if (first) quest.first_correct += 1; }
+        if (correct) {
+          quest.next_step += 1;
+          if (first) quest.first_correct += 1;
+        }
         quest.revision += 1;
-        quest.last_result = {step, choice: body.p_choice, correct};
-        quest.completed_at = quest.next_step === 8 ? "2026-11-24T08:00:00Z" : null;
-        questRequestId = body.p_request_id;
+        quest.last_result = { step, choice: body.p_choice, correct };
+        quest.completed_at = quest.next_step === keys.length ? new Date().toISOString() : null;
+        questRequestIds.set(course.id, body.p_request_id);
       }
       data = quest;
-    }
-    else if (path.endsWith("/rpc/has_role")) data = admin;
+    } else if (path.endsWith("/rpc/has_role")) data = admin;
     else if (path.endsWith("/rpc/admin_content_evidence")) {
       expect(admin).toBe(true);
       const target = drafts.find((d) => d.id === body.p_entity_id);
@@ -377,9 +475,13 @@ test("public library and protected pages behave on mobile and desktop", async ({
   await mockBackend(page);
   await page.goto("/library");
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Public Health Dentistry · Chapter 1/ })).toBeVisible();
+  await expect(
+    page
+      .getByRole("article", { name: "Public Health Dentistry chapter" })
+      .getByRole("link", { name: "Start chapter →" }),
+  ).toBeVisible();
   await page.getByRole("searchbox").fill("missing subject");
-  await expect(page.getByText("No matching subjects")).toBeVisible();
+  await expect(page.getByText(/No matching subjects/)).toBeVisible();
   for (const path of ["/dashboard", "/practice", "/plan", "/progress", "/saved", "/interviews"]) {
     await page.goto(path);
     await expect(page.getByText("Sign in to your study space")).toBeVisible();
@@ -398,7 +500,7 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await page.getByLabel("Password", { exact: true }).fill("test-only-password");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Welcome, Dr. QA" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Learn prevalence and incidence" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: chapterPackages[0].title })).toBeVisible();
   // A click dispatches the async handler; navigating immediately can cancel its logout request.
   // Wait for the app's completed-signout navigation and cleared control, then reload a private URL.
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
@@ -462,27 +564,45 @@ test("study plans use available content and persist task completion", async ({ p
   await expect(page.getByText("1/7 tasks done", { exact: false })).toBeVisible();
 });
 
-test("subject-first plan studies official sources even when every clinical lesson is pending", async ({ page }) => {
+test("subject-first plan studies official sources even when every clinical lesson is pending", async ({
+  page,
+}) => {
   await mockBackend(page, true);
-  await page.route("https://example.supabase.co/rest/v1/subjects**", async route => {
+  await page.route("https://example.supabase.co/rest/v1/subjects**", async (route) => {
     if (route.request().method() === "OPTIONS") return route.fallback();
-    return route.fulfill({ json: [{
-      id: subjectId, slug: "oral-maxillofacial-surgery", name: "Oral & Maxillofacial Surgery",
-      description: "Oral surgery", short_name: "Oral Surgery", status: "published",
-      sort_order: 2, lessons: [],
-    }], headers: { "access-control-allow-origin": "*" } });
+    return route.fulfill({
+      json: [
+        {
+          id: subjectId,
+          slug: "oral-maxillofacial-surgery",
+          name: "Oral & Maxillofacial Surgery",
+          description: "Oral surgery",
+          short_name: "Oral Surgery",
+          status: "published",
+          sort_order: 2,
+          lessons: [],
+        },
+      ],
+      headers: { "access-control-allow-origin": "*" },
+    });
   });
   await page.goto("/plan");
   await expect(page.getByText("Use your available study paths")).toBeVisible();
   await page.getByLabel("Daily hours").fill("0.5");
   await page.getByRole("button", { name: "Generate and save study plan" }).click();
-  const sourceTask = page.getByRole("checkbox", { name: /Complete Source study: Oral & Maxillofacial Surgery/ }).first();
+  const sourceTask = page
+    .getByRole("checkbox", { name: /Complete Source study: Oral & Maxillofacial Surgery/ })
+    .first();
   await expect(sourceTask).toBeVisible();
-  await expect(page.getByRole("checkbox", { name: /^Complete Work through one clinical decision case/ })).toHaveCount(0);
-  await expect(page.getByRole("checkbox", { name: /^Complete Custom timed practice/ })).toHaveCount(0);
-  const guideLink = page.getByRole("link", { name: "Open original source" }).first();
+  await expect(
+    page.getByRole("checkbox", { name: /^Complete Work through one clinical decision case/ }),
+  ).toHaveCount(0);
+  await expect(page.getByRole("checkbox", { name: /^Complete Custom timed practice/ })).toHaveCount(
+    0,
+  );
+  const guideLink = page.getByRole("link", { name: "Open subject chapter", exact: true }).first();
   await guideLink.click();
-  await expect(page).toHaveURL(/\/library#source-reading-sdcep-anticoagulants-2022$/);
+  await expect(page).toHaveURL(/\/start\?course=oms-assessment$/);
 });
 
 test("topic reports show honest empty states and explain distinct-question revision suggestions", async ({
@@ -490,6 +610,9 @@ test("topic reports show honest empty states and explain distinct-question revis
 }) => {
   await mockBackend(page, true);
   await page.goto("/progress");
+  await page
+    .getByText("Additional question-bank and legacy lesson reports", { exact: true })
+    .click();
   await expect(page.getByText("No published-question evidence yet", { exact: true })).toBeVisible();
   const pool = Array.from({ length: 5 }, (_, i) => ({
     id: `64444444-4444-4444-8444-${String(i).padStart(12, "0")}`,
@@ -530,6 +653,9 @@ test("topic reports show honest empty states and explain distinct-question revis
     ]),
   );
   await page.reload();
+  await page
+    .getByText("Additional question-bank and legacy lesson reports", { exact: true })
+    .click();
   const evidence = page.getByRole("region", { name: "Subject and topic practice evidence" });
   await expect(
     evidence.getByRole("row", {
@@ -728,24 +854,37 @@ test("Day 1 starter is immediately usable without clinical publication", async (
   await page.goto("/start");
   await expect(page.getByRole("heading", { name: "Your first DentPrep quest" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Active recall" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Source: Dunlosky/ })).toHaveAttribute("href", /pubmed/);
+  await expect(page.getByRole("link", { name: /Source: Dunlosky/ })).toHaveAttribute(
+    "href",
+    /pubmed/,
+  );
   for (const answer of [1, 0, 2, 1]) {
-    await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
-    await expect(page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer)).toHaveAttribute("aria-pressed", "true");
+    await page
+      .getByRole("group", { name: "Answer choices" })
+      .getByRole("button")
+      .nth(answer)
+      .click();
+    await expect(
+      page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer),
+    ).toHaveAttribute("aria-pressed", "true");
     await page.getByRole("button", { name: "Check answer" }).click();
     await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
-    if (answer !== 1 || await page.getByRole("button", { name: "Next lesson" }).count() > 0) {
-      if (await page.getByRole("button", { name: "Next lesson" }).count() > 0)
+    if (answer !== 1 || (await page.getByRole("button", { name: "Next lesson" }).count()) > 0) {
+      if ((await page.getByRole("button", { name: "Next lesson" }).count()) > 0)
         await page.getByRole("button", { name: "Next lesson" }).click();
     }
   }
   await page.getByRole("button", { name: "Finish Day 1 starter" }).click();
   await expect(page.getByRole("heading", { name: "Day 1 starter completed" })).toBeVisible();
   await expect(page.getByText(/Guest session: this completion is not saved/)).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
 });
 
-test("Day 1 starter corrects mistakes and records signed-in activity only at completion", async ({ page }) => {
+test("Day 1 starter corrects mistakes and records signed-in activity only at completion", async ({
+  page,
+}) => {
   await mockBackend(page, true);
   let activityRequests = 0;
   page.on("request", (req) => {
@@ -757,10 +896,16 @@ test("Day 1 starter corrects mistakes and records signed-in activity only at com
   await expect(page.getByText("Not quite — try another answer")).toBeVisible();
   await expect(page.getByRole("button", { name: "Next lesson" })).toBeDisabled();
   for (const answer of [1, 0, 2, 1]) {
-    await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
-    await expect(page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer)).toHaveAttribute("aria-pressed", "true");
+    await page
+      .getByRole("group", { name: "Answer choices" })
+      .getByRole("button")
+      .nth(answer)
+      .click();
+    await expect(
+      page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer),
+    ).toHaveAttribute("aria-pressed", "true");
     await page.getByRole("button", { name: "Check answer" }).click();
-    if (await page.getByRole("button", { name: "Next lesson" }).count() > 0)
+    if ((await page.getByRole("button", { name: "Next lesson" }).count()) > 0)
       await page.getByRole("button", { name: "Next lesson" }).click();
   }
   await page.getByRole("button", { name: "Finish Day 1 starter" }).click();
@@ -768,91 +913,65 @@ test("Day 1 starter corrects mistakes and records signed-in activity only at com
   expect(activityRequests).toBe(1);
 });
 
-test("oral surgery source sections open exact references without exposing draft teaching", async ({ page }) => {
+test("oral surgery chapter supplies actual notes and exact sources without exposing legacy drafts", async ({
+  page,
+}) => {
   await mockBackend(page, true);
   await page.goto("/library");
-  const card = page.locator("#source-reading-sdcep-anticoagulants-2022");
-  await card.getByText("Read the exact source sections", { exact: true }).click();
-  const sections = card.getByRole("list", { name: "Oral surgery source sections" });
-  await expect(sections.getByRole("link")).toHaveCount(6);
-  await expect(sections.getByRole("link", { name: /Assessment, consent and ongoing care/ }))
-    .toHaveAttribute("href", "https://www.ida.org.in/Accreditation/Details/ForPatientManagement");
-  await expect(sections.getByRole("link", { name: /Warfarin and other vitamin K antagonists/ }))
-    .toHaveAttribute("href", /\/warfarin-or-another-vitamin-k-antagonist\/$/);
-  await expect(sections.getByRole("link", { name: /Direct oral anticoagulants/ }))
-    .toHaveAttribute("href", /\/direct-oral-anticoagulants-doacs\/recommendations\/$/);
-  await expect(sections.getByText("UK · practice setting", { exact: true })).toBeVisible();
-  await expect(sections.getByText(/publication year not displayed/)).toBeVisible();
-  for (const link of await sections.getByRole("link").all()) {
-    await expect(link).toHaveAttribute("target", "_blank");
+  const card = page.getByRole("article", { name: "Oral & Maxillofacial Surgery chapter" });
+  await card.getByText("Read notes and sources", { exact: true }).click();
+  await expect(card.getByText(/A surgical assessment starts with the person/)).toBeVisible();
+  await expect(
+    card.getByRole("link", { name: "Standards for Patient Management" }).first(),
+  ).toHaveAttribute("href", "https://www.ida.org.in/Accreditation/Details/ForPatientManagement");
+  await expect(
+    card.getByRole("link", { name: "Assessing Bleeding Risk: Clinical Practice Advice" }),
+  ).toHaveAttribute("href", /assessing-bleeding-risk\/clinical-practice-advice/);
+  for (const link of await card.locator("details a").all())
     await expect(link).toHaveAttribute("rel", "noopener noreferrer");
-  }
-  await expect(card.getByText(/Check the publisher for later changes/)).toBeVisible();
   await expect(page.getByText(/Provisional single-best answer/)).toHaveCount(0);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await expect(page.getByText("Clinical review pending", { exact: true })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test("study focus leads to an honest primary reading path and keeps tools in Profile", async ({ page }, testInfo) => {
+test("study focus opens real chapters and keeps progress tools in Profile", async ({
+  page,
+}, testInfo) => {
   await mockBackend(page, true);
   await page.goto("/dashboard");
-  await expect(page.getByRole("heading", { name: "Learn prevalence and incidence" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Quick actions" })).toHaveCount(0);
-  await expect(page.getByRole("region", { name: "Official recruitment notice" })).toHaveCount(0);
-  await page.getByRole("link", { name: "Start Public Health chapter" }).click();
-  await expect(page).toHaveURL(/\/start\?course=ph-frequency$/);
-  await expect(page.getByRole("heading", { name: "Disease frequency: prevalence and incidence" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: chapterPackages[0].title })).toBeVisible();
+  await page.getByRole("link", { name: "Continue subject chapter" }).click();
+  await expect(page).toHaveURL(
+    (url) => url.pathname === "/start" && url.searchParams.get("course") === chapterPackages[0].id,
+  );
   await page.goto("/library");
-  await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Dental Patients Taking Anticoagulants — professional guide" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Endodontic Clinical Resources — guidelines and terminology" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Clinical guidelines — periodontitis stages I–III" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Parameters of Care — Prosthodontic Diagnostic Index" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Reference Manual of Pediatric Dentistry — 2026–27" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Advice Sheets and Orthodontic Clinical Guidelines" })).toBeVisible();
-  await expect(page.locator("#source-reading-bos-orthodontic-guidelines").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://bos.org.uk/professionals-members/advice-sheets-and-guidelines/");
-  await expect(page.locator("#source-reading-aapd-pediatric-reference-2026").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aapd.org/research/oral-health-policies--recommendations/");
-  await expect(page.locator("#source-reading-acp-prosthodontic-care").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.prosthodontics.org/acp-publications/parameters-of-care/");
-  await expect(page.locator("#source-reading-efp-periodontitis-guidelines").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.efp.org/education/continuing-education/clinical-guidelines/");
-  await expect(page.locator("#source-reading-aae-endodontic-resources").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aae.org/specialty/clinical-resources/guidelines-position-statements/");
-  await expect(page.getByRole("heading", { name: "Infection Prevention Practices in Dental Settings" })).toBeVisible();
-  const cdcCard = page.locator("#source-reading-cdc-dental-infection-prevention");
-  await expect(cdcCard.getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
-    "href",
-    "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
-  );
-  await expect(page.getByRole("button", { name: /Doctor guided feedback/ })).toHaveCount(0);
-  await expect(page.getByText("Clinical review pending", { exact: true })).toHaveCount(0);
-  await expect(page.locator("#source-reading-sdcep-anticoagulants-2022").getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
-    "href",
-    "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/",
-  );
-  await expect(page.getByRole("group", { name: "Oral surgery reading checklist" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Open official guide (PDF)" })).toHaveAttribute("href", /^https:\/\/www\.ada\.org\/.*2026\/ada_oral_cancer_guideline\.pdf/);
-  await expect(page.getByRole("link", { name: /Public Health Dentistry · Chapter 1/ })).toBeVisible();
-  const checklist = page.getByRole("group", { name: "Your reading checklist" });
-  await expect(checklist.getByRole("checkbox")).toHaveCount(4);
-  for (const checkbox of await checklist.getByRole("checkbox").all()) await checkbox.check();
-  await expect(page.getByText(/Reading checklist complete/)).toBeVisible();
-  await page.reload();
-  for (const checkbox of await page.getByRole("group", { name: "Your reading checklist" }).getByRole("checkbox").all()) await expect(checkbox).not.toBeChecked();
-  const navigation = page.getByRole("navigation", { name: testInfo.project.name === "mobile" ? "Mobile primary navigation" : "Learning navigation", exact: true });
+  await expect(page.getByRole("article")).toHaveCount(15);
+  await expect(page.getByText(/topics read in this session/)).toHaveCount(0);
+  const navigation = page.getByRole("navigation", {
+    name: testInfo.project.name === "mobile" ? "Mobile primary navigation" : "Learning navigation",
+    exact: true,
+  });
   await expect(navigation.getByRole("link")).toHaveCount(4);
   await navigation.getByRole("button", { name: "Profile", exact: true }).click();
   const profile = page.getByRole("region", { name: "Profile shortcuts" });
-  await expect(profile).toBeVisible();
-  await expect(profile.getByRole("link", { name: "My progress" })).toHaveAttribute("href", "/progress");
-  await expect(profile.getByRole("link", { name: "Saved questions & lessons" })).toHaveAttribute("href", "/saved");
+  await expect(profile.getByRole("link", { name: "My progress" })).toHaveAttribute(
+    "href",
+    "/progress",
+  );
   await profile.getByRole("link", { name: "Study plan", exact: true }).click();
   await expect(page).toHaveURL(/\/plan$/);
   await expect(page.getByLabel("Daily hours")).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-
-test("subject chapter saves first attempts, resumes after reload and keeps review from rewriting the score", async ({ page }) => {
+test("subject chapter saves first attempts, resumes after reload and keeps review from rewriting the score", async ({
+  page,
+}) => {
   await mockBackend(page, true);
   let writes = 0;
-  page.on("request", request => { if (new URL(request.url()).pathname.endsWith("/rpc/exam_quest_answer")) writes += 1; });
+  page.on("request", (request) => {
+    if (new URL(request.url()).pathname.endsWith("/rpc/exam_quest_answer")) writes += 1;
+  });
   await page.goto("/start?course=ph-frequency");
   await expect(page.getByRole("heading", { name: "Make surveys comparable" })).toBeVisible();
   await page.getByRole("button", { name: "Show hint" }).click();
@@ -866,12 +985,19 @@ test("subject chapter saves first attempts, resumes after reload and keeps revie
   await page.getByRole("button", { name: "Check answer" }).click();
   await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
   await page.reload();
-  await expect(page.getByRole("heading", { name: "Count people, then check the denominator" })).toBeVisible();
-  for (const answer of [0,2,1,0,2,0,2]) {
-    await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+  await expect(
+    page.getByRole("heading", { name: "Count people, then check the denominator" }),
+  ).toBeVisible();
+  for (const answer of [0, 2, 1, 0, 2, 0, 2]) {
+    await page
+      .getByRole("group", { name: "Answer choices" })
+      .getByRole("button")
+      .nth(answer)
+      .click();
     await page.getByRole("button", { name: "Check answer" }).click();
     await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
-    if (await page.getByRole("button", { name: "Next challenge" }).count()) await page.getByRole("button", { name: "Next challenge" }).click();
+    if (await page.getByRole("button", { name: "Next challenge" }).count())
+      await page.getByRole("button", { name: "Next challenge" }).click();
   }
   await page.getByRole("button", { name: "Finish chapter" }).click();
   await expect(page.getByText("First-attempt result: 7/8")).toBeVisible();
@@ -887,13 +1013,30 @@ test("subject chapter saves first attempts, resumes after reload and keeps revie
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test("a lost answer response keeps the retry id and does not claim a saved result before acknowledgement", async ({ page }) => {
+test("a lost answer response keeps the retry id and does not claim a saved result before acknowledgement", async ({
+  page,
+}) => {
   await mockBackend(page, true);
   const requests: string[] = [];
-  await page.route("https://example.supabase.co/rest/v1/rpc/exam_quest_answer", async route => {
-    const body = route.request().postDataJSON(); requests.push(body.p_request_id);
+  await page.route("https://example.supabase.co/rest/v1/rpc/exam_quest_answer", async (route) => {
+    const body = route.request().postDataJSON();
+    requests.push(body.p_request_id);
     if (requests.length === 1) return route.abort();
-    return route.fulfill({ json: { next_step: 1, first_correct: 1, first_choices: [1], attempt_counts: [1], revision: 1, completed_at: null, last_result: { step: 0, choice: 1, correct: true } }, headers: { "access-control-allow-origin": "*" } });
+    return route.fulfill({
+      json: {
+        total_steps: 8,
+        content_sha256: studyManifest.find((entry: any) => entry.course_id === "ph-frequency")
+          .content_sha256,
+        next_step: 1,
+        first_correct: 1,
+        first_choices: [1],
+        attempt_counts: [1],
+        revision: 1,
+        completed_at: null,
+        last_result: { step: 0, choice: 1, correct: true },
+      },
+      headers: { "access-control-allow-origin": "*" },
+    });
   });
   await page.goto("/start?course=ph-frequency");
   await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(1).click();
@@ -902,5 +1045,156 @@ test("a lost answer response keeps the retry id and does not claim a saved resul
   await expect(page.getByRole("button", { name: "Next challenge" })).toBeDisabled();
   await page.getByRole("button", { name: "Check answer" }).click();
   await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
-  expect(requests).toHaveLength(2); expect(requests[0]).toBe(requests[1]);
+  expect(requests).toHaveLength(2);
+  expect(requests[0]).toBe(requests[1]);
+});
+
+for (const course of chapterPackages) {
+  test(`all-subject chapter ${course.id} completes with correct explanations and first-score separation`, async ({
+    page,
+  }) => {
+    await mockBackend(page);
+    await page.goto(`/start?course=${course.id}`);
+    await expect(page.getByRole("heading", { name: course.title, exact: true })).toBeVisible();
+    for (let index = 0; index < course.units.length; index++) {
+      const unit = course.units[index];
+      const choices = page.getByRole("group", { name: "Answer choices" }).getByRole("button");
+      if (index === 0) {
+        await choices.nth((unit.answer + 1) % 3).click();
+        await page.getByRole("button", { name: "Check answer", exact: true }).click();
+        await expect(
+          page.getByText("Not quite — try another answer", { exact: true }),
+        ).toBeVisible();
+        await expect(page.getByText(unit.explanation, { exact: true })).toBeVisible();
+      }
+      await choices.nth(unit.answer).click();
+      await page.getByRole("button", { name: "Check answer", exact: true }).click();
+      await expect(
+        page.getByText("Correct — keep practicing this skill", { exact: true }),
+      ).toBeVisible();
+      await page
+        .getByRole("button", {
+          name: index === 7 ? "Finish chapter" : "Next challenge",
+          exact: true,
+        })
+        .click();
+    }
+    await expect(page.getByText("First-attempt result: 7/8", { exact: true })).toBeVisible();
+    await expect(
+      page.getByText("Guest completion stays in this session.", { exact: true }),
+    ).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+  });
+}
+test("chapter bookmarks, saved study reports and mistake review persist without rewriting first answers", async ({
+  page,
+}) => {
+  await mockBackend(page, true);
+  await page.goto("/library");
+  const card = page.getByRole("article", { name: "Basic Medical Sciences chapter" });
+  await card.getByRole("button", { name: "Bookmark Basic Medical Sciences", exact: true }).click();
+  await expect(
+    card.getByRole("button", { name: "Remove bookmark for Basic Medical Sciences" }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await page.goto("/saved");
+  await expect(page.getByRole("article", { name: "Basic Medical Sciences chapter" })).toBeVisible();
+  const course = chapterPackages.find((course) => course.id === "basic-science-foundations")!;
+  await page.goto(`/start?course=${course.id}`);
+  const choices = page.getByRole("group", { name: "Answer choices" }).getByRole("button");
+  await choices.nth((course.units[0].answer + 1) % 3).click();
+  await page.getByRole("button", { name: "Check answer", exact: true }).click();
+  await choices.nth(course.units[0].answer).click();
+  await page.getByRole("button", { name: "Check answer", exact: true }).click();
+  await page.goto("/progress");
+  const report = page.getByRole("region", { name: "Source chapter study report" });
+  await expect(
+    report.getByRole("row", { name: /Basic Medical Sciences v1 1\/8 0\/1 Complete chapter first/ }),
+  ).toBeVisible();
+  await report.getByText("Revise first-attempt mistakes (1)", { exact: true }).click();
+  await report
+    .getByRole("link", { name: /Basic Medical Sciences · Homeostasis is dynamic regulation/ })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Homeostasis is dynamic regulation", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Replaying questions keeps your saved first-attempt result unchanged."),
+  ).toBeVisible();
+});
+test("next-day questions remain hidden before owned completion and cannot be opened in guest review mode", async ({
+  page,
+}) => {
+  await mockBackend(page);
+  await page.goto("/start?course=oms-assessment-recall&review=recall-1");
+  await expect(
+    page.getByRole("heading", { name: "Sign in for next-day recall", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole("group", { name: "Answer choices" })).toHaveCount(0);
+  await mockBackend(page, true);
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "Could not open this checkpoint", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole("group", { name: "Answer choices" })).toHaveCount(0);
+});
+test("withdrawal and a content fingerprint mismatch prevent both notes and answer entry", async ({
+  page,
+}) => {
+  await mockBackend(page);
+  await page.route("**/rpc/exam_study_availability", async (route) => {
+    if (route.request().method() === "OPTIONS") return route.fallback();
+    return route.fulfill({
+      json: studyManifest
+        .filter(
+          (row: any) =>
+            row.course_id !== "oms-assessment" && row.course_id !== "oms-assessment-recall",
+        )
+        .map((row: any) =>
+          row.course_id === "omr-observation" ? { ...row, content_sha256: "0".repeat(64) } : row,
+        ),
+      headers: { "access-control-allow-origin": "*" },
+    });
+  });
+  for (const id of ["oms-assessment", "omr-observation"]) {
+    await page.goto(`/start?course=${id}`);
+    await expect(
+      page.getByRole("heading", { name: "Chapter unavailable", exact: true }),
+    ).toBeVisible();
+    await expect(page.getByRole("group", { name: "Answer choices" })).toHaveCount(0);
+  }
+  await page.goto("/library");
+  await expect(page.getByRole("article")).toHaveCount(13);
+});
+
+test("a due next-day retrieval uses two fresh questions and keeps its score separate from the chapter", async ({
+  page,
+}) => {
+  await mockBackend(page, true, false, false, false, false, 0, true);
+  await page.goto("/progress");
+  const report = page.getByRole("region", { name: "Source chapter study report" });
+  const row = report.getByRole("row", {
+    name: /Oral & Maxillofacial Surgery v1 8\/8 8\/8 Recall due/,
+  });
+  await row.getByRole("link", { name: "Recall due →" }).click();
+  const recall = studyPackages.find((course) => course.id === "oms-assessment-recall");
+  for (const [index, unit] of recall.units.entries()) {
+    await page
+      .getByRole("group", { name: "Answer choices" })
+      .getByRole("button")
+      .nth(unit.answer)
+      .click();
+    await page.getByRole("button", { name: "Check answer", exact: true }).click();
+    await page
+      .getByRole("button", { name: index === 1 ? "Finish chapter" : "Next challenge", exact: true })
+      .click();
+  }
+  await expect(page.getByText("First-attempt result: 2/2", { exact: true })).toBeVisible();
+  await page.goto("/progress");
+  await expect(
+    page
+      .getByRole("region", { name: "Source chapter study report" })
+      .getByRole("row", { name: /Oral & Maxillofacial Surgery v1 8\/8 8\/8 2\/2 first correct/ }),
+  ).toBeVisible();
 });

@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "id": "endo-tooth-foundations",
+  "version": 1,
+  "subject_slug": "conservative-endodontics",
+  "subject": "Conservative Dentistry & Endodontics",
+  "title": "From tooth structure to disease mechanisms",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Understand enamel, dentin, pulp, caries and the meaning of a direct restoration.",
+  "sources": [
+    {
+      "id": "teeth",
+      "title": "Anatomy, Head and Neck, Teeth",
+      "author_or_organization": "Alyssa L. Morris; Prasanna Tadi; StatPearls Publishing",
+      "edition": "Last updated 24 July 2023",
+      "year": 2023,
+      "section": "Introduction; structure and dentition",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557543/",
+      "content_version": "teeth:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "pulp",
+      "title": "What is a Root Canal?",
+      "author_or_organization": "American Association of Endodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Tooth pulp anatomy and function; academic definitions only",
+      "url": "https://www.aae.org/patients/root-canal-treatment/what-is-a-root-canal/",
+      "content_version": "pulp:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "caries",
+      "title": "Tooth Decay",
+      "author_or_organization": "National Institute of Dental and Craniofacial Research, NIH",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Overview; Causes; mineral loss and repair",
+      "url": "https://www.nidcr.nih.gov/health-info/tooth-decay",
+      "content_version": "caries:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "materials",
+      "title": "Materials for Direct Restorations",
+      "author_or_organization": "American Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Direct restorations; resin-based composite and glass ionomer composition",
+      "url": "https://www.ada.org/resources/ada-library/oral-health-topics/materials-for-direct-restorations",
+      "content_version": "materials:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "layers",
+      "title": "Locate the tooth tissues",
+      "phase": "learn",
+      "lesson": "Enamel covers the anatomical crown; dentin forms much of the tooth beneath enamel and around the pulp space. The pulp is internal soft tissue. Location helps distinguish a tooth’s hard tissues from its neurovascular contents. These are structural relationships, not a depth-based diagnosis or a treatment rule.",
+      "question": "Which tissue lies beneath enamel around the pulp space?",
+      "choices": [
+        "Dentin",
+        "Calculus",
+        "Gingiva"
+      ],
+      "answer": 0,
+      "explanation": "Dentin surrounds the internal pulp space beneath enamel.",
+      "rationales": [
+        "This is the tooth hard tissue described.",
+        "Calculus is mineralized plaque.",
+        "Gingiva surrounds teeth externally."
+      ],
+      "hint": "Move inward from enamel.",
+      "source_ids": [
+        "teeth",
+        "pulp"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "pulp",
+      "title": "Know what pulp contains",
+      "phase": "learn",
+      "lesson": "The dental pulp contains nerves, blood vessels and connective tissue. It is not an empty canal. Its role in tooth development and its relationship with surrounding dentin explain why pulp biology matters in endodontics. Pain alone does not provide every detail about pulp condition; this foundation does not assign a clinical diagnosis.",
+      "question": "Which description fits normal dental pulp?",
+      "choices": [
+        "An empty air space",
+        "A layer of enamel crystals",
+        "Soft connective tissue with vessels and nerves"
+      ],
+      "answer": 2,
+      "explanation": "Pulp is living soft tissue containing vessels and nerves.",
+      "rationales": [
+        "The pulp space is normally occupied by tissue.",
+        "Enamel is a different tissue.",
+        "This identifies the relevant contents."
+      ],
+      "hint": "Recall the neurovascular tissue.",
+      "source_ids": [
+        "pulp"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "caries",
+      "title": "Follow the caries mechanism",
+      "phase": "learn",
+      "lesson": "Plaque bacteria can metabolize dietary sugars and starches and produce acids. Repeated acid exposure can shift the tooth surface toward mineral loss. Early mineral changes are not the same thing as an established hole. Think in terms of a disease process and mineral balance, rather than treating every change in colour as proof of cavitation.",
+      "question": "Which process directly contributes to enamel mineral loss in caries?",
+      "choices": [
+        "Bacterial acid production",
+        "Formation of a normal pulp",
+        "Tooth naming conventions"
+      ],
+      "answer": 0,
+      "explanation": "Acid generated by cariogenic bacteria can drive mineral loss.",
+      "rationales": [
+        "This links biofilm activity and mineral change.",
+        "Pulp formation is a developmental process.",
+        "Names do not cause demineralization."
+      ],
+      "hint": "Connect bacteria, substrate and acid.",
+      "source_ids": [
+        "caries"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "direct",
+      "title": "Classify restoration by how it is made",
+      "phase": "learn",
+      "lesson": "A direct restoration is placed in the tooth without fabrication as a separate laboratory restoration. ADA groups direct materials into amalgam, resin-based composite, glass ionomer and resin-modified glass ionomer. Classification describes the material and method; it is not a universal recommendation for a particular lesion. Material selection needs more context than a family name.",
+      "question": "What defines a direct restoration in this classification?",
+      "choices": [
+        "It is placed directly in the tooth",
+        "It must be a laboratory-made bridge",
+        "It never contains a polymer"
+      ],
+      "answer": 0,
+      "explanation": "Direct describes placement without separate laboratory fabrication.",
+      "rationales": [
+        "This is the defining distinction.",
+        "A bridge is a different restoration category.",
+        "Some direct materials contain polymers."
+      ],
+      "hint": "Think fabrication route.",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "layers-transfer",
+      "title": "Locate the tooth tissues · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "In a normal tooth section, which sequence moves inward from the crown surface?",
+      "choices": [
+        "Pulp → enamel → dentin",
+        "Enamel → dentin → pulp",
+        "Dentin → pulp → enamel"
+      ],
+      "answer": 1,
+      "explanation": "Enamel covers the crown; dentin lies beneath it around the pulp.",
+      "rationales": [
+        "This puts internal pulp outside.",
+        "This follows the structural relationship.",
+        "This places enamel internally."
+      ],
+      "hint": "Read from outside inward.",
+      "source_ids": [
+        "teeth",
+        "pulp"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "pulp-transfer",
+      "title": "Know what pulp contains · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which description belongs to normal pulp rather than a tooth hard tissue?",
+      "choices": [
+        "An empty canal without tissue",
+        "Soft connective tissue with vessels and nerves",
+        "The mineralized external crown covering"
+      ],
+      "answer": 1,
+      "explanation": "The pulp space normally contains neurovascular connective tissue.",
+      "rationales": [
+        "A space and its contents should not be confused.",
+        "This identifies the pulp.",
+        "The external crown covering is enamel."
+      ],
+      "hint": "Distinguish a space from its contents.",
+      "source_ids": [
+        "pulp"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "caries-transfer",
+      "title": "Follow the caries mechanism · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A study example describes repeated acid exposure at a tooth surface. Which interpretation best follows?",
+      "choices": [
+        "Mineral loss may exceed repair",
+        "Every colour change proves an established cavity",
+        "The pulp is replaced by enamel"
+      ],
+      "answer": 0,
+      "explanation": "Repeated acid challenges can favour net demineralization without proving cavitation from colour alone.",
+      "rationales": [
+        "This follows the mineral-balance mechanism.",
+        "Surface colour does not establish a hole.",
+        "The tissues do not interchange."
+      ],
+      "hint": "Think loss versus repair.",
+      "source_ids": [
+        "caries"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "direct-transfer",
+      "title": "Classify restoration by how it is made · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement correctly distinguishes a direct from an indirect restoration?",
+      "choices": [
+        "Direct necessarily means a separate laboratory-made restoration",
+        "Direct is placed without separate laboratory fabrication",
+        "Direct means it cannot contain resin"
+      ],
+      "answer": 1,
+      "explanation": "Direct describes the placement/fabrication route, not the absence of resin.",
+      "rationales": [
+        "This describes the contrasting route.",
+        "This states the defining distinction.",
+        "Resin composite can be direct."
+      ],
+      "hint": "Classify the nouns in each list.",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    }
+  ]
+}

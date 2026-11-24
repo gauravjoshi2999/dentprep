@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "id": "pediatric-foundations",
+  "version": 1,
+  "subject_slug": "pediatric-dentistry",
+  "subject": "Pediatric Dentistry",
+  "title": "Understand the developing dental patient",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Study dentition, communication, risk assessment and the caries mechanism in children.",
+  "sources": [
+    {
+      "id": "teeth",
+      "title": "Anatomy, Head and Neck, Teeth",
+      "author_or_organization": "Alyssa L. Morris; Prasanna Tadi; StatPearls Publishing",
+      "edition": "Last updated 24 July 2023",
+      "year": 2023,
+      "section": "Introduction; structure and dentition",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557543/",
+      "content_version": "teeth:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "pediatric-behaviour",
+      "title": "Behavior Guidance for the Pediatric Dental Patient",
+      "author_or_organization": "American Academy of Pediatric Dentistry",
+      "edition": "Latest revision 2024; Reference Manual 2026–2027, pp. 403–423",
+      "year": 2024,
+      "section": "Abstract; communication, individualized planning and documented factors",
+      "url": "https://www.aapd.org/research/oral-health-policies--recommendations/behavior-guidance-for-the-pediatric-dental-patient/",
+      "content_version": "pediatric-behaviour:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "pediatric-risk",
+      "title": "Caries-risk Assessment and Management for Infants, Children, and Adolescents",
+      "author_or_organization": "American Academy of Pediatric Dentistry",
+      "edition": "Latest revision 2022",
+      "year": 2022,
+      "section": "Risk assessment; biological, protective and clinical factors",
+      "url": "https://www.aapd.org/research/oral-health-policies--recommendations/caries-risk-assessment-and-management-for-infants-children-and-adolescents/",
+      "content_version": "pediatric-risk:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "caries",
+      "title": "Tooth Decay",
+      "author_or_organization": "National Institute of Dental and Craniofacial Research, NIH",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Overview; Causes; mineral loss and repair",
+      "url": "https://www.nidcr.nih.gov/health-info/tooth-decay",
+      "content_version": "caries:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "dentition",
+      "title": "Primary and permanent teeth",
+      "phase": "learn",
+      "lesson": "The typical primary dentition contains 20 teeth. A complete permanent dentition can contain 32 when third molars are included. These are reference counts, not a requirement that every individual has exactly that number. Eruption, missing teeth and other variation matter. Use the terms primary, mixed and permanent to describe developmental context.",
+      "question": "What is the typical primary dentition count?",
+      "choices": [
+        "32",
+        "20",
+        "12"
+      ],
+      "answer": 1,
+      "explanation": "The standard primary count is 20.",
+      "rationales": [
+        "32 refers to complete permanent dentition including third molars.",
+        "This is the primary reference count.",
+        "This is not the complete primary reference count."
+      ],
+      "hint": "Recall the primary set.",
+      "source_ids": [
+        "teeth"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "communication",
+      "title": "Adapt communication to the child",
+      "phase": "learn",
+      "lesson": "AAPD describes behaviour guidance as an ongoing, individualized process. Effective communication and understanding the child’s needs matter. Medical history, temperament, pain, previous experiences and the proposed care influence planning. The same explanation will not fit every child. This academic introduction does not teach sedation, restraint or pharmacological behaviour management.",
+      "question": "Which approach matches individualized behaviour guidance?",
+      "choices": [
+        "Use the same script regardless of the child",
+        "Consider communication, pain and previous experiences",
+        "Assume silence proves understanding"
+      ],
+      "answer": 1,
+      "explanation": "Planning should reflect the child and relevant circumstances.",
+      "rationales": [
+        "This ignores individual needs.",
+        "These are relevant documented factors.",
+        "Silence does not establish understanding."
+      ],
+      "hint": "Think person-specific communication.",
+      "source_ids": [
+        "pediatric-behaviour"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "risk",
+      "title": "Risk assessment is not a diagnosis",
+      "phase": "learn",
+      "lesson": "Caries-risk assessment considers biological and social context, protective factors and clinical findings. Risk concerns the likelihood of disease development or progression; it is not identical to counting existing cavities. A child with no currently visible cavity still has a risk profile. Assessment tools organize evidence rather than guarantee an individual outcome.",
+      "question": "Which distinction is correct?",
+      "choices": [
+        "Risk predicts possibility; current disease findings describe present status",
+        "Risk and cavity count always mean exactly the same thing",
+        "No visible cavity means no risk can exist"
+      ],
+      "answer": 0,
+      "explanation": "Risk and current disease status answer different questions.",
+      "rationales": [
+        "This separates future likelihood and current findings.",
+        "They are not identical measures.",
+        "Absence of a finding does not eliminate future risk."
+      ],
+      "hint": "Present status versus likelihood.",
+      "source_ids": [
+        "pediatric-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "mechanism",
+      "title": "Explain mineral loss simply",
+      "phase": "learn",
+      "lesson": "Caries involves acid generated by plaque bacteria using fermentable dietary substrates. Repeated acid challenges can favour mineral loss. For an educational explanation, connect substrate, biofilm activity and tooth surface response. Do not reduce caries to a child being “careless” or assume a single habit explains every case.",
+      "question": "Which chain describes a caries mechanism?",
+      "choices": [
+        "Plaque acid challenge → mineral loss",
+        "Tooth name → enamel growth",
+        "Crown colour → guaranteed diagnosis"
+      ],
+      "answer": 0,
+      "explanation": "Bacterial acid production can favour demineralization.",
+      "rationales": [
+        "This states the relevant mechanism.",
+        "A name is not a biological cause.",
+        "Colour alone is not a diagnosis."
+      ],
+      "hint": "Look for the biological process.",
+      "source_ids": [
+        "caries",
+        "pediatric-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "dentition-transfer",
+      "title": "Primary and permanent teeth · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A textbook gives 32 as the complete permanent reference count. Which qualification is correct?",
+      "choices": [
+        "Every adult must have exactly 32 erupted teeth",
+        "The count excludes all permanent molars",
+        "The count includes third molars and is not universal for every individual"
+      ],
+      "answer": 2,
+      "explanation": "The standard complete count includes third molars; individual dentition can differ.",
+      "rationales": [
+        "This turns a reference count into an absolute claim.",
+        "Molars are included.",
+        "This gives the reference count’s scope."
+      ],
+      "hint": "Check which teeth the count includes.",
+      "source_ids": [
+        "teeth"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "communication-transfer",
+      "title": "Adapt communication to the child · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A paper history describes a child’s pain and a difficult previous visit. How should a guidance plan use this information?",
+      "choices": [
+        "Treat it as irrelevant to communication",
+        "Include it among factors informing individualized guidance",
+        "Infer a sedative dose from history alone"
+      ],
+      "answer": 1,
+      "explanation": "Pain and prior experience are relevant planning factors, not sufficient information for a drug instruction.",
+      "rationales": [
+        "These factors can affect communication.",
+        "This uses the history within its proper role.",
+        "The information does not establish a dose."
+      ],
+      "hint": "Use history without inventing a treatment.",
+      "source_ids": [
+        "pediatric-behaviour"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "risk-transfer",
+      "title": "Risk assessment is not a diagnosis · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A fictional child has no current recorded cavity but several relevant risk factors. Which conclusion is justified?",
+      "choices": [
+        "Future disease is impossible",
+        "Risk assessment can still be relevant",
+        "A precise future cavity count is certain"
+      ],
+      "answer": 1,
+      "explanation": "Current findings and future disease likelihood are different questions.",
+      "rationales": [
+        "No present finding does not eliminate future risk.",
+        "Risk can be assessed before visible disease.",
+        "Risk assessment does not guarantee an exact outcome."
+      ],
+      "hint": "Avoid certainty from an empty count.",
+      "source_ids": [
+        "pediatric-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "mechanism-transfer",
+      "title": "Explain mineral loss simply · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which explanation best connects diet and caries without claiming one factor determines every outcome?",
+      "choices": [
+        "Diet alone guarantees the same outcome in every child",
+        "Biofilm acid activity and protective/contextual factors influence mineral balance and risk",
+        "A current cavity count is identical to future risk"
+      ],
+      "answer": 1,
+      "explanation": "Caries mechanisms and risk involve interacting factors.",
+      "rationales": [
+        "This ignores individual and protective factors.",
+        "This preserves the multifactorial mechanism.",
+        "Current status and risk are distinct."
+      ],
+      "hint": "Explain mechanisms rather than blame.",
+      "source_ids": [
+        "caries",
+        "pediatric-risk"
+      ],
+      "calculation": null
+    }
+  ]
+}

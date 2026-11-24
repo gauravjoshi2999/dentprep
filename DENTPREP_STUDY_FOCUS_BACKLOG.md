@@ -1,3 +1,7 @@
+## Latest continuation — all 15 subjects have actual study chapters (24 November 2026)
+
+This release replaces the checklist-only library with 15 introductory chapters, 60 teaching sections, 120 chapter questions and 30 independent next-day recall questions. Saved checkpoints, original-mistake revision, bookmarks and source-study reporting are implemented. See [DENTPREP_ALL_SUBJECT_STUDY_RELEASE.md](DENTPREP_ALL_SUBJECT_STUDY_RELEASE.md) and the exact acceptance receipt on Issue #27 before relying on deployment status. All-15 introductions are not full BDS/official UPSC coverage. PH v1, legacy clinical drafts and publication guards are preserved. Do not restore the old student doctor-review waiting flow. Next content priority: deeper curriculum coverage, difficult exam questions and fresh 7/30-day retention sets; no cosmetics or paid services.
+
 # Student-first remaining work — 24 November 2026
 
 Founder direction: one student preparing for UPSC Dental Surgeon, guided and enjoyable study, no daily admin input. This supersedes non-study expansion in the earlier roadmap. The founder has explicitly confirmed that no independent dental reviewer is available yet. Continue source preparation and learning flow; clinical publication stays blocked.

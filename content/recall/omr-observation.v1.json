@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "omr-observation-recall",
+  "version": 1,
+  "subject_slug": "oral-medicine-radiology",
+  "subject": "Oral Medicine & Radiology",
+  "title": "Describe first, interpret second · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "omr-observation",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "morphology",
+      "title": "Description of Skin Lesions",
+      "author_or_organization": "Julia Benedetti; MSD Manual Professional",
+      "edition": "Reviewed August 2026; modified November 2026",
+      "year": 2026,
+      "section": "Primary lesion morphology, including labial macule; qualitative terminology only",
+      "url": "https://www.msdmanuals.com/professional/dermatologic-disorders/approach-to-the-dermatologic-patient/description-of-skin-lesions",
+      "content_version": "morphology:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "ida-assessment",
+      "title": "Standards for Patient Management",
+      "author_or_organization": "Indian Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Standards 9–10: assessment, medical history, planning and informed consent",
+      "url": "https://www.ida.org.in/Accreditation/Details/ForPatientManagement",
+      "content_version": "ida-assessment:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "fda-cbct",
+      "title": "Dental Cone-beam Computed Tomography",
+      "author_or_organization": "US Food and Drug Administration",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Description; Benefits/Risks; information for patients and professionals",
+      "url": "https://www.fda.gov/radiation-emitting-products/medical-x-ray-imaging/dental-cone-beam-computed-tomography",
+      "content_version": "fda-cbct:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nci-biopsy",
+      "title": "NCI Dictionary of Cancer Terms: biopsy",
+      "author_or_organization": "US National Cancer Institute",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Definition; tissue examination",
+      "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/biopsy",
+      "content_version": "nci-biopsy:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A new atlas card describes superficial epithelial loss. Which term fits?",
+      "choices": [
+        "Papule",
+        "Erosion",
+        "Macule"
+      ],
+      "answer": 1,
+      "explanation": "An erosion describes superficial epithelial loss.",
+      "rationales": [
+        "A papule is raised and solid.",
+        "This names the superficial loss.",
+        "A macule is a flat colour change."
+      ],
+      "hint": "Think loss, not colour.",
+      "source_ids": [
+        "morphology"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which paired statement about CBCT is accurate?",
+      "choices": [
+        "3-D data; ionizing radiation",
+        "2-D data; no radiation",
+        "3-D data; always necessary"
+      ],
+      "answer": 0,
+      "explanation": "CBCT combines 3-D reconstruction with X-ray exposure.",
+      "rationales": [
+        "Both components are accurate.",
+        "Both components are incorrect here.",
+        "Necessity still requires justification."
+      ],
+      "hint": "Recall dimension and energy source.",
+      "source_ids": [
+        "fda-cbct"
+      ],
+      "calculation": null
+    }
+  ]
+}

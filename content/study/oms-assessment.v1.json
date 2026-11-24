@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "id": "oms-assessment",
+  "version": 1,
+  "subject_slug": "oral-maxillofacial-surgery",
+  "subject": "Oral & Maxillofacial Surgery",
+  "title": "Assessment before surgical reasoning",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Build the foundations of history, informed consent, bleeding-risk reasoning and haemostasis.",
+  "sources": [
+    {
+      "id": "ida-assessment",
+      "title": "Standards for Patient Management",
+      "author_or_organization": "Indian Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Standards 9–10: assessment, medical history, planning and informed consent",
+      "url": "https://www.ida.org.in/Accreditation/Details/ForPatientManagement",
+      "content_version": "ida-assessment:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "sdcep-risk",
+      "title": "Assessing Bleeding Risk: Clinical Practice Advice",
+      "author_or_organization": "Scottish Dental Clinical Effectiveness Programme",
+      "edition": "Management of Dental Patients Taking Anticoagulants or Antiplatelet Drugs, 2nd edition",
+      "year": 2022,
+      "section": "Patient-related and procedure-related bleeding risk; no medication instructions",
+      "url": "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/assessing-bleeding-risk/clinical-practice-advice/",
+      "content_version": "sdcep-risk:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "hemostasis",
+      "title": "Physiology, Hemostasis",
+      "author_or_organization": "Andrew LaPelusa; Heeransh D. Dave; StatPearls Publishing",
+      "edition": "Last updated 1 May 2023",
+      "year": 2023,
+      "section": "Introduction; platelet plug and coagulation",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK545263/",
+      "content_version": "hemostasis:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "history",
+      "title": "Take medicines seriously",
+      "phase": "learn",
+      "lesson": "A surgical assessment starts with the person as well as the tooth. Relevant medical conditions, previous problems, allergies and current medicines belong in the history. Include prescribed medicines and products obtained without a prescription. Update the record when circumstances change. This chapter teaches what information matters; it does not recommend stopping or changing any medication.",
+      "question": "Which item belongs in a current medication history?",
+      "choices": [
+        "Only medicines from a hospital",
+        "Prescribed and non-prescription products",
+        "Only the last painkiller"
+      ],
+      "answer": 1,
+      "explanation": "A useful history includes prescribed and non-prescription products.",
+      "rationales": [
+        "This omits other relevant products.",
+        "This is the more complete scope.",
+        "This is too narrow."
+      ],
+      "hint": "Think beyond a single prescription.",
+      "source_ids": [
+        "ida-assessment"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "consent",
+      "title": "Consent is a discussion",
+      "phase": "learn",
+      "lesson": "Informed consent involves understanding the proposed care, its important risks and benefits, and alternatives. Relevant questions and the agreed decision should be documented. A signature records part of a process; it does not itself show that information was understood. This is a professional communication principle, not a complete statement of Indian consent law.",
+      "question": "Which best represents informed consent?",
+      "choices": [
+        "A discussion supporting an informed choice",
+        "A signature with no explanation",
+        "A promise of a guaranteed outcome"
+      ],
+      "answer": 0,
+      "explanation": "Information and an opportunity to decide are central.",
+      "rationales": [
+        "This supports informed decision making.",
+        "A signature alone is insufficient evidence of understanding.",
+        "Outcomes cannot simply be guaranteed."
+      ],
+      "hint": "Look for information and choice.",
+      "source_ids": [
+        "ida-assessment"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "risk",
+      "title": "Separate patient and procedure risk",
+      "phase": "learn",
+      "lesson": "Bleeding risk is not a single label attached to a drug name. SDCEP distinguishes features of the planned procedure from patient factors, including medicines, other conditions and previous bleeding. These dimensions need consideration together. The UK guidance supplies this reasoning framework; this lesson gives no drug-interruption schedule or operative recommendation.",
+      "question": "Which pair belongs in bleeding-risk reasoning?",
+      "choices": [
+        "Shoe size and appointment colour",
+        "Drug name alone and nothing else",
+        "Patient factors and procedure-related risk"
+      ],
+      "answer": 2,
+      "explanation": "Both patient and procedure dimensions contribute.",
+      "rationales": [
+        "These do not describe bleeding risk.",
+        "One label cannot represent the whole assessment.",
+        "This includes both relevant dimensions."
+      ],
+      "hint": "What is being done, and to whom?",
+      "source_ids": [
+        "sdcep-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "clot",
+      "title": "Explain haemostasis",
+      "phase": "learn",
+      "lesson": "Haemostasis limits bleeding after vascular injury. Platelets contribute an initial plug; coagulation produces fibrin that helps stabilize the clot. These processes interact rather than act as unrelated systems. Distinguish platelet function from the fibrin-forming cascade when organizing theory. This distinction does not identify a patient’s bleeding disorder without appropriate assessment.",
+      "question": "Which product helps stabilize a platelet plug?",
+      "choices": [
+        "Fibrin",
+        "Enamel",
+        "Keratin"
+      ],
+      "answer": 0,
+      "explanation": "Fibrin forms a reinforcing clot network.",
+      "rationales": [
+        "This is part of coagulation.",
+        "Enamel is dental hard tissue.",
+        "Keratin is a structural epithelial protein."
+      ],
+      "hint": "Think coagulation product.",
+      "source_ids": [
+        "hemostasis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "history-transfer",
+      "title": "Take medicines seriously · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A paper history lists medical diagnoses but no medicines. Which conclusion is justified?",
+      "choices": [
+        "No medication is being taken",
+        "The medication record remains incomplete",
+        "The diagnoses reveal every current medicine"
+      ],
+      "answer": 1,
+      "explanation": "A diagnosis list does not establish the products currently taken.",
+      "rationales": [
+        "Missing documentation does not prove absence.",
+        "Current medicines still need to be established.",
+        "The same diagnosis can have different medication histories."
+      ],
+      "hint": "Do diagnoses specify every product taken?",
+      "source_ids": [
+        "ida-assessment"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "consent-transfer",
+      "title": "Consent is a discussion · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A viva answer treats a signed form as the entire informed-consent process. What is the best correction?",
+      "choices": [
+        "A signature alone guarantees understanding",
+        "Discussion of information, alternatives and choice also matters",
+        "Documentation replaces the need for questions"
+      ],
+      "answer": 1,
+      "explanation": "A signature documents part of the process; information and informed choice remain essential.",
+      "rationales": [
+        "Understanding cannot be inferred from a signature alone.",
+        "This restores the communication process.",
+        "A record does not replace discussion."
+      ],
+      "hint": "Distinguish documentation from the conversation.",
+      "source_ids": [
+        "ida-assessment"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "risk-transfer",
+      "title": "Separate patient and procedure risk · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Two paper cases share a medicine but differ in medical history and planned procedure. Which comparison is defensible?",
+      "choices": [
+        "Consider the patient and procedure factors in each case",
+        "Assign identical risk from the medicine name alone",
+        "Ignore the procedure if the medicine is recorded"
+      ],
+      "answer": 0,
+      "explanation": "A shared medicine does not make individual or procedure risks identical.",
+      "rationales": [
+        "This preserves both dimensions.",
+        "This ignores relevant differences.",
+        "Procedure risk remains relevant."
+      ],
+      "hint": "Check what differs between cases.",
+      "source_ids": [
+        "sdcep-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "clot-transfer",
+      "title": "Explain haemostasis · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which pairing correctly distinguishes the platelet and coagulation contributions?",
+      "choices": [
+        "Platelets form fibrin directly; coagulation forms the cells",
+        "Platelets contribute the initial plug; coagulation generates fibrin",
+        "Both terms refer to the same material"
+      ],
+      "answer": 1,
+      "explanation": "Platelet aggregation and fibrin generation are distinct interacting components.",
+      "rationales": [
+        "This reverses and confuses the contributions.",
+        "The roles are separated correctly.",
+        "They are not identical material."
+      ],
+      "hint": "Identify the plug and its reinforcement.",
+      "source_ids": [
+        "hemostasis"
+      ],
+      "calculation": null
+    }
+  ]
+}

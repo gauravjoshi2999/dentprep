@@ -1,3 +1,4 @@
+import { chapterForSubject } from "@/lib/study-course";
 import { useRef, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -213,6 +214,12 @@ function Plan() {
     ? (currentBrief.chapters.find((chapter) => todayGuide?.title.endsWith(` — ${chapter.title}`)) ??
       currentBrief.chapters[dayOffset % currentBrief.chapters.length])
     : undefined;
+  const currentAcademic = currentBrief ? chapterForSubject(currentBrief.slug) : undefined;
+  const currentTeaching =
+    currentAcademic?.units
+      .filter((unit) => unit.phase === "learn")
+      .find((unit) => todayGuide?.title.endsWith(` — ${unit.title}`)) ??
+    currentAcademic?.units.find((unit) => unit.phase === "learn");
   const currentSource = ALL_DENTAL_READINGS.find(
     (source) => source.subjectSlug === currentBrief?.slug,
   );
@@ -250,30 +257,30 @@ function Plan() {
             Available now · Today's dental study
           </p>
           <h2 className="mt-2 text-xl font-extrabold">{currentBrief.name}</h2>
-          <p className="mt-2 text-sm font-semibold">{currentChapter?.title}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{currentChapter?.task}</p>
+          <p className="mt-2 text-sm font-semibold">
+            {currentTeaching?.title ?? currentChapter?.title}
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {currentAcademic?.summary ?? currentChapter?.task}
+          </p>
           <p className="mt-2 text-xs text-muted-foreground">
-            Original-source study, not an approved clinical lesson. Choose your daily tasks below,
-            or create a new subject-focused schedule.
+            Read the source-checked academic chapter and practise its questions. Choose your daily
+            tasks below, or create a new subject-focused schedule.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
-              to="/library"
-              hash={
-                currentSource.id === "ada-oral-cancer-2026"
-                  ? "primary-reading"
-                  : `source-reading-${currentSource.id}`
-              }
+              to="/start"
+              search={{ course: chapterForSubject(currentBrief.slug)?.id ?? "ph-frequency" }}
               className="text-sm font-bold text-teal underline underline-offset-4"
             >
-              Open original source →
+              Open subject chapter →
             </Link>
             <Link
               to="/library"
               hash="study-guides"
               className="text-sm font-bold text-teal underline underline-offset-4"
             >
-              All 15 subject guides
+              All 15 subject chapters
             </Link>
           </div>
           {!creating && (
@@ -461,20 +468,13 @@ function Plan() {
                                 /^(Continue: )*(Source study:|Recall source:)/.test(t.title) &&
                                 subject ? (
                                 <Link
-                                  to="/library"
-                                  hash={(() => {
-                                    const source = ALL_DENTAL_READINGS.find(
-                                      (item) => item.subjectSlug === subject.slug,
-                                    );
-                                    return source?.id === "ada-oral-cancer-2026"
-                                      ? "primary-reading"
-                                      : source
-                                        ? `source-reading-${source.id}`
-                                        : "study-guides";
-                                  })()}
+                                  to="/start"
+                                  search={{
+                                    course: chapterForSubject(subject.slug)?.id ?? "ph-frequency",
+                                  }}
                                   className="text-teal underline"
                                 >
-                                  Open original source
+                                  Open subject chapter
                                 </Link>
                               ) : t.task_type === "interview" ? (
                                 <Link to="/interviews" className="text-teal underline">

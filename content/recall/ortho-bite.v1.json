@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "ortho-bite-recall",
+  "version": 1,
+  "subject_slug": "orthodontics",
+  "subject": "Orthodontics",
+  "title": "Read the bite and understand retention · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "ortho-bite",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "ortho-glossary",
+      "title": "Glossary of Orthodontic Terms",
+      "author_or_organization": "American Association of Orthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Occlusion, malocclusion, mixed dentition, overjet and open bite",
+      "url": "https://aaoinfo.org/resources/glossary-of-orthodontic-terms/",
+      "content_version": "ortho-glossary:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "teeth",
+      "title": "Anatomy, Head and Neck, Teeth",
+      "author_or_organization": "Alyssa L. Morris; Prasanna Tadi; StatPearls Publishing",
+      "edition": "Last updated 24 July 2023",
+      "year": 2023,
+      "section": "Introduction; structure and dentition",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557543/",
+      "content_version": "teeth:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "retainers",
+      "title": "Are Retainers Necessary After Orthodontic Treatment?",
+      "author_or_organization": "American Association of Orthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Retainers are part of treatment; stability after active treatment",
+      "url": "https://aaoinfo.org/whats-trending/will-i-need-to-wear-retainers/",
+      "content_version": "retainers:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A new diagram focuses on the relationship of the upper and lower teeth when meeting. Which heading fits?",
+      "choices": [
+        "Occlusion",
+        "Dentition count alone",
+        "Crown morphology alone"
+      ],
+      "answer": 0,
+      "explanation": "Occlusion names the upper-lower bite relationship.",
+      "rationales": [
+        "This directly describes the relationship.",
+        "A count does not specify contact.",
+        "Crown shape alone is not the bite relationship."
+      ],
+      "hint": "Retrieve the relationship term.",
+      "source_ids": [
+        "ortho-glossary"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "What best explains why retention follows active orthodontic movement?",
+      "choices": [
+        "Retention replaces every missing tooth",
+        "Retention helps maintain achieved tooth positions",
+        "Retention proves alignment cannot change"
+      ],
+      "answer": 1,
+      "explanation": "Retention addresses the possibility of later tooth-position changes.",
+      "rationales": [
+        "Replacement is a different role.",
+        "This states the stability purpose.",
+        "The need for retention reflects possible change."
+      ],
+      "hint": "Recall the goal of the later phase.",
+      "source_ids": [
+        "retainers"
+      ],
+      "calculation": null
+    }
+  ]
+}

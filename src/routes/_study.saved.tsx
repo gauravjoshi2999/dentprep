@@ -1,3 +1,4 @@
+import { SourceStudyShelf } from "@/components/app/source-study-shelf";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { bookmarksQuery } from "@/lib/queries";
@@ -65,6 +66,8 @@ function Saved() {
         title="Saved for later"
         description="Your bookmarked lessons, questions and clinical cases."
       />
+      <SourceStudyShelf mode="saved" />
+
       {!bookmarks.data.length ? (
         <EmptyState title="Build your revision collection">
           Use the Save button on a published lesson or question to find it here.

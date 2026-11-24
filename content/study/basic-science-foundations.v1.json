@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "id": "basic-science-foundations",
+  "version": 1,
+  "subject_slug": "basic-medical-sciences",
+  "subject": "Basic Medical Sciences",
+  "title": "Build the biological foundations",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Connect homeostasis, membranes, tissue families and innate immunity.",
+  "sources": [
+    {
+      "id": "homeostasis",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "1.5 Homeostasis; negative feedback",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+      "content_version": "homeostasis:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "membrane",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "3.1 The Cell Membrane; selective permeability",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane",
+      "content_version": "membrane:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "tissues",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "4.1 Types of Tissues",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-1-types-of-tissues",
+      "content_version": "tissues:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "immunity",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "21.2 Barrier Defenses and the Innate Immune Response",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response",
+      "content_version": "immunity:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "feedback",
+      "title": "Homeostasis is dynamic regulation",
+      "phase": "learn",
+      "lesson": "Homeostasis maintains physiological variables within functional ranges. Negative feedback opposes a deviation rather than amplifying it. A sensor detects change, a control process compares information, and an effector produces a response. Regulation does not mean a variable never fluctuates; the response to deviation is the key concept.",
+      "question": "What does negative feedback tend to do?",
+      "choices": [
+        "Amplify every deviation",
+        "Oppose a deviation",
+        "Stop all physiological change forever"
+      ],
+      "answer": 1,
+      "explanation": "Negative feedback counters departure from the regulated range.",
+      "rationales": [
+        "Amplification describes a different feedback pattern.",
+        "This is the defining direction.",
+        "Regulated variables can fluctuate."
+      ],
+      "hint": "Recall the response direction.",
+      "source_ids": [
+        "homeostasis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "membrane",
+      "title": "A boundary can be selective",
+      "phase": "learn",
+      "lesson": "The cell membrane is a phospholipid bilayer with proteins. Hydrophilic heads face watery environments while hydrophobic tails orient inward. The membrane separates compartments and regulates exchange. Selective permeability means substances do not all cross in the same way or at the same rate; a membrane is not simply an unrestricted hole.",
+      "question": "Which membrane region is oriented toward water?",
+      "choices": [
+        "Hydrophilic heads",
+        "Hydrophobic tails only",
+        "A layer of dental enamel"
+      ],
+      "answer": 0,
+      "explanation": "Polar heads interact with the aqueous environments.",
+      "rationales": [
+        "This is the water-facing region.",
+        "Hydrophobic tails orient away from water.",
+        "Enamel is not the membrane bilayer."
+      ],
+      "hint": "Recall hydrophilic versus hydrophobic.",
+      "source_ids": [
+        "membrane"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "tissue",
+      "title": "Four tissue families",
+      "phase": "learn",
+      "lesson": "The four broad tissue categories are epithelial, connective, muscle and nervous. Epithelium covers or lines surfaces; connective tissue supports and integrates structures; muscle contracts; nervous tissue transmits signals. An organ combines more than one tissue type. Classify by structure and function rather than assuming an entire organ contains a single family.",
+      "question": "Which tissue category is specialized for contraction?",
+      "choices": [
+        "Muscle",
+        "Epithelial",
+        "Nervous"
+      ],
+      "answer": 0,
+      "explanation": "Contraction is a core muscle specialization.",
+      "rationales": [
+        "This matches the function.",
+        "Epithelium primarily covers and lines.",
+        "Nervous tissue primarily transmits signals."
+      ],
+      "hint": "Match function and family.",
+      "source_ids": [
+        "tissues"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "immune",
+      "title": "Innate and adaptive responses cooperate",
+      "phase": "learn",
+      "lesson": "Innate immune barriers and responses provide relatively rapid protection. Adaptive responses develop specificity to particular targets and cooperate with innate mechanisms. The two are not isolated alternatives. An intact barrier is part of defence before an infection becomes established; inflammation is one component of a wider immune response.",
+      "question": "Which description fits innate barriers?",
+      "choices": [
+        "Only a future exam score",
+        "Early broad protection at body surfaces",
+        "Only the shape of a tooth crown"
+      ],
+      "answer": 1,
+      "explanation": "Barriers are part of early innate defence.",
+      "rationales": [
+        "Exam scores are not immune mechanisms.",
+        "This identifies the defensive role.",
+        "Crown shape is not the immune category."
+      ],
+      "hint": "Think first barriers.",
+      "source_ids": [
+        "immunity"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "feedback-transfer",
+      "title": "Homeostasis is dynamic regulation · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A model variable rises above its regulated range and triggers a response opposing the rise. Which pattern is illustrated?",
+      "choices": [
+        "Negative feedback",
+        "Positive amplification of the deviation",
+        "Absence of regulation"
+      ],
+      "answer": 0,
+      "explanation": "The response opposes the initial deviation.",
+      "rationales": [
+        "This matches the response direction.",
+        "Amplification would reinforce the rise.",
+        "A corrective response is present."
+      ],
+      "hint": "Opposition versus reinforcement.",
+      "source_ids": [
+        "homeostasis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "membrane-transfer",
+      "title": "A boundary can be selective · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement best expresses selective membrane permeability?",
+      "choices": [
+        "All substances cross by identical routes at identical rates",
+        "Crossing depends on membrane and substance properties",
+        "No substance can ever cross a cell membrane"
+      ],
+      "answer": 1,
+      "explanation": "Selective exchange differs from both unrestricted and impossible passage.",
+      "rationales": [
+        "This denies selectivity.",
+        "This preserves the selective boundary concept.",
+        "Membranes permit regulated exchange."
+      ],
+      "hint": "Selective does not mean unrestricted.",
+      "source_ids": [
+        "membrane"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "tissue-transfer",
+      "title": "Four tissue families · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which pairing correctly matches a tissue family with a core function?",
+      "choices": [
+        "Muscle: surface lining only",
+        "Nervous: electrochemical signal transmission",
+        "Epithelium: contraction as its defining specialization"
+      ],
+      "answer": 1,
+      "explanation": "The broad tissue categories have distinct core functions.",
+      "rationales": [
+        "Surface lining is an epithelial role.",
+        "This matches the nervous-tissue specialization.",
+        "Contraction is the muscle specialization."
+      ],
+      "hint": "Recall the communication family.",
+      "source_ids": [
+        "tissues"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "immune-transfer",
+      "title": "Innate and adaptive responses cooperate · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which relationship between innate and adaptive immunity is correct?",
+      "choices": [
+        "They function as completely isolated alternatives",
+        "The two terms describe identical mechanisms",
+        "They cooperate while differing in features such as specificity"
+      ],
+      "answer": 2,
+      "explanation": "The systems are distinct and interacting.",
+      "rationales": [
+        "They influence and support one another.",
+        "Their mechanisms are not identical.",
+        "This preserves both distinction and cooperation."
+      ],
+      "hint": "Cooperation versus isolation.",
+      "source_ids": [
+        "immunity"
+      ],
+      "calculation": null
+    }
+  ]
+}

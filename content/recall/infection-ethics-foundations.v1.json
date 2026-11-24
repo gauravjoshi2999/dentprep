@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "infection-ethics-foundations-recall",
+  "version": 1,
+  "subject_slug": "infection-control-ethics",
+  "subject": "Infection Control & Ethics",
+  "title": "Use precautions and respect patient information · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "infection-ethics-foundations",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "standard-precautions",
+      "title": "Standard Precautions",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Published 15 May 2024",
+      "year": 2024,
+      "section": "Standard Precautions; Hand Hygiene; Personal Protective Equipment",
+      "url": "https://www.cdc.gov/dental-infection-control/hcp/summary/standard-precautions.html",
+      "content_version": "standard-precautions:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "sterilization",
+      "title": "Sterilization and Disinfection",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Published 15 May 2024",
+      "year": 2024,
+      "section": "Cleaning; classification and reprocessing; monitoring",
+      "url": "https://www.cdc.gov/dental-infection-control/hcp/summary/sterilization-disinfection.html",
+      "content_version": "sterilization:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "rights",
+      "title": "WHO launches first ever Patient Safety Rights Charter",
+      "author_or_organization": "World Health Organization",
+      "edition": "18 April 2024; charter launch",
+      "year": 2024,
+      "section": "Ten patient safety rights: information, participation, privacy and confidentiality",
+      "url": "https://www.who.int/news/item/18-04-2024-who-launches-first-ever-patient-safety-rights-charter",
+      "content_version": "rights:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which conclusion is unjustified from visual cleaning alone?",
+      "choices": [
+        "Visible debris has been considered",
+        "Sterility is guaranteed",
+        "Appropriate validated reprocessing may still be needed"
+      ],
+      "answer": 1,
+      "explanation": "Visual cleanliness does not establish sterilization.",
+      "rationales": [
+        "This can be a visual observation.",
+        "This exceeds the evidence.",
+        "This respects the process distinction."
+      ],
+      "hint": "Clean-looking versus sterile.",
+      "source_ids": [
+        "sterilization"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A public learning-issue form asks for an explanation. What should be omitted?",
+      "choices": [
+        "The relevant concept",
+        "The source section",
+        "Identifiable patient information"
+      ],
+      "answer": 2,
+      "explanation": "Public reports should describe the concept without private identifiers.",
+      "rationales": [
+        "The concept is useful.",
+        "The source is useful.",
+        "This protects confidentiality."
+      ],
+      "hint": "Keep the educational evidence, protect identity.",
+      "source_ids": [
+        "rights"
+      ],
+      "calculation": null
+    }
+  ]
+}

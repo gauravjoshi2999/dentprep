@@ -1,5 +1,6 @@
 import { addDays } from "./dates";
 import { STUDY_BRIEF_BY_SLUG } from "./subject-study-briefs";
+import { chapterForSubject } from "./study-course";
 
 export type PlanLength = 7 | 15 | 30;
 export type PlanGoal = "interview" | "recruitment_test" | "clinical" | "english";
@@ -80,28 +81,36 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
   const otherQueue = interleave(queueFor(input.subjects.filter((s) => !weak.has(s.id))));
   const lessonQueue = [...weakQueue, ...otherQueue];
 
-  // Unlike approved lessons, original-source reading guides are available before
-  // independent clinical sign-off. They never get a lesson_id or a practice score.
+  // Academic chapter tasks retain the existing task identity and history.
+  // Plan checkmarks do not substitute for server-scored question checkpoints.
   const completedGuides = new Set(
-    (input.completedGuideTitles ?? []).map(title => title.replace(/^(Continue: )+/, "")),
+    (input.completedGuideTitles ?? []).map((title) => title.replace(/^(Continue: )+/, "")),
   );
   const guideSubjects = [
-    ...input.subjects.filter(s => weak.has(s.id)),
-    ...input.subjects.filter(s => !weak.has(s.id)),
-  ].flatMap(subject => {
+    ...input.subjects.filter((s) => weak.has(s.id)),
+    ...input.subjects.filter((s) => !weak.has(s.id)),
+  ].flatMap((subject) => {
     const brief = STUDY_BRIEF_BY_SLUG.get(subject.slug ?? "");
-    return brief ? [{ subject, brief }] : [];
+    const course = chapterForSubject(subject.slug ?? "");
+    const chapters = course
+      ? course.units.filter((unit) => unit.phase === "learn")
+      : brief?.chapters;
+    return chapters ? [{ subject, chapters }] : [];
   });
   const guideQueue: { subject: PlannerSubject; title: string; recall: string }[] = [];
   // Chapter waves mean a 15-day cycle samples all 15 subjects before
   // concentrating only on one specialty; weak subjects lead each wave.
   for (let chapterIndex = 0; chapterIndex < 5; chapterIndex++) {
-    for (const { subject, brief } of guideSubjects) {
-      const chapter = brief.chapters[chapterIndex];
+    for (const { subject, chapters } of guideSubjects) {
+      const chapter = chapters[chapterIndex];
       if (!chapter) continue;
       const title = `Source study: ${subject.name} — ${chapter.title}`;
       if (!completedGuides.has(title)) {
-        guideQueue.push({ subject, title, recall: `Recall source: ${subject.name} — ${chapter.title}` });
+        guideQueue.push({
+          subject,
+          title,
+          recall: `Recall source: ${subject.name} — ${chapter.title}`,
+        });
       }
     }
   }
@@ -152,8 +161,11 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
       const offset = day - item.day;
       if ((REVISION_OFFSETS as readonly number[]).includes(offset)) {
         push({
-          task_type: "revision", subject_id: item.guide.subject.id, lesson_id: null,
-          title: item.guide.recall, minutes: 10,
+          task_type: "revision",
+          subject_id: item.guide.subject.id,
+          lesson_id: null,
+          title: item.guide.recall,
+          minutes: 10,
         });
       }
     }
@@ -196,22 +208,27 @@ export function generatePlan(input: PlannerInput): PlannedTask[] {
       newLessons += 1;
     }
 
-    // Original-source learning: do not let zero approved lessons create empty
-    // repeated official-notice days. Only use a published subject and its
-    // existing nonclinical topic checklist; no clinical content is unlocked.
+    // Schedule actual academic teaching concepts across the existing subjects.
+    // Legacy clinical drafts remain outside this queue.
     let newGuides = 0;
     const guideMinutes = Math.min(35, Math.max(20, Math.round(budget / 3)));
     while (newGuides < 2 && guideQueue.length > 0 && left >= guideMinutes) {
       const next = guideQueue.shift();
       if (!next) break;
       push({
-        task_type: "revision", subject_id: next.subject.id, lesson_id: null,
-        title: next.title, minutes: guideMinutes,
+        task_type: "revision",
+        subject_id: next.subject.id,
+        lesson_id: null,
+        title: next.title,
+        minutes: guideMinutes,
       });
       if (left >= 10) {
         push({
-          task_type: "revision", subject_id: next.subject.id, lesson_id: null,
-          title: next.recall, minutes: 10,
+          task_type: "revision",
+          subject_id: next.subject.id,
+          lesson_id: null,
+          title: next.recall,
+          minutes: 10,
         });
       }
       studiedGuides.push({ day, guide: next });

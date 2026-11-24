@@ -94,6 +94,34 @@ const SPECIAL: Record<string, [ReviewQuestion, ReviewQuestion]> = {
     { id: "ortho-records", section: "Subject-specific check", question: "क्या records, consent, retention और follow-up के source sections सही हैं?", guidance: "Specific BOS document/edition की जाँच करें।" },
     { id: "ortho-referral", section: "Subject-specific check", question: "क्या case-selection, referral और orthodontic treatment boundaries उचित हैं?", guidance: "UK society guidance को भारतीय कानून न बताएं।" },
   ],
+  "iarc-head-neck-2024": [
+    { id: "path-edition", section: "Subject-specific check", question: "क्या WHO/IARC classification का edition, site और tumour category सही चिन्हित है?", guidance: "Taxonomy को diagnosis या Indian treatment protocol न मानें।" },
+    { id: "path-verification", section: "Subject-specific check", question: "क्या microscopic terminology और reporting सीमाओं के लिए additional oral pathology specialist review चाहिए?", guidance: "Unverified diagnosis या image-based conclusion न जोड़ें।" },
+  ],
+  "nmc-cbme-2024": [
+    { id: "medicine-vs-bds", section: "Subject-specific check", question: "क्या NMC MBBS competency और BDS syllabus के अंतर को स्पष्ट किया गया है?", guidance: "MBBS document को Dental Surgeon test syllabus न बताएं।" },
+    { id: "systemic-care-boundary", section: "Subject-specific check", question: "क्या systemic disease risks और dental referral boundaries के लिए current dental-specific evidence चाहिए?", guidance: "Clinical management को source section से अलग करें।" },
+  ],
+  "dci-bds-pharm-materials": [
+    { id: "pharm-curriculum", section: "Subject-specific check", question: "क्या pharmacology, therapeutics और materials के BDS chapters original syllabus से match करते हैं?", guidance: "Regulation की वर्तमान स्थिति और amendment जाँचें।" },
+    { id: "drug-materials-evidence", section: "Subject-specific check", question: "क्या medicine dose, interactions और material performance के लिए अलग current primary sources चाहिए?", guidance: "Curriculum से drug-prescribing recommendations infer न करें।" },
+  ],
+  "dci-bds-foundations": [
+    { id: "bds-basic-coverage", section: "Subject-specific check", question: "क्या anatomy, physiology, biochemistry और microbiology के curriculum headings पूरी तरह मिले हैं?", guidance: "Exact subject-wise source pages बताएं।" },
+    { id: "foundation-clinical-bridge", section: "Subject-specific check", question: "क्या clinical interpretation को मूल विज्ञान की definitions से अलग रखा गया है?", guidance: "Patient advice के लिए teaching validation अलग चाहिए।" },
+  ],
+  "who-basic-emergency-care": [
+    { id: "emergency-audience", section: "Subject-specific check", question: "क्या WHO/ICRC training का intended setting और provider scope अलग से लिखा है?", guidance: "Basic Emergency Care dental-clinic protocol नहीं है।" },
+    { id: "emergency-local", section: "Subject-specific check", question: "क्या Indian dental setting, local referral और supervised competency के gaps चिन्हित हैं?", guidance: "Actionable emergency procedures के लिए local approved protocol चाहिए।" },
+  ],
+  "dci-dentists-ethics-2014": [
+    { id: "ethics-current", section: "Subject-specific check", question: "क्या 2014 code के बाद applicable Indian rules, amendments या successor guidance जाँची है?", guidance: "Regulatory currency को verified evidence के बिना assert न करें।" },
+    { id: "infection-ethics-scope", section: "Subject-specific check", question: "क्या ethics rules और infection-control recommendations को अलग स्रोतों में रखा गया है?", guidance: "CDC guidance US-specific है, Indian law नहीं।" },
+  ],
+  "dghs-national-oral-health": [
+    { id: "nohp-source-date", section: "Subject-specific check", question: "क्या सरकारी NOHP/NOHD programme objectives और source date सही दर्ज हैं?", guidance: "Scheme goals को delivered outcomes न बताएं।" },
+    { id: "upsc-claims", section: "Subject-specific check", question: "क्या recruitment duties verified UPSC advertisement से अलग हैं, और कोई unofficial test syllabus claim तो नहीं है?", guidance: "UPSC notification का year, vacancy और exact section जाँचें।" },
+  ],
 };
 
 /**

@@ -158,3 +158,147 @@ export const EIGHTH_DENTAL_READING = {
     "Write any patient-management question for a qualified local orthodontic educator to review.",
   ],
 } as const;
+
+/** WHO/IARC taxonomy directory; published taxonomy is not a DentPrep clinical lesson. */
+export const NINTH_DENTAL_READING = {
+  id: "iarc-head-neck-2024",
+  subject: "Oral Pathology",
+  subjectSlug: "oral-pathology",
+  title: "WHO Classification of Tumours — Head and Neck Tumours",
+  publisher: "WHO / International Agency for Research on Cancer (IARC)",
+  edition: "WHO Classification of Tumours, 5th edition, Volume 9 (2024); online index",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Head-And-Neck-Tumours-2024",
+  guideUrl: "https://whobluebooks.iarc.who.int/structures/head-and-neck-tumours/",
+  readingSteps: [
+    "Find the oral cavity and mobile tongue section in the original IARC taxonomy.",
+    "Distinguish a classification heading from a diagnostic finding or teaching recommendation.",
+    "Record source edition, selected entity name and available references.",
+    "Ask oral pathology faculty to confirm any application to BDS teaching or a patient scenario.",
+  ],
+} as const;
+
+/** NMC medical curriculum reference; not a BDS-specific clinical protocol. */
+export const TENTH_DENTAL_READING = {
+  id: "nmc-cbme-2024",
+  subject: "General Medicine & Surgery",
+  subjectSlug: "general-medicine-surgery",
+  title: "Competency Based Medical Education Curriculum",
+  publisher: "National Medical Commission (India)",
+  edition: "NMC CBME Curriculum 2024; MBBS curriculum, not UPSC BDS exam syllabus",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://nmc.org.in/page/rules-regulations-rules-regulations-nmc",
+  guideUrl: "https://www.nmc.org.in/wp-content/uploads/2026/02/12bCompetencyBasedMedicalEducationCBMECurriculum12092024.pdf",
+  readingSteps: [
+    "Confirm this is an NMC medical, not DCI dental, curriculum.",
+    "Find medicine and surgery competency headings and record exact sections.",
+    "Create a glossary of systemic-health topics without adopting clinical treatment protocols.",
+    "Cross-map BDS relevance with a current dental curriculum and faculty.",
+  ],
+} as const;
+
+/** Indian dental curriculum source; not a pharmacology prescription reference. */
+export const ELEVENTH_DENTAL_READING = {
+  id: "dci-bds-pharm-materials",
+  subject: "Pharmacology & Dental Materials",
+  subjectSlug: "pharmacology-dental-materials",
+  title: "Revised BDS Course Regulations — Pharmacology & Dental Materials",
+  publisher: "National Dental Commission / legacy Dental Council of India",
+  edition: "Revised BDS Course Regulations 2007 with amendments; verify current applicability",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://dciindia.gov.in/GazetteList.aspx",
+  guideUrl: "https://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf",
+  readingSteps: [
+    "Locate General and Dental Pharmacology and Dental Materials under study syllabi.",
+    "Prepare a chapter-index revision list with class names, not drug doses.",
+    "Use a current authoritative medicines reference before assessing safety or interactions.",
+    "Flag updated law, guidance and textbook-edition gaps for a qualified reviewer.",
+  ],
+} as const;
+
+/** Indian undergraduate dental foundation syllabus; not a clinical treatment source. */
+export const TWELFTH_DENTAL_READING = {
+  id: "dci-bds-foundations",
+  subject: "Basic Medical Sciences",
+  subjectSlug: "basic-medical-sciences",
+  title: "Revised BDS Course Regulations — Foundational Sciences",
+  publisher: "National Dental Commission / legacy Dental Council of India",
+  edition: "Revised BDS Course Regulations 2007 with amendments; verify current applicability",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://dciindia.gov.in/GazetteList.aspx",
+  guideUrl: "https://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf",
+  readingSteps: [
+    "Find anatomy, physiology, biochemistry and microbiology in the official course outline.",
+    "Make a simple topic-to-textbook chapter map.",
+    "Review foundational definitions before clinical extrapolation.",
+    "Confirm the latest applicable curriculum and qualification scope with faculty.",
+  ],
+} as const;
+
+/** WHO/ICRC first-contact care learning resource, not a dental-chair emergency protocol. */
+export const THIRTEENTH_DENTAL_READING = {
+  id: "who-basic-emergency-care",
+  subject: "Medical Emergencies",
+  subjectSlug: "medical-emergencies",
+  title: "Basic Emergency Care — WHO/ICRC course",
+  publisher: "World Health Organization (WHO), ICRC and IFEM",
+  edition: "WHO Basic Emergency Care programme; review individual module updates",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://www.who.int/teams/integrated-health-services/clinical-services-and-systems/emergency-and-critical-care/bec",
+  guideUrl: "https://www.who.int/publications/i/item/basic-emergency-care-approach-to-the-acutely-ill-and-injured",
+  readingSteps: [
+    "Confirm the target audience and setting for WHO Basic Emergency Care.",
+    "Identify the headings for approach, assessment, handover and escalation.",
+    "Record concepts for faculty-led practice, not self-directed clinical intervention.",
+    "Verify local emergency pathways, scope of practice and current clinical procedures separately.",
+  ],
+} as const;
+
+/** Indian professional ethics regulation; check newer amendments/current national rules. */
+export const FOURTEENTH_DENTAL_READING = {
+  id: "dci-dentists-ethics-2014",
+  subject: "Infection Control & Ethics",
+  subjectSlug: "infection-control-ethics",
+  title: "Revised Dentists (Code of Ethics) Regulations",
+  publisher: "National Dental Commission / legacy Dental Council of India",
+  edition: "2014 ethics regulations; verify any successor or amended requirements",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://dciindia.gov.in/GazetteList.aspx",
+  guideUrl: "https://dciindia.gov.in/Rule_Regulation/Gazette/30.%20Revised%20Dentists%20%28Code%20of%20Ethics%29%20Regulations%2C%202014/Revised%20Dentists%20%28Code%20of%20Ethics%29%20Regulations%2C%202014.pdf",
+  readingSteps: [
+    "Read the issuing body, regulation title, year and scope before interpreting a rule.",
+    "Make a glossary of consent, confidentiality, advertising ethics and registration concepts.",
+    "Study dental infection prevention separately via the CDC reference and Indian local policy.",
+    "Ask an appropriately qualified educator to verify the current enforceable regulatory position.",
+  ],
+} as const;
+
+/** India government oral health programme directory, not UPSC test guidance. */
+export const FIFTEENTH_DENTAL_READING = {
+  id: "dghs-national-oral-health",
+  subject: "Government Healthcare & Administration",
+  subjectSlug: "govt-healthcare-administration",
+  title: "National Oral Health Division / Programme",
+  publisher: "Directorate General of Health Services, MoHFW, India",
+  edition: "Official NOHD/NOHP programme page; living programme information",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://dghs.mohfw.gov.in/national-oral-health-division.php",
+  guideUrl: "https://dghs.mohfw.gov.in/national-oral-health-division.php",
+  readingSteps: [
+    "Identify the Government of India programme aims and source date.",
+    "Distinguish policy objectives, funded activities and local implementation.",
+    "Open the official UPSC recruitment advertisement separately for current role duties.",
+    "Avoid presenting any inferred recruitment-test topics as a UPSC-issued official syllabus.",
+  ],
+} as const;
+
+/** Every subject has a publisher/institution source and the same guided reviewer intake. */
+export const ALL_DENTAL_READINGS = [
+  FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING,
+  FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING,
+  SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING, NINTH_DENTAL_READING,
+  TENTH_DENTAL_READING, ELEVENTH_DENTAL_READING, TWELFTH_DENTAL_READING,
+  THIRTEENTH_DENTAL_READING, FOURTEENTH_DENTAL_READING, FIFTEENTH_DENTAL_READING,
+] as const;
+
+export type DentalReading = (typeof ALL_DENTAL_READINGS)[number];

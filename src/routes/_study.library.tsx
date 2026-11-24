@@ -8,7 +8,9 @@ import { progressQuery } from "@/lib/queries";
 import { subjectsQuery } from "@/lib/queries";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { PrimarySourceReading } from "@/components/app/primary-source-reading";
-import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING, ALL_DENTAL_READINGS } from "@/lib/primary-reading";
+import { STUDY_BRIEF_BY_SLUG, SUBJECT_STUDY_BRIEFS } from "@/lib/subject-study-briefs";
+import { SubjectStudyChecklist } from "@/components/app/subject-study-checklist";
 import { STARTER_UNITS } from "@/lib/starter-quest";
 
 export const Route = createFileRoute("/_study/library")({
@@ -23,18 +25,19 @@ function Library() {
   const progress = useQuery({ ...progressQuery(user?.id ?? ""), enabled: !!user });
   const categories = ["All", "Clinical", "Basics", "Public Health"] as const;
   const categoryOf = (name: string) =>
-    /public health|community/i.test(name)
+    SUBJECT_STUDY_BRIEFS.find(brief => brief.name === name)?.category ??
+    (/public health|community/i.test(name)
       ? "Public Health"
       : /anatomy|physiology|biochem|microbiol|pharmacolog|general medicine|general surgery/i.test(
             name,
           )
         ? "Basics"
-        : "Clinical";
+        : "Clinical");
   const visible =
     subjects.data?.filter(
       (s) =>
         (category === "All" || categoryOf(s.name) === category) &&
-        `${s.name} ${s.description} ${s.lessons.map((l) => l.title).join(" ")}`
+        `${s.name} ${s.description} ${s.lessons.map((l) => l.title).join(" ")} ${STUDY_BRIEF_BY_SLUG.get(s.slug)?.chapters.map(c => c.title).join(" ") ?? ""}`
           .toLowerCase()
           .includes(search.trim().toLowerCase()),
     ) ?? [];
@@ -88,6 +91,13 @@ function Library() {
     `${EIGHTH_DENTAL_READING.subject} ${EIGHTH_DENTAL_READING.title} ${EIGHTH_DENTAL_READING.publisher}`
       .toLowerCase()
       .includes(search.trim().toLowerCase());
+
+  const extraReadings = ALL_DENTAL_READINGS.slice(8).filter((source) => {
+    const brief = STUDY_BRIEF_BY_SLUG.get(source.subjectSlug);
+    return (category === "All" || brief?.category === category) &&
+      `${source.subject} ${source.title} ${source.publisher} ${brief?.chapters.map(c => c.title).join(" ") ?? ""}`
+        .toLowerCase().includes(search.trim().toLowerCase());
+  });
 
   return (
     <>
@@ -143,19 +153,12 @@ function Library() {
           </button>
         ))}
       </div>
-      {showReference && <PrimarySourceReading />}
-      {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
-      {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
-      {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
-      {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
-      {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
-      {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
-      {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
+      <a href="#study-guides" className="mb-5 inline-block text-sm font-bold text-teal underline underline-offset-4">Jump to 15 subject study guides ↓</a>
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-extrabold">Study Library</h2>
+          <h2 id="study-guides" className="scroll-mt-6 text-xl font-extrabold">Study Library</h2>
           <span className="text-sm font-semibold text-teal">
-            {visible.length} {visible.length === 1 ? "Subject" : "Subjects"}
+            {visible.length} {visible.length === 1 ? "Subject" : "Subjects"} · 15 guided study paths
           </span>
         </div>
       )}
@@ -211,6 +214,16 @@ function Library() {
                 </div>
               </div>
               <p className="mb-4 text-sm text-muted-foreground">{s.description}</p>
+              {(() => {
+                const brief = STUDY_BRIEF_BY_SLUG.get(s.slug);
+                const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === s.slug);
+                return brief && source ? (
+                  <SubjectStudyChecklist
+                    brief={brief}
+                    sourceAnchor={source.id === FIRST_DENTAL_READING.id ? "primary-reading" : `source-reading-${source.id}`}
+                  />
+                ) : null;
+              })()}
               {user &&
                 s.lessons.length > 0 &&
                 (() => {
@@ -274,6 +287,46 @@ function Library() {
           )}
         </div>
       )}
+      {(subjects.isError || (subjects.isSuccess && subjects.data?.length === 0)) && (
+        <section aria-label="Standalone study guides" className="mt-6">
+          <h2 className="text-xl font-extrabold">15 guided subject paths available</h2>
+          <p className="mb-5 mt-2 text-sm text-muted-foreground">
+            The approved lesson catalogue is not available, but you can still study these
+            publisher-linked topic guides. Session checkmarks are not saved or scored.
+          </p>
+          <div className="grid items-start gap-4 lg:grid-cols-2">
+            {SUBJECT_STUDY_BRIEFS.filter(brief =>
+              (category === "All" || brief.category === category) &&
+              `${brief.name} ${brief.chapters.map(c => c.title).join(" ")}`
+                .toLowerCase().includes(search.trim().toLowerCase())
+            ).map(brief => {
+              const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === brief.slug);
+              return source ? (
+                <article key={brief.slug} className="surface p-5">
+                  <h3 className="text-lg font-extrabold">{brief.name}</h3>
+                  <p className="mt-1 text-xs text-teal">Clinical review pending · Study guide available</p>
+                  <SubjectStudyChecklist brief={brief}
+                    sourceAnchor={source.id === FIRST_DENTAL_READING.id ? "primary-reading" : `source-reading-${source.id}`}
+                  />
+                </article>
+              ) : null;
+            })}
+          </div>
+        </section>
+      )}
+      <section aria-label="Original source readings and doctor feedback" className="mt-9">
+        <h2 className="mb-2 text-xl font-extrabold">Official source reading · 15 subjects</h2>
+        <p className="mb-5 text-sm text-muted-foreground">Read the original publisher material and send guided dentist feedback. This does not unlock or approve unreviewed clinical lessons.</p>
+      {showReference && <PrimarySourceReading />}
+      {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
+      {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
+      {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
+      {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
+      {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
+      {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
+      {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
+      {extraReadings.map((source) => <PrimarySourceReading key={source.id} source={source} />)}
+      </section>
     </>
   );
 }

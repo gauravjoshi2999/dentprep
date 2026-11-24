@@ -98,3 +98,23 @@ export const FIFTH_DENTAL_READING = {
     "Ask qualified local faculty to verify clinical decisions and India-specific applicability.",
   ],
 } as const;
+
+
+/** ACP prosthodontic specialty reference index; not a clinical teaching approval. */
+export const SIXTH_DENTAL_READING = {
+  id: "acp-prosthodontic-care",
+  subject: "Prosthodontics",
+  subjectSlug: "prosthodontics",
+  title: "Parameters of Care — Prosthodontic Diagnostic Index",
+  publisher: "American College of Prosthodontists (ACP)",
+  edition: "Publisher lists Parameters of Care (2020) and diagnostic-index materials",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://www.prosthodontics.org/acp-publications/parameters-of-care/",
+  guideUrl: "https://www.prosthodontics.org/acp-publications/parameters-of-care/",
+  readingSteps: [
+    "Open the ACP publication index and identify its 2020 parameters document.",
+    "Locate the categories for complete dentate, partial edentulism and complete edentulism.",
+    "Record the intended prosthodontic-specialty audience and scope of the diagnostic index.",
+    "Ask relevant faculty to reconcile case classification and Indian care context before making treatment decisions.",
+  ],
+} as const;

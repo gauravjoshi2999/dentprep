@@ -85,6 +85,14 @@ jobs:
         env:
           DENTPREP_RELEASE_ORIGIN: ${{ inputs.production_url || steps.deploy.outputs.worker_url }}
         run: node scripts/record-release-evidence.mjs
+      - name: Preserve release failure traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-browser-failure-traces
+          path: test-results/
+          retention-days: 7
+          if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         with:
           name: dentprep-release-${{ github.sha }}

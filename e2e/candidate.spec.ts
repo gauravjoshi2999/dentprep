@@ -44,6 +44,7 @@ async function mockBackend(
   admin = false,
   exam = false,
   evidenceConflict = false,
+  logoutDelayMs = 0,
 ) {
   // Isolated test-only records: these tests never create accounts or publish clinical content.
   if (signedIn)
@@ -91,6 +92,11 @@ async function mockBackend(
           "access-control-allow-methods": "GET,POST,PATCH,DELETE,OPTIONS",
         },
       });
+    if (path.includes("/auth/v1/logout")) {
+      // Model delayed successful revocation so acceptance must await app completion.
+      if (logoutDelayMs) await new Promise((resolve) => setTimeout(resolve, logoutDelayMs));
+      return route.fulfill({ status: 204, headers: { "access-control-allow-origin": "*" } });
+    }
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
     else if (path.endsWith("/rpc/has_role")) data = admin;
@@ -326,14 +332,18 @@ test("public library and protected pages behave on mobile and desktop", async ({
 });
 
 test("sign in opens a real empty dashboard and logout closes private views", async ({ page }) => {
-  await mockBackend(page);
+  await mockBackend(page, false, false, false, false, false, 200);
   await page.goto("/login");
   await page.getByLabel("Email", { exact: true }).fill("qa@example.test");
   await page.getByLabel("Password", { exact: true }).fill("test-only-password");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Welcome, QA" })).toBeVisible();
   await expect(page.getByText("Practice accuracy", { exact: true })).toBeVisible();
+  // A click dispatches the async handler; navigating immediately can cancel its logout request.
+  // Wait for the app's completed-signout navigation and cleared control, then reload a private URL.
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole("button", { name: "Sign out", exact: true })).toHaveCount(0);
   await page.goto("/dashboard");
   await expect(page.getByText("Sign in to your study space")).toBeVisible();
   await expect(page.getByText("Welcome, QA")).toHaveCount(0);

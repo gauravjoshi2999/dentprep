@@ -43,6 +43,7 @@ async function mockBackend(
   withQuestion = false,
   admin = false,
   exam = false,
+  evidenceConflict = false,
 ) {
   // Isolated test-only records: these tests never create accounts or publish clinical content.
   if (signedIn)
@@ -58,6 +59,9 @@ async function mockBackend(
   const carriedSources = new Set<string>();
   const interviews: Record<string, unknown>[] = [];
   const drafts: Record<string, unknown>[] = [];
+  const preparationRecords: Record<string, unknown>[] = [];
+  let preparationFingerprint = "a".repeat(64);
+  let firstPreparationSave = true;
   const question = {
     id: questionId,
     subject_id: subjectId,
@@ -90,7 +94,64 @@ async function mockBackend(
     if (path.includes("/auth/v1/token")) data = session;
     else if (path.includes("/auth/v1/user")) data = user;
     else if (path.endsWith("/rpc/has_role")) data = admin;
-    else if (path.endsWith("/rpc/pending_study_tasks")) {
+    else if (path.endsWith("/rpc/admin_content_evidence")) {
+      expect(admin).toBe(true);
+      const target = drafts.find((d) => d.id === body.p_entity_id);
+      expect(target).toBeTruthy();
+      const history = preparationRecords.filter((r) => r.entity_id === body.p_entity_id);
+      const latest = history[0] ?? null;
+      data = {
+        entity: {
+          id: body.p_entity_id,
+          type: body.p_entity_type,
+          title: target?.stem,
+          subject_id: subjectId,
+          status: target?.status,
+        },
+        current_fingerprint: preparationFingerprint,
+        current_version: latest?.version ?? 0,
+        latest,
+        history,
+        publication_locked: true,
+        independent_review: "not_recorded",
+        server_today: "2026-11-24",
+        mapping_state: latest
+          ? latest.content_fingerprint === preparationFingerprint
+            ? "matches_draft"
+            : "stale"
+          : "missing",
+      };
+    } else if (path.endsWith("/rpc/admin_save_content_evidence")) {
+      expect(admin).toBe(true);
+      expect(body.p_evidence.clinical_approved).toBeUndefined();
+      if (evidenceConflict && firstPreparationSave) {
+        firstPreparationSave = false;
+        preparationFingerprint = "b".repeat(64);
+        return route.fulfill({
+          status: 409,
+          contentType: "application/json",
+          headers: { "access-control-allow-origin": "*" },
+          body: JSON.stringify({
+            code: "P0001",
+            message: "Content changed. Reload the latest draft before recording evidence",
+          }),
+        });
+      }
+      expect(body.p_expected_fingerprint).toBe(preparationFingerprint);
+      const version = preparationRecords.filter((r) => r.entity_id === body.p_entity_id).length;
+      expect(body.p_expected_version).toBe(version);
+      preparationRecords.unshift({
+        id: body.p_id,
+        entity_type: body.p_entity_type,
+        entity_id: body.p_entity_id,
+        version: version + 1,
+        content_fingerprint: preparationFingerprint,
+        evidence: body.p_evidence,
+        created_by: userId,
+        created_at: "2026-11-24T00:00:00Z",
+      });
+      data = body.p_id;
+    } else if (path.endsWith("/rpc/pending_study_tasks")) {
       const pending = tasks.filter((t) => !t.done && !carriedSources.has(String(t.id)));
       data = { total_pending: pending.length, tasks: pending };
     } else if (path.endsWith("/rpc/save_study_cycle")) {
@@ -444,8 +505,7 @@ test("ordinary candidates cannot access the content administration screen", asyn
   await expect(page.getByRole("button", { name: "Add draft", exact: true })).toHaveCount(0);
 });
 
-test("administrators save MCQs through the draft-only transactional API", async ({ page }) => {
-  await mockBackend(page, true, false, true);
+async function createDraftQuestion(page: Page) {
   await page.goto("/admin");
   await page.getByRole("button", { name: "MCQs", exact: true }).click();
   await page.getByRole("button", { name: "Add draft", exact: true }).click();
@@ -464,6 +524,72 @@ test("administrators save MCQs through the draft-only transactional API", async 
     page.getByRole("heading", { name: "QA original study routine question", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("in review", { exact: true })).toBeVisible();
+}
+async function fillPreparation(page: Page) {
+  await page.getByLabel("Curriculum unit", { exact: true }).fill("Study routines");
+  await page.getByLabel("Curriculum topic", { exact: true }).fill("Communication practice");
+  await page
+    .getByLabel("Learning outcomes (one per line)")
+    .fill("Describe a repeatable practice routine");
+  await page.getByLabel("Citation 1", { exact: true }).fill("Synthetic QA reference");
+  await page.getByLabel("Edition or version 1").fill("QA version 1");
+  await page.getByLabel("Page or section 1").fill("Section A");
+}
+
+test("administrators save MCQs through the draft-only transactional API", async ({ page }) => {
+  await mockBackend(page, true, false, true);
+  await createDraftQuestion(page);
+});
+
+test("administrators map outcomes and sources to an immutable draft preparation revision", async ({
+  page,
+}) => {
+  await mockBackend(page, true, false, true);
+  await createDraftQuestion(page);
+  await page.getByRole("button", { name: "Curriculum & sources", exact: true }).click();
+  await expect(page.getByText("No preparation record yet", { exact: false })).toBeVisible();
+  await fillPreparation(page);
+  await page.getByRole("button", { name: "Save preparation revision", exact: true }).click();
+  await expect(
+    page.getByText(/Matches current draft.*Latest preparation revision: 1/),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Preparation record, not clinical approval", { exact: true }),
+  ).toBeVisible();
+  await page.reload();
+  await page.getByRole("button", { name: "MCQs", exact: true }).click();
+  await page.getByRole("button", { name: "Curriculum & sources", exact: true }).click();
+  await expect(page.getByLabel("Curriculum unit", { exact: true })).toHaveValue("Study routines");
+  await page.getByText("Preparation history (latest 20)", { exact: true }).click();
+  await page.getByText(/^Preparation revision 1 ·/).click();
+  await expect(page.getByText(/Synthetic QA reference · QA version 1 · Section A/)).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
+test("a stale preparation form cannot overwrite changed content and requires explicit reload", async ({
+  page,
+}) => {
+  await mockBackend(page, true, false, true, false, true);
+  await createDraftQuestion(page);
+  await page.getByRole("button", { name: "Curriculum & sources", exact: true }).click();
+  await fillPreparation(page);
+  await page.getByRole("button", { name: "Save preparation revision", exact: true }).click();
+  await expect(page.getByText("Latest draft required", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Save preparation revision", exact: true }),
+  ).toBeDisabled();
+  await expect(page.getByLabel("Curriculum unit", { exact: true })).toHaveValue("Study routines");
+  await page
+    .getByRole("button", { name: "Reload latest (discard form changes)", exact: true })
+    .click();
+  await expect(page.getByLabel("Curriculum unit", { exact: true })).toHaveValue("");
+  await fillPreparation(page);
+  await page.getByRole("button", { name: "Save preparation revision", exact: true }).click();
+  await expect(
+    page.getByText(/Matches current draft.*Latest preparation revision: 1/),
+  ).toBeVisible();
 });
 
 test("approved mobile visual navigation uses real pages and honest study data", async ({

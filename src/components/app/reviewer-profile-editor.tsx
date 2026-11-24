@@ -34,14 +34,20 @@ export function ReviewerProfileEditor({
     setError("");
     setSaving(true);
     try {
-      const { data, error: dbError } = await supabase.from("clinical_reviewer_profiles")
-        .upsert({
-          owner_user_id: userId,
-          claimed_name: name.trim(),
-          claimed_qualification: qualification.trim(),
-          claimed_registration: registration.trim(),
-          consent_confirmed: true,
-        }, { onConflict: "owner_user_id" })
+      // Distinct INSERT and UPDATE avoid attempting to modify the owner_user_id PK.
+      // This also respects column-specific UPDATE privileges on the RLS-protected table.
+      const fields = {
+        claimed_name: name.trim(),
+        claimed_qualification: qualification.trim(),
+        claimed_registration: registration.trim(),
+        consent_confirmed: true,
+      };
+      const request = existing
+        ? supabase.from("clinical_reviewer_profiles")
+            .update(fields).eq("owner_user_id", userId)
+        : supabase.from("clinical_reviewer_profiles")
+            .insert({ owner_user_id: userId, ...fields });
+      const { data, error: dbError } = await request
         .select("owner_user_id,claimed_name,claimed_qualification,claimed_registration,consent_confirmed")
         .single();
       if (dbError) throw dbError;

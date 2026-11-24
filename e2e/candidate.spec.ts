@@ -337,7 +337,7 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await page.getByLabel("Email", { exact: true }).fill("qa@example.test");
   await page.getByLabel("Password", { exact: true }).fill("test-only-password");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Welcome, QA" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Welcome, Dr. QA" })).toBeVisible();
   await expect(page.getByText("Practice accuracy", { exact: true })).toBeVisible();
   // A click dispatches the async handler; navigating immediately can cancel its logout request.
   // Wait for the app's completed-signout navigation and cleared control, then reload a private URL.
@@ -346,7 +346,7 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await expect(page.getByRole("button", { name: "Sign out", exact: true })).toHaveCount(0);
   await page.goto("/dashboard");
   await expect(page.getByText("Sign in to your study space")).toBeVisible();
-  await expect(page.getByText("Welcome, QA")).toHaveCount(0);
+  await expect(page.getByText("Welcome, Dr. QA")).toHaveCount(0);
 });
 
 test("practice saves answers through RPCs and displays the submitted score", async ({ page }) => {

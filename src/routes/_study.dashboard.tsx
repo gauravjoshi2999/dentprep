@@ -12,6 +12,7 @@ import {
   noticesQuery,
 } from "@/lib/queries";
 import { computeStreak, istToday } from "@/lib/dates";
+import { studentGreetingName } from "@/lib/display-name";
 import { scorePercent } from "@/lib/scoring";
 import { RequireUser } from "@/components/app/study-shell";
 import {
@@ -60,12 +61,13 @@ function Dashboard() {
   const completedTasks = todayTasks.filter((t) => t.done).length;
   const availableLessons = subjects.data?.flatMap((s) => s.lessons.map((l) => ({ ...l, subjectSlug: s.slug, subjectName: s.name }))) ?? [];
   const nextLesson = availableLessons.find((l) => !progress.data?.some((p) => p.lesson_id === l.id && p.status === "completed"));
+  const greetingName = studentGreetingName(profile.data?.full_name);
   const streak = computeStreak(activity.data?.map((a) => a.day) ?? []);
   return (
     <>
       <AppHero
         eyebrow="Your daily study space"
-        title={`Welcome${profile.data?.full_name ? `, ${profile.data.full_name.split(" ")[0]}` : " to DentPrep"}`}
+        title={greetingName ? `Welcome, ${greetingName}` : "Welcome to DentPrep"}
         description="Learn. Practice. Interview. Succeed. Take one focused step today."
         actions={<Button asChild variant="secondary"><Link to="/plan">{plan.data ? "View today's plan" : "Create study plan"} <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>}
       />

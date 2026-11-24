@@ -12,7 +12,7 @@ Authority: founder's mandatory medical accuracy instruction and open Issue #27. 
 
 - `npm run test:content`: nonclinical, in-memory signing/negative regressions, including each E01–E20 gate. Synthetic credentials/keys are never exported to the real roster or DB.
 - `npm run check:content`: validate catalog/inventory/policy, immutable archived snapshots, withdrawals and every candidate clinical package. Unsigned/untrusted/stale/incomplete packages fail CI and the production release before deployment. An empty release directory permits the application with all clinical teaching still locked; it does not mark academic gates passed.
-- Both required GitHub CI and production release run these commands. The validator has no database credentials/client/publisher. Existing DB publication triggers are unchanged. No teacher content has been seeded or released.
+- Both required GitHub CI and production release run these commands. The npm build/build:dev lifecycle also enforces check:content, including builds invoked by build:release, so these npm build entry points enforce the same package gate. The private external build configuration itself was not inspected. The validator has no database credentials/client/publisher. Existing DB publication triggers are unchanged. No teacher content has been seeded or released.
 
 ## Real review preparation
 

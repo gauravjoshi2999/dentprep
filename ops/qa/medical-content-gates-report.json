@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-24T01:07:38.882Z",
+  "checked_at": "2026-11-24T01:21:04.752Z",
   "policy_version": "dentprep-medical-content-v1",
   "curriculum_groups": 15,
   "proposed_outcomes": 90,
@@ -10,5 +10,6 @@
   "trusted_reviewers": 0,
   "clinical_publication": "LOCKED — no database publishing capability; existing guards retained",
   "academic_approval": "NOT established by software checks",
+  "static_illustration_decision": "WITHDRAW_FROM_LEARNER_UI",
   "results": []
 }

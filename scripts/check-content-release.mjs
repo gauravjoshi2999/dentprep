@@ -78,7 +78,8 @@ const report = {
   completeness: curriculum.status, draft_items_blocked: inventory.items.length,
   clinical_release_packages: releases.length, trusted_reviewers: reviewers.length,
   clinical_publication: 'LOCKED — no database publishing capability; existing guards retained',
-  academic_approval: 'NOT established by software checks', results,
+  academic_approval: 'NOT established by software checks',
+  static_illustration_decision: inventory.static_illustration_audit?.decision ?? null, results,
 };
 console.log(JSON.stringify(report, null, 2));
 if (results.some(r => !r.structural_gate_passed)) process.exitCode = 1;

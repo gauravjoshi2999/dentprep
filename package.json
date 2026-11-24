@@ -22,7 +22,9 @@
     "test:worker": "node scripts/check-built-worker.mjs",
     "test:release": "node --test scripts/read-deployment.test.mjs scripts/deploy-target.test.mjs scripts/verify-propagation.test.mjs",
     "check:content": "node scripts/check-content-release.mjs",
-    "test:content": "node --test scripts/content-safety.test.mjs"
+    "test:content": "node --test scripts/content-safety.test.mjs",
+    "prebuild": "npm run check:content",
+    "prebuild:dev": "npm run check:content"
   },
   "overrides": {
     "rolldown": "1.2.1",

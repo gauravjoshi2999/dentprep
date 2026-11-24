@@ -121,6 +121,7 @@ function Home() {
               clinical reasoning and professional interview readiness.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/start" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#9df3e1] px-5 py-3 font-bold text-[#092C41] shadow-lg hover:bg-white">Start Day 1 Quest <ArrowRight className="h-4 w-4" /></Link>
               <a
                 href="#subjects"
                 className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 py-3 font-bold text-[#17314b] shadow-lg hover:bg-[#e5faf5]"

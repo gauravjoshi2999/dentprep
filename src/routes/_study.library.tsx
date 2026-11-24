@@ -8,7 +8,9 @@ import { progressQuery } from "@/lib/queries";
 import { subjectsQuery } from "@/lib/queries";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { PrimarySourceReading } from "@/components/app/primary-source-reading";
-import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING, ALL_DENTAL_READINGS } from "@/lib/primary-reading";
+import { STUDY_BRIEF_BY_SLUG, SUBJECT_STUDY_BRIEFS } from "@/lib/subject-study-briefs";
+import { SubjectStudyChecklist } from "@/components/app/subject-study-checklist";
 import { STARTER_UNITS } from "@/lib/starter-quest";
 
 export const Route = createFileRoute("/_study/library")({
@@ -34,7 +36,7 @@ function Library() {
     subjects.data?.filter(
       (s) =>
         (category === "All" || categoryOf(s.name) === category) &&
-        `${s.name} ${s.description} ${s.lessons.map((l) => l.title).join(" ")}`
+        `${s.name} ${s.description} ${s.lessons.map((l) => l.title).join(" ")} ${STUDY_BRIEF_BY_SLUG.get(s.slug)?.chapters.map(c => c.title).join(" ") ?? ""}`
           .toLowerCase()
           .includes(search.trim().toLowerCase()),
     ) ?? [];
@@ -88,6 +90,13 @@ function Library() {
     `${EIGHTH_DENTAL_READING.subject} ${EIGHTH_DENTAL_READING.title} ${EIGHTH_DENTAL_READING.publisher}`
       .toLowerCase()
       .includes(search.trim().toLowerCase());
+
+  const extraReadings = ALL_DENTAL_READINGS.slice(8).filter((source) => {
+    const brief = STUDY_BRIEF_BY_SLUG.get(source.subjectSlug);
+    return (category === "All" || brief?.category === category) &&
+      `${source.subject} ${source.title} ${source.publisher} ${brief?.chapters.map(c => c.title).join(" ") ?? ""}`
+        .toLowerCase().includes(search.trim().toLowerCase());
+  });
 
   return (
     <>
@@ -143,6 +152,7 @@ function Library() {
           </button>
         ))}
       </div>
+      <a href="#study-guides" className="mb-5 inline-block text-sm font-bold text-teal underline underline-offset-4">Jump to 15 subject study guides ↓</a>
       {showReference && <PrimarySourceReading />}
       {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
       {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
@@ -151,9 +161,10 @@ function Library() {
       {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
       {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
       {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
+      {extraReadings.map((source) => <PrimarySourceReading key={source.id} source={source} />)}
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-extrabold">Study Library</h2>
+          <h2 id="study-guides" className="scroll-mt-6 text-xl font-extrabold">Study Library · 15 guided subject paths</h2>
           <span className="text-sm font-semibold text-teal">
             {visible.length} {visible.length === 1 ? "Subject" : "Subjects"}
           </span>
@@ -211,6 +222,16 @@ function Library() {
                 </div>
               </div>
               <p className="mb-4 text-sm text-muted-foreground">{s.description}</p>
+              {(() => {
+                const brief = STUDY_BRIEF_BY_SLUG.get(s.slug);
+                const source = ALL_DENTAL_READINGS.find(item => item.subjectSlug === s.slug);
+                return brief && source ? (
+                  <SubjectStudyChecklist
+                    brief={brief}
+                    sourceAnchor={source.id === FIRST_DENTAL_READING.id ? "primary-reading" : `source-reading-${source.id}`}
+                  />
+                ) : null;
+              })()}
               {user &&
                 s.lessons.length > 0 &&
                 (() => {

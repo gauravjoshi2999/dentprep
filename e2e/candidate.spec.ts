@@ -61,6 +61,7 @@ async function mockBackend(
   const interviews: Record<string, unknown>[] = [];
   const drafts: Record<string, unknown>[] = [];
   const preparationRecords: Record<string, unknown>[] = [];
+  const clinicalFeedback: Record<string, unknown>[] = [];
   let preparationFingerprint = "a".repeat(64);
   let firstPreparationSave = true;
   const question = {
@@ -230,17 +231,23 @@ async function mockBackend(
       submitted = true;
       data = { total: 1, answered: 1, correct: 1, score_pct: 100 };
     } else if (path.endsWith("/clinical_feedback_submissions")) {
-      expect(method).toBe("POST");
-      expect(body).toMatchObject({
-        submitted_by: userId,
-        source_id: "cdc-dental-infection-prevention",
-        subject_slug: "public-health-dentistry",
-        recommendation: "changes_requested",
-      });
-      expect(body.status).toBeUndefined();
-      expect(body.claimed_reviewer_name).toBe("Test Dental Reviewer");
-      expect(body.feedback).toContain("Source section requires corrections");
-      data = { id: "66666666-6666-4666-8666-666666666666", status: "pending_verification" };
+      if (method === "POST") {
+        expect(body).toMatchObject({
+          submitted_by: userId,
+          source_id: "cdc-dental-infection-prevention",
+          subject_slug: "public-health-dentistry",
+          recommendation: "changes_requested",
+        });
+        expect(body.status).toBeUndefined();
+        expect(body.claimed_reviewer_name).toBe("Test Dental Reviewer");
+        expect(body.feedback).toContain("Source section requires corrections");
+        data = { id: "66666666-6666-4666-8666-666666666666", status: "pending_verification" };
+        clinicalFeedback.push({ ...body, ...data, created_at: "2026-11-24T00:00:00Z" });
+      } else {
+        expect(method).toBe("GET");
+        expect(admin).toBe(true);
+        data = clinicalFeedback;
+      }
     } else if (path.endsWith("/subjects"))
       data = url.searchParams.has("slug") ? subjects[0] : subjects;
     else if (path.endsWith("/profiles")) data = { id: userId, full_name: "QA Candidate" };

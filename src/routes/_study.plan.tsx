@@ -15,7 +15,7 @@ import {
   subjectsQuery,
 } from "@/lib/queries";
 import { istToday, formatDate, addDays, diffDays } from "@/lib/dates";
-import { SUBJECT_STUDY_BRIEFS } from "@/lib/subject-study-briefs";
+import { SUBJECT_STUDY_BRIEFS, STUDY_BRIEF_BY_SLUG } from "@/lib/subject-study-briefs";
 import { ALL_DENTAL_READINGS } from "@/lib/primary-reading";
 import { useUserId } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
@@ -198,7 +198,14 @@ function Plan() {
     setCreating(true);
   }
   const dayOffset = Math.max(0, diffDays(istToday(), plan.data?.plan.start_date ?? istToday()));
-  const currentBrief = SUBJECT_STUDY_BRIEFS[dayOffset % SUBJECT_STUDY_BRIEFS.length];
+  const todayGuide = plan.data?.tasks.find(t => t.task_date === istToday() &&
+    /^(Continue: )*Source study:/.test(t.title));
+  const todaySubject = subjects.data?.find(s => s.id === todayGuide?.subject_id);
+  const currentBrief = STUDY_BRIEF_BY_SLUG.get(todaySubject?.slug ?? "") ??
+    SUBJECT_STUDY_BRIEFS[dayOffset % SUBJECT_STUDY_BRIEFS.length];
+  const currentChapter = currentBrief?.chapters.find(chapter =>
+    todayGuide?.title.endsWith(` — ${chapter.title}`)) ??
+    currentBrief?.chapters[dayOffset % (currentBrief.chapters.length || 1)];
   const currentSource = ALL_DENTAL_READINGS.find(source => source.subjectSlug === currentBrief?.slug);
   return (
     <>
@@ -229,8 +236,8 @@ function Plan() {
         <section className="surface mb-6 border-teal/40 bg-teal-soft/20 p-5" aria-label="Today's dental subject focus">
           <p className="text-xs font-bold uppercase tracking-widest text-teal">Available now · Today's dental study</p>
           <h2 className="mt-2 text-xl font-extrabold">{currentBrief.name}</h2>
-          <p className="mt-2 text-sm font-semibold">{currentBrief.chapters[0]?.title}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{currentBrief.chapters[0]?.task}</p>
+          <p className="mt-2 text-sm font-semibold">{currentChapter?.title}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{currentChapter?.task}</p>
           <p className="mt-2 text-xs text-muted-foreground">Original-source study, not an approved clinical lesson. Choose your daily tasks below, or create a new subject-focused schedule.</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link to="/library" hash={currentSource.id === "ada-oral-cancer-2026" ? "primary-reading" : `source-reading-${currentSource.id}`}

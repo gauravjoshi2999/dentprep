@@ -639,3 +639,48 @@ test("approved mobile visual navigation uses real pages and honest study data", 
     true,
   );
 });
+
+test("Day 1 starter is immediately usable without clinical publication", async ({ page }) => {
+  await mockBackend(page);
+  await page.goto("/start");
+  await expect(page.getByRole("heading", { name: "Your first DentPrep quest" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Active recall" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Source: Dunlosky/ })).toHaveAttribute("href", /pubmed/);
+  for (const answer of [1, 0, 2, 1]) {
+    await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+    await expect(page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer)).toHaveAttribute("aria-pressed", "true");
+    await page.getByRole("button", { name: "Check answer" }).click();
+    await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
+    if (answer !== 1 || await page.getByRole("button", { name: "Next lesson" }).count() > 0) {
+      if (await page.getByRole("button", { name: "Next lesson" }).count() > 0)
+        await page.getByRole("button", { name: "Next lesson" }).click();
+    }
+  }
+  await page.getByRole("button", { name: "Finish Day 1 starter" }).click();
+  await expect(page.getByRole("heading", { name: "Day 1 starter completed" })).toBeVisible();
+  await expect(page.getByText(/Guest session: this completion is not saved/)).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test("Day 1 starter corrects mistakes and records signed-in activity only at completion", async ({ page }) => {
+  await mockBackend(page, true);
+  let activityRequests = 0;
+  page.on("request", (req) => {
+    if (new URL(req.url()).pathname.endsWith("/rpc/log_activity")) activityRequests += 1;
+  });
+  await page.goto("/start");
+  await page.getByRole("group", { name: "Answer choices" }).getByRole("button").first().click();
+  await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.getByText("Not quite — try another answer")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Next lesson" })).toBeDisabled();
+  for (const answer of [1, 0, 2, 1]) {
+    await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+    await expect(page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer)).toHaveAttribute("aria-pressed", "true");
+    await page.getByRole("button", { name: "Check answer" }).click();
+    if (await page.getByRole("button", { name: "Next lesson" }).count() > 0)
+      await page.getByRole("button", { name: "Next lesson" }).click();
+  }
+  await page.getByRole("button", { name: "Finish Day 1 starter" }).click();
+  await expect(page.getByText(/Today's activity was recorded in your account/)).toBeVisible();
+  expect(activityRequests).toBe(1);
+});

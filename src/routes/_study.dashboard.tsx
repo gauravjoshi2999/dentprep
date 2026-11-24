@@ -69,6 +69,10 @@ function Dashboard() {
         description="Learn. Practice. Interview. Succeed. Take one focused step today."
         actions={<Button asChild variant="secondary"><Link to="/plan">{plan.data ? "View today's plan" : "Create study plan"} <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>}
       />
+      <section className="mb-7 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-teal/25 bg-teal-soft/60 p-5 sm:p-6">
+        <div><p className="text-xs font-bold uppercase tracking-widest text-teal">Available today</p><h2 className="mt-1 text-xl font-extrabold">Your first interactive quest</h2><p className="mt-1 text-sm text-muted-foreground">Learn effective study techniques while reviewed dental lessons are prepared.</p></div>
+        <Button asChild><Link to="/start">Start Day 1 <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+      </section>
       <div className="mb-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Link to="/plan" className="surface bg-teal-soft/60 p-4 transition hover:border-teal sm:p-5">
           <CalendarCheck2 className="mb-3 h-6 w-6 text-teal" aria-hidden="true" />

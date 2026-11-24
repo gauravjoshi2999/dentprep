@@ -122,7 +122,7 @@ export function serializeGuidedReview(
     `Reviewed exact page/section: ${sectionLocator.trim()}`,
     ...questions.map((question, i) => {
       const a = answers[question.id];
-      return `Q${i + 1} [${question.id}] ${question.question} => ${a.answer.toUpperCase()}${a.note.trim() ? `; Comment: ${a.note.trim()}` : ""}`;
+      return `Q${i + 1} [${question.id}] ${question.question} => ${a?.answer.toUpperCase() ?? "NOT ANSWERED"}${a?.note.trim() ? `; Comment: ${a.note.trim()}` : ""}`;
     }),
     `Final corrections / missing topics: ${finalComment.trim() || "None reported for this reference reading."}`,
     "The submitted statements are self-reported, pending verification, not clinical approval.",

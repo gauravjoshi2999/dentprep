@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "OMR-001",
+  "status": "draft",
+  "publication_allowed": false,
+  "qualified_review": null,
+  "prepared_on": "2026-11-24",
+  "source_lookup_by": "AI-assisted retrieval; not independent medical approval",
+  "existing_lesson": {
+    "id": "c652faee-e19a-4067-ba89-a2aed0d8f0d3",
+    "subject_slug": "oral-medicine-radiology",
+    "title": "Recognising Oral Potentially Malignant Disorders",
+    "updated_at": "2026-11-23T12:48:27.959019+00:00",
+    "expected_backend_fingerprint": "ab237b19a2d67e89996e844a9c7856e240efcd60d6dc42b11f1d6774ec234667",
+    "fingerprint_note": "From prior native draft inventory; recheck against current DB before any import."
+  },
+  "scope": "First bounded lesson on assessment and uncertainty; not complete OPMD classification or a full subject.",
+  "proposed_title": "Oral lesion assessment: history, examination and diagnostic uncertainty",
+  "learning_outcomes": [
+    "Describe the scope of a structured adult oral examination using a specified source.",
+    "Explain why an unresolved abnormality needs qualified assessment rather than a definitive visual diagnosis.",
+    "Locate the current source version and distinguish its clinical context from an exam rule."
+  ],
+  "proposed_notes_md": "## Assess before labelling\n\nUse the current source's intended population and setting. The ADA's 2026 guide describes an updated medical, social and dental history and a systematic extraoral and intraoral examination. Its definition includes visual inspection and palpation. Record what is observed and what remains uncertain.\n\n## Recognise the diagnostic boundary\n\nAn examination is not a tissue diagnosis. The current ADA material identifies biopsy as the diagnostic standard and describes biopsy or specialist referral in its clinical pathways. Only appropriately trained clinicians should perform a biopsy. This lesson does not teach a procedure.\n\n## Read timing in context\n\nCompare the source's exact wording, version and clinical setting before stating a follow-up rule. Professional review must reconcile current guidance with the local care pathway. Do not infer a universal waiting period from this draft.\n\n## Reflect\n\nWhat information is missing from the fictional persistent-ulcer scenario? Which source section supports your reasoning, and what must a qualified clinician determine?",
+  "fictional_scenario": "A patient reports a non-healing lateral tongue ulcer for several weeks.",
+  "sources": [
+    {
+      "id": "ADA-2026-PUBLISHER",
+      "title": "Oral Cancer Guideline (2026 Update)",
+      "author_or_organization": "American Dental Association",
+      "edition": "Living guideline landing page checked 24 November 2026",
+      "year": 2026,
+      "section": "2026 update introduction; 2017 archive heading",
+      "url": "https://www.ada.org/resources/research/science/evidence-based-dental-research/oral-cancer-guideline/",
+      "source_checked_on": "2026-11-24",
+      "clinical_reviewed_on": null,
+      "content_version": "2026 update page; last substantive update date not separately verified",
+      "retrieval_status": "full_page_opened",
+      "clinical_approval": null
+    },
+    {
+      "id": "ADA-2026-GUIDE",
+      "title": "Oral Cancer Guideline (2026 chairside guide)",
+      "author_or_organization": "American Dental Association",
+      "edition": "Chairside guide updated 31 August 2026",
+      "year": 2026,
+      "section": "Page 1 Good Practice Statements and Definitions; page 2 Clinical Pathway",
+      "url": "https://www.ada.org/-/media/project/ada-organization/ada/ada-org/files/resources/research/2026/ada_oral_cancer_guideline.pdf?hash=6BE7292DC9BF39D45886086D0E2E8920&rev=ab55e4fe0136415086f9b121c4536d30",
+      "source_checked_on": "2026-11-24",
+      "clinical_reviewed_on": null,
+      "content_version": "2026-08-31; publisher revision ab55e4fe0136415086f9b121c4536d30",
+      "retrieval_status": "both_pages_opened_as_text",
+      "clinical_approval": null
+    },
+    {
+      "id": "IARC-EXAM",
+      "title": "A digital manual for the early diagnosis of oral neoplasia",
+      "author_or_organization": "International Agency for Research on Cancer",
+      "edition": "Online manual; publication/update edition not reconciled",
+      "year": null,
+      "section": "Physical examination of the oral cavity; cervical lymph-node examination",
+      "url": "https://screening.iarc.fr/atlasoral_list.php?cat=h2&lang=1",
+      "source_checked_on": "2026-11-24",
+      "clinical_reviewed_on": null,
+      "content_version": "Unverified; search extraction inspected but opened page returned no readable lines",
+      "retrieval_status": "indexed_text_only",
+      "clinical_approval": null
+    },
+    {
+      "id": "NICE-NG12",
+      "title": "Suspected cancer: recognition and referral",
+      "author_or_organization": "National Institute for Health and Care Excellence",
+      "edition": "NG12, oral-cancer recommendation 1.8.2 tagged 2015",
+      "year": 2015,
+      "section": "1.8.2–1.8.4 oral cancer; UK referral context",
+      "url": "https://www.nice.org.uk/guidance/ng12/chapter/Recommendations-organised-by-site-of-cancer",
+      "source_checked_on": "2026-11-24",
+      "clinical_reviewed_on": null,
+      "content_version": "Current full-text/currency not independently reconciled",
+      "retrieval_status": "official indexed text inspected; full page fetch returned 403",
+      "clinical_approval": null
+    }
+  ],
+  "claim_source_map": [
+    {
+      "id": "C01",
+      "claim": "Adult clinical oral examination is paired with updated medical, social and dental history.",
+      "source_id": "ADA-2026-GUIDE",
+      "locator": "Page 1, Good Practice Statement 1",
+      "lookup": "supported_by_retrieved_text",
+      "qualified_review": "pending"
+    },
+    {
+      "id": "C02",
+      "claim": "The COE definition combines extraoral/intraoral inspection and palpation.",
+      "source_id": "ADA-2026-GUIDE",
+      "locator": "Page 1, Definitions: COE",
+      "lookup": "supported_by_retrieved_text",
+      "qualified_review": "pending"
+    },
+    {
+      "id": "C03",
+      "claim": "The original draft's regional lymph-node and lesion-documentation details require exact current source reconciliation.",
+      "source_id": "IARC-EXAM",
+      "locator": "Physical examination section; original draft documentation list",
+      "lookup": "partial; edition and complete documentation source missing",
+      "qualified_review": "pending"
+    },
+    {
+      "id": "C04",
+      "claim": "Biopsy is the diagnostic standard; procedural competence is a separate trained-clinician boundary.",
+      "source_id": "ADA-2026-PUBLISHER",
+      "additional_source_id": "ADA-2026-GUIDE",
+      "locator": "Publisher 2026 introduction; guide page 1 Clinician definition and page 2 pathway",
+      "lookup": "supported_by_retrieved_text",
+      "qualified_review": "pending"
+    },
+    {
+      "id": "C05",
+      "claim": "Timing statements require their exact population, trigger and care-setting context; no universal waiting period is taught by this packet.",
+      "source_id": "ADA-2026-GUIDE",
+      "additional_source_id": "NICE-NG12",
+      "locator": "ADA page 1 GPS 3–4 versus NICE 1.8.2",
+      "lookup": "cross-guideline reconciliation required; do not collapse intervals",
+      "qualified_review": "pending"
+    }
+  ],
+  "issues_before_approval": [
+    "The 2017 ADA guide is explicitly archived on the current publisher page; do not call it the current guideline.",
+    "Current ADA guidance has context-specific follow-up statements; NICE referral criteria use a different clinical/UK service context. An Indian dental educator must reconcile application; neither defines an official UPSC rule.",
+    "Original generic objectives/title imply more OPMD coverage than this short lesson provides; full classification/essential-outcome mapping remains incomplete.",
+    "Exact current edition/section supporting regional lymph-node assessment and all documentation fields remains unresolved.",
+    "No independent reviewer, credential verification, signed approval, next-review interval or authoritative India-specific pathway has been supplied.",
+    "Create/review MCQ single-best-answer, each distractor/rationale and fresh/transfer/retention checks separately; no production answer keys are exported by this packet.",
+    "No clinical image is included. Any future anatomy/lesion image needs rights, labels/orientation and independent expert verification."
+  ],
+  "academic_gates": [
+    {
+      "id": "E01",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E02",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E03",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E04",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E05",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E06",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E07",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E08",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E09",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E10",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E11",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E12",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E13",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E14",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E15",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E16",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E17",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E18",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E19",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    },
+    {
+      "id": "E20",
+      "decision": "BLOCKED",
+      "evidence": "Preparation/source lookup only; independent relevant gate decision has not been supplied."
+    }
+  ],
+  "next_action": "Resolve source/clinical gaps and obtain genuine independent qualified dental review. This packet must not be imported into learner teaching or counted as a published lesson."
+}

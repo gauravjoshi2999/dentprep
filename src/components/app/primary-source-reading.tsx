@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BookOpen, CheckCircle2 } from "lucide-react";
-import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING, THIRD_DENTAL_READING } from "@/lib/primary-reading";
 import { Button } from "@/components/ui/button";
+import { ClinicalReviewRequest } from "./clinical-review-request";
 
-type SourceReading = typeof firstSource | typeof SECOND_DENTAL_READING;
+type SourceReading = typeof firstSource | typeof SECOND_DENTAL_READING | typeof THIRD_DENTAL_READING;
 
 export function PrimarySourceReading({ source = firstSource }: { source?: SourceReading }) {
   const isFirstReading = source.id === firstSource.id;
+  const isOralSurgeryReading = source.id === SECOND_DENTAL_READING.id;
   const [checked, setChecked] = useState<Set<number>>(new Set());
   return (
     <section
-      id={isFirstReading ? "primary-reading" : "oral-surgery-source-reading"}
-      aria-labelledby={isFirstReading ? "primary-reading-title" : "oral-surgery-reading-title"}
+      id={isFirstReading ? "primary-reading" : `source-reading-${source.id}`}
+      aria-labelledby={`source-reading-title-${source.id}`}
       className="surface mb-7 scroll-mt-6 border-teal/40 p-5 sm:p-7"
     >
       <div className="flex items-start gap-3">
@@ -21,7 +23,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           <p className="text-xs font-bold uppercase tracking-widest text-teal">
             Dental reference reading · Available now
           </p>
-          <h2 id={isFirstReading ? "primary-reading-title" : "oral-surgery-reading-title"} className="mt-2 text-xl font-extrabold">
+          <h2 id={`source-reading-title-${source.id}`} className="mt-2 text-xl font-extrabold">
             {source.title}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -37,7 +39,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
         separate from DentPrep lessons, which need independent dental review before they are
         unlocked. Follow qualified guidance for applying a guideline in your own clinical setting.
       </p>
-      {!isFirstReading && (
+      {isOralSurgeryReading && (
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           This source is written for UK professional practice. Do not transfer drug, INR, emergency
           service or procedure recommendations to India without individual assessment and current
@@ -61,7 +63,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
         </a>
       </div>
       <fieldset className="mt-6 rounded-xl bg-muted/60 p-4">
-        <legend className="px-1 text-sm font-bold">{isFirstReading ? "Your reading checklist" : "Oral surgery reading checklist"}</legend>
+        <legend className="px-1 text-sm font-bold">{isFirstReading ? "Your reading checklist" : isOralSurgeryReading ? "Oral surgery reading checklist" : `${source.subject} reading checklist`}</legend>
         <p className="mb-3 text-xs text-muted-foreground">
           For this session only; checklist ticks are not saved or assessed as clinical knowledge.
         </p>
@@ -92,6 +94,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           </p>
         )}
       </fieldset>
+      <ClinicalReviewRequest subject={source.subject} sourceTitle={source.title} sourceUrl={source.guideUrl} />
       <p className="mt-5 text-sm">
         <Link to="/interviews" className="font-semibold text-teal">
           Next: practise explaining your learning in English →

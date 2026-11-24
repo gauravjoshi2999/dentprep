@@ -40,3 +40,23 @@ export const SECOND_DENTAL_READING = {
     "List questions to verify with a qualified Indian dental educator before applying any clinical advice.",
   ],
 } as const;
+
+
+/** Official infection-prevention reference; not reviewed DentPrep clinical teaching. */
+export const THIRD_DENTAL_READING = {
+  id: "cdc-dental-infection-prevention",
+  subject: "Public Health Dentistry",
+  subjectSlug: "public-health-dentistry",
+  title: "Infection Prevention Practices in Dental Settings",
+  publisher: "US Centers for Disease Control and Prevention (CDC)",
+  edition: "CDC summary and linked current infection-control recommendations",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://www.cdc.gov/dental-infection-control/hcp/index.html",
+  guideUrl: "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
+  readingSteps: [
+    "Identify the publisher, intended US dental care setting and summary publication details.",
+    "Locate CDC sections on standard precautions, hand hygiene and instrument processing.",
+    "Write a short recall note distinguishing source recommendations from local Indian standards.",
+    "Mark any care-protocol questions for faculty review rather than treating this reading as clinical certification.",
+  ],
+} as const;

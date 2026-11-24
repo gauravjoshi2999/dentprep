@@ -439,6 +439,29 @@ test("study plans use available content and persist task completion", async ({ p
   await expect(page.getByText("1/7 tasks done", { exact: false })).toBeVisible();
 });
 
+test("subject-first plan studies official sources even when every clinical lesson is pending", async ({ page }) => {
+  await mockBackend(page, true);
+  await page.route("https://example.supabase.co/rest/v1/subjects**", async route => {
+    if (route.request().method() === "OPTIONS") return route.fallback();
+    return route.fulfill({ json: [{
+      id: subjectId, slug: "oral-maxillofacial-surgery", name: "Oral & Maxillofacial Surgery",
+      description: "Oral surgery", short_name: "Oral Surgery", status: "published",
+      sort_order: 2, lessons: [],
+    }], headers: { "access-control-allow-origin": "*" } });
+  });
+  await page.goto("/plan");
+  await expect(page.getByText("Clinical content is awaiting review")).toBeVisible();
+  await page.getByLabel("Daily hours").fill("0.5");
+  await page.getByRole("button", { name: "Generate and save study plan" }).click();
+  const sourceTask = page.getByRole("checkbox", { name: /Complete Source study: Oral & Maxillofacial Surgery/ }).first();
+  await expect(sourceTask).toBeVisible();
+  await expect(page.getByRole("checkbox", { name: /^Complete Work through one clinical decision case/ })).toHaveCount(0);
+  await expect(page.getByRole("checkbox", { name: /^Complete Custom timed practice/ })).toHaveCount(0);
+  const guideLink = page.getByRole("link", { name: "Open original source" }).first();
+  await guideLink.click();
+  await expect(page).toHaveURL(/\/library#source-reading-sdcep-anticoagulants-2022$/);
+});
+
 test("topic reports show honest empty states and explain distinct-question revision suggestions", async ({
   page,
 }) => {

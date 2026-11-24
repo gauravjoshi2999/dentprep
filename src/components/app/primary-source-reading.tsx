@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BookOpen, CheckCircle2 } from "lucide-react";
-import { FIRST_DENTAL_READING as source } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING } from "@/lib/primary-reading";
 import { Button } from "@/components/ui/button";
 
-export function PrimarySourceReading() {
+type SourceReading = typeof firstSource | typeof SECOND_DENTAL_READING;
+
+export function PrimarySourceReading({ source = firstSource }: { source?: SourceReading }) {
+  const isFirstReading = source.id === firstSource.id;
   const [checked, setChecked] = useState<Set<number>>(new Set());
   return (
     <section
-      id="primary-reading"
-      aria-labelledby="primary-reading-title"
+      id={isFirstReading ? "primary-reading" : "oral-surgery-source-reading"}
+      aria-labelledby={isFirstReading ? "primary-reading-title" : "oral-surgery-reading-title"}
       className="surface mb-7 scroll-mt-6 border-teal/40 p-5 sm:p-7"
     >
       <div className="flex items-start gap-3">
@@ -18,7 +21,7 @@ export function PrimarySourceReading() {
           <p className="text-xs font-bold uppercase tracking-widest text-teal">
             Dental reference reading · Available now
           </p>
-          <h2 id="primary-reading-title" className="mt-2 text-xl font-extrabold">
+          <h2 id={isFirstReading ? "primary-reading-title" : "oral-surgery-reading-title"} className="mt-2 text-xl font-extrabold">
             {source.title}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -34,10 +37,17 @@ export function PrimarySourceReading() {
         separate from DentPrep lessons, which need independent dental review before they are
         unlocked. Follow qualified guidance for applying a guideline in your own clinical setting.
       </p>
+      {!isFirstReading && (
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          This source is written for UK professional practice. Do not transfer drug, INR, emergency
+          service or procedure recommendations to India without individual assessment and current
+          local qualified guidance. Reading it does not unlock DentPrep clinical lessons.
+        </p>
+      )}
       <div className="mt-5 flex flex-wrap items-center gap-4">
         <Button asChild>
           <a href={source.guideUrl} target="_blank" rel="noopener noreferrer">
-            Open official guide (PDF)
+            {isFirstReading ? "Open official guide (PDF)" : "Open official guidance"}
             <ArrowUpRight className="ml-2 h-4 w-4" />
           </a>
         </Button>
@@ -51,7 +61,7 @@ export function PrimarySourceReading() {
         </a>
       </div>
       <fieldset className="mt-6 rounded-xl bg-muted/60 p-4">
-        <legend className="px-1 text-sm font-bold">Your reading checklist</legend>
+        <legend className="px-1 text-sm font-bold">{isFirstReading ? "Your reading checklist" : "Oral surgery reading checklist"}</legend>
         <p className="mb-3 text-xs text-muted-foreground">
           For this session only; checklist ticks are not saved or assessed as clinical knowledge.
         </p>

@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BookOpen, CheckCircle2 } from "lucide-react";
 import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING } from "@/lib/primary-reading";
 import { Button } from "@/components/ui/button";
+import { ClinicalReviewRequest } from "./clinical-review-request";
 
 type SourceReading = typeof firstSource | typeof SECOND_DENTAL_READING;
 
@@ -92,6 +93,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           </p>
         )}
       </fieldset>
+      <ClinicalReviewRequest subject={source.subject} sourceTitle={source.title} sourceUrl={source.guideUrl} />
       <p className="mt-5 text-sm">
         <Link to="/interviews" className="font-semibold text-teal">
           Next: practise explaining your learning in English →

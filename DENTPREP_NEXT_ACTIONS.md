@@ -1,5 +1,21 @@
 # DentPrep — next actions
 
+## Current override — read first
+
+[Issue #27](https://github.com/gauravjoshi2999/dentprep/issues/27) stays OPEN and supersedes the older multi-student/admin roadmap below. DentPrep is a single-student interactive tutor. No admin activation is needed for daily learning. Identify the legitimate private learner before account restriction; never guess identity or delete users/data. See `DENTPREP_SINGLE_LEARNER_SCOPE.md`.
+
+Accepted implementation: PR #26, head `7a0cb931fe64d57e72c8dba2db6ab1f2cd681c0b`, merge/live `1631f10f9742314c8d40345ab78bb9e9640aaa2a`. Main CI 45298201707 / production 45298201836 SUCCESS; artifact 14877482269 inspected. Fresh exact-SHA CLI and anonymous RPC/table/helper denials PASS. Registry installed, native post-install regression PASS. No rollout pending. Receipt: `ops/qa/curriculum-preparation-pr26.json`. Historical pending-install/admin instructions below are superseded.
+
+Next three tasks:
+
+1. P0/P1 medical content gates and 15-group coverage inventory: repository packages with per-claim authoritative sources, metadata/version/freshness, MCQ/distractor/explanation/diagram checks, independent credential evidence and all 20 academic gates. Never invent exhaustive coverage, source verification or clinical approval. Preserve all publication guards.
+2. P1 reviewed representative quest: concept → challenge → hint → verified explanation/remediation → fresh transfer check → delayed retention. Preload only genuinely reviewed content. Without qualified approval use nonclinical fixtures; the 60 clinical drafts stay locked. No daily admin dependency. XP is motivation, not medical competence.
+3. P0/P2 legitimate learner identity and actual session/mobile/visual QA. Owner must identify the intended verified learner before account restriction; do not promote an admin. Preserve RLS and the browser authority restriction. Production Android/hardware/live AI remain separate external gates.
+
+Normal ChatGPT can build package schemas/validators, reconcile inventories, write meaningful nonclinical tests and use available GitHub/Lovable connectors. Humans supply independent medical review; actual hardware/session acceptance cannot be fabricated. Recheck latest main/open PR/live before work. No paid actions, publication bypass, fabricated syllabus/weightage or automatic approval.
+
+## Historical continuation — superseded where conflicting
+
 Read `DENTPREP_COMPLETION_LEDGER.md`, latest main and current live `/api/health` before changing anything. Last accepted implementation/native checkpoint: `cc140559ff628371d7cc1ca65c044f00369be20a` (PR #24). Main CI 45253304791, production 45253304850 and Android 45253304800 SUCCESS. Live: https://dentprep.gauravjoshi2999.workers.dev . Later handoff-only commit truth comes from the exact-SHA release artifact and verification comment; do not mistake the snapshot for an unresolved live mismatch.
 
 Do not redo PRs #18–24: answer confidentiality, publication safety lock, identity-scoped private editors, atomic renewable cycles/carry history, native score/revision integrity, distinct-question topic evidence and live-target debug APK are technically verified. No backend rollout is pending. Actual-account P0 acceptance is BLOCKED; it takes precedence as soon as permitted access is available.

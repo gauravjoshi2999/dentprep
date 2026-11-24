@@ -1,5 +1,13 @@
 # DentPrep final master-session handoff
 
+Current scope: Issue #27 remains OPEN; single-student interactive tutor, medical accuracy before gamification. Read `DENTPREP_SINGLE_LEARNER_SCOPE.md` and current override in `DENTPREP_NEXT_ACTIONS.md`. No admin activation is required for daily study. Do not infer learner identity or change accounts without owner identification.
+
+Current implementation: PR #26 / `1631f10f9742314c8d40345ab78bb9e9640aaa2a`, main CI 45298201707 / production 45298201836 SUCCESS, exact artifact 14877482269 inspected. Fresh CLI/anonymous denials PASS. Registry installed; native rollback QA PASS, 23 public RLS tables/3 clinical guards, 0 actual evidence records/admins, original 15/30/15 drafts retained. 51 unit/11 release/27 desktop-mobile fixture passes, one intentional desktop skip. Receipt: `ops/qa/curriculum-preparation-pr26.json`. No pending rollout. Preparation is not medical approval or actual-account/device acceptance.
+
+Next: offline source/review/20-gate release validation and an honest 15-group gap map, then a genuinely reviewed quest. No verified source + no required independent dental approval = no clinical publication. Historical admin/registry-install directions below are superseded. Later checkpoint commits resolve exact current SHA through their release receipt/final PR comment.
+
+## Historical snapshot
+
 Production: https://dentprep.gauravjoshi2999.workers.dev . Existing repository/backend only; no Bite changes. Canonical continuation: [DENTPREP_NEXT_ACTIONS.md](DENTPREP_NEXT_ACTIONS.md). Verified milestones and exact evidence: [DENTPREP_COMPLETION_LEDGER.md](DENTPREP_COMPLETION_LEDGER.md), [DENTPREP_RELEASE_EVIDENCE.md](DENTPREP_RELEASE_EVIDENCE.md).
 
 Accepted implementation/native checkpoint: `cc140559ff628371d7cc1ca65c044f00369be20a` (PR #24). Main web CI/production/Android build passed. The later handoff-only source commit has its actual live SHA/run in the release workflow's SHA-specific artifact and verification comment; resolve current truth there and `/api/health` before writing.

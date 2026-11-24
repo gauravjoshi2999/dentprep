@@ -164,3 +164,11 @@ Full approved curriculum, independent clinical sign-off, unseen diagnostic/adapt
 - Local typecheck, 51 unit tests, changed-source lint and source checks pass; two mobile/desktop fixture cases added for persistence/history and stale-form reload. PR/complete CI/install/merge/live are pending at this checkpoint.
 - This is preparation metadata, not a canonical complete syllabus/coverage denominator, source correctness verification, credential review or qualified approval. Q011/Q013/Q015 are partial, and academic/clinical gates remain blocked.
 - A permanent administrator requires the owner to identify/authorize the intended DentPrep account. The sole existing account is not automatically promoted. Real signed-in admin/browser acceptance remains separately blocked/unverified.
+
+## Accepted P1-04 preparation registry and single-learner scope checkpoint
+
+PR #26, head `7a0cb931fe64d57e72c8dba2db6ab1f2cd681c0b`, merge/live `1631f10f9742314c8d40345ab78bb9e9640aaa2a`. Main CI 45298201707 and production 45298201836 SUCCESS; artifact 14877482269 downloaded and exact receipt inspected. Fresh CLI SSR/assets/routes/PWA PASS; real anonymous RPC/table/helper denial checks returned 401/42501. Permanent evidence: `ops/qa/curriculum-preparation-pr26.json`.
+
+Additive registry installed through existing Lovable SQL after exact-head CI; post-install native rollback regression PASS. 23 public RLS tables, three enabled clinical guards, original 1 real user, 0 actual admins/evidence records, clinical drafts preserved, no QA accounts left. 51 unit/11 release/27 desktop-mobile nonclinical fixture passes, one intentional skip. Final QA predicates are scoped to synthetic entity IDs, so future real records remain untouched even if permissions regress.
+
+Issue #27 remains OPEN and now supersedes multi-user/admin product UX: single private learner, reviewed preloaded quests, no daily admin entry. No real admin was assigned. Source preparation is not qualified approval. Medical source/coverage/review and all 20 academic gates take precedence over cosmetic gamification. See scope and updated continuation. Actual-account, hardware, full coverage and qualified review remain pending/BLOCKED.

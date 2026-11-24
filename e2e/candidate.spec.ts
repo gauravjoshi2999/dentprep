@@ -695,6 +695,16 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
   await expect(page).toHaveURL(/\/library#primary-reading$/);
   await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Dental Patients Taking Anticoagulants — professional guide" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Infection Prevention Practices in Dental Settings" })).toBeVisible();
+  const cdcCard = page.locator("#source-reading-cdc-dental-infection-prevention");
+  await expect(cdcCard.getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
+    "href",
+    "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
+  );
+  const reviewerForm = cdcCard.getByRole("button", { name: "Prepare senior MDS feedback form" });
+  await reviewerForm.click();
+  await expect(cdcCard.getByText("It is not a verified MDS sign-off", { exact: false })).toBeVisible();
+  await expect(cdcCard.getByRole("button", { name: "Copy review worksheet" })).toBeVisible();
   await expect(page.locator("#source-reading-sdcep-anticoagulants-2022").getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
     "href",
     "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/",

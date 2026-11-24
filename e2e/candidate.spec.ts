@@ -638,6 +638,7 @@ test("Day 1 starter is immediately usable without clinical publication", async (
   await expect(page.getByRole("link", { name: /Source: Dunlosky/ })).toHaveAttribute("href", /pubmed/);
   for (const answer of [1, 0, 2, 1]) {
     await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+    await expect(page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer)).toHaveAttribute("aria-pressed", "true");
     await page.getByRole("button", { name: "Check answer" }).click();
     await expect(page.getByText("Correct — keep practicing this skill")).toBeVisible();
     if (answer !== 1 || await page.getByRole("button", { name: "Next lesson" }).count() > 0) {
@@ -664,6 +665,7 @@ test("Day 1 starter corrects mistakes and records signed-in activity only at com
   await expect(page.getByRole("button", { name: "Next lesson" })).toBeDisabled();
   for (const answer of [1, 0, 2, 1]) {
     await page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer).click();
+    await expect(page.getByRole("group", { name: "Answer choices" }).getByRole("button").nth(answer)).toHaveAttribute("aria-pressed", "true");
     await page.getByRole("button", { name: "Check answer" }).click();
     if (await page.getByRole("button", { name: "Next lesson" }).count() > 0)
       await page.getByRole("button", { name: "Next lesson" }).click();

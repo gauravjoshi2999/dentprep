@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { STARTER_UNITS, starterCorrect } from "@/lib/starter-quest";
 
 export const Route = createFileRoute("/start")({
+  ssr: false,
   component: DayOneStarter,
   head: () => ({
     meta: [

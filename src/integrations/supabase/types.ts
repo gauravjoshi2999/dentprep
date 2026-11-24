@@ -215,6 +215,33 @@ export type Database = {
           },
         ]
       }
+      clinical_reviewer_profiles: {
+        Row: {
+          owner_user_id: string
+          claimed_name: string
+          claimed_qualification: string
+          claimed_registration: string
+          consent_confirmed: boolean
+          created_at: string
+        }
+        Insert: {
+          owner_user_id: string
+          claimed_name: string
+          claimed_qualification: string
+          claimed_registration: string
+          consent_confirmed: boolean
+          created_at?: string
+        }
+        Update: {
+          owner_user_id?: string
+          claimed_name?: string
+          claimed_qualification?: string
+          claimed_registration?: string
+          consent_confirmed?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
       clinical_feedback_submissions: {
         Row: {
           id: string

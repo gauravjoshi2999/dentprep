@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "id": "medicine-mechanisms",
+  "version": 1,
+  "subject_slug": "general-medicine-surgery",
+  "subject": "General Medicine & Surgery",
+  "title": "Connect basic physiological mechanisms",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Use inflammation, haemostasis, ventilation and blood flow to reason clearly before clinical algorithms.",
+  "sources": [
+    {
+      "id": "immunity",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "21.2 Barrier Defenses and the Innate Immune Response",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response",
+      "content_version": "immunity:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "hemostasis",
+      "title": "Physiology, Hemostasis",
+      "author_or_organization": "Andrew LaPelusa; Heeransh D. Dave; StatPearls Publishing",
+      "edition": "Last updated 1 May 2023",
+      "year": 2023,
+      "section": "Introduction; platelet plug and coagulation",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK545263/",
+      "content_version": "hemostasis:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "breathing",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "22.3 The Process of Breathing; pulmonary ventilation",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-3-the-process-of-breathing",
+      "content_version": "breathing:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "circulation",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "20.2 Blood Flow, Blood Pressure, and Resistance",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-2-blood-flow-blood-pressure-and-resistance",
+      "content_version": "circulation:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "inflammation",
+      "title": "Inflammation is a response",
+      "phase": "learn",
+      "lesson": "Inflammation is part of the body’s response to tissue injury or threat. Innate immune mechanisms act rapidly and help recruit further responses. Infection involves a pathogen; inflammation can also occur after non-infectious injury. The concepts overlap but are not synonyms. A single inflammatory feature does not by itself identify a microorganism.",
+      "question": "Which distinction is sound?",
+      "choices": [
+        "Every inflammation proves a specific infection",
+        "Inflammation can occur without infection",
+        "Inflammation means normal enamel"
+      ],
+      "answer": 1,
+      "explanation": "Inflammation is a host response and can follow non-infectious injury.",
+      "rationales": [
+        "This overinterprets the response.",
+        "This separates response from cause.",
+        "Enamel is a tissue."
+      ],
+      "hint": "Response and cause are different.",
+      "source_ids": [
+        "immunity"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "haemostasis",
+      "title": "Plug and reinforce",
+      "phase": "learn",
+      "lesson": "Following vascular injury, platelets help form an initial plug. Coagulation generates fibrin that reinforces clot formation. These mechanisms interact to limit blood loss. Describing the mechanisms is different from diagnosing a disorder or selecting a drug. In a theory answer, distinguish the cellular contribution from the coagulation-protein contribution.",
+      "question": "Which contribution is cellular?",
+      "choices": [
+        "Enamel formation",
+        "Platelet plug formation",
+        "A shade match"
+      ],
+      "answer": 1,
+      "explanation": "Platelets supply the cellular plug contribution.",
+      "rationales": [
+        "This is dental development.",
+        "This is the cellular haemostatic role.",
+        "Shade matching is unrelated."
+      ],
+      "hint": "Identify the cell-derived component.",
+      "source_ids": [
+        "hemostasis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "ventilation",
+      "title": "Move air before discussing exchange",
+      "phase": "learn",
+      "lesson": "Pulmonary ventilation is movement of air into and out of the lungs. Pressure differences drive airflow. This is not identical to blood flow through lung vessels or to all the steps of oxygen delivery to tissues. Using precise terms prevents a revision answer from treating breathing movement and circulation as interchangeable measurements.",
+      "question": "What is pulmonary ventilation?",
+      "choices": [
+        "Movement of air into and out of the lungs",
+        "Movement of teeth through bone",
+        "Only the flow of blood in arteries"
+      ],
+      "answer": 0,
+      "explanation": "Ventilation concerns airflow.",
+      "rationales": [
+        "This defines the process.",
+        "This is an orthodontic process.",
+        "Blood flow is circulation."
+      ],
+      "hint": "Air versus blood.",
+      "source_ids": [
+        "breathing"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "flow",
+      "title": "Pressure is not flow",
+      "phase": "learn",
+      "lesson": "Blood flow is volume moving per unit time. Blood pressure is the force driving movement, and resistance opposes flow. These quantities are related but have different meanings and units. A pressure reading is not itself a flow measurement. This chapter introduces the relationship without establishing patient-specific thresholds or treatment decisions.",
+      "question": "Which quantity is expressed as volume per unit time?",
+      "choices": [
+        "Blood flow",
+        "Blood pressure",
+        "Vascular resistance"
+      ],
+      "answer": 0,
+      "explanation": "Flow describes movement of a volume over time.",
+      "rationales": [
+        "This has the stated units.",
+        "Pressure is a different quantity.",
+        "Resistance relates pressure gradient and flow but is not itself volume per time."
+      ],
+      "hint": "Look at the units.",
+      "source_ids": [
+        "circulation"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "inflammation-transfer",
+      "title": "Inflammation is a response · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A paper example describes inflammation after a sterile tissue injury. Which interpretation is sound?",
+      "choices": [
+        "A host response can occur without infection",
+        "A specific pathogen is proven by inflammation alone",
+        "Sterile injury makes inflammation impossible"
+      ],
+      "answer": 0,
+      "explanation": "Inflammation is a response; infection is one possible cause.",
+      "rationales": [
+        "This distinguishes response from cause.",
+        "A pathogen is not established by the response alone.",
+        "Non-infectious injury can trigger inflammation."
+      ],
+      "hint": "Recall the possible triggers.",
+      "source_ids": [
+        "immunity"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "haemostasis-transfer",
+      "title": "Plug and reinforce · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which product links the coagulation contribution to reinforcement of a platelet plug?",
+      "choices": [
+        "Fibrin",
+        "A newly formed platelet cell",
+        "The vessel wall’s surface colour"
+      ],
+      "answer": 0,
+      "explanation": "Coagulation generates fibrin, which supports the clot network.",
+      "rationales": [
+        "This is the reinforcing protein.",
+        "Coagulation does not mean generation of platelet cells.",
+        "Colour does not describe clot reinforcement."
+      ],
+      "hint": "Retrieve the clot protein.",
+      "source_ids": [
+        "hemostasis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "ventilation-transfer",
+      "title": "Move air before discussing exchange · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A diagram follows air into and out of the lungs. Which process is directly shown?",
+      "choices": [
+        "Blood flow through pulmonary vessels",
+        "Pulmonary ventilation",
+        "Oxygen delivery to every peripheral tissue"
+      ],
+      "answer": 1,
+      "explanation": "The direct observation is air movement, not the entire oxygen-delivery pathway.",
+      "rationales": [
+        "That describes a different moving medium.",
+        "This matches the airflow diagram.",
+        "This requires further physiological components."
+      ],
+      "hint": "Name the moving medium.",
+      "source_ids": [
+        "breathing"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "flow-transfer",
+      "title": "Pressure is not flow · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which relationship is correct at a conceptual level?",
+      "choices": [
+        "Pressure differences drive flow while resistance opposes it",
+        "Pressure and volume flow have identical units",
+        "Resistance is simply another name for blood volume per minute"
+      ],
+      "answer": 0,
+      "explanation": "Pressure, flow and resistance are related but different quantities.",
+      "rationales": [
+        "This distinguishes driving force and opposition.",
+        "Pressure and flow use different units.",
+        "Volume per time describes flow."
+      ],
+      "hint": "Driving force versus opposition.",
+      "source_ids": [
+        "circulation"
+      ],
+      "calculation": null
+    }
+  ]
+}

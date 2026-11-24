@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "id": "infection-ethics-foundations",
+  "version": 1,
+  "subject_slug": "infection-control-ethics",
+  "subject": "Infection Control & Ethics",
+  "title": "Use precautions and respect patient information",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Learn universal precautions, hand hygiene, reprocessing distinctions and ethical information handling.",
+  "sources": [
+    {
+      "id": "standard-precautions",
+      "title": "Standard Precautions",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Published 15 May 2024",
+      "year": 2024,
+      "section": "Standard Precautions; Hand Hygiene; Personal Protective Equipment",
+      "url": "https://www.cdc.gov/dental-infection-control/hcp/summary/standard-precautions.html",
+      "content_version": "standard-precautions:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "sterilization",
+      "title": "Sterilization and Disinfection",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Published 15 May 2024",
+      "year": 2024,
+      "section": "Cleaning; classification and reprocessing; monitoring",
+      "url": "https://www.cdc.gov/dental-infection-control/hcp/summary/sterilization-disinfection.html",
+      "content_version": "sterilization:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "rights",
+      "title": "WHO launches first ever Patient Safety Rights Charter",
+      "author_or_organization": "World Health Organization",
+      "edition": "18 April 2024; charter launch",
+      "year": 2024,
+      "section": "Ten patient safety rights: information, participation, privacy and confidentiality",
+      "url": "https://www.who.int/news/item/18-04-2024-who-launches-first-ever-patient-safety-rights-charter",
+      "content_version": "rights:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "precautions",
+      "title": "Apply Standard Precautions consistently",
+      "phase": "learn",
+      "lesson": "CDC Standard Precautions are minimum infection-prevention practices for all patient care, regardless of known or suspected infection. They include hand hygiene, protective equipment and other measures. A reassuring history does not make the baseline precautions optional. Additional transmission-based precautions may be needed in particular circumstances; baseline and additional protections are different layers.",
+      "question": "When do Standard Precautions apply?",
+      "choices": [
+        "Only after a positive infection test",
+        "To all patient care",
+        "Only to the first patient of the day"
+      ],
+      "answer": 1,
+      "explanation": "They apply regardless of known or suspected infection status.",
+      "rationales": [
+        "A test is not a prerequisite.",
+        "This is the baseline scope.",
+        "Time of day does not remove the baseline."
+      ],
+      "hint": "Recall the universal scope.",
+      "source_ids": [
+        "standard-precautions"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "hands",
+      "title": "Gloves do not replace hand hygiene",
+      "phase": "learn",
+      "lesson": "Hand hygiene and gloves have complementary roles. CDC includes hygiene before and after patient care and after glove removal. Wearing gloves does not make contaminated hands irrelevant. For study, distinguish a protective barrier from reducing contamination on the hands themselves. This note does not replace a facility’s complete infection-prevention training.",
+      "question": "Which statement about gloves is correct?",
+      "choices": [
+        "They eliminate the need for hand hygiene",
+        "They are another name for sterilization",
+        "They complement rather than replace hand hygiene"
+      ],
+      "answer": 2,
+      "explanation": "Gloves and hand hygiene address related but distinct protections.",
+      "rationales": [
+        "This removes a necessary layer.",
+        "Sterilization is a different process.",
+        "This correctly describes their relationship."
+      ],
+      "hint": "Barrier versus hand contamination.",
+      "source_ids": [
+        "standard-precautions"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "reprocessing",
+      "title": "Cleaning is not the same as sterilization",
+      "phase": "learn",
+      "lesson": "Cleaning removes contamination and precedes effective reprocessing. Disinfection and sterilization are different processes; they are not interchangeable labels. CDC classifies reusable devices by their contact with tissues and calls for appropriate trained reprocessing. This concept lesson omits cycle parameters and device-specific operating instructions, which require the relevant validated protocol.",
+      "question": "Which statement about cleaning and sterilization is sound?",
+      "choices": [
+        "The words always mean the same process",
+        "Cleaning precedes appropriate reprocessing",
+        "A visible clean surface guarantees sterility"
+      ],
+      "answer": 1,
+      "explanation": "Cleaning is a prerequisite step, not a sterility guarantee.",
+      "rationales": [
+        "The processes differ.",
+        "This states the relationship.",
+        "Visual appearance alone cannot guarantee sterility."
+      ],
+      "hint": "Preparation versus final process.",
+      "source_ids": [
+        "sterilization"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "information",
+      "title": "Respect information and participation",
+      "phase": "learn",
+      "lesson": "WHO’s 2024 Patient Safety Rights Charter includes privacy, confidentiality, information and supported decision making. A useful learning case can preserve the concept without exposing identifiable patient details. The charter supplies an ethical framework; this chapter does not claim to reproduce every Indian legal requirement. Avoid placing private patient information in public content reports.",
+      "question": "Which report best protects confidentiality?",
+      "choices": [
+        "A public post with patient name and medical record",
+        "An anonymized concept description without identifiers",
+        "A photograph showing every identifying detail"
+      ],
+      "answer": 1,
+      "explanation": "An educational description can explain the issue without identifying a patient.",
+      "rationales": [
+        "This exposes private information.",
+        "This preserves the learning issue while reducing identification risk.",
+        "Identifying details create disclosure risk."
+      ],
+      "hint": "Preserve the concept, remove identifiers.",
+      "source_ids": [
+        "rights"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "precautions-transfer",
+      "title": "Apply Standard Precautions consistently · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A paper policy omits Standard Precautions when a patient reports no infection. What is the scope error?",
+      "choices": [
+        "Baseline precautions apply regardless of known infection status",
+        "Precautions apply only after a positive test",
+        "A negative history proves every transmission route is absent"
+      ],
+      "answer": 0,
+      "explanation": "Reported status does not remove the baseline scope.",
+      "rationales": [
+        "This states the general applicability.",
+        "A positive test is not required.",
+        "The history does not establish universal absence."
+      ],
+      "hint": "Known status does not define the baseline.",
+      "source_ids": [
+        "standard-precautions"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "hands-transfer",
+      "title": "Gloves do not replace hand hygiene · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement correctly combines gloves and hand hygiene?",
+      "choices": [
+        "Hand hygiene remains relevant after removing gloves",
+        "Gloves make all later hand hygiene unnecessary",
+        "Hand hygiene and gloves are identical processes"
+      ],
+      "answer": 0,
+      "explanation": "The protections are complementary.",
+      "rationales": [
+        "This follows the recommendation.",
+        "Gloves do not remove the hygiene requirement.",
+        "A barrier and hand decontamination differ."
+      ],
+      "hint": "Recall the glove-removal moment.",
+      "source_ids": [
+        "standard-precautions"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "reprocessing-transfer",
+      "title": "Cleaning is not the same as sterilization · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A reusable device looks visibly clean. Which conclusion still requires separate processing evidence?",
+      "choices": [
+        "Visible debris has been inspected",
+        "The device has been observed",
+        "The device is sterile"
+      ],
+      "answer": 2,
+      "explanation": "Appearance alone cannot establish sterilization.",
+      "rationales": [
+        "This can follow from visual inspection.",
+        "This can be directly established.",
+        "Sterility is not established by appearance."
+      ],
+      "hint": "Visible cleanliness versus validated processing.",
+      "source_ids": [
+        "sterilization"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "information-transfer",
+      "title": "Respect information and participation · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which response aligns with WHO’s patient-safety rights framework?",
+      "choices": [
+        "Provide information and support participation while protecting confidentiality",
+        "Replace explanation with a signature alone",
+        "Treat every patient detail as suitable for a public study report"
+      ],
+      "answer": 0,
+      "explanation": "Information, participation and confidentiality are compatible responsibilities.",
+      "rationales": [
+        "This combines the relevant rights.",
+        "A signature does not replace information.",
+        "Public identification can breach confidentiality."
+      ],
+      "hint": "Recall information and dignity.",
+      "source_ids": [
+        "rights"
+      ],
+      "calculation": null
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "id": "prostho-replacements",
+  "version": 1,
+  "subject_slug": "prosthodontics",
+  "subject": "Prosthodontics",
+  "title": "Identify what a prosthesis replaces",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Distinguish dentures, crowns, bridges and implants by the structures they replace or support.",
+  "sources": [
+    {
+      "id": "dentures",
+      "title": "Dentures",
+      "author_or_organization": "American College of Prosthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Complete and removable partial dentures",
+      "url": "https://www.gotoapro.org/dentures/",
+      "content_version": "dentures:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "crowns",
+      "title": "Caps and Crowns",
+      "author_or_organization": "American College of Prosthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Definition of crowns",
+      "url": "https://www.gotoapro.org/caps-and-crowns/",
+      "content_version": "crowns:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "teeth",
+      "title": "Anatomy, Head and Neck, Teeth",
+      "author_or_organization": "Alyssa L. Morris; Prasanna Tadi; StatPearls Publishing",
+      "edition": "Last updated 24 July 2023",
+      "year": 2023,
+      "section": "Introduction; structure and dentition",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557543/",
+      "content_version": "teeth:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "bridges",
+      "title": "Bridges",
+      "author_or_organization": "American College of Prosthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Fixed bridges; comparison with dental implants",
+      "url": "https://www.gotoapro.org/bridges/",
+      "content_version": "bridges:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "implants",
+      "title": "Dental Implants",
+      "author_or_organization": "American College of Prosthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Implant root replacement and prosthesis support; no surgical instruction",
+      "url": "https://www.gotoapro.org/dental-implants/",
+      "content_version": "implants:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "dentures",
+      "title": "Complete versus partial dentures",
+      "phase": "learn",
+      "lesson": "A complete denture replaces all teeth in an edentulous arch. A removable partial denture replaces some missing teeth while natural teeth remain. “Complete” and “partial” describe replacement extent; “removable” describes whether the prosthesis can be taken out. Keep these classification dimensions separate instead of treating every tooth replacement as the same design.",
+      "question": "Which description fits a removable partial denture?",
+      "choices": [
+        "Replaces some missing teeth while others remain",
+        "Always replaces every tooth in both arches",
+        "Restores only the colour of enamel"
+      ],
+      "answer": 0,
+      "explanation": "Partial refers to replacement of some, not all, teeth.",
+      "rationales": [
+        "This matches partial replacement.",
+        "This overstates the replacement extent.",
+        "A denture replaces teeth, not merely colour."
+      ],
+      "hint": "Think extent of missing teeth.",
+      "source_ids": [
+        "dentures"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "crown",
+      "title": "Recognize a restorative crown",
+      "phase": "learn",
+      "lesson": "A restorative crown covers a tooth to restore form and function. Distinguish this manufactured restoration from the anatomical crown, the part of a natural tooth covered by enamel. A crown restoration is not synonymous with an implant root or an entire removable denture. This vocabulary exercise does not decide when a particular patient needs coverage.",
+      "question": "Which statement correctly describes a restorative crown?",
+      "choices": [
+        "It always replaces every tooth in an arch",
+        "It is a covering restoration for a tooth",
+        "It is identical to an implant root"
+      ],
+      "answer": 1,
+      "explanation": "A restorative crown covers a tooth; it differs from an entire denture or implant support.",
+      "rationales": [
+        "That describes complete replacement extent.",
+        "This identifies the covering restoration.",
+        "An implant support is a different component."
+      ],
+      "hint": "Recall “cap”.",
+      "source_ids": [
+        "crowns",
+        "teeth"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "bridge",
+      "title": "Understand a fixed bridge",
+      "phase": "learn",
+      "lesson": "A fixed bridge replaces a missing tooth or teeth with a prosthesis retained by supporting structures. A conventional tooth-supported example links a replacement tooth to restorations on neighbouring teeth. The patient does not remove a fixed bridge for routine cleaning. This explains a design category, not a claim that every missing tooth should receive a bridge.",
+      "question": "What does “fixed” indicate here?",
+      "choices": [
+        "The patient routinely removes it like a removable denture",
+        "It is another word for natural enamel",
+        "It is retained in place rather than routinely removed by the patient"
+      ],
+      "answer": 2,
+      "explanation": "Fixed describes retention in place.",
+      "rationales": [
+        "This describes a removable category.",
+        "A bridge is a prosthesis.",
+        "This is the intended distinction."
+      ],
+      "hint": "Classify removability.",
+      "source_ids": [
+        "bridges"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "implant",
+      "title": "Separate implant from replacement tooth",
+      "phase": "learn",
+      "lesson": "A dental implant replaces a root-support role in the jaw and can support a crown, bridge or denture. The implant and the visible replacement tooth are not the same component. “Implant-supported” describes the support, while crown, bridge or denture describes the prosthesis. No placement technique or individual suitability decision is taught here.",
+      "question": "Which statement separates implant and prosthesis?",
+      "choices": [
+        "An implant can support a crown, bridge or denture",
+        "An implant is always a removable partial denture",
+        "An implant is natural enamel"
+      ],
+      "answer": 0,
+      "explanation": "The implant provides support for different prosthetic forms.",
+      "rationales": [
+        "This distinguishes support and prosthesis.",
+        "It is not always one prosthesis type.",
+        "An implant is not enamel."
+      ],
+      "hint": "Think support versus visible replacement.",
+      "source_ids": [
+        "implants"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "dentures-transfer",
+      "title": "Complete versus partial dentures · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "An edentulous arch has every tooth replaced by one prosthesis. Which classification describes replacement extent?",
+      "choices": [
+        "Removable partial denture",
+        "Complete denture",
+        "Single-tooth crown"
+      ],
+      "answer": 1,
+      "explanation": "Complete replacement refers to all teeth in an edentulous arch.",
+      "rationales": [
+        "Partial implies some natural teeth remain.",
+        "This matches the extent.",
+        "A single crown does not replace the whole arch."
+      ],
+      "hint": "Focus on all versus some.",
+      "source_ids": [
+        "dentures"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "crown-transfer",
+      "title": "Recognize a restorative crown · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement correctly distinguishes an anatomical crown from a restorative crown?",
+      "choices": [
+        "The former is part of the natural tooth; the latter is a manufactured covering",
+        "Both mean an implant root in the jaw",
+        "Both always mean a removable full-arch prosthesis"
+      ],
+      "answer": 0,
+      "explanation": "One term describes natural anatomy and the other a restoration.",
+      "rationales": [
+        "This separates the two meanings.",
+        "An implant root is a different component.",
+        "Neither definition requires a removable full arch."
+      ],
+      "hint": "Separate anatomy from restoration.",
+      "source_ids": [
+        "crowns",
+        "teeth"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "bridge-transfer",
+      "title": "Understand a fixed bridge · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A paper design links a replacement tooth to supporting restorations on neighbouring teeth. Which category fits?",
+      "choices": [
+        "Conventional tooth-supported fixed bridge",
+        "Complete removable denture",
+        "Natural anatomical crown only"
+      ],
+      "answer": 0,
+      "explanation": "The described design is a conventional tooth-supported bridge.",
+      "rationales": [
+        "This matches replacement and support.",
+        "The description does not replace an entire edentulous arch.",
+        "A natural crown is not a replacement assembly."
+      ],
+      "hint": "Identify the replacement and supports.",
+      "source_ids": [
+        "bridges"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "implant-transfer",
+      "title": "Separate implant from replacement tooth · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which pairing separates the support from the visible replacement in an implant-supported single-tooth restoration?",
+      "choices": [
+        "Implant support and restorative crown",
+        "Anatomical enamel and primary tooth follicle",
+        "Complete denture and remaining natural teeth"
+      ],
+      "answer": 0,
+      "explanation": "The implant supplies support and the crown is the visible prosthetic restoration.",
+      "rationales": [
+        "This identifies both components.",
+        "These are natural/developmental structures.",
+        "This is a different replacement context."
+      ],
+      "hint": "Recall the root-support role.",
+      "source_ids": [
+        "implants"
+      ],
+      "calculation": null
+    }
+  ]
+}

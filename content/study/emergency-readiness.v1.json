@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "id": "emergency-readiness",
+  "version": 1,
+  "subject_slug": "medical-emergencies",
+  "subject": "Medical Emergencies",
+  "title": "Learn readiness and emergency vocabulary",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Understand preparedness, ABCDE terminology and the distinction between airflow and circulation.",
+  "sources": [
+    {
+      "id": "dental-readiness",
+      "title": "Quality Standards: Primary Dental Care",
+      "author_or_organization": "Resuscitation Council UK",
+      "edition": "Published November 2013; updated May 2020",
+      "year": 2020,
+      "section": "Team training, preparedness and risk assessment; UK professional context",
+      "url": "https://www.resus.org.uk/library/quality-standards-cpr/primary-dental-care",
+      "content_version": "dental-readiness:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "first-aid",
+      "title": "First Aid Guidelines 2025",
+      "author_or_organization": "Resuscitation Council UK",
+      "edition": "Published 27 October 2025",
+      "year": 2025,
+      "section": "Structured assessment; ABCDE meanings only",
+      "url": "https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/first-aid-guidelines",
+      "content_version": "first-aid:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "anaphylaxis",
+      "title": "Special Circumstances Guidelines 2025",
+      "author_or_organization": "Resuscitation Council UK",
+      "edition": "Published 27 October 2025",
+      "year": 2025,
+      "section": "Anaphylaxis: airway, breathing, circulation problems may occur without skin changes; no treatment protocol",
+      "url": "https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/special-circumstances-guidelines",
+      "content_version": "anaphylaxis:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "breathing",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "22.3 The Process of Breathing; pulmonary ventilation",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-3-the-process-of-breathing",
+      "content_version": "breathing:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "circulation",
+      "title": "Anatomy and Physiology 2e",
+      "author_or_organization": "OpenStax, Rice University",
+      "edition": "2nd edition, published 20 April 2022",
+      "year": 2022,
+      "section": "20.2 Blood Flow, Blood Pressure, and Resistance",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-2-blood-flow-blood-pressure-and-resistance",
+      "content_version": "circulation:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "team",
+      "title": "Readiness is a system",
+      "phase": "learn",
+      "lesson": "The RCUK primary dental care quality standard emphasizes risk assessment, trained staff, team preparation and access to appropriate resuscitation equipment. It is a UK professional standard, not an Indian legal rule. This foundation explains preparedness; it does not replace supervised skills training or provide a patient-treatment protocol.",
+      "question": "Which is part of emergency preparedness?",
+      "choices": [
+        "Only the waiting room decoration",
+        "Trained staff and planned team roles",
+        "An app XP badge alone"
+      ],
+      "answer": 1,
+      "explanation": "Preparedness includes people, planning and equipment.",
+      "rationales": [
+        "Decoration does not establish readiness.",
+        "This addresses operational readiness.",
+        "XP is not resuscitation training."
+      ],
+      "hint": "Think team capability.",
+      "source_ids": [
+        "dental-readiness"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "abcde",
+      "title": "Expand the structured vocabulary",
+      "phase": "learn",
+      "lesson": "In the 2025 RCUK first-aid guidance, ABCDE names Airway, Breathing, Circulation, Disability and Exposure. The sequence organizes assessment domains. Remembering the expansion is academic knowledge; it is not proof that a learner can assess or manage an emergency. Actual care requires appropriate training and local emergency systems.",
+      "question": "What does B stand for in the ABCDE assessment framework?",
+      "choices": [
+        "Bleeding history",
+        "Breathing",
+        "Blood pressure alone"
+      ],
+      "answer": 1,
+      "explanation": "B names the Breathing domain.",
+      "rationales": [
+        "Bleeding is relevant to care but is not this expansion.",
+        "This is the correct expansion.",
+        "This is not the B expansion."
+      ],
+      "hint": "Recall the assessment domains.",
+      "source_ids": [
+        "first-aid"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "allergy",
+      "title": "Do not require skin signs in every severe reaction",
+      "phase": "learn",
+      "lesson": "RCUK 2025 describes anaphylaxis as involving airway, breathing or circulation problems, with or without skin or mucosal changes. Therefore an academic definition that requires a rash in every case is too narrow. This chapter teaches the limitation of that statement; no drug doses, self-treatment steps or diagnostic algorithm are supplied.",
+      "question": "Which statement is too narrow?",
+      "choices": [
+        "Airway or circulation problems can be relevant",
+        "Skin changes may accompany anaphylaxis",
+        "Anaphylaxis always requires a visible rash"
+      ],
+      "answer": 2,
+      "explanation": "Skin or mucosal changes need not occur in every case.",
+      "rationales": [
+        "This is compatible with the guidance.",
+        "Changes may occur.",
+        "The word always makes this false."
+      ],
+      "hint": "Check the absolute word.",
+      "source_ids": [
+        "anaphylaxis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "air-blood",
+      "title": "Keep breathing and circulation distinct",
+      "phase": "learn",
+      "lesson": "Ventilation concerns air movement into and out of the lungs. Circulation concerns blood movement through vessels. Both contribute to physiological function, but one observation does not measure every component of the other. Distinguish the terms in a viva before discussing more detailed emergency physiology. No patient threshold or treatment decision follows from this vocabulary alone.",
+      "question": "Which statement correctly distinguishes the processes?",
+      "choices": [
+        "Ventilation moves air; circulation moves blood",
+        "Both mean tooth eruption",
+        "Both mean exactly the same measurement"
+      ],
+      "answer": 0,
+      "explanation": "Airflow and blood flow are different processes.",
+      "rationales": [
+        "This separates the moving media.",
+        "Eruption is unrelated.",
+        "They are not identical measurements."
+      ],
+      "hint": "Air versus blood.",
+      "source_ids": [
+        "breathing",
+        "circulation"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "team-transfer",
+      "title": "Readiness is a system · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which conclusion can a completed theory chapter support?",
+      "choices": [
+        "Practical resuscitation competence is proven",
+        "Supervised skills training is no longer needed",
+        "The learner completed the recorded academic practice"
+      ],
+      "answer": 2,
+      "explanation": "Theory completion records study activity; practical competence requires different evidence.",
+      "rationales": [
+        "A theory result cannot establish practical performance.",
+        "A chapter does not replace skills training.",
+        "This stays within the observed evidence."
+      ],
+      "hint": "Separate learning activity from practical skill.",
+      "source_ids": [
+        "dental-readiness"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "abcde-transfer",
+      "title": "Expand the structured vocabulary · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which pairing correctly expands C and D in the 2025 ABCDE framework?",
+      "choices": [
+        "Circulation and Disability",
+        "Consciousness and Diagnosis",
+        "Chest pain and Dental history"
+      ],
+      "answer": 0,
+      "explanation": "The framework names Circulation and Disability as these domains.",
+      "rationales": [
+        "This matches the expansion.",
+        "These are not the C and D expansions.",
+        "These are not the named domains."
+      ],
+      "hint": "Keep emergency domains distinct from dental nouns.",
+      "source_ids": [
+        "first-aid"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "allergy-transfer",
+      "title": "Do not require skin signs in every severe reaction · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement accurately handles absence of skin changes in the academic description of anaphylaxis?",
+      "choices": [
+        "Skin signs are not mandatory in every case",
+        "No rash alone always excludes it",
+        "Only skin findings define the syndrome"
+      ],
+      "answer": 0,
+      "explanation": "RCUK describes airway, breathing or circulation involvement with or without skin/mucosal changes.",
+      "rationales": [
+        "This preserves the guidance’s scope.",
+        "This is an unsafe absolute inference.",
+        "This excludes other important domains."
+      ],
+      "hint": "Recall “with or without”.",
+      "source_ids": [
+        "anaphylaxis"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "air-blood-transfer",
+      "title": "Keep breathing and circulation distinct · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A diagram tracks blood moving through vessels rather than air through the airway. Which term fits?",
+      "choices": [
+        "Pulmonary ventilation",
+        "Circulation",
+        "An identical measurement of both processes"
+      ],
+      "answer": 1,
+      "explanation": "Circulation describes blood movement.",
+      "rationales": [
+        "Ventilation concerns air movement.",
+        "This matches the medium shown.",
+        "Airflow and blood flow are distinct quantities."
+      ],
+      "hint": "Identify what is moving.",
+      "source_ids": [
+        "breathing",
+        "circulation"
+      ],
+      "calculation": null
+    }
+  ]
+}

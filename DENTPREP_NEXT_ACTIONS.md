@@ -1,3 +1,7 @@
+## Latest continuation — all 15 subjects have actual study chapters (24 November 2026)
+
+This release replaces the checklist-only library with 15 introductory chapters, 60 teaching sections, 120 chapter questions and 30 independent next-day recall questions. Saved checkpoints, original-mistake revision, bookmarks and source-study reporting are implemented. See [DENTPREP_ALL_SUBJECT_STUDY_RELEASE.md](DENTPREP_ALL_SUBJECT_STUDY_RELEASE.md) and the exact acceptance receipt on Issue #27 before relying on deployment status. All-15 introductions are not full BDS/official UPSC coverage. PH v1, legacy clinical drafts and publication guards are preserved. Do not restore the old student doctor-review waiting flow. Next content priority: deeper curriculum coverage, difficult exam questions and fresh 7/30-day retention sets; no cosmetics or paid services.
+
 # DentPrep — exact continuation
 
 ## NEWEST FOUNDER OVERRIDE — source-led subject quests

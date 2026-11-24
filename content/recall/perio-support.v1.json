@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "perio-support-recall",
+  "version": 1,
+  "subject_slug": "periodontology",
+  "subject": "Periodontology",
+  "title": "Protecting the tooth-supporting tissues · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "perio-support",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "gums",
+      "title": "Periodontal (Gum) Disease",
+      "author_or_organization": "National Institute of Dental and Craniofacial Research, NIH",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Overview; Causes; Risk Factors",
+      "url": "https://www.nidcr.nih.gov/health-info/gum-disease",
+      "content_version": "gums:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "aap",
+      "title": "Gum Disease Information",
+      "author_or_organization": "American Academy of Periodontology",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Gingivitis; Periodontitis; stage and grade overview",
+      "url": "https://www.perio.org/for-patients/gum-disease-information/",
+      "content_version": "aap:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "efp-classification",
+      "title": "Periodontitis: Guidance for Clinicians",
+      "author_or_organization": "Mariano Sanz; Maurizio Tonetti; European Federation of Periodontology",
+      "edition": "Published March 2019; 2017 World Workshop classification guidance",
+      "year": 2019,
+      "section": "Severity of disease; staging and grading, pages 2–6",
+      "url": "https://www.efp.org/fileadmin/uploads/efp/Documents/Campaigns/New_Classification/Guidance_Notes/report-02.pdf",
+      "content_version": "efp-classification:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which additional concept separates destructive periodontal disease from inflammation limited to gingiva?",
+      "choices": [
+        "A required severe-pain history",
+        "Supporting-tissue destruction",
+        "Crown colour alone"
+      ],
+      "answer": 1,
+      "explanation": "Destruction of the tooth-supporting tissues is the relevant distinction.",
+      "rationales": [
+        "Pain alone does not establish extent.",
+        "This identifies the additional involvement.",
+        "Colour alone is insufficient."
+      ],
+      "hint": "Recall the tissue extent.",
+      "source_ids": [
+        "aap"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which statement about deposits is accurate?",
+      "choices": [
+        "Plaque can mineralize into calculus",
+        "Calculus is simply newly formed enamel",
+        "All unmineralized plaque is already calculus"
+      ],
+      "answer": 0,
+      "explanation": "Calculus is mineralized plaque.",
+      "rationales": [
+        "This is the relationship.",
+        "Calculus is a deposit, not enamel growth.",
+        "Mineralization is the distinction."
+      ],
+      "hint": "Recall biofilm and mineralization.",
+      "source_ids": [
+        "gums"
+      ],
+      "calculation": null
+    }
+  ]
+}

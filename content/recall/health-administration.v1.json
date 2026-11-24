@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "health-administration-recall",
+  "version": 1,
+  "subject_slug": "govt-healthcare-administration",
+  "subject": "Government Healthcare & Administration",
+  "title": "Connect public programmes with accountable care · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "health-administration",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "phc",
+      "title": "Primary health care",
+      "author_or_organization": "World Health Organization",
+      "edition": "Fact sheet, 5 December 2025",
+      "year": 2025,
+      "section": "Definition and three interrelated components",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/primary-health-care",
+      "content_version": "phc:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nohp",
+      "title": "National Oral Health Division",
+      "author_or_organization": "Directorate General of Health Services, Ministry of Health and Family Welfare, India",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "National Oral Health Programme: purpose, launch and strengthening public facilities",
+      "url": "https://dghs.mohfw.gov.in/national-oral-health-division.php",
+      "content_version": "nohp:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "quality",
+      "title": "Quality health services",
+      "author_or_organization": "World Health Organization",
+      "edition": "Fact sheet, 19 May 2025",
+      "year": 2025,
+      "section": "Seven dimensions of quality; monitoring and evaluation",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/quality-health-services",
+      "content_version": "quality:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "upsc",
+      "title": "UPSC Official Portal",
+      "author_or_organization": "Union Public Service Commission, Government of India",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Recruitment advertisements, recruitment tests and corrigenda; verify the exact recruitment case",
+      "url": "https://www.upsc.gov.in/",
+      "content_version": "upsc:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which WHO quality dimension concerns coordination across providers and levels of care?",
+      "choices": [
+        "Integrated",
+        "Timely only",
+        "Efficient only"
+      ],
+      "answer": 0,
+      "explanation": "Integration concerns coordination across the system.",
+      "rationales": [
+        "This is the coordination dimension.",
+        "Timeliness concerns delay.",
+        "Efficiency concerns resource use."
+      ],
+      "hint": "Retrieve the coordination dimension.",
+      "source_ids": [
+        "quality"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which action checks whether a saved recruitment screenshot has been superseded?",
+      "choices": [
+        "Assume it is permanent",
+        "Check the exact official notice and later corrigenda",
+        "Use the app streak as proof"
+      ],
+      "answer": 1,
+      "explanation": "Later official notices can update the original information.",
+      "rationales": [
+        "Requirements can change through official updates.",
+        "This checks current authority.",
+        "A streak cannot verify recruitment rules."
+      ],
+      "hint": "Original issue plus later updates.",
+      "source_ids": [
+        "upsc"
+      ],
+      "calculation": null
+    }
+  ]
+}

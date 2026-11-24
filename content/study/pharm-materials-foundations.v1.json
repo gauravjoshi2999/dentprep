@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "id": "pharm-materials-foundations",
+  "version": 1,
+  "subject_slug": "pharmacology-dental-materials",
+  "subject": "Pharmacology & Dental Materials",
+  "title": "Separate drug handling from material structure",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Learn pharmacokinetics, pharmacodynamics and the composition of two restorative material families.",
+  "sources": [
+    {
+      "id": "pk",
+      "title": "Pharmacokinetics",
+      "author_or_organization": "Sean Grogan; Deanna Warner; Charles V. Preuss; StatPearls Publishing",
+      "edition": "Last updated 10 November 2026",
+      "year": 2026,
+      "section": "Introduction; absorption, distribution, metabolism and elimination",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557744/",
+      "content_version": "pk:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "materials",
+      "title": "Materials for Direct Restorations",
+      "author_or_organization": "American Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Direct restorations; resin-based composite and glass ionomer composition",
+      "url": "https://www.ada.org/resources/ada-library/oral-health-topics/materials-for-direct-restorations",
+      "content_version": "materials:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "pk",
+      "title": "Follow what the body does to a drug",
+      "phase": "learn",
+      "lesson": "Pharmacokinetics describes drug concentrations over time. Absorption, distribution, metabolism and elimination organize the main processes. These explain why administration and the concentration at a site are not identical events. Understanding the processes does not authorize a dose change; this chapter contains no prescribing instructions.",
+      "question": "Which list describes pharmacokinetic processes?",
+      "choices": [
+        "ADME: absorption, distribution, metabolism, elimination",
+        "Enamel, dentin, pulp",
+        "Overjet, overbite, open bite"
+      ],
+      "answer": 0,
+      "explanation": "ADME organizes how the body handles a drug.",
+      "rationales": [
+        "These are pharmacokinetic processes.",
+        "These are tooth tissues.",
+        "These are bite descriptions."
+      ],
+      "hint": "Concentration over time.",
+      "source_ids": [
+        "pk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "pd",
+      "title": "Follow what a drug does to the body",
+      "phase": "learn",
+      "lesson": "Pharmacodynamics describes drug effects and mechanisms, including interactions with receptors and relationships between concentration or dose and response. Keep it distinct from absorption or elimination. A theory item about receptor-mediated effect is asking a different question from a concentration-time curve. No drug, dose or treatment choice is recommended here.",
+      "question": "Which topic is pharmacodynamic?",
+      "choices": [
+        "Drug elimination over time",
+        "A receptor-mediated drug effect",
+        "The colour of a tablet box"
+      ],
+      "answer": 1,
+      "explanation": "Pharmacodynamics concerns how a drug produces an effect.",
+      "rationales": [
+        "Elimination is pharmacokinetic.",
+        "This is a mechanism/effect question.",
+        "Packaging colour is not the mechanism."
+      ],
+      "hint": "Effect versus handling.",
+      "source_ids": [
+        "pk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "composite",
+      "title": "Recognize a composite structure",
+      "phase": "learn",
+      "lesson": "Resin-based dental composite combines a resin matrix with inorganic filler and a coupling system. The name describes a combination of phases, not a single pure metal. Components contribute different properties. This academic composition lesson does not select a material for a patient or establish comparative clinical longevity.",
+      "question": "Which description fits resin-based dental composite?",
+      "choices": [
+        "Pure gold only",
+        "Resin matrix with inorganic filler",
+        "Only unmodified water"
+      ],
+      "answer": 1,
+      "explanation": "Resin composites combine matrix and filler phases.",
+      "rationales": [
+        "This is a different material.",
+        "This identifies the combination.",
+        "Water alone is not a composite."
+      ],
+      "hint": "Matrix plus dispersed phase.",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "gic",
+      "title": "Recognize conventional glass ionomer",
+      "phase": "learn",
+      "lesson": "Conventional glass ionomer is based on an acid–base reaction involving ion-leachable glass and a polyacid component. Resin-modified glass ionomer adds resin chemistry, so the names should not be treated as identical formulations. Composition describes material families; handling, indications and patient-specific selection require additional information.",
+      "question": "Which chemistry is central to conventional glass ionomer?",
+      "choices": [
+        "Only evaporation of air",
+        "An acid–base reaction involving glass and polyacid",
+        "Only enamel growth"
+      ],
+      "answer": 1,
+      "explanation": "Glass ionomer chemistry involves an acid–base reaction.",
+      "rationales": [
+        "Evaporation alone does not describe it.",
+        "This identifies the relevant chemistry.",
+        "Enamel growth is biological."
+      ],
+      "hint": "Recall glass and acid.",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "pk-transfer",
+      "title": "Follow what the body does to a drug · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A graph plots drug concentration against time after administration. Which question is primarily pharmacokinetic?",
+      "choices": [
+        "How does the concentration change over time?",
+        "Which receptor mediates the effect?",
+        "What intracellular response follows receptor activation?"
+      ],
+      "answer": 0,
+      "explanation": "Concentration-time behaviour is pharmacokinetic; the other questions concern mechanism/effect.",
+      "rationales": [
+        "This addresses drug handling over time.",
+        "This is a pharmacodynamic mechanism question.",
+        "This concerns pharmacodynamic response."
+      ],
+      "hint": "Time course of concentration.",
+      "source_ids": [
+        "pk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "pd-transfer",
+      "title": "Follow what a drug does to the body · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A viva asks how receptor interaction produces a drug’s effect. Which branch addresses it most directly?",
+      "choices": [
+        "Pharmacodynamics",
+        "Absorption alone",
+        "Elimination alone"
+      ],
+      "answer": 0,
+      "explanation": "Mechanism and effect belong to pharmacodynamics.",
+      "rationales": [
+        "This is the mechanism/effect domain.",
+        "Absorption is a handling process.",
+        "Elimination is a handling process."
+      ],
+      "hint": "Retrieve the mechanism branch.",
+      "source_ids": [
+        "pk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "composite-transfer",
+      "title": "Recognize a composite structure · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A materials question lists resin matrix, inorganic filler and coupling system. Which family is identified?",
+      "choices": [
+        "Unmodified glass ionomer",
+        "Resin-based composite",
+        "A pure metal restoration"
+      ],
+      "answer": 1,
+      "explanation": "The resin–filler combination identifies resin composite.",
+      "rationales": [
+        "This does not describe the conventional glass–polyacid formulation.",
+        "This matches the component list.",
+        "A pure metal is not this combination."
+      ],
+      "hint": "Match the component combination.",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "gic-transfer",
+      "title": "Recognize conventional glass ionomer · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which distinction between conventional and resin-modified glass ionomer is sound?",
+      "choices": [
+        "Their formulations are identical in all components",
+        "Neither uses a glass component",
+        "The resin-modified family adds resin chemistry"
+      ],
+      "answer": 2,
+      "explanation": "Resin modification adds chemistry beyond the conventional glass–polyacid formulation.",
+      "rationales": [
+        "The formulation changes.",
+        "Glass is part of the family.",
+        "This states the added component."
+      ],
+      "hint": "What does “resin-modified” add?",
+      "source_ids": [
+        "materials"
+      ],
+      "calculation": null
+    }
+  ]
+}

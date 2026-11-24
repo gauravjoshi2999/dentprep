@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "id": "ortho-bite",
+  "version": 1,
+  "subject_slug": "orthodontics",
+  "subject": "Orthodontics",
+  "title": "Read the bite and understand retention",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Learn occlusion, malocclusion, mixed dentition and the purpose of orthodontic retention.",
+  "sources": [
+    {
+      "id": "ortho-glossary",
+      "title": "Glossary of Orthodontic Terms",
+      "author_or_organization": "American Association of Orthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Occlusion, malocclusion, mixed dentition, overjet and open bite",
+      "url": "https://aaoinfo.org/resources/glossary-of-orthodontic-terms/",
+      "content_version": "ortho-glossary:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "teeth",
+      "title": "Anatomy, Head and Neck, Teeth",
+      "author_or_organization": "Alyssa L. Morris; Prasanna Tadi; StatPearls Publishing",
+      "edition": "Last updated 24 July 2023",
+      "year": 2023,
+      "section": "Introduction; structure and dentition",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557543/",
+      "content_version": "teeth:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "retainers",
+      "title": "Are Retainers Necessary After Orthodontic Treatment?",
+      "author_or_organization": "American Association of Orthodontists",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Retainers are part of treatment; stability after active treatment",
+      "url": "https://aaoinfo.org/whats-trending/will-i-need-to-wear-retainers/",
+      "content_version": "retainers:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "occlusion",
+      "title": "Define occlusion",
+      "phase": "learn",
+      "lesson": "Occlusion describes how upper and lower teeth meet. It concerns relationships, not simply whether individual teeth look straight. A visible alignment description and a bite relationship answer different questions. Start a structured orthodontic description by using the correct anatomical terms, while recognizing that assessment also considers function and wider facial relationships.",
+      "question": "What does occlusion describe?",
+      "choices": [
+        "The colour of a crown",
+        "How upper and lower teeth meet",
+        "Only the number of fillings"
+      ],
+      "answer": 1,
+      "explanation": "Occlusion concerns the relationship between upper and lower teeth.",
+      "rationales": [
+        "Shade is a different property.",
+        "This defines the bite relationship.",
+        "Restoration count does not define occlusion."
+      ],
+      "hint": "Recall “bite”.",
+      "source_ids": [
+        "ortho-glossary"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "malocclusion",
+      "title": "Describe the mismatch",
+      "phase": "learn",
+      "lesson": "Malocclusion means an abnormal fit between upper and lower teeth. Open bite describes a lack of contact in a region when other teeth are together. Overjet concerns the forward relationship of upper incisors to lower incisors. Avoid confusing a horizontal relationship with vertical overlap. These descriptions are not a treatment prescription or a full skeletal diagnosis.",
+      "question": "Which term concerns forward projection of upper incisors relative to lower incisors?",
+      "choices": [
+        "Overjet",
+        "Calculus",
+        "Pulp chamber"
+      ],
+      "answer": 0,
+      "explanation": "Overjet describes a horizontal incisor relationship.",
+      "rationales": [
+        "This matches the spatial relationship.",
+        "Calculus is a deposit.",
+        "The pulp chamber is internal anatomy."
+      ],
+      "hint": "Think horizontal relationship.",
+      "source_ids": [
+        "ortho-glossary"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "mixed",
+      "title": "Recognize a developmental stage",
+      "phase": "learn",
+      "lesson": "Mixed dentition means primary and permanent teeth are present together. It is a developmental stage, not a disease. Chronological ages are approximate and individual timing varies. Describe the teeth actually present rather than assuming every child of a given age has the identical stage or eruption pattern.",
+      "question": "Which combination defines mixed dentition?",
+      "choices": [
+        "Only primary teeth",
+        "Primary and permanent teeth together",
+        "Only permanent third molars"
+      ],
+      "answer": 1,
+      "explanation": "The coexistence of primary and permanent teeth defines the term.",
+      "rationales": [
+        "This is primary dentition alone.",
+        "This is mixed dentition.",
+        "This is not the developmental combination."
+      ],
+      "hint": "What does “mixed” combine?",
+      "source_ids": [
+        "ortho-glossary",
+        "teeth"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "retention",
+      "title": "Understand why retention follows movement",
+      "phase": "learn",
+      "lesson": "After active orthodontic treatment, teeth can change position. Retainers help maintain the achieved alignment. The retention phase is therefore part of maintaining a result, rather than evidence that active movement has never occurred. Appliance choice and wearing instructions are individualized; this chapter does not prescribe a schedule.",
+      "question": "What is the main purpose of orthodontic retention?",
+      "choices": [
+        "Maintain achieved tooth positions",
+        "Create dental caries",
+        "Replace every missing tooth"
+      ],
+      "answer": 0,
+      "explanation": "Retention helps preserve the result after active movement.",
+      "rationales": [
+        "This is the purpose of a retainer.",
+        "Caries is a disease process.",
+        "Tooth replacement is a different role."
+      ],
+      "hint": "Think after active treatment.",
+      "source_ids": [
+        "retainers"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "occlusion-transfer",
+      "title": "Define occlusion · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A viva asks how upper and lower teeth meet, rather than how individual teeth are aligned within one arch. Which term is most direct?",
+      "choices": [
+        "Crown shade",
+        "Arch length alone",
+        "Occlusion"
+      ],
+      "answer": 2,
+      "explanation": "Occlusion describes the upper-lower relationship.",
+      "rationales": [
+        "Shade concerns colour.",
+        "Arch length alone does not describe upper-lower contact.",
+        "This is the bite relationship."
+      ],
+      "hint": "Match the question to the relationship.",
+      "source_ids": [
+        "ortho-glossary"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "malocclusion-transfer",
+      "title": "Describe the mismatch · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A paper diagram shows posterior contact but no anterior contact. Which description fits?",
+      "choices": [
+        "Increased overjet alone",
+        "Anterior open bite",
+        "Mixed dentition alone"
+      ],
+      "answer": 1,
+      "explanation": "The defining feature described is the absence of anterior contact.",
+      "rationales": [
+        "Overjet concerns a horizontal incisor relationship.",
+        "This names the absent anterior contact.",
+        "Dentition stage does not specify contact."
+      ],
+      "hint": "Where is contact absent?",
+      "source_ids": [
+        "ortho-glossary"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "mixed-transfer",
+      "title": "Recognize a developmental stage · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Two fictional children of the same age have different erupted teeth. Which statement is best?",
+      "choices": [
+        "Their dentition stages must be identical",
+        "Age alone establishes every erupted tooth",
+        "Record which primary and permanent teeth are actually present"
+      ],
+      "answer": 2,
+      "explanation": "Chronological age does not guarantee identical eruption.",
+      "rationales": [
+        "Observed differences matter.",
+        "Age is approximate context, not a complete record.",
+        "This uses the actual dentition."
+      ],
+      "hint": "Observe before assigning the stage.",
+      "source_ids": [
+        "ortho-glossary",
+        "teeth"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "retention-transfer",
+      "title": "Understand why retention follows movement · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which statement explains retention after active orthodontic treatment?",
+      "choices": [
+        "Alignment becomes permanently fixed without biological change",
+        "Retainers help maintain achieved positions as teeth can shift",
+        "Retention means active movement never occurred"
+      ],
+      "answer": 1,
+      "explanation": "Retention addresses stability of the achieved result.",
+      "rationales": [
+        "Biological change can continue.",
+        "This describes the purpose.",
+        "Retention commonly follows active treatment."
+      ],
+      "hint": "Recall why retainers exist.",
+      "source_ids": [
+        "retainers"
+      ],
+      "calculation": null
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "release": "all-subject-academic-introductions-v1",
+  "scope": "Academic foundations only; no independent clinical approval or full BDS/UPSC coverage claim",
+  "preflight": {
+    "rows": [
+      {
+        "result": {
+          "checked_at": "2026-11-24T09:56:21.816294+00:00",
+          "clinical_guards": 3,
+          "legacy_clinical_publications": 0,
+          "qa_users_absent": true,
+          "test": "PASS: all 15 chapters and 15 delayed recall packages; exact grading, first-answer correction, retry idempotency, request collision, stale revision, ordering, server-time lock, independent recall scores, bookmarks, owner isolation, anonymous/direct-write denial, immutable keys, withdrawal and retained history; fixtures rolled back"
+        }
+      }
+    ]
+  },
+  "post_install_rollback_qa": {
+    "rows": [
+      {
+        "result": {
+          "checked_at": "2026-11-24T09:57:45.200543+00:00",
+          "clinical_guards": 3,
+          "legacy_clinical_publications": 0,
+          "qa_users_absent": true,
+          "test": "PASS: all 15 chapters and 15 delayed recall packages; exact grading, first-answer correction, retry idempotency, request collision, stale revision, ordering, server-time lock, independent recall scores, bookmarks, owner isolation, anonymous/direct-write denial, immutable keys, withdrawal and retained history; fixtures rolled back"
+        }
+      }
+    ]
+  },
+  "post_install_audit": {
+    "rows": [
+      {
+        "result": {
+          "all_ordinary_public_tables_rls": true,
+          "anonymous_state_execute": false,
+          "authenticated_progress_update": false,
+          "authenticated_registry_select": false,
+          "bookmarks_rls": true,
+          "checked_at": "2026-11-24T09:57:46.131567+00:00",
+          "clinical_guards": 3,
+          "draft_cases": 15,
+          "draft_lessons": 15,
+          "draft_questions": 30,
+          "owned_bookmarks": 0,
+          "owned_progress_records": 0,
+          "progress_rls": true,
+          "registered_chapters": 15,
+          "registered_recalls": 15,
+          "registry_rls": true
+        }
+      }
+    ]
+  },
+  "local": {
+    "unit_tests": 70,
+    "content_tests": 53,
+    "release_tests": 19,
+    "typecheck": "PASS",
+    "browser_fixtures": "Await exact GitHub CI run; local Chromium unavailable"
+  },
+  "deployment": "Pending exact merged SHA; final acceptance is recorded on PR and Issue #27"
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -16,18 +16,32 @@ import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { STARTER_UNITS, starterCorrect, type StarterUnit } from "@/lib/starter-quest";
 import type { StudyCourse } from "@/lib/study-course";
-import { studyIssueUrl } from "@/lib/study-course";
-import { EMPTY_QUEST_PROGRESS, loadQuestProgress, submitQuestAnswer } from "@/lib/quest-progress";
+import { STUDY_COURSE_BY_ID, STUDY_COURSES, studyIssueUrl } from "@/lib/study-course";
+import {
+  EMPTY_QUEST_PROGRESS,
+  loadQuestProgress,
+  submitQuestAnswer,
+  studyAvailabilityQuery,
+  studyVersionAvailable,
+} from "@/lib/quest-progress";
 type LearningUnit = StarterUnit & {
   phase?: "learn" | "apply";
   rationales?: readonly string[];
   source_ids?: string[];
 };
 
-export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
+export function GuidedQuest({
+  course,
+  reviewUnit,
+}: {
+  course?: StudyCourse | undefined;
+  reviewUnit?: string | undefined;
+}) {
   const { user } = useAuth();
   const qc = useQueryClient();
   const userId = user?.id;
+  const availability = useQuery({ ...studyAvailabilityQuery(), enabled: !!course });
+  const available = !course || studyVersionAvailable(availability.data, course);
   const units: readonly LearningUnit[] = course
     ? course.units.map((unit) => {
         const source = course.sources.find((source) => source.id === unit.source_ids[0])!;
@@ -35,14 +49,18 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
       })
     : STARTER_UNITS;
   const [checkpoint, setCheckpoint] = useState(EMPTY_QUEST_PROGRESS);
-  const [loaded, setLoaded] = useState(!course || !user);
+  const [loaded, setLoaded] = useState(
+    !course || ((course.kind !== "retention" || !!user) && (!user || !!reviewUnit)),
+  );
   const [busy, setBusy] = useState(false);
   const [failure, setFailure] = useState<string | null>(null);
-  const [review, setReview] = useState(false);
+  const [review, setReview] = useState(!!reviewUnit);
   const [firstAnswers, setFirstAnswers] = useState<Record<number, number>>({});
   const pending = useRef<{ step: number; choice: number; id: string } | null>(null);
   const [receiptCorrect, setReceiptCorrect] = useState<boolean | null>(null);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(
+    Math.max(0, course?.units.findIndex((unit) => unit.id === reviewUnit) ?? 0),
+  );
   const [choice, setChoice] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
   const [hint, setHint] = useState(false);
@@ -51,7 +69,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
   const unit = units[index] ?? units[0]!;
   const correct = receiptCorrect ?? starterCorrect(unit, choice);
   useEffect(() => {
-    if (!course || !userId) return;
+    if (!course || !userId || (reviewUnit && course.kind !== "retention")) return;
     let active = true;
     void loadQuestProgress(course)
       .then((state) => {
@@ -68,7 +86,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
     return () => {
       active = false;
     };
-  }, [course, userId, units.length]);
+  }, [course, userId, units.length, reviewUnit]);
   async function checkAnswer() {
     if (choice === null || busy || checked || !loaded) return;
     setFailure(null);
@@ -92,6 +110,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
       setReceiptCorrect(state.last_result.correct);
       setChecked(true);
       pending.current = null;
+      await qc.invalidateQueries({ queryKey: ["source-study", user.id] });
       if (state.completed_at) await qc.invalidateQueries({ queryKey: ["activity", user.id] });
     } catch (error) {
       setFailure(
@@ -123,7 +142,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
     }
   }
   const firstScore =
-    course && user
+    course && user && !review
       ? checkpoint.first_correct
       : Object.entries(firstAnswers).filter(([i, value]) => units[Number(i)]?.answer === value)
           .length;
@@ -171,7 +190,9 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
       <div className="mx-auto max-w-4xl px-4 py-8">
         <section className="mb-6 rounded-[1.75rem] bg-hero p-6 text-white sm:p-8">
           <p className="text-xs font-bold uppercase tracking-wider text-[#9df3e1]">
-            {course ? `${course.subject} · Chapter 1` : "Day 1 · Start learning today"}
+            {course
+              ? `${course.subject} · ${course.kind === "retention" ? "Next-day recall" : "Chapter 1"}`
+              : "Day 1 · Start learning today"}
           </p>
           <h1 className="mt-2 text-3xl font-black sm:text-4xl">
             {course?.title ?? "Your first DentPrep quest"}
@@ -182,7 +203,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
           </p>
           <div className="mt-4 text-xs font-semibold text-white/80">
             {course
-              ? "4 lessons + 4 fresh challenges · Approximately 15 minutes"
+              ? `${course.units.filter((unit) => unit.phase === "learn").length} lessons · ${course.units.length} challenges · Approximately ${course.estimated_minutes} minutes`
               : "Four steps · Approximately 15 minutes · Nonclinical learning"}
           </div>
         </section>
@@ -230,7 +251,47 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
           </div>
         )}
 
-        {finished ? (
+        {!available || (course && !loaded) ? (
+          <section className="surface p-6" aria-label="Chapter access status">
+            <h2 className="text-xl font-bold">
+              {availability.isPending
+                ? "Checking content availability…"
+                : !available
+                  ? "Chapter unavailable"
+                  : !user
+                    ? "Sign in for next-day recall"
+                    : failure
+                      ? "Could not open this checkpoint"
+                      : "Loading your checkpoint…"}
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              {availability.isError
+                ? "Could not verify the current content version. Retry when connected."
+                : !available
+                  ? "This version may have changed or been withdrawn. Return to the library for current chapters."
+                  : !user
+                    ? "Recall uses your saved chapter completion and a server-checked 24-hour delay."
+                    : (failure ?? "Please wait while the saved study checkpoint is checked.")}
+            </p>
+            {!user && course?.kind === "retention" && (
+              <Button asChild className="mt-4">
+                <Link to="/login">Sign in</Link>
+              </Button>
+            )}
+            {availability.isError && (
+              <Button
+                variant="outline"
+                className="mt-4"
+                onClick={() => void availability.refetch()}
+              >
+                Retry availability check
+              </Button>
+            )}
+            <Button asChild variant="outline" className="mt-4">
+              <Link to="/library">Back to study library</Link>
+            </Button>
+          </section>
+        ) : finished ? (
           <section aria-label="Quest finished" className="surface p-6 sm:p-8">
             <CheckCircle2 className="h-12 w-12 text-teal" aria-hidden="true" />
             <h2 className="mt-3 text-2xl font-extrabold">
@@ -238,12 +299,18 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               {course
-                ? "You practised comparable dental surveys, denominators, prevalence and incidence with fresh examples."
+                ? course.kind === "retention"
+                  ? "You completed two fresh retrieval questions. Compare this result with your chapter result; two questions cannot establish mastery."
+                  : `You practised ${course.units
+                      .filter((unit) => unit.phase === "learn")
+                      .map((unit) => unit.title.toLowerCase())
+                      .join(", ")} with fresh examples.`
                 : "You practised recall, spaced revision, source verification and official-information awareness."}
             </p>
             {course && (
               <p className="mt-4 text-lg font-extrabold">
-                First-attempt result: {firstScore}/{units.length}
+                {review ? "Review result this session" : "First-attempt result"}: {firstScore}/
+                {review ? Object.keys(firstAnswers).length : units.length}
               </p>
             )}
             {course && (
@@ -252,7 +319,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
                 official UPSC score or clinical competence assessment.
               </p>
             )}
-            {course && user && (
+            {course && user && !review && (
               <p role="status" className="mt-4 text-sm font-bold text-teal">
                 Your checkpoint and first-attempt result are saved in your account.
               </p>
@@ -284,6 +351,38 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
                 plan.
               </p>
             )}
+            {course && course.kind === "chapter" && (
+              <Notice title="Return tomorrow" className="mt-5">
+                Two different recall questions unlock 24 hours after your saved completion. Find the
+                due date in your study report. Guest completion does not unlock an account
+                checkpoint.
+              </Notice>
+            )}
+            {course &&
+              course.kind === "chapter" &&
+              (() => {
+                const next =
+                  STUDY_COURSES[
+                    (STUDY_COURSES.findIndex((item) => item.id === course.id) + 1) %
+                      STUDY_COURSES.length
+                  ];
+                return next ? (
+                  <Button asChild className="mt-5">
+                    <Link to="/start" search={{ course: next.id }}>
+                      Next subject: {next.subject}
+                    </Link>
+                  </Button>
+                ) : null;
+              })()}
+            {course?.kind === "retention" &&
+              course.required_course_id &&
+              STUDY_COURSE_BY_ID.has(course.required_course_id) && (
+                <Button asChild className="mt-5">
+                  <Link to="/start" search={{ course: course.required_course_id }}>
+                    Review source chapter
+                  </Link>
+                </Button>
+              )}
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               <Button asChild>
                 <Link to="/library">Explore BDS subjects</Link>
@@ -345,7 +444,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
                   : "Learning skills · Nonclinical"}
               </div>
               <h2 className="text-2xl font-extrabold">{unit.title}</h2>
-              <p className="mt-4 leading-relaxed">{unit.lesson}</p>
+              <p className="mt-4 whitespace-pre-line leading-relaxed">{unit.lesson}</p>
               <a
                 href={unit.href}
                 target="_blank"
@@ -362,8 +461,9 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
                     .filter((source) => unit.source_ids?.includes(source.id))
                     .map((source) => (
                       <p key={source.id} className="mt-2">
-                        {source.author_or_organization} · {source.edition} ({source.year}) ·{" "}
-                        {source.section} · {source.content_version} · Checked {source.checked_on}
+                        {source.author_or_organization} · {source.edition} (
+                        {source.year ?? "year not stated"}) · {source.section} ·{" "}
+                        {source.content_version} · Checked {source.checked_on}
                       </p>
                     ))}
                 </details>
@@ -429,6 +529,20 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
                         : "Not quite — try another answer"}
                     </p>
                     <p className="mt-2 text-sm">{unit.explanation}</p>
+                    {unit.rationales && (
+                      <details className="mt-3 text-sm">
+                        <summary className="cursor-pointer font-bold">
+                          Why the other options differ
+                        </summary>
+                        <ul className="mt-2 space-y-2">
+                          {unit.rationales.map((reason, i) => (
+                            <li key={i}>
+                              <strong>{String.fromCharCode(65 + i)}.</strong> {reason}
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    )}
                     {choice !== null && unit.rationales && (
                       <p className="mt-2 text-sm">
                         <strong>Your choice:</strong> {unit.rationales[choice]}
@@ -478,7 +592,7 @@ export function GuidedQuest({ course }: { course?: StudyCourse | undefined }) {
         )}
         <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
           {course
-            ? "Every checked answer saves to your account when signed in. Reload to resume the next unfinished challenge. First attempts stay separate from corrected retries. Guest progress stays in this session. This chapter teaches population measurement, not patient diagnosis or treatment."
+            ? "Every checked answer saves to your account when signed in. Reload to resume the next unfinished challenge. First attempts stay separate from corrected retries. Guest progress stays in this session. This source-checked academic chapter is exam practice; practical treatment decisions require clinical training."
             : "This warm-up records today's activity when signed in; its individual answers are session-only."}
         </p>
       </div>

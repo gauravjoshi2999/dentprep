@@ -1,3 +1,4 @@
+import { SourceStudyShelf } from "@/components/app/source-study-shelf";
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -81,7 +82,7 @@ function Practice() {
       <AppHero
         eyebrow="MCQ practice"
         title="Practice with purpose"
-        description="Choose a subject and build accuracy with reviewed, original DentPrep questions."
+        description="Practise original source-linked questions in all 15 subjects. Learn the reason behind each answer."
       />
       <div className="mb-6 grid grid-cols-2 gap-3">
         <div className="surface bg-teal-soft/50 p-4">
@@ -115,21 +116,8 @@ function Practice() {
           </div>
         </section>
       )}
-      {!questions.data?.length ? (
-        <EmptyState title="Start with chapter practice">
-          Learn the concept, try an original question and check the explanation in the Public Health
-          chapter.
-          <div className="mt-4">
-            <Link
-              to="/start"
-              search={{ course: "ph-frequency" }}
-              className="font-semibold text-teal"
-            >
-              Practise Public Health foundations →
-            </Link>
-          </div>
-        </EmptyState>
-      ) : (
+      <SourceStudyShelf mode="practice" />
+      {!questions.data?.length ? null : (
         <form
           onSubmit={(e) => {
             e.preventDefault();

@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { Brand, ToothMark } from "@/components/app/brand";
 import { ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
+import { STUDY_COURSES } from "@/lib/study-course";
+import { studyAvailabilityQuery, studyVersionAvailable } from "@/lib/quest-progress";
 import { noticesQuery, subjectsQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/")({
@@ -40,9 +42,14 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const subjects = useQuery(subjectsQuery());
   const notices = useQuery(noticesQuery());
+  const studyAvailability = useQuery(studyAvailabilityQuery());
+  const activeChapters = STUDY_COURSES.filter((course) =>
+    studyVersionAvailable(studyAvailability.data, course),
+  );
   const selected = subjects.data?.find((item) => item.slug === selectedSlug);
-  const publishedLessonCount =
-    subjects.data?.reduce((sum, item) => sum + item.lessons.length, 0) ?? 0;
+  const selectedChapter = selected
+    ? activeChapters.find((course) => course.subject_slug === selected.slug)
+    : undefined;
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -121,7 +128,12 @@ function Home() {
               clinical reasoning and professional interview readiness.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/start" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#9df3e1] px-5 py-3 font-bold text-[#092C41] shadow-lg hover:bg-white">Start Day 1 Quest <ArrowRight className="h-4 w-4" /></Link>
+              <Link
+                to="/start"
+                className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#9df3e1] px-5 py-3 font-bold text-[#092C41] shadow-lg hover:bg-white"
+              >
+                Start Day 1 Quest <ArrowRight className="h-4 w-4" />
+              </Link>
               <a
                 href="#subjects"
                 className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 py-3 font-bold text-[#17314b] shadow-lg hover:bg-[#e5faf5]"
@@ -167,13 +179,14 @@ function Home() {
             </p>
             <h2 className="text-3xl font-extrabold">Explore the BDS subjects</h2>
             <p className="mt-2 max-w-2xl text-muted-foreground">
-              Choose a subject to explore its scope. Detailed lessons are published only after
-              educational review.
+              Choose a subject to start its source-linked introductory chapter, read the notes and
+              practise original questions with explanations.
             </p>
           </div>
           {subjects.data && (
             <span className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold">
-              {subjects.data.length} subjects · {publishedLessonCount} published lessons
+              {activeChapters.length} chapters available · {activeChapters.length * 4} teaching
+              sections
             </span>
           )}
         </div>
@@ -204,9 +217,11 @@ function Home() {
                     {item.description}
                   </p>
                   <p className="mt-4 text-xs font-semibold text-teal">
-                    {item.lessons.length
-                      ? `${item.lessons.length} published lessons`
-                      : "Curriculum outline"}
+                    {activeChapters.some((course) => course.subject_slug === item.slug)
+                      ? "Chapter 1 ready · notes + questions"
+                      : item.lessons.length
+                        ? `${item.lessons.length} additional lessons`
+                        : "Explore subject"}
                   </p>
                 </button>
               ))}
@@ -235,6 +250,15 @@ function Home() {
                   </button>
                 </div>
                 <p className="mt-3 max-w-3xl text-muted-foreground">{selected.description}</p>
+                {selectedChapter && (
+                  <Link
+                    to="/start"
+                    search={{ course: selectedChapter.id }}
+                    className="mt-5 inline-flex rounded-xl bg-teal px-4 py-3 text-sm font-bold text-teal-foreground"
+                  >
+                    Start {selectedChapter.title} →
+                  </Link>
+                )}
                 {selected.lessons.length ? (
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                     {selected.lessons.map((lesson) => (
@@ -247,12 +271,11 @@ function Home() {
                       </li>
                     ))}
                   </ul>
-                ) : (
-                  <div className="mt-5 rounded-xl bg-muted p-5 text-sm text-muted-foreground">
-                    Detailed lessons are undergoing clinical content review. Draft material is not
-                    available publicly.
-                  </div>
-                )}
+                ) : !selectedChapter ? (
+                  <Link to="/library" className="mt-5 inline-block text-sm font-bold text-teal">
+                    Open available subject chapters →
+                  </Link>
+                ) : null}
               </div>
             )}
           </>

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "id": "oms-assessment-recall",
+  "version": 1,
+  "subject_slug": "oral-maxillofacial-surgery",
+  "subject": "Oral & Maxillofacial Surgery",
+  "title": "Assessment before surgical reasoning · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "oms-assessment",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "ida-assessment",
+      "title": "Standards for Patient Management",
+      "author_or_organization": "Indian Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Standards 9–10: assessment, medical history, planning and informed consent",
+      "url": "https://www.ida.org.in/Accreditation/Details/ForPatientManagement",
+      "content_version": "ida-assessment:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "sdcep-risk",
+      "title": "Assessing Bleeding Risk: Clinical Practice Advice",
+      "author_or_organization": "Scottish Dental Clinical Effectiveness Programme",
+      "edition": "Management of Dental Patients Taking Anticoagulants or Antiplatelet Drugs, 2nd edition",
+      "year": 2022,
+      "section": "Patient-related and procedure-related bleeding risk; no medication instructions",
+      "url": "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/assessing-bleeding-risk/clinical-practice-advice/",
+      "content_version": "sdcep-risk:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "hemostasis",
+      "title": "Physiology, Hemostasis",
+      "author_or_organization": "Andrew LaPelusa; Heeransh D. Dave; StatPearls Publishing",
+      "edition": "Last updated 1 May 2023",
+      "year": 2023,
+      "section": "Introduction; platelet plug and coagulation",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK545263/",
+      "content_version": "hemostasis:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which missing detail prevents a paper comparison from addressing procedure-related bleeding risk?",
+      "choices": [
+        "The planned procedure",
+        "The date the drug was first marketed",
+        "The spelling of the drug brand"
+      ],
+      "answer": 0,
+      "explanation": "The planned procedure is needed for the procedure dimension.",
+      "rationales": [
+        "This supplies the missing dimension.",
+        "Marketing date is not the planned procedure.",
+        "Brand spelling does not describe the intervention."
+      ],
+      "hint": "Recall the two risk dimensions.",
+      "source_ids": [
+        "sdcep-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which statement correctly distinguishes two components of haemostasis?",
+      "choices": [
+        "Fibrin is dental enamel",
+        "Platelets make an initial plug; fibrin reinforces it",
+        "Platelets and fibrin are the same substance"
+      ],
+      "answer": 1,
+      "explanation": "Platelets and fibrin have related but distinct roles.",
+      "rationales": [
+        "This confuses unrelated structures.",
+        "The roles are distinguished correctly.",
+        "They are not identical substances."
+      ],
+      "hint": "Retrieve the clot mechanism.",
+      "source_ids": [
+        "hemostasis"
+      ],
+      "calculation": null
+    }
+  ]
+}

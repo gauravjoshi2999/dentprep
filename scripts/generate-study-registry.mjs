@@ -1,0 +1,9 @@
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+const entries = ['study','recall'].flatMap(folder => readdirSync(`content/${folder}`).filter(n => n.endsWith('.json')).sort().map(name => {
+ const c = JSON.parse(readFileSync(`content/${folder}/${name}`, 'utf8'));
+ return {course_id:c.id,content_version:c.version,subject_slug:c.subject_slug,content_sha256:createHash('sha256').update(JSON.stringify(c)).digest('hex'),unit_ids:c.units.map(u=>u.id),answer_key:c.units.map(u=>u.answer),required_course_id:c.required_course_id??null,delay_hours:c.delay_hours??0};
+}));
+writeFileSync('content/study-manifest.json',JSON.stringify(entries.map(({answer_key,unit_ids,...entry})=>entry),null,2)+'\n');
+writeFileSync('ops/seed-study-catalog.sql',`-- Generated from immutable JSON via node scripts/generate-study-registry.mjs.\n-- No learner records, clinical approval flags or private data.\nBEGIN;\nCREATE TEMP TABLE incoming_study_catalog ON COMMIT DROP AS\nSELECT * FROM jsonb_to_recordset($catalog$${JSON.stringify(entries)}$catalog$::jsonb) AS x(course_id text,content_version integer,subject_slug text,content_sha256 text,unit_ids text[],answer_key integer[],required_course_id text,delay_hours integer);\nINSERT INTO public.exam_study_catalog(course_id,content_version,subject_slug,content_sha256,unit_ids,answer_key,required_course_id,delay_hours)\nSELECT * FROM incoming_study_catalog ON CONFLICT(course_id,content_version) DO NOTHING;\nDO $$ BEGIN\n IF EXISTS(SELECT 1 FROM incoming_study_catalog i JOIN public.exam_study_catalog c USING(course_id,content_version) WHERE (to_jsonb(i)) IS DISTINCT FROM (to_jsonb(c)-'active')) THEN RAISE EXCEPTION 'Registry content changed without a new version';END IF;\nEND;$$;\nCOMMIT;\n`);
+console.log(`Registered ${entries.length} immutable chapter/recall packages`);

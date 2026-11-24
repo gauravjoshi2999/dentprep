@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "id": "omr-observation",
+  "version": 1,
+  "subject_slug": "oral-medicine-radiology",
+  "subject": "Oral Medicine & Radiology",
+  "title": "Describe first, interpret second",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Learn lesion vocabulary, useful records, imaging principles and the role of tissue evidence.",
+  "sources": [
+    {
+      "id": "morphology",
+      "title": "Description of Skin Lesions",
+      "author_or_organization": "Julia Benedetti; MSD Manual Professional",
+      "edition": "Reviewed August 2026; modified November 2026",
+      "year": 2026,
+      "section": "Primary lesion morphology, including labial macule; qualitative terminology only",
+      "url": "https://www.msdmanuals.com/professional/dermatologic-disorders/approach-to-the-dermatologic-patient/description-of-skin-lesions",
+      "content_version": "morphology:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "ida-assessment",
+      "title": "Standards for Patient Management",
+      "author_or_organization": "Indian Dental Association",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Standards 9–10: assessment, medical history, planning and informed consent",
+      "url": "https://www.ida.org.in/Accreditation/Details/ForPatientManagement",
+      "content_version": "ida-assessment:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "fda-cbct",
+      "title": "Dental Cone-beam Computed Tomography",
+      "author_or_organization": "US Food and Drug Administration",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Description; Benefits/Risks; information for patients and professionals",
+      "url": "https://www.fda.gov/radiation-emitting-products/medical-x-ray-imaging/dental-cone-beam-computed-tomography",
+      "content_version": "fda-cbct:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nci-biopsy",
+      "title": "NCI Dictionary of Cancer Terms: biopsy",
+      "author_or_organization": "US National Cancer Institute",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Definition; tissue examination",
+      "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/biopsy",
+      "content_version": "nci-biopsy:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "morphology",
+      "title": "Name what you can observe",
+      "phase": "learn",
+      "lesson": "A macule is a flat colour change. A papule is a raised solid lesion; a plaque is a broader raised area. An erosion involves superficial epithelial loss, whereas an ulcer extends deeper. These words describe appearance rather than identify a cause. Record the site and distribution before proposing a diagnosis. Numeric size cut-offs vary between terminology systems; this chapter uses qualitative distinctions.",
+      "question": "Which term describes a flat colour change?",
+      "choices": [
+        "Papule",
+        "Macule",
+        "Ulcer"
+      ],
+      "answer": 1,
+      "explanation": "A macule changes colour without elevation.",
+      "rationales": [
+        "A papule is raised.",
+        "Flat colour change fits a macule.",
+        "An ulcer involves tissue loss."
+      ],
+      "hint": "Separate elevation from colour.",
+      "source_ids": [
+        "morphology"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "record",
+      "title": "Build a useful examination record",
+      "phase": "learn",
+      "lesson": "Separate the history from examination findings. History records symptoms, duration, changes, medical conditions and medicines. Examination records observable features such as site and appearance. A diagnostic opinion is an interpretation of this evidence. A record should make it possible to follow the reasoning and identify information still missing; a label alone is not a complete assessment.",
+      "question": "Which entry is an observation rather than a diagnosis?",
+      "choices": [
+        "A red area on the left buccal mucosa",
+        "Definitely a malignant disease",
+        "A confirmed fungal cause"
+      ],
+      "answer": 0,
+      "explanation": "The first entry describes a finding without assigning a cause.",
+      "rationales": [
+        "It records appearance and site.",
+        "This is a diagnostic claim.",
+        "This assigns an aetiology."
+      ],
+      "hint": "Choose the descriptive entry.",
+      "source_ids": [
+        "ida-assessment"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "imaging",
+      "title": "Understand what an image adds",
+      "phase": "learn",
+      "lesson": "Dental radiography uses ionizing radiation. CBCT reconstructs three-dimensional information; conventional dental radiographs are two-dimensional projections. More dimensions do not automatically make an examination necessary. An imaging question, relevant alternatives and radiation exposure must be considered. An image contributes evidence alongside history and examination; this lesson does not prescribe imaging for an individual.",
+      "question": "What distinguishes CBCT data from a conventional dental projection?",
+      "choices": [
+        "It uses no radiation",
+        "It proves every diagnosis",
+        "It provides three-dimensional information"
+      ],
+      "answer": 2,
+      "explanation": "CBCT provides 3-D information but still involves X-rays.",
+      "rationales": [
+        "CBCT uses ionizing radiation.",
+        "No image proves every diagnosis.",
+        "This is the relevant dimensional distinction."
+      ],
+      "hint": "Distinguish geometry from certainty.",
+      "source_ids": [
+        "fda-cbct"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "tissue-evidence",
+      "title": "Know the purpose of a biopsy",
+      "phase": "learn",
+      "lesson": "A biopsy obtains cells or tissue for examination, usually by a pathologist. Histological evidence can help establish the nature of a lesion. A photograph or surface description is not the same as microscopic examination. The educational distinction is between describing an appearance and investigating tissue; no sampling technique or patient decision is taught here.",
+      "question": "What is the defining purpose of a biopsy?",
+      "choices": [
+        "Obtain cells or tissue for examination",
+        "Measure only an external photograph",
+        "Assign a cause from colour alone"
+      ],
+      "answer": 0,
+      "explanation": "Biopsy supplies material for cellular or tissue examination.",
+      "rationales": [
+        "This states its purpose.",
+        "A photograph supplies different evidence.",
+        "Colour alone is not tissue analysis."
+      ],
+      "hint": "Which option obtains material?",
+      "source_ids": [
+        "nci-biopsy"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "morphology-transfer",
+      "title": "Name what you can observe · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A fictional atlas shows a solid elevation with an intact surface. Which description is best?",
+      "choices": [
+        "Erosion",
+        "Macule",
+        "Papule"
+      ],
+      "answer": 2,
+      "explanation": "A papule is a solid raised lesion; an erosion loses epithelium and a macule is flat.",
+      "rationales": [
+        "Erosion describes surface loss, not elevation.",
+        "A macule is flat.",
+        "Solid elevation matches a papule."
+      ],
+      "hint": "Ask whether tissue is raised or missing.",
+      "source_ids": [
+        "morphology"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "record-transfer",
+      "title": "Build a useful examination record · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "An examination note records “likely inflammatory disease” but no site or appearance. What is the most useful addition?",
+      "choices": [
+        "Repeat the diagnostic label",
+        "Record the lesion site and morphology",
+        "Treat the tentative cause as an observation"
+      ],
+      "answer": 1,
+      "explanation": "An interpretation should be supported by recorded observations.",
+      "rationales": [
+        "Repetition adds no finding.",
+        "Site and morphology supply missing observations.",
+        "A tentative cause remains an interpretation."
+      ],
+      "hint": "Look for traceable evidence.",
+      "source_ids": [
+        "ida-assessment"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "imaging-transfer",
+      "title": "Understand what an image adds · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A viva answer proposes CBCT solely because it is three-dimensional. Which response best addresses the reasoning?",
+      "choices": [
+        "Define the imaging question and weigh the added information and exposure",
+        "Assume every 3-D image is necessary",
+        "Assume CBCT uses no ionizing radiation"
+      ],
+      "answer": 0,
+      "explanation": "Additional information must justify the examination; dimensionality alone is insufficient.",
+      "rationales": [
+        "This addresses justification.",
+        "More dimensions do not establish necessity.",
+        "CBCT uses X-rays."
+      ],
+      "hint": "Does extra detail automatically justify exposure?",
+      "source_ids": [
+        "fda-cbct"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "tissue-evidence-transfer",
+      "title": "Know the purpose of a biopsy · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Which additional information can a biopsy report provide beyond a surface photograph?",
+      "choices": [
+        "The patient’s symptom duration without a history",
+        "Microscopic tissue findings",
+        "A complete imaging-based lesion map by itself"
+      ],
+      "answer": 1,
+      "explanation": "Biopsy material permits cellular or tissue examination.",
+      "rationales": [
+        "History is still needed for symptom duration.",
+        "This is the added scale of evidence.",
+        "Biopsy is not an imaging examination."
+      ],
+      "hint": "Compare observation scales.",
+      "source_ids": [
+        "nci-biopsy"
+      ],
+      "calculation": null
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "id": "health-administration",
+  "version": 1,
+  "subject_slug": "govt-healthcare-administration",
+  "subject": "Government Healthcare & Administration",
+  "title": "Connect public programmes with accountable care",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 20,
+  "checked_on": "2026-11-24",
+  "summary": "Understand primary health care, NOHP, service quality and official recruitment verification.",
+  "sources": [
+    {
+      "id": "phc",
+      "title": "Primary health care",
+      "author_or_organization": "World Health Organization",
+      "edition": "Fact sheet, 5 December 2025",
+      "year": 2025,
+      "section": "Definition and three interrelated components",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/primary-health-care",
+      "content_version": "phc:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "nohp",
+      "title": "National Oral Health Division",
+      "author_or_organization": "Directorate General of Health Services, Ministry of Health and Family Welfare, India",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "National Oral Health Programme: purpose, launch and strengthening public facilities",
+      "url": "https://dghs.mohfw.gov.in/national-oral-health-division.php",
+      "content_version": "nohp:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "quality",
+      "title": "Quality health services",
+      "author_or_organization": "World Health Organization",
+      "edition": "Fact sheet, 19 May 2025",
+      "year": 2025,
+      "section": "Seven dimensions of quality; monitoring and evaluation",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/quality-health-services",
+      "content_version": "quality:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "upsc",
+      "title": "UPSC Official Portal",
+      "author_or_organization": "Union Public Service Commission, Government of India",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Recruitment advertisements, recruitment tests and corrigenda; verify the exact recruitment case",
+      "url": "https://www.upsc.gov.in/",
+      "content_version": "upsc:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "phc",
+      "title": "Primary health care is broader than one clinic",
+      "phase": "learn",
+      "lesson": "WHO describes primary health care as a whole-of-society approach. It combines integrated services, action on wider determinants and empowered people and communities. It spans promotion, prevention and care across the life course. Primary care services are a central part, but the broader approach also includes public health and cross-sector action.",
+      "question": "Which best describes primary health care in WHO’s framework?",
+      "choices": [
+        "Only one hospital building",
+        "A whole-of-society approach including services and wider determinants",
+        "Only a private billing system"
+      ],
+      "answer": 1,
+      "explanation": "The framework includes services, determinants and community participation.",
+      "rationales": [
+        "A building alone is too narrow.",
+        "This captures the broader approach.",
+        "Billing is not the framework."
+      ],
+      "hint": "Recall the three related components.",
+      "source_ids": [
+        "phc"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "nohp",
+      "title": "Know what NOHP aims to strengthen",
+      "phase": "learn",
+      "lesson": "India’s National Oral Health Programme was launched during 2014–15. DGHS describes strengthening public health facilities for accessible, affordable and quality oral health care. A programme objective is not proof that every local facility already meets it. Distinguish intended service improvement from verified outcomes when interpreting a government programme description.",
+      "question": "Which aim matches the official NOHP description?",
+      "choices": [
+        "Strengthen accessible, affordable, quality oral health care",
+        "Guarantee every candidate a government job",
+        "Publish unofficial exam weightage"
+      ],
+      "answer": 0,
+      "explanation": "NOHP concerns public oral health service delivery.",
+      "rationales": [
+        "This matches the stated programme purpose.",
+        "Recruitment guarantees are not its purpose.",
+        "It does not establish exam weightage."
+      ],
+      "hint": "Programme purpose versus exam claims.",
+      "source_ids": [
+        "nohp"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "quality",
+      "title": "Quality has several dimensions",
+      "phase": "learn",
+      "lesson": "WHO identifies effective, safe, people-centred, timely, equitable, integrated and efficient services. Speed alone is therefore not a complete measure of quality. Measures should reflect the service context and be supported by accurate data. A quality-improvement claim needs observed evidence rather than only a statement of intent.",
+      "question": "Which set consists of WHO service-quality dimensions?",
+      "choices": [
+        "Only speed and advertising",
+        "Only activity counts and building size",
+        "Safe, effective and people-centred"
+      ],
+      "answer": 2,
+      "explanation": "These three are among WHO’s quality dimensions.",
+      "rationales": [
+        "Advertising is not one of these care dimensions.",
+        "Inputs and activity alone are not the named dimensions.",
+        "This matches the framework."
+      ],
+      "hint": "Recall care outcomes and people.",
+      "source_ids": [
+        "quality"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "notices",
+      "title": "Verify the exact recruitment case",
+      "phase": "learn",
+      "lesson": "UPSC recruitment requirements belong to the exact advertisement, post and any later corrigenda or test notices. A generic BDS topic map is not an official UPSC syllabus or weightage table. Check the official portal and recruitment case before treating a date, eligibility rule or assessment scheme as confirmed. This chapter does not claim a current Dental Surgeon vacancy or exam date.",
+      "question": "Where should a claimed change to recruitment rules be checked?",
+      "choices": [
+        "A forwarded screenshot alone",
+        "The relevant official UPSC notice and corrigenda",
+        "An invented app countdown"
+      ],
+      "answer": 1,
+      "explanation": "The issuing authority’s exact notice is the traceable source.",
+      "rationales": [
+        "A screenshot may lack context or updates.",
+        "This is the appropriate official source.",
+        "An app cannot invent an official date."
+      ],
+      "hint": "Follow the issuing authority and exact case.",
+      "source_ids": [
+        "upsc"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "phc-transfer",
+      "title": "Primary health care is broader than one clinic · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A programme combines integrated preventive/care services, community participation and action on wider determinants. Which framework fits?",
+      "choices": [
+        "Primary health care",
+        "Only an isolated specialist procedure",
+        "Only hospital construction without services or participation"
+      ],
+      "answer": 0,
+      "explanation": "These components match WHO’s broader PHC approach.",
+      "rationales": [
+        "This integrates the stated components.",
+        "The description is broader than one procedure.",
+        "Buildings alone omit the other components."
+      ],
+      "hint": "Services plus wider social action.",
+      "source_ids": [
+        "phc"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "nohp-transfer",
+      "title": "Know what NOHP aims to strengthen · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "An official programme states an accessibility objective. Which interpretation is defensible?",
+      "choices": [
+        "The objective alone proves every local service meets it",
+        "The objective guides improvement; achievement needs outcome evidence",
+        "A stated objective removes the need for monitoring"
+      ],
+      "answer": 1,
+      "explanation": "Intended delivery and measured achievement are distinct.",
+      "rationales": [
+        "Universal achievement is not proven by intent.",
+        "This keeps objective and outcome separate.",
+        "Monitoring remains relevant."
+      ],
+      "hint": "Intention versus measured delivery.",
+      "source_ids": [
+        "nohp"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "quality-transfer",
+      "title": "Quality has several dimensions · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "Waiting time falls, but no data are provided on safety, effectiveness or equity. What can the report support?",
+      "choices": [
+        "Improvement in one measured quality dimension",
+        "Proof that every quality dimension improved",
+        "Proof that harm became impossible"
+      ],
+      "answer": 0,
+      "explanation": "Timeliness does not by itself establish every dimension of quality.",
+      "rationales": [
+        "This matches the available evidence.",
+        "Other dimensions need evidence.",
+        "Reduced waiting does not prove absence of harm."
+      ],
+      "hint": "One metric versus a full framework.",
+      "source_ids": [
+        "quality"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "notices-transfer",
+      "title": "Verify the exact recruitment case · apply",
+      "phase": "apply",
+      "lesson": "Close the notes. Apply the concept to this new example, then compare your reasoning with the explanation.",
+      "question": "A preparation app lists BDS topics. Can that alone establish official UPSC topic weightage?",
+      "choices": [
+        "No; case-specific official assessment information is needed",
+        "Yes; any complete-looking topic list is official",
+        "Yes; previous practice scores determine official weightage"
+      ],
+      "answer": 0,
+      "explanation": "Preparation coverage is different from an issued recruitment scheme.",
+      "rationales": [
+        "This follows the source boundary.",
+        "Appearance does not confer official authority.",
+        "Practice results do not set recruitment rules."
+      ],
+      "hint": "Preparation content versus issued rules.",
+      "source_ids": [
+        "upsc"
+      ],
+      "calculation": null
+    }
+  ]
+}

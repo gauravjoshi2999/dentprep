@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "pediatric-foundations-recall",
+  "version": 1,
+  "subject_slug": "pediatric-dentistry",
+  "subject": "Pediatric Dentistry",
+  "title": "Understand the developing dental patient · next-day recall",
+  "scope": "source_checked_academic_study",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "Independent UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "pediatric-foundations",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "teeth",
+      "title": "Anatomy, Head and Neck, Teeth",
+      "author_or_organization": "Alyssa L. Morris; Prasanna Tadi; StatPearls Publishing",
+      "edition": "Last updated 24 July 2023",
+      "year": 2023,
+      "section": "Introduction; structure and dentition",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557543/",
+      "content_version": "teeth:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "pediatric-behaviour",
+      "title": "Behavior Guidance for the Pediatric Dental Patient",
+      "author_or_organization": "American Academy of Pediatric Dentistry",
+      "edition": "Latest revision 2024; Reference Manual 2026–2027, pp. 403–423",
+      "year": 2024,
+      "section": "Abstract; communication, individualized planning and documented factors",
+      "url": "https://www.aapd.org/research/oral-health-policies--recommendations/behavior-guidance-for-the-pediatric-dental-patient/",
+      "content_version": "pediatric-behaviour:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "pediatric-risk",
+      "title": "Caries-risk Assessment and Management for Infants, Children, and Adolescents",
+      "author_or_organization": "American Academy of Pediatric Dentistry",
+      "edition": "Latest revision 2022",
+      "year": 2022,
+      "section": "Risk assessment; biological, protective and clinical factors",
+      "url": "https://www.aapd.org/research/oral-health-policies--recommendations/caries-risk-assessment-and-management-for-infants-children-and-adolescents/",
+      "content_version": "pediatric-risk:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "caries",
+      "title": "Tooth Decay",
+      "author_or_organization": "National Institute of Dental and Craniofacial Research, NIH",
+      "edition": "Web reference; publication year not stated",
+      "year": null,
+      "section": "Overview; Causes; mineral loss and repair",
+      "url": "https://www.nidcr.nih.gov/health-info/tooth-decay",
+      "content_version": "caries:snapshot-2026-11-24",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Which combination belongs in caries-risk assessment beyond a current cavity count?",
+      "choices": [
+        "Risk and protective factors plus relevant clinical/contextual information",
+        "Only the number of existing cavities in isolation",
+        "A guaranteed prediction from the child’s age alone"
+      ],
+      "answer": 0,
+      "explanation": "Risk assessment combines several domains rather than equating risk with an isolated present count.",
+      "rationales": [
+        "This includes the relevant domains.",
+        "Present count alone is not the whole assessment.",
+        "Age alone does not guarantee an outcome."
+      ],
+      "hint": "Recall the assessment domains.",
+      "source_ids": [
+        "pediatric-risk"
+      ],
+      "calculation": null
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "Why is one communication script insufficient for every child?",
+      "choices": [
+        "Needs and previous experiences are identical",
+        "Needs, pain and prior experiences differ",
+        "No history is relevant to guidance"
+      ],
+      "answer": 1,
+      "explanation": "Individual circumstances inform effective communication and guidance.",
+      "rationales": [
+        "Children’s circumstances differ.",
+        "These are relevant factors.",
+        "History can be relevant."
+      ],
+      "hint": "Recall individualized planning.",
+      "source_ids": [
+        "pediatric-behaviour"
+      ],
+      "calculation": null
+    }
+  ]
+}

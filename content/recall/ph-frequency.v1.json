@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "ph-frequency-recall",
+  "version": 1,
+  "subject_slug": "public-health-dentistry",
+  "subject": "Public Health Dentistry",
+  "title": "Disease frequency: prevalence and incidence · next-day recall",
+  "scope": "nonclinical_exam_foundation",
+  "authoring": "AI-assisted, primary-source checked",
+  "expert_approval_claimed": false,
+  "exam_target": "UPSC Dental Surgeon preparation",
+  "official_questions": false,
+  "complete_subject": false,
+  "estimated_minutes": 5,
+  "checked_on": "2026-11-24",
+  "summary": "Two fresh questions, available at least 24 hours after your saved chapter completion. Try without reopening notes first.",
+  "kind": "retention",
+  "required_course_id": "ph-frequency",
+  "delay_hours": 24,
+  "sources": [
+    {
+      "id": "who-surveys",
+      "title": "Oral health surveys: basic methods",
+      "author_or_organization": "World Health Organization",
+      "edition": "5th edition",
+      "year": 2013,
+      "section": "Publication overview: standardized and comparable oral health surveys",
+      "url": "https://www.who.int/publications/i/item/9789241548649",
+      "content_version": "ISBN 9789241548649; publication 12 November 2013; overview checked 24 November 2026",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-counts",
+      "title": "Describing Epidemiologic Data",
+      "author_or_organization": "Robert E. Fontaine; US Centers for Disease Control and Prevention",
+      "edition": "CDC Field Epidemiology Manual, Chapter 6",
+      "year": 2024,
+      "section": "Counts and Rates (How Much?); Rates, Ratios, and Alternative Denominators",
+      "url": "https://www.cdc.gov/field-epi-manual/php/chapters/describing-epi-data.html",
+      "content_version": "Page dated 8 August 2024",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-prevalence",
+      "title": "Prevalence — Health, United States",
+      "author_or_organization": "CDC / National Center for Health Statistics",
+      "edition": "Sources and Definitions",
+      "year": 2023,
+      "section": "Prevalence definition",
+      "url": "https://www.cdc.gov/nchs/hus/sources-definitions/prevalence.htm",
+      "content_version": "Last reviewed 26 June 2023",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-incidence",
+      "title": "Incidence — Health, United States",
+      "author_or_organization": "CDC / National Center for Health Statistics",
+      "edition": "Sources and Definitions",
+      "year": 2022,
+      "section": "Incidence definition; identifying new cases and population changes",
+      "url": "https://www.cdc.gov/nchs/hus/sources-definitions/incidence.htm",
+      "content_version": "Last reviewed 12 August 2022",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-risk",
+      "title": "Principles of Epidemiology in Public Health Practice",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Third edition; archived teaching text",
+      "year": 2012,
+      "section": "Lesson 3, Section 2: Incidence proportion",
+      "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson3/section2.html",
+      "content_version": "Archived foundational methods text; not current clinical treatment guidance",
+      "checked_on": "2026-11-24"
+    },
+    {
+      "id": "cdc-glossary",
+      "title": "Epidemiology Glossary",
+      "author_or_organization": "US Centers for Disease Control and Prevention",
+      "edition": "Public health surveillance and epidemiology glossary",
+      "year": 2024,
+      "section": "Prevalence rate; Proportion definitions",
+      "url": "https://www.cdc.gov/reproductive-health/glossary/index.html",
+      "content_version": "Page dated 15 May 2024",
+      "checked_on": "2026-11-24"
+    }
+  ],
+  "units": [
+    {
+      "id": "recall-1",
+      "title": "Retention challenge 1",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "A fictional survey finds 18 existing cases among 90 examined people. What is the snapshot prevalence?",
+      "choices": [
+        "10%",
+        "20%",
+        "50%"
+      ],
+      "answer": 1,
+      "explanation": "18 ÷ 90 × 100 = 20%.",
+      "rationales": [
+        "10% would be 9 of 90.",
+        "This uses existing cases over the examined group.",
+        "50% would be 45 of 90."
+      ],
+      "hint": "Use cases divided by examined people.",
+      "source_ids": [
+        "cdc-prevalence"
+      ],
+      "calculation": {
+        "kind": "percentage",
+        "numerator": 18,
+        "denominator": 90,
+        "result": 20
+      }
+    },
+    {
+      "id": "recall-2",
+      "title": "Retention challenge 2",
+      "phase": "apply",
+      "lesson": "Retrieve the idea from memory before reading the feedback. A small recall result is evidence from these questions only.",
+      "question": "During follow-up, 6 new cases arise among 120 initially at-risk people. What is the cumulative incidence for that period?",
+      "choices": [
+        "5%",
+        "20%",
+        "50%"
+      ],
+      "answer": 0,
+      "explanation": "6 ÷ 120 × 100 = 5%; these are synthetic study counts.",
+      "rationales": [
+        "This uses new cases and the initially at-risk denominator.",
+        "20% would be 24 of 120.",
+        "50% would be 60 of 120."
+      ],
+      "hint": "New cases over initially at-risk people.",
+      "source_ids": [
+        "cdc-incidence"
+      ],
+      "calculation": {
+        "kind": "percentage",
+        "numerator": 6,
+        "denominator": 120,
+        "result": 5
+      }
+    }
+  ]
+}

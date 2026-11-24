@@ -13,7 +13,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
   const [checked, setChecked] = useState<Set<number>>(new Set());
   return (
     <section
-      id={`source-reading-${source.id}`}
+      id={isFirstReading ? "primary-reading" : `source-reading-${source.id}`}
       aria-labelledby={`source-reading-title-${source.id}`}
       className="surface mb-7 scroll-mt-6 border-teal/40 p-5 sm:p-7"
     >

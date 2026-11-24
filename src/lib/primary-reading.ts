@@ -18,3 +18,25 @@ export const FIRST_DENTAL_READING = {
     "Keep any clinical interpretation questions for a qualified dental educator.",
   ],
 } as const;
+
+
+/** Original institutional reference pointer: not a DentPrep approved clinical lesson. */
+export const SECOND_DENTAL_READING = {
+  id: "sdcep-anticoagulants-2022",
+  subject: "Oral & Maxillofacial Surgery",
+  subjectSlug: "oral-maxillofacial-surgery",
+  title: "Dental Patients Taking Anticoagulants — professional guide",
+  publisher: "Scottish Dental Clinical Effectiveness Programme (SDCEP)",
+  edition: "Second edition (2022)",
+  checkedOn: "24 November 2026",
+  publisherUrl:
+    "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/introduction/about-this-guidance/",
+  guideUrl:
+    "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/",
+  readingSteps: [
+    "Confirm the publisher, edition, intended professional audience and Scottish/UK context.",
+    "Find the separate source sections for VKAs, DOACs, antiplatelets and combination therapies.",
+    "Note what patient and procedure details are needed before interpreting the guidance, without making a treatment decision.",
+    "List questions to verify with a qualified Indian dental educator before applying any clinical advice.",
+  ],
+} as const;

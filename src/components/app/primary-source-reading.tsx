@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BookOpen, CheckCircle2 } from "lucide-react";
-import { FIRST_DENTAL_READING as firstSource, SECOND_DENTAL_READING, type DentalReading } from "@/lib/primary-reading";
+import {
+  FIRST_DENTAL_READING as firstSource,
+  SECOND_DENTAL_READING,
+  type DentalReading,
+} from "@/lib/primary-reading";
 import { Button } from "@/components/ui/button";
 import { ClinicalReviewRequest } from "./clinical-review-request";
+import { READING_SECTIONS } from "@/lib/reading-sections";
 
 type SourceReading = DentalReading;
 
 export function PrimarySourceReading({ source = firstSource }: { source?: SourceReading }) {
   const isFirstReading = source.id === firstSource.id;
   const isOralSurgeryReading = source.id === SECOND_DENTAL_READING.id;
+  const sections = READING_SECTIONS[source.id] ?? [];
   const [checked, setChecked] = useState<Set<number>>(new Set());
   return (
     <section
@@ -62,8 +68,45 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           Publisher and latest updates
         </a>
       </div>
+      {sections.length > 0 && (
+        <details className="mt-5 rounded-xl border border-border bg-muted/40 p-4">
+          <summary className="cursor-pointer text-sm font-bold text-teal">
+            Read the exact source sections
+          </summary>
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            Choose a section, read the original, then make your own recall note. These links were
+            checked on 24 November 2026; they do not approve a DentPrep lesson or verify your
+            clinical understanding. Check the publisher for later changes.
+          </p>
+          <ol className="mt-3 grid gap-3 sm:grid-cols-2" aria-label="Oral surgery source sections">
+            {sections.map((section, index) => (
+              <li key={section.sourceId} className="min-w-0 rounded-lg bg-card p-3">
+                <a
+                  href={section.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold text-teal underline underline-offset-4"
+                >
+                  {index + 1}. {section.title}
+                </a>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {section.publisher} · {section.edition}
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">{section.locator}</p>
+                <p className="mt-1 text-xs font-semibold">{section.context}</p>
+              </li>
+            ))}
+          </ol>
+        </details>
+      )}
       <fieldset className="mt-6 rounded-xl bg-muted/60 p-4">
-        <legend className="px-1 text-sm font-bold">{isFirstReading ? "Your reading checklist" : isOralSurgeryReading ? "Oral surgery reading checklist" : `${source.subject} reading checklist`}</legend>
+        <legend className="px-1 text-sm font-bold">
+          {isFirstReading
+            ? "Your reading checklist"
+            : isOralSurgeryReading
+              ? "Oral surgery reading checklist"
+              : `${source.subject} reading checklist`}
+        </legend>
         <p className="mb-3 text-xs text-muted-foreground">
           For this session only; checklist ticks are not saved or assessed as clinical knowledge.
         </p>
@@ -94,7 +137,14 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           </p>
         )}
       </fieldset>
-      <ClinicalReviewRequest subject={source.subject} subjectSlug={source.subjectSlug} sourceId={source.id} sourceTitle={source.title} sourceEdition={source.edition} sourceUrl={source.guideUrl} />
+      <ClinicalReviewRequest
+        subject={source.subject}
+        subjectSlug={source.subjectSlug}
+        sourceId={source.id}
+        sourceTitle={source.title}
+        sourceEdition={source.edition}
+        sourceUrl={source.guideUrl}
+      />
       <p className="mt-5 text-sm">
         <Link to="/interviews" className="font-semibold text-teal">
           Next: practise explaining your learning in English →

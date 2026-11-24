@@ -745,6 +745,30 @@ test("Day 1 starter corrects mistakes and records signed-in activity only at com
   expect(activityRequests).toBe(1);
 });
 
+test("oral surgery source sections open exact references without exposing draft teaching", async ({ page }) => {
+  await mockBackend(page, true);
+  await page.goto("/library");
+  const card = page.locator("#source-reading-sdcep-anticoagulants-2022");
+  await card.getByText("Read the exact source sections", { exact: true }).click();
+  const sections = card.getByRole("list", { name: "Oral surgery source sections" });
+  await expect(sections.getByRole("link")).toHaveCount(6);
+  await expect(sections.getByRole("link", { name: /Assessment, consent and ongoing care/ }))
+    .toHaveAttribute("href", "https://www.ida.org.in/Accreditation/Details/ForPatientManagement");
+  await expect(sections.getByRole("link", { name: /Warfarin and other vitamin K antagonists/ }))
+    .toHaveAttribute("href", /\/warfarin-or-another-vitamin-k-antagonist\/$/);
+  await expect(sections.getByRole("link", { name: /Direct oral anticoagulants/ }))
+    .toHaveAttribute("href", /\/direct-oral-anticoagulants-doacs\/recommendations\/$/);
+  await expect(sections.getByText("UK · practice setting", { exact: true })).toBeVisible();
+  await expect(sections.getByText(/publication year not displayed/)).toBeVisible();
+  for (const link of await sections.getByRole("link").all()) {
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  }
+  await expect(card.getByText(/they do not approve a DentPrep lesson/)).toBeVisible();
+  await expect(page.getByText(/Provisional single-best answer/)).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
 test("study focus leads to an honest primary reading path and keeps tools in Profile", async ({ page }, testInfo) => {
   await mockBackend(page, true);
   await page.goto("/dashboard");

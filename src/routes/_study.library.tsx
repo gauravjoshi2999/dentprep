@@ -121,6 +121,7 @@ function Library() {
       </div>
       {showReference && <PrimarySourceReading />}
       {showOralSurgeryReading && <PrimarySourceReading source={SECOND_DENTAL_READING} />}
+      {showEndodonticsReading && <PrimarySourceReading source={FOURTH_DENTAL_READING} />}
       {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">

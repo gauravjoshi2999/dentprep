@@ -130,3 +130,57 @@ describe("scoring and streaks", () => {
     expect(computeStreak([], "2026-11-23")).toBe(0);
   });
 });
+
+
+describe("source-led Dental Surgeon preparation without clinical publication", () => {
+  const subjectGuides: PlannerSubject[] = [
+    { id: "s-omr", name: "Oral Medicine & Radiology", slug: "oral-medicine-radiology", lessons: [] },
+    { id: "s-oms", name: "Oral & Maxillofacial Surgery", slug: "oral-maxillofacial-surgery", lessons: [] },
+    { id: "s-endo", name: "Conservative Dentistry & Endodontics", slug: "conservative-endodontics", lessons: [] },
+    { id: "s-perio", name: "Periodontology", slug: "periodontology", lessons: [] },
+    { id: "s-prosth", name: "Prosthodontics", slug: "prosthodontics", lessons: [] },
+    { id: "s-ortho", name: "Orthodontics", slug: "orthodontics", lessons: [] },
+    { id: "s-pedo", name: "Pediatric Dentistry", slug: "pediatric-dentistry", lessons: [] },
+    { id: "s-phd", name: "Public Health Dentistry", slug: "public-health-dentistry", lessons: [] },
+    { id: "s-path", name: "Oral Pathology", slug: "oral-pathology", lessons: [] },
+    { id: "s-general", name: "General Medicine & Surgery", slug: "general-medicine-surgery", lessons: [] },
+    { id: "s-pharm", name: "Pharmacology & Dental Materials", slug: "pharmacology-dental-materials", lessons: [] },
+    { id: "s-basic", name: "Basic Medical Sciences", slug: "basic-medical-sciences", lessons: [] },
+    { id: "s-emergency", name: "Medical Emergencies", slug: "medical-emergencies", lessons: [] },
+    { id: "s-ethics", name: "Infection Control & Ethics", slug: "infection-control-ethics", lessons: [] },
+    { id: "s-govt", name: "Government Healthcare & Administration", slug: "govt-healthcare-administration", lessons: [] },
+  ];
+  const input = { ...base, subjects: subjectGuides, lengthDays: 15 as const, dailyHours: 2,
+    availableQuestionCount: 0, availableCaseCount: 0, weakSubjectIds: [] };
+
+  it("uses available source guides, rotates all 15 subject categories, never manufactures approved clinical learning", () => {
+    const result = generatePlan(input);
+    const reading = result.filter(t => t.title.startsWith("Source study:"));
+    expect(reading.length).toBeGreaterThanOrEqual(15);
+    expect(new Set(reading.map(t => t.subject_id)).size).toBe(15);
+    expect(new Set(reading.map(t => t.title)).size).toBe(reading.length);
+    expect(result.some(t => ["lesson", "practice", "test", "case"].includes(t.task_type))).toBe(false);
+    expect(result.filter(t => t.title.startsWith("Recall source:")).length).toBeGreaterThan(0);
+    for (let day = 0; day < input.lengthDays; day++) {
+      const daily = result.filter(t => t.day_index === day);
+      expect(daily.length).toBeGreaterThan(0);
+      expect(daily.reduce((n, task) => n + task.minutes, 0)).toBeLessThanOrEqual(120);
+    }
+  });
+  it("starts from weak subjects and skips completed source-study tasks on renewal", () => {
+    const first = generatePlan({ ...input, weakSubjectIds: ["s-oms"] });
+    const firstGuide = first.find(t => t.title.startsWith("Source study:"));
+    expect(firstGuide?.subject_id).toBe("s-oms");
+    const next = generatePlan({ ...input, weakSubjectIds: ["s-oms"], completedGuideTitles: [firstGuide?.title ?? ""] });
+    expect(next.some(t => t.title === firstGuide?.title)).toBe(false);
+  });
+  it("works in 30 minute days and preserves one-day spaced recall without invented MCQ scores", () => {
+    const result = generatePlan({ ...input, dailyHours: 0.5, lengthDays: 7 });
+    expect(result.some(t => t.day_index === 0 && t.title.startsWith("Source study:"))).toBe(true);
+    expect(result.some(t => t.day_index === 1 && t.title.startsWith("Recall source:"))).toBe(true);
+    for (let day = 0; day < 7; day++) {
+      expect(result.filter(t => t.day_index === day).reduce((n, t) => n + t.minutes, 0)).toBeLessThanOrEqual(30);
+    }
+    expect(result.some(t => ["lesson", "practice", "test", "case"].includes(t.task_type))).toBe(false);
+  });
+});

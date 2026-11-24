@@ -8,7 +8,7 @@ import { progressQuery } from "@/lib/queries";
 import { subjectsQuery } from "@/lib/queries";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { PrimarySourceReading } from "@/components/app/primary-source-reading";
-import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING } from "@/lib/primary-reading";
 import { STARTER_UNITS } from "@/lib/starter-quest";
 
 export const Route = createFileRoute("/_study/library")({
@@ -56,6 +56,12 @@ function Library() {
   const showPublicHealthReading =
     (category === "All" || category === "Public Health") &&
     `${THIRD_DENTAL_READING.subject} ${THIRD_DENTAL_READING.title} ${THIRD_DENTAL_READING.publisher}`
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+
+  const showEndodonticsReading =
+    (category === "All" || category === "Clinical") &&
+    `${FOURTH_DENTAL_READING.subject} ${FOURTH_DENTAL_READING.title} ${FOURTH_DENTAL_READING.publisher}`
       .toLowerCase()
       .includes(search.trim().toLowerCase());
 

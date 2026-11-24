@@ -8,7 +8,7 @@ import { progressQuery } from "@/lib/queries";
 import { subjectsQuery } from "@/lib/queries";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice } from "@/components/app/common";
 import { PrimarySourceReading } from "@/components/app/primary-source-reading";
-import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING } from "@/lib/primary-reading";
+import { FIRST_DENTAL_READING, SECOND_DENTAL_READING, THIRD_DENTAL_READING, FOURTH_DENTAL_READING, FIFTH_DENTAL_READING, SIXTH_DENTAL_READING, SEVENTH_DENTAL_READING, EIGHTH_DENTAL_READING } from "@/lib/primary-reading";
 import { STARTER_UNITS } from "@/lib/starter-quest";
 
 export const Route = createFileRoute("/_study/library")({
@@ -83,6 +83,12 @@ function Library() {
       .toLowerCase()
       .includes(search.trim().toLowerCase());
 
+  const showOrthodonticsReading =
+    (category === "All" || category === "Clinical") &&
+    `${EIGHTH_DENTAL_READING.subject} ${EIGHTH_DENTAL_READING.title} ${EIGHTH_DENTAL_READING.publisher}`
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+
   return (
     <>
       <AppHero
@@ -143,6 +149,7 @@ function Library() {
       {showPeriodontologyReading && <PrimarySourceReading source={FIFTH_DENTAL_READING} />}
       {showProsthodonticsReading && <PrimarySourceReading source={SIXTH_DENTAL_READING} />}
       {showPediatricReading && <PrimarySourceReading source={SEVENTH_DENTAL_READING} />}
+      {showOrthodonticsReading && <PrimarySourceReading source={EIGHTH_DENTAL_READING} />}
       {showPublicHealthReading && <PrimarySourceReading source={THIRD_DENTAL_READING} />}
       {subjects.data && (
         <div className="mb-4 flex items-center justify-between">

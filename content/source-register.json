@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-11-24",
+  "clinical_sources_verified": [],
+  "references": [
+    {
+      "id": "DCI-BDS-2007-HISTORICAL",
+      "title": "Revised BDS Course Regulations, 2007 (compiled official-host PDF)",
+      "author_or_organization": "Dental Council of India",
+      "edition": "Compiled official-host version; amendment currency not certified",
+      "year": 2007,
+      "section": "Syllabus of Study and Goals/Objectives",
+      "url": "https://dciindia.gov.in/Rule_Regulation/Revised_BDS_Course_Regulation_2007.pdf",
+      "review_date": null,
+      "content_version": "Historical reference only",
+      "retrieval": "OPENED",
+      "permitted_use": "Historical subject-scope crosswalk only, not current clinical treatment/source approval"
+    },
+    {
+      "id": "DCI-GAZETTE-LIST",
+      "title": "Gazette regulations listing",
+      "author_or_organization": "Official dental regulator website",
+      "edition": "Web listing observed 24 November 2026",
+      "year": 2026,
+      "section": "BDS regulations and amendments 16–16.8",
+      "url": "https://dciindia.gov.in/GazetteList.aspx",
+      "review_date": null,
+      "content_version": "Observed listing; full amendment reconciliation pending",
+      "retrieval": "OPENED",
+      "permitted_use": "Currency investigation, not evidence all amendments reconciled"
+    },
+    {
+      "id": "NDC-CONSULTATION-2026",
+      "title": "Stakeholder Consultation for Reform of Dental Curricula in India",
+      "author_or_organization": "National Dental Commission, UG-PG DEB",
+      "edition": "NDC/UGPG-DEB/Circular/2026/K1-561",
+      "year": 2026,
+      "section": "Circular dated 25 May 2026",
+      "url": "https://dciindia.gov.in/Admin/NewsArchives/M-561.pdf",
+      "review_date": null,
+      "content_version": "25 May 2026",
+      "retrieval": "OPENED",
+      "permitted_use": "Consultation context only; not an enacted replacement syllabus"
+    }
+  ]
+}

@@ -230,5 +230,16 @@
   "production_android_signing": "NOT CONFIGURED",
   "background_continuation": false,
   "note": "Current exact source/live revision after this handoff-only commit is in its SHA-specific release artifact and PR verification comment; this records the last verified implementation/native checkpoint.",
-  "scope_override": 27
+  "scope_override": 27,
+  "medical_content_safety": {
+    "content_safety_tests": 43,
+    "proposed_outcomes": 90,
+    "reviewed_outcomes": 0,
+    "draft_inventory": 60,
+    "trusted_reviewers": 0,
+    "clinical_packages": 0,
+    "clinical_approval": "BLOCKED",
+    "publication": "LOCKED",
+    "readiness": "No mastery/official exam/clinical competence claim"
+  }
 }

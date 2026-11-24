@@ -296,6 +296,17 @@ async function mockBackend(
   });
 }
 
+test("unreviewed anatomical teaching is absent from public branding", async ({ page }) => {
+  await mockBackend(page);
+  for (const route of ["/", "/library"]) {
+    await page.goto(route);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByRole("img", { name: /cross-section.*molar/i })).toHaveCount(0);
+    await expect(page.getByText("Enamel", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("PDL & cementum", { exact: true })).toHaveCount(0);
+  }
+});
+
 test("public library and protected pages behave on mobile and desktop", async ({ page }) => {
   await mockBackend(page);
   await page.goto("/library");
@@ -507,6 +518,7 @@ test("ordinary candidates cannot access the content administration screen", asyn
 
 async function createDraftQuestion(page: Page) {
   await page.goto("/admin");
+  await expect(page.getByRole("link", { name: "Admin", exact: true })).toHaveCount(0);
   await page.getByRole("button", { name: "MCQs", exact: true }).click();
   await page.getByRole("button", { name: "Add draft", exact: true }).click();
   await page

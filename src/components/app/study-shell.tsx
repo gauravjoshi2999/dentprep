@@ -1,6 +1,4 @@
 import { useState, type ReactNode } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { isAdminQuery } from "@/lib/queries";
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import {
   BookOpen,
@@ -35,7 +33,6 @@ export function StudyShell() {
   const { user, ready } = useAuth();
   const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
-  const admin = useQuery({ ...isAdminQuery(user?.id ?? ""), enabled: !!user });
   return (
     <div className="min-h-screen bg-background pb-24 md:pb-0">
       <a
@@ -50,11 +47,6 @@ export function StudyShell() {
             <Brand />
           </Link>
           <div className="flex items-center gap-3 text-sm">
-            {admin.data && (
-              <Link to="/admin" className="font-semibold text-teal">
-                Admin
-              </Link>
-            )}
             {ready &&
               (user ? (
                 <Button
@@ -100,32 +92,94 @@ export function StudyShell() {
       </main>
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-card/95 shadow-elevated backdrop-blur md:hidden">
         {profileOpen && (
-          <div id="dentprep-profile-panel" role="region" aria-label="Profile shortcuts" className="absolute bottom-full right-3 mb-3 w-[min(21rem,calc(100vw-1.5rem))] rounded-2xl border border-border bg-card p-5 shadow-elevated">
+          <div
+            id="dentprep-profile-panel"
+            role="region"
+            aria-label="Profile shortcuts"
+            className="absolute bottom-full right-3 mb-3 w-[min(21rem,calc(100vw-1.5rem))] rounded-2xl border border-border bg-card p-5 shadow-elevated"
+          >
             <div className="mb-3 flex items-start justify-between gap-2">
-              <div><p className="font-bold">Your study profile</p><p className="max-w-[17rem] truncate text-sm text-muted-foreground">{user?.email ?? "Sign in to save progress"}</p></div>
-              <button type="button" aria-label="Close profile shortcuts" onClick={() => setProfileOpen(false)} className="rounded-lg p-2 hover:bg-muted"><X className="h-4 w-4" /></button>
+              <div>
+                <p className="font-bold">Your study profile</p>
+                <p className="max-w-[17rem] truncate text-sm text-muted-foreground">
+                  {user?.email ?? "Sign in to save progress"}
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label="Close profile shortcuts"
+                onClick={() => setProfileOpen(false)}
+                className="rounded-lg p-2 hover:bg-muted"
+              >
+                <X className="h-4 w-4" />
+              </button>
             </div>
             <div className="grid gap-2 text-sm font-semibold">
-              <Link to="/progress" onClick={() => setProfileOpen(false)} className="rounded-lg bg-muted px-4 py-3">My progress</Link>
-              <Link to="/saved" onClick={() => setProfileOpen(false)} className="rounded-lg bg-muted px-4 py-3">Saved questions & lessons</Link>
-              <Link to="/plan" onClick={() => setProfileOpen(false)} className="rounded-lg bg-muted px-4 py-3">Study plan</Link>
-              {!user && <Link to="/login" onClick={() => setProfileOpen(false)} className="rounded-lg bg-teal-soft px-4 py-3">Sign in</Link>}
+              <Link
+                to="/progress"
+                onClick={() => setProfileOpen(false)}
+                className="rounded-lg bg-muted px-4 py-3"
+              >
+                My progress
+              </Link>
+              <Link
+                to="/saved"
+                onClick={() => setProfileOpen(false)}
+                className="rounded-lg bg-muted px-4 py-3"
+              >
+                Saved questions & lessons
+              </Link>
+              <Link
+                to="/plan"
+                onClick={() => setProfileOpen(false)}
+                className="rounded-lg bg-muted px-4 py-3"
+              >
+                Study plan
+              </Link>
+              {!user && (
+                <Link
+                  to="/login"
+                  onClick={() => setProfileOpen(false)}
+                  className="rounded-lg bg-teal-soft px-4 py-3"
+                >
+                  Sign in
+                </Link>
+              )}
             </div>
           </div>
         )}
-        <nav aria-label="Mobile primary navigation" className="grid grid-cols-5 items-center px-1 pb-[max(env(safe-area-inset-bottom),0.5rem)] pt-2">
-          {([
-            ["/dashboard", "Home", Home],
-            ["/library", "Study", BookOpen],
-            ["/practice", "Practice", ClipboardList],
-            ["/interviews", "Interview", MessagesSquare],
-          ] as const).map(([to, label, Icon]) => (
-            <Link key={to} to={to} onClick={() => setProfileOpen(false)} activeProps={{ className: "text-teal" }} className="flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-lg text-[11px] font-semibold text-muted-foreground hover:bg-muted">
-              <Icon className="h-5 w-5" aria-hidden="true" />{label}
+        <nav
+          aria-label="Mobile primary navigation"
+          className="grid grid-cols-5 items-center px-1 pb-[max(env(safe-area-inset-bottom),0.5rem)] pt-2"
+        >
+          {(
+            [
+              ["/dashboard", "Home", Home],
+              ["/library", "Study", BookOpen],
+              ["/practice", "Practice", ClipboardList],
+              ["/interviews", "Interview", MessagesSquare],
+            ] as const
+          ).map(([to, label, Icon]) => (
+            <Link
+              key={to}
+              to={to}
+              onClick={() => setProfileOpen(false)}
+              activeProps={{ className: "text-teal" }}
+              className="flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-lg text-[11px] font-semibold text-muted-foreground hover:bg-muted"
+            >
+              <Icon className="h-5 w-5" aria-hidden="true" />
+              {label}
             </Link>
           ))}
-          <button type="button" aria-controls="dentprep-profile-panel" aria-expanded={profileOpen} onClick={() => setProfileOpen((open) => !open)} className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-lg text-[11px] font-semibold ${profileOpen ? "text-teal" : "text-muted-foreground"}`}>
-            <UserRound className="h-5 w-5" aria-hidden="true" />Profile
+          <button
+            type="button"
+            aria-controls="dentprep-profile-panel"
+            aria-expanded={profileOpen}
+            onClick={() => setProfileOpen((open) => !open)}
+            className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-lg text-[11px] font-semibold ${profileOpen ? "text-teal" : "text-muted-foreground"}`}
+          >
+            <UserRound className="h-5 w-5" aria-hidden="true" />
+            Profile
           </button>
         </nav>
       </div>

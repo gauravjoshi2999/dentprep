@@ -1,5 +1,9 @@
 # Source verification checkpoint
 
+24 November 2026: the official-host compiled BDS PDF, Gazette listing and 25 May 2026 consultation PDF were opened. Gazette sections 16–16.8 list the base BDS regulation and amendments; full amendment reconciliation remains incomplete. The consultation remains context, not an enacted replacement. Exact metadata/limited permitted uses are recorded in `content/source-register.json`. These references support only a historical scope investigation, not treatment claims or official recruitment syllabus/weightage. No draft's scientific accuracy or clinical source approval is certified.
+
+`DENTPREP_CURRICULUM_COVERAGE.md` and `content/curriculum.json` contain 90 proposed broad outcome tasks across the existing 15 groups, all candidate/unmapped. They are not an exhaustive essential-outcome denominator. Current clinical items have no per-claim verified source evidence. Their missing evidence stays BLOCKED in the inventory rather than receiving fabricated citations or an accuracy score.
+
 SOURCE classification is separate from software state and clinical approval. These read-only checks do not approve any medical lesson or establish an official UPSC syllabus.
 
 ## BDS curriculum references inspected

@@ -1,5 +1,12 @@
 # DentPrep completion ledger
 
+## OMS-001 source preparation — 24 November 2026
+
+- Four existing Oral Surgery drafts have exact-fingerprint AI audits, eight directly opened institutional sources and an unchanged hash-bound v0.2 candidate. Findings and clinical uncertainties remain unresolved; no accepted medical verdict is implied.
+- Four private version-1 preparation records installed through the existing DentPrep backend; native rollback and post-install QA verify exact hashes, insertion/retry, stale/version/collision rejection and unchanged 15/30/15 drafts, zero clinical publication, three guards and evidence RLS. Receipt: `ops/qa/oms-source-preparation-2026-11-24.json`.
+- Required content CLI now validates enhanced preparation integrity and records four exact-item audits. Local checks: 50 content-safety tests, 65 Vitest tests, 19 release tests, typecheck and changed-TypeScript lint PASS. Software checks are not clinical accuracy or independent human approval.
+- Six exact reference-section links added to the learner's Oral Surgery reading path. Full exact-head CI, safe merge and production receipt are recorded in the final PR/Issue #27 acceptance comment; do not infer deployment from this source snapshot.
+
 ## Verified audit checkpoint — 23 November 2026
 
 - SOURCE: CODE / live service evidence. Repository: `gauravjoshi2999/dentprep` only. Main and live `/api/health`: `4b92b5e75f12f7b7254784c8a865fad305e8bf1f`.

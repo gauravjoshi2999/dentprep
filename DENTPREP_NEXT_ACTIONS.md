@@ -1,5 +1,9 @@
 # DentPrep — exact continuation
 
+## Current source-review tranche — 24 November 2026
+
+Read `DENTPREP_AUTOMATED_SOURCE_REVIEW.md` and `ops/qa/oms-source-preparation-2026-11-24.json` before older snapshots below. OMS-001 now has exact-item AI source-preparation for four existing drafts and eight institutional pages, with unresolved clinical decisions retained. The existing v0.2 candidate is hash-bound and unchanged. The learner reference card adds six exact original-source sections; this is not a published clinical lesson. A repeatable SQL compiler prepares additive private evidence without editing content, approving medicine or changing publication guards. Native QA uses a rolled-back temporary function and tests insertion/retry/stale/version/collision behavior. Use the final PR/Issue #27 acceptance comment and exact production artifact to determine whether installation/deployment completed. Do not assume completion from source files alone. No real reviewer is available; AI must not be recorded as an independent MDS/dentist. Continue safe preparation without re-requesting generic OK/reviewer availability.
+
 ## Latest student-focus override
 
 Read `DENTPREP_STUDY_FOCUS_BACKLOG.md` before the older scope below. The founder asks to remove non-study work and focus on actual enjoyable UPSC Dental Surgeon preparation. The founder has confirmed **no independent reviewer is available**, so continue sources/learning flow and do not re-request generic permission or publish clinical drafts.

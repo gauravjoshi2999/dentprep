@@ -7,7 +7,7 @@ Date: 24 November 2026
 1. First visit to any official publisher reference in the Study Library: click **Doctor guided feedback**.
 2. The page states exactly which **subject, official document, edition and source URL** is being reviewed. **This is a review of the primary-source reading, not of a clinical lesson, MCQ, case, treatment plan or textbook chapter that is not displayed.**
 3. For the first review only: with the doctor's consent, enter the **claimed** name, MDS specialty and dental council registration, and save the reviewer profile. This profile is private to the signed-in DentPrep account and automatically reused on all other reference cards.
-4. Answer each of **10 common + 2 source-specific** guided questions: choose **ठीक है / सुधार जरूरी / प्रमाण स्पष्ट नहीं / लागू नहीं**. If any answer is not ठीक है, enter at least an eight-character explanation. Record exact source page/section. No question can remain unanswered.
+4. Answer each of **10 common + 2 source-specific** guided questions, plus **4 extra unresolved-evidence checks for OMS-001 or OMR-001**: choose **ठीक है / सुधार जरूरी / प्रमाण स्पष्ट नहीं / लागू नहीं**. If any answer is not ठीक है, enter at least an eight-character explanation. Record exact source page/section. No question can remain unanswered.
 5. Confirm that this specific source has been reviewed and submit. A receipt is shown only when the backend returns `pending_verification`. Editing the one-time profile does not overwrite historical reviewer details captured on already-submitted feedback.
 6. Repeating the workflow for the next reference shows the same saved doctor profile and new source-specific questions. Reviewer registration is never asked again until the user explicitly edits that profile.
 

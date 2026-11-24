@@ -1,5 +1,15 @@
 # DentPrep — exact continuation
 
+## Latest student-focus override
+
+Read `DENTPREP_STUDY_FOCUS_BACKLOG.md` before the older scope below. The founder asks to remove non-study work and focus on actual enjoyable UPSC Dental Surgeon preparation. The founder has confirmed **no independent reviewer is available**, so continue sources/learning flow and do not re-request generic permission or publish clinical drafts.
+
+Current tranche: a single daily mission, five primary navigation controls, secondary tools in Profile, fewer empty/duplicate/news panels, first external ADA 2026 reference reading with a session-only checklist, and blocked review packet `content/drafts/OMR-001.review.json` for the existing first Oral Medicine lesson. External primary reading is not counted as a DentPrep published clinical lesson. Preserve the /start module and the separate PR #34 production-route verification work.
+
+Next study tasks: resolve OMR-001's exact source/clinical gaps; reconcile fine-grained essential outcomes/current sources one unit at a time; prepare source-linked MCQs/remedial feedback; obtain genuine independent qualified review when available; only then implement/release the protected clinical quest/importer/withdrawal runtime. All 60 existing clinical items remain draft. All 20 academic acceptance decisions are BLOCKED. No lesson count or medical accuracy score is invented.
+
+Marketplace/admin/staff expansion, subscriptions/social leaderboards, paid AI/voice, APK/store/signing polish and cosmetic campaigns are outside the active plan unless the founder changes scope. Retain source/history and all essential auth/RLS, clinical locks, tests, PWA/offline and secure release checks. Normal ChatGPT can handle source lookup/draft preparation and available connector-based implementation; clinical approval cannot be supplied by AI. Final exact current SHA/CI/deployment evidence is in the latest acceptance comment and release artifact.
+
 Authority: OPEN [Issue #27](https://github.com/gauravjoshi2999/dentprep/issues/27), founder's mandatory medical-accuracy instruction and `DENTPREP_SINGLE_LEARNER_SCOPE.md`. Single private student, Codédex-style quests, no daily admin input. Existing repo/backend/Cloudflare only; never touch Bite. Audit latest main/open PR/live before work to avoid concurrent changes.
 
 ## Accepted evidence and current implementation

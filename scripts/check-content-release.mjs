@@ -17,6 +17,14 @@ const policy = read('content/quality-policy.json');
 const reviewers = read('content/reviewers.json').reviewers;
 const withdrawals = read('content/withdrawals.json').entries;
 const history = read('content/history/index.json').entries;
+const draftFiles = existsSync('content/drafts') ? readdirSync('content/drafts').filter(name => name.endsWith('.json')) : [];
+for (const name of draftFiles) {
+  const packet = read(`content/drafts/${name}`);
+  assert(packet.status === 'draft' && packet.publication_allowed === false && packet.qualified_review === null,
+    'Draft review preparation cannot claim publication or qualified clinical approval');
+  assert(Array.isArray(packet.academic_gates) && packet.academic_gates.length === 20 && GATE_IDS.every(id => packet.academic_gates.some(g => g.id === id && g.decision === 'BLOCKED')),
+    'Draft review packets retain all 20 unresolved academic checks');
+}
 // Required workflow checkout retains both parents; compare with the previously accepted tree.
 // A scratch fixture without git has no historical baseline, and cannot publish anything.
 let previousHistory = [];
@@ -76,6 +84,7 @@ const report = {
   curriculum_groups: curriculum.groups.length, proposed_outcomes: outcomes.length,
   reviewed_outcomes: outcomes.filter(o => o.status === 'reviewed').length,
   completeness: curriculum.status, draft_items_blocked: inventory.items.length,
+  prepared_review_packets: draftFiles.length,
   clinical_release_packages: releases.length, trusted_reviewers: reviewers.length,
   clinical_publication: 'LOCKED — no database publishing capability; existing guards retained',
   academic_approval: 'NOT established by software checks',

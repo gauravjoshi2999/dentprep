@@ -317,7 +317,7 @@ test("public library and protected pages behave on mobile and desktop", async ({
   await mockBackend(page);
   await page.goto("/library");
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
-  await expect(page.getByText("Lessons awaiting review")).toBeVisible();
+  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
   await page.getByRole("searchbox").fill("missing subject");
   await expect(page.getByText("No matching subjects")).toBeVisible();
   for (const path of ["/dashboard", "/practice", "/plan", "/progress", "/saved", "/interviews"]) {
@@ -338,7 +338,7 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await page.getByLabel("Password", { exact: true }).fill("test-only-password");
   await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Welcome, Dr. QA" })).toBeVisible();
-  await expect(page.getByText("Practice accuracy", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Start your dental reference reading" })).toBeVisible();
   // A click dispatches the async handler; navigating immediately can cancel its logout request.
   // Wait for the app's completed-signout navigation and cleared control, then reload a private URL.
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
@@ -629,7 +629,7 @@ test("approved mobile visual navigation uses real pages and honest study data", 
   await nav.getByRole("link", { name: "Study" }).click();
   await expect(page.getByRole("heading", { name: "BDS study library" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Clinical", exact: true })).toBeVisible();
-  await expect(page.getByText("0 published lessons")).toBeVisible();
+  await expect(page.getByText("Clinical review pending", { exact: true })).toBeVisible();
   await nav.getByRole("link", { name: "Interview" }).click();
   await expect(page.getByRole("heading", { name: "Interview communication studio" })).toBeVisible();
   await expect(page.getByText(/Voice and AI clinical scoring are not enabled/)).toBeVisible();
@@ -683,4 +683,34 @@ test("Day 1 starter corrects mistakes and records signed-in activity only at com
   await page.getByRole("button", { name: "Finish Day 1 starter" }).click();
   await expect(page.getByText(/Today's activity was recorded in your account/)).toBeVisible();
   expect(activityRequests).toBe(1);
+});
+
+test("study focus leads to an honest primary reading path and keeps tools in Profile", async ({ page }, testInfo) => {
+  await mockBackend(page, true);
+  await page.goto("/dashboard");
+  await expect(page.getByRole("heading", { name: "Start your dental reference reading" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Quick actions" })).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "Official recruitment notice" })).toHaveCount(0);
+  await page.getByRole("link", { name: "Start source reading" }).click();
+  await expect(page).toHaveURL(/\/library#primary-reading$/);
+  await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Open official guide (PDF)" })).toHaveAttribute("href", /^https:\/\/www\.ada\.org\/.*2026\/ada_oral_cancer_guideline\.pdf/);
+  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
+  const checklist = page.getByRole("group", { name: "Your reading checklist" });
+  await expect(checklist.getByRole("checkbox")).toHaveCount(4);
+  for (const checkbox of await checklist.getByRole("checkbox").all()) await checkbox.check();
+  await expect(page.getByText(/Reading checklist complete/)).toBeVisible();
+  await page.reload();
+  for (const checkbox of await page.getByRole("group", { name: "Your reading checklist" }).getByRole("checkbox").all()) await expect(checkbox).not.toBeChecked();
+  const navigation = page.getByRole("navigation", { name: testInfo.project.name === "mobile" ? "Mobile primary navigation" : "Learning navigation", exact: true });
+  await expect(navigation.getByRole("link")).toHaveCount(4);
+  await navigation.getByRole("button", { name: "Profile", exact: true }).click();
+  const profile = page.getByRole("region", { name: "Profile shortcuts" });
+  await expect(profile).toBeVisible();
+  await expect(profile.getByRole("link", { name: "My progress" })).toHaveAttribute("href", "/progress");
+  await expect(profile.getByRole("link", { name: "Saved questions & lessons" })).toHaveAttribute("href", "/saved");
+  await profile.getByRole("link", { name: "Study plan", exact: true }).click();
+  await expect(page).toHaveURL(/\/plan$/);
+  await expect(page.getByLabel("Daily hours")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

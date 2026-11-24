@@ -229,6 +229,18 @@ async function mockBackend(
     } else if (path.endsWith("/rpc/submit_attempt")) {
       submitted = true;
       data = { total: 1, answered: 1, correct: 1, score_pct: 100 };
+    } else if (path.endsWith("/clinical_feedback_submissions")) {
+      expect(method).toBe("POST");
+      expect(body).toMatchObject({
+        submitted_by: userId,
+        source_id: "cdc-dental-infection-prevention",
+        subject_slug: "public-health-dentistry",
+        recommendation: "changes_requested",
+      });
+      expect(body.status).toBeUndefined();
+      expect(body.claimed_reviewer_name).toBe("Test Dental Reviewer");
+      expect(body.feedback).toContain("Source section requires corrections");
+      data = { id: "66666666-6666-4666-8666-666666666666", status: "pending_verification" };
     } else if (path.endsWith("/subjects"))
       data = url.searchParams.has("slug") ? subjects[0] : subjects;
     else if (path.endsWith("/profiles")) data = { id: userId, full_name: "QA Candidate" };
@@ -707,10 +719,18 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
     "href",
     "https://www.cdc.gov/dental-infection-control/hcp/summary/index.html",
   );
-  const reviewerForm = cdcCard.getByRole("button", { name: "Prepare senior MDS feedback form" });
+  const reviewerForm = cdcCard.getByRole("button", { name: "Submit senior dentist feedback" });
   await reviewerForm.click();
   await expect(cdcCard.getByText("It is not a verified MDS sign-off", { exact: false })).toBeVisible();
-  await expect(cdcCard.getByRole("button", { name: "Copy review worksheet" })).toBeVisible();
+  await expect(cdcCard.getByRole("button", { name: "Copy worksheet" })).toBeVisible();
+  await cdcCard.getByRole("textbox", { name: "Claimed reviewer's name" }).fill("Test Dental Reviewer");
+  await cdcCard.getByRole("textbox", { name: "Qualification and specialty" }).fill("MDS Test Specialty");
+  await cdcCard.getByRole("textbox", { name: "Council registration for private verification" }).fill("TEST-REG-123");
+  await cdcCard.getByRole("textbox", { name: "Corrections, claim IDs and exact source sections" }).fill("Source section requires corrections before qualified review.");
+  await cdcCard.getByRole("checkbox", { name: /I have the reviewer's consent/ }).check();
+  await cdcCard.getByRole("button", { name: "Submit feedback", exact: true }).click();
+  await expect(cdcCard.getByText(/Feedback received · Pending independent verification/)).toBeVisible();
+  await expect(page.getByText("Clinical lessons awaiting independent review")).toBeVisible();
   await expect(page.locator("#source-reading-sdcep-anticoagulants-2022").getByRole("link", { name: "Open official guidance" })).toHaveAttribute(
     "href",
     "https://companion.sdcep.org.uk/management-of-dental-patients-taking-anticoagulants-or-antiplatelet-drugs/",

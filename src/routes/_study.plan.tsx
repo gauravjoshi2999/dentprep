@@ -203,9 +203,10 @@ function Plan() {
   const todaySubject = subjects.data?.find(s => s.id === todayGuide?.subject_id);
   const currentBrief = STUDY_BRIEF_BY_SLUG.get(todaySubject?.slug ?? "") ??
     SUBJECT_STUDY_BRIEFS[dayOffset % SUBJECT_STUDY_BRIEFS.length];
-  const currentChapter = currentBrief?.chapters.find(chapter =>
-    todayGuide?.title.endsWith(` — ${chapter.title}`)) ??
-    currentBrief?.chapters[dayOffset % (currentBrief.chapters.length || 1)];
+  const currentChapter = currentBrief
+    ? (currentBrief.chapters.find(chapter => todayGuide?.title.endsWith(` — ${chapter.title}`)) ??
+      currentBrief.chapters[dayOffset % currentBrief.chapters.length])
+    : undefined;
   const currentSource = ALL_DENTAL_READINGS.find(source => source.subjectSlug === currentBrief?.slug);
   return (
     <>

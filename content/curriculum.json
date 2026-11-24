@@ -1,0 +1,1348 @@
+{
+  "schema_version": 1,
+  "version": 1,
+  "status": "INCOMPLETE_CANDIDATE_CATALOG",
+  "source": "DCI-BDS-2007-HISTORICAL",
+  "source_currency": "Amendment reconciliation not complete; no official UPSC syllabus/weightage claim",
+  "completeness_review": null,
+  "denominator_note": "90 broad proposed outcomes are an initial editorial inventory, not all essential BDS outcomes. Missing source sections/subtopics remain gaps; no coverage percentage is calculated.",
+  "groups": [
+    {
+      "slug": "oral-medicine-radiology",
+      "name": "Oral Medicine & Radiology",
+      "source_sections": [
+        "Oral Medicine and Radiology"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-01-01",
+          "unit": "Patient history and examination",
+          "text": "Explain and apply patient history and examination within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-01-02",
+          "unit": "Mucosal lesion differentials",
+          "text": "Explain and apply mucosal lesion differentials within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-01-03",
+          "unit": "Systemic disease and oral findings",
+          "text": "Explain and apply systemic disease and oral findings within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-01-04",
+          "unit": "Imaging selection and radiation safety",
+          "text": "Explain and apply imaging selection and radiation safety within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-01-05",
+          "unit": "Image interpretation and limitations",
+          "text": "Explain and apply image interpretation and limitations within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-01-06",
+          "unit": "Referral and diagnostic uncertainty",
+          "text": "Explain and apply referral and diagnostic uncertainty within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "oral-maxillofacial-surgery",
+      "name": "Oral & Maxillofacial Surgery",
+      "source_sections": [
+        "Oral & Maxillofacial Surgery"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-02-01",
+          "unit": "Surgical assessment and consent",
+          "text": "Explain and apply surgical assessment and consent within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-02-02",
+          "unit": "Local anaesthesia safety",
+          "text": "Explain and apply local anaesthesia safety within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-02-03",
+          "unit": "Extraction planning and complications",
+          "text": "Explain and apply extraction planning and complications within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-02-04",
+          "unit": "Odontogenic infection escalation",
+          "text": "Explain and apply odontogenic infection escalation within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-02-05",
+          "unit": "Dental and facial trauma",
+          "text": "Explain and apply dental and facial trauma within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-02-06",
+          "unit": "Jaw pathology and referral",
+          "text": "Explain and apply jaw pathology and referral within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "conservative-endodontics",
+      "name": "Conservative Dentistry & Endodontics",
+      "source_sections": [
+        "Conservative Dentistry and Endodontics"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-03-01",
+          "unit": "Caries assessment and prevention",
+          "text": "Explain and apply caries assessment and prevention within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-03-02",
+          "unit": "Restorative decision making",
+          "text": "Explain and apply restorative decision making within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-03-03",
+          "unit": "Pulpal and periapical diagnosis",
+          "text": "Explain and apply pulpal and periapical diagnosis within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-03-04",
+          "unit": "Isolation and operative principles",
+          "text": "Explain and apply isolation and operative principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-03-05",
+          "unit": "Endodontic stages and complications",
+          "text": "Explain and apply endodontic stages and complications within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-03-06",
+          "unit": "Restoration follow-up and failure",
+          "text": "Explain and apply restoration follow-up and failure within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "periodontology",
+      "name": "Periodontology",
+      "source_sections": [
+        "Periodontology"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-04-01",
+          "unit": "Periodontal anatomy and examination",
+          "text": "Explain and apply periodontal anatomy and examination within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-04-02",
+          "unit": "Risk factors and classification",
+          "text": "Explain and apply risk factors and classification within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-04-03",
+          "unit": "Plaque prevention and patient advice",
+          "text": "Explain and apply plaque prevention and patient advice within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-04-04",
+          "unit": "Nonsurgical treatment principles",
+          "text": "Explain and apply nonsurgical treatment principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-04-05",
+          "unit": "Surgical indications and limitations",
+          "text": "Explain and apply surgical indications and limitations within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-04-06",
+          "unit": "Maintenance and implant-related disease",
+          "text": "Explain and apply maintenance and implant-related disease within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "prosthodontics",
+      "name": "Prosthodontics",
+      "source_sections": [
+        "Prosthodontics and Crown & Bridge",
+        "Oral Implantology"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-05-01",
+          "unit": "Edentulism assessment and planning",
+          "text": "Explain and apply edentulism assessment and planning within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-05-02",
+          "unit": "Complete denture principles",
+          "text": "Explain and apply complete denture principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-05-03",
+          "unit": "Removable partial denture design",
+          "text": "Explain and apply removable partial denture design within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-05-04",
+          "unit": "Fixed prosthodontic principles",
+          "text": "Explain and apply fixed prosthodontic principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-05-05",
+          "unit": "Occlusion and material selection",
+          "text": "Explain and apply occlusion and material selection within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-05-06",
+          "unit": "Implant restoration and maintenance",
+          "text": "Explain and apply implant restoration and maintenance within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "orthodontics",
+      "name": "Orthodontics",
+      "source_sections": [
+        "Orthodontics & Dentofacial Orthopaedics"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-06-01",
+          "unit": "Growth and development",
+          "text": "Explain and apply growth and development within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-06-02",
+          "unit": "Occlusion and malocclusion assessment",
+          "text": "Explain and apply occlusion and malocclusion assessment within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-06-03",
+          "unit": "Orthodontic diagnosis and records",
+          "text": "Explain and apply orthodontic diagnosis and records within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-06-04",
+          "unit": "Biomechanics and appliance principles",
+          "text": "Explain and apply biomechanics and appliance principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-06-05",
+          "unit": "Interceptive treatment and referral",
+          "text": "Explain and apply interceptive treatment and referral within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-06-06",
+          "unit": "Retention risks and follow-up",
+          "text": "Explain and apply retention risks and follow-up within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "pediatric-dentistry",
+      "name": "Pediatric Dentistry",
+      "source_sections": [
+        "Paediatric & Preventive Dentistry"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-07-01",
+          "unit": "Child development and communication",
+          "text": "Explain and apply child development and communication within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-07-02",
+          "unit": "Primary teeth and eruption",
+          "text": "Explain and apply primary teeth and eruption within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-07-03",
+          "unit": "Child caries prevention",
+          "text": "Explain and apply child caries prevention within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-07-04",
+          "unit": "Pulp therapy and restoration",
+          "text": "Explain and apply pulp therapy and restoration within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-07-05",
+          "unit": "Dental trauma in children",
+          "text": "Explain and apply dental trauma in children within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-07-06",
+          "unit": "Special health needs and safeguarding",
+          "text": "Explain and apply special health needs and safeguarding within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "public-health-dentistry",
+      "name": "Public Health Dentistry",
+      "source_sections": [
+        "Public Health Dentistry"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-08-01",
+          "unit": "Epidemiology and study interpretation",
+          "text": "Explain and apply epidemiology and study interpretation within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-08-02",
+          "unit": "Oral disease prevention programmes",
+          "text": "Explain and apply oral disease prevention programmes within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-08-03",
+          "unit": "Oral health promotion and cessation",
+          "text": "Explain and apply oral health promotion and cessation within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-08-04",
+          "unit": "Survey methods and indices",
+          "text": "Explain and apply survey methods and indices within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-08-05",
+          "unit": "Biostatistics and evidence appraisal",
+          "text": "Explain and apply biostatistics and evidence appraisal within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-08-06",
+          "unit": "Health equity and community planning",
+          "text": "Explain and apply health equity and community planning within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "oral-pathology",
+      "name": "Oral Pathology",
+      "source_sections": [
+        "Oral Pathology & Oral Microbiology",
+        "Forensic Odontology"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-09-01",
+          "unit": "Tooth and oral tissue development",
+          "text": "Explain and apply tooth and oral tissue development within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-09-02",
+          "unit": "Cell injury and inflammation",
+          "text": "Explain and apply cell injury and inflammation within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-09-03",
+          "unit": "Odontogenic lesions and cysts",
+          "text": "Explain and apply odontogenic lesions and cysts within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-09-04",
+          "unit": "Oral potentially malignant disease",
+          "text": "Explain and apply oral potentially malignant disease within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-09-05",
+          "unit": "Neoplasia and diagnostic specimens",
+          "text": "Explain and apply neoplasia and diagnostic specimens within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-09-06",
+          "unit": "Microscopy and clinicopathologic correlation",
+          "text": "Explain and apply microscopy and clinicopathologic correlation within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "general-medicine-surgery",
+      "name": "General Medicine & Surgery",
+      "source_sections": [
+        "General Medicine",
+        "General Surgery"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-10-01",
+          "unit": "Medical history and risk assessment",
+          "text": "Explain and apply medical history and risk assessment within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-10-02",
+          "unit": "Cardiovascular and respiratory disease",
+          "text": "Explain and apply cardiovascular and respiratory disease within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-10-03",
+          "unit": "Endocrine and haematologic disease",
+          "text": "Explain and apply endocrine and haematologic disease within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-10-04",
+          "unit": "Neurologic and infectious disease",
+          "text": "Explain and apply neurologic and infectious disease within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-10-05",
+          "unit": "General surgical and wound principles",
+          "text": "Explain and apply general surgical and wound principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-10-06",
+          "unit": "Perioperative assessment and referral",
+          "text": "Explain and apply perioperative assessment and referral within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "pharmacology-dental-materials",
+      "name": "Pharmacology & Dental Materials",
+      "source_sections": [
+        "General and Dental Pharmacology and Therapeutics",
+        "Dental Materials"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-11-01",
+          "unit": "Pharmacology and prescribing principles",
+          "text": "Explain and apply pharmacology and prescribing principles within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-11-02",
+          "unit": "Adverse effects and interactions",
+          "text": "Explain and apply adverse effects and interactions within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-11-03",
+          "unit": "Analgesic and antimicrobial stewardship",
+          "text": "Explain and apply analgesic and antimicrobial stewardship within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-11-04",
+          "unit": "Anaesthetic pharmacology and safety",
+          "text": "Explain and apply anaesthetic pharmacology and safety within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-11-05",
+          "unit": "Dental material properties and selection",
+          "text": "Explain and apply dental material properties and selection within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-11-06",
+          "unit": "Biocompatibility and material handling",
+          "text": "Explain and apply biocompatibility and material handling within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "basic-medical-sciences",
+      "name": "Basic Medical Sciences",
+      "source_sections": [
+        "Human Anatomy, Embryology, Histology & Medical Genetics",
+        "Human Physiology & Biochemistry",
+        "Dental Anatomy, Embryology and Oral Histology",
+        "General Pathology & Microbiology"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-12-01",
+          "unit": "Head and neck anatomy",
+          "text": "Explain and apply head and neck anatomy within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-12-02",
+          "unit": "Embryology histology and genetics",
+          "text": "Explain and apply embryology histology and genetics within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-12-03",
+          "unit": "Physiology and homeostasis",
+          "text": "Explain and apply physiology and homeostasis within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-12-04",
+          "unit": "Biochemistry nutrition and metabolism",
+          "text": "Explain and apply biochemistry nutrition and metabolism within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-12-05",
+          "unit": "General pathology immunology microbiology",
+          "text": "Explain and apply general pathology immunology microbiology within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-12-06",
+          "unit": "Dental anatomy and oral biology",
+          "text": "Explain and apply dental anatomy and oral biology within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "medical-emergencies",
+      "name": "Medical Emergencies",
+      "source_sections": [
+        "General Medicine",
+        "Oral & Maxillofacial Surgery"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-13-01",
+          "unit": "Emergency recognition and preparedness",
+          "text": "Explain and apply emergency recognition and preparedness within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-13-02",
+          "unit": "Structured assessment and escalation",
+          "text": "Explain and apply structured assessment and escalation within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-13-03",
+          "unit": "Syncope and altered consciousness",
+          "text": "Explain and apply syncope and altered consciousness within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-13-04",
+          "unit": "Airway and allergic emergencies",
+          "text": "Explain and apply airway and allergic emergencies within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-13-05",
+          "unit": "Cardiovascular and metabolic emergencies",
+          "text": "Explain and apply cardiovascular and metabolic emergencies within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-13-06",
+          "unit": "Team communication and post-event review",
+          "text": "Explain and apply team communication and post-event review within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "infection-control-ethics",
+      "name": "Infection Control & Ethics",
+      "source_sections": [
+        "Ethics",
+        "General Pathology & Microbiology"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-14-01",
+          "unit": "Standard precautions and risk assessment",
+          "text": "Explain and apply standard precautions and risk assessment within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-14-02",
+          "unit": "Sterilisation and instrument workflow",
+          "text": "Explain and apply sterilisation and instrument workflow within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-14-03",
+          "unit": "Exposure prevention and response",
+          "text": "Explain and apply exposure prevention and response within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-14-04",
+          "unit": "Waste segregation and safe handling",
+          "text": "Explain and apply waste segregation and safe handling within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-14-05",
+          "unit": "Consent confidentiality and ethics",
+          "text": "Explain and apply consent confidentiality and ethics within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-14-06",
+          "unit": "Records professional boundaries and accountability",
+          "text": "Explain and apply records professional boundaries and accountability within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    },
+    {
+      "slug": "govt-healthcare-administration",
+      "name": "Government Healthcare & Administration",
+      "source_sections": [
+        "Public Health Dentistry",
+        "Ethics"
+      ],
+      "source_reconciliation": "PENDING",
+      "outcomes": [
+        {
+          "id": "BDS-15-01",
+          "unit": "Indian public healthcare structure",
+          "text": "Explain and apply indian public healthcare structure within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-15-02",
+          "unit": "Public oral health programme appraisal",
+          "text": "Explain and apply public oral health programme appraisal within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-15-03",
+          "unit": "Government service responsibilities",
+          "text": "Explain and apply government service responsibilities within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-15-04",
+          "unit": "Referral and resource stewardship",
+          "text": "Explain and apply referral and resource stewardship within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-15-05",
+          "unit": "Verified recruitment and service notices",
+          "text": "Explain and apply verified recruitment and service notices within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        },
+        {
+          "id": "BDS-15-06",
+          "unit": "Ethical administration and audit",
+          "text": "Explain and apply ethical administration and audit within supervised dental learning.",
+          "status": "candidate",
+          "reviewed_by": null,
+          "source_locator": null,
+          "lesson_ids": [],
+          "question_ids": [],
+          "case_ids": [],
+          "illustration_ids": [],
+          "quest_ids": []
+        }
+      ]
+    }
+  ],
+  "unresolved_scope": [
+    "Fine-grained topic/outcome decomposition for every historical syllabus section",
+    "Full current amendment/regulatory reconciliation",
+    "Primary current clinical guideline/textbook sections per factual claim",
+    "Foundational and cross-cutting topics must not disappear inside broad application groups",
+    "Government administration/emergency groupings are product groupings, not separate official UPSC subjects"
+  ]
+}

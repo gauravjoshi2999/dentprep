@@ -2,6 +2,10 @@
 
 SOURCE: Q&A educational protocol, PDF physical pages 20–21. None is a clinical approval by this assistant. Software checks and academic validation remain separate.
 
+All 20 checks now have a repository release contract in `content/quality-policy.json` and required CI/production commands `npm run test:content` / `npm run check:content`. Each signed package must record every check and justified relevance; mandatory checks cannot be waived. This is enforcement software, **not** academic PASS. No real qualified reviewer/content package is supplied. All clinical approvals below remain BLOCKED. See `ops/MEDICAL_CONTENT_RELEASE.md`.
+
+Issue #27 adapts E19 to a consenting single learner's usability, comprehension, fresh retrieval and delayed retention; the former multi-student product/cohort assumption is superseded. No clinical competence or learning-validity claim follows from XP or software tests.
+
 ## E01
 
 - Requirement: Coverage: every essential subject/unit/topic maps to an outcome and reviewer; no unmapped mandatory area.

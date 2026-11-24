@@ -1,0 +1,1343 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-11-24T00:56:39.158366+00:00",
+  "scope": "Draft metadata inventory; not scientific verification or approved teaching",
+  "enabled_guards": 3,
+  "published_clinical": 0,
+  "lesson_image_markup_count": 0,
+  "illustration_audit": "No lesson Markdown/HTML image markup found; asset/diagram completeness is NOT certified.",
+  "items": [
+    {
+      "backend_fingerprint": "a41a5a7fb07491455ef5bb6d6266c7bd6b730e64f03e0e908a05d272406a0843",
+      "id": "c7c5b14c-80ac-4d72-a1ae-880838e084b2",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-medicine-radiology",
+      "title": "Recognising Oral Potentially Malignant Disorders — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "ab237b19a2d67e89996e844a9c7856e240efcd60d6dc42b11f1d6774ec234667",
+      "id": "c652faee-e19a-4067-ba89-a2aed0d8f0d3",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-medicine-radiology",
+      "title": "Recognising Oral Potentially Malignant Disorders",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "a09487af359124654884741d70728c128d6482146ccb1f7c668ce3a791a6ba87",
+      "id": "1043dd84-3415-40b6-a114-73d6b412b5ef",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-medicine-radiology",
+      "title": "Areca nut use is an important risk factor for which disorder?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "c14309a9c632af5aca17771d63a1fa94a1315dcc1f35863b426cd389d5550503",
+      "id": "73d02d08-f264-482d-8a75-fc714f521e04",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-medicine-radiology",
+      "title": "Which finding warrants timely referral?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "2919a43438e557a019ececb3b549bcd856f16955fc75027bc3ae6c171373e243",
+      "id": "9ca96a5b-6cc9-43e1-b7fe-9346dcf101e2",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-maxillofacial-surgery",
+      "title": "Safe Exodontia Assessment — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "2ae20e042d5a77303de393a4373d2e0915e9e84e69b0224c1700665b86986c45",
+      "id": "cd7a294f-a0ae-48bb-8fc0-be2ba24afdbe",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-maxillofacial-surgery",
+      "title": "Safe Exodontia Assessment",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "1065c3a5654109132e9429db17acf7ed223311ef1597e391fe5f0a2ede03622b",
+      "id": "6fac07ab-bc4a-463c-8d9d-7e262b9165b1",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-maxillofacial-surgery",
+      "title": "Before an extraction, what must be verified?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "78a221f0f1bf841860e13a5556a4a18711484b47da395089955388b7521279ff",
+      "id": "dc25b46f-5eea-419c-a51b-53009d7cfd17",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-maxillofacial-surgery",
+      "title": "A patient reports persistent bleeding after extraction. What is the most appropriate first priority?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "b42eefd4b862e048d6c5efc611e3bfc35640539306e845da6e721aa27a58ed46",
+      "id": "1505c12f-c622-42b5-917c-1f1d9a554583",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "conservative-endodontics",
+      "title": "Pulpal Diagnosis Essentials — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "33f9820be9610fb11541252c3e4e26dec4414d9756b437fdbd95608b6a2c494d",
+      "id": "1b4055b1-9eac-427c-88e7-d4212dadb955",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "conservative-endodontics",
+      "title": "Pulpal Diagnosis Essentials",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "1f0aaf9fafe3e4d96fc3c4ac4166d5cd806726245da194a0d62fb7e28d4c93c1",
+      "id": "a0eb7766-c761-424b-b5de-7702ab951e00",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "conservative-endodontics",
+      "title": "Which information is essential when evaluating suspected endodontic disease?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "f78d3751989f4207af74cd971b711dcf0343036a788077945b334a1af1738b56",
+      "id": "fa8c43cd-411b-45d3-a691-9573e64a8364",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "conservative-endodontics",
+      "title": "What does an electric pulp test primarily assess?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "6ef3a8a3fc277d0109b4e28e0306691243c899d37b197b3876034de5c733121d",
+      "id": "5bee0c8d-5383-45e7-a1da-96a04754b62d",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "periodontology",
+      "title": "Periodontal Screening and Diagnosis — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "ce1fca9bcbbfcb6c593e51a8eb14b62d5fb26a1e89562a0b1cb1e71c9b7998ca",
+      "id": "6ee5132a-b2a4-42cb-9699-4ef99dedc900",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "periodontology",
+      "title": "Periodontal Screening and Diagnosis",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "98d49a789c8c1eac5a1de2030d498bfa50b02b2071d2dfb3409617cca98ccbf0",
+      "id": "a1bd47c9-101d-41f0-baf2-ca4fb53df084",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "periodontology",
+      "title": "Which is a modifiable periodontal risk factor?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "1135ce2acaa7bd8d9290725db4aaf223faf84463f32a747a66ae7630ef3186a8",
+      "id": "e1063e94-0ffa-48dc-af81-bd189ed9e925",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "periodontology",
+      "title": "What does bleeding on probing generally indicate?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "50c4c296c2d280b7393bc142e231d233a69b5cde30dc7d47ff2a8e625fd4922b",
+      "id": "0b89dadf-70e1-46a5-9b2b-77aedbe52345",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "prosthodontics",
+      "title": "Edentulous Patient Assessment — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "736e0dd91866325c2612883f6830d4798a944f3cb7e57171c84368daa856d1f8",
+      "id": "be50eb90-d8ca-4f21-b12c-7936aa734f3c",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "prosthodontics",
+      "title": "Edentulous Patient Assessment",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "9b1db7fe021f6eac9b7ec4ec27ca303b756bee17015266817054b709944b48d8",
+      "id": "6a456ec7-1a44-4a63-bcb4-c6a3f5706123",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "prosthodontics",
+      "title": "Why is a review appointment important after denture delivery?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "56dac8e852fcfb4ef637efdaf90f3bb6d9f24d8999bc0f67869a8d9cb93a4109",
+      "id": "e2871ea4-a2ef-4162-bf16-799e005bf98b",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "prosthodontics",
+      "title": "Which factor can affect conventional complete denture retention?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "bb1a691994920f45d8125abc7b6305da0f890c40e26b10e5b88149fe9b4fb2fa",
+      "id": "e990c7b9-118d-4f41-a8b0-2fbe1e553272",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "orthodontics",
+      "title": "Malocclusion Screening — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "927edab38025c68435a080fd58ad8f662d273f2bcdd72aea79b41ae91b469e04",
+      "id": "6c85febe-3522-4fe9-9bd5-968479c91c00",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "orthodontics",
+      "title": "Malocclusion Screening",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "7813e70d2c11256fe7ddde7e5ec4db7f4005e53a7b212f32ecf9fc29fb023c54",
+      "id": "b7f4119e-3276-4234-95bb-495ea35827ff",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "orthodontics",
+      "title": "Angle classification primarily describes which relationship?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "5f3f231421ccd6359638beacf437e16024d46b6c4ac361a55d3e3dacdd3a538e",
+      "id": "d9d4cb8d-9775-4697-8592-4a57f3d066bc",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "orthodontics",
+      "title": "Which condition may warrant early orthodontic assessment?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "b9a89df3e04e5f25e7d752a1bb34b209d97884c0d6acd1c9cb96742708bc5aef",
+      "id": "6912cc01-7927-4efa-ad37-66342a7dd4ee",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pediatric-dentistry",
+      "title": "Child-Centred Dental Assessment — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "ba32a99619d6bb0c44afc10dbd1de0b30cdec00aa52a33fac250d05df2848569",
+      "id": "72efcbdd-1de3-4f3c-95fc-b4bb3c5e1b78",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pediatric-dentistry",
+      "title": "Child-Centred Dental Assessment",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "4d686bd0876ba1342f25fd1ddb6c2044d1177a5d6475529da52a29e0b306598b",
+      "id": "298d6ed2-6963-465f-906e-818424be5a6e",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pediatric-dentistry",
+      "title": "Which communication style is most suitable for a young child?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "134b6a2592a10ee82382a5bf4d7a10b3f7f427105530be15386e1eb41bc8012a",
+      "id": "ac8d030b-3d6f-43ba-9b5b-fd04e83e8884",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pediatric-dentistry",
+      "title": "Should an avulsed primary tooth routinely be replanted?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "f0bf6f1c4ee456f230dd80680b96e07045fe821042bcb91db53f7e95350c96b7",
+      "id": "09cabbfb-ed74-4df4-828f-052099f2d572",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "public-health-dentistry",
+      "title": "Oral Health Indices and Prevention — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "7cdb331aa52ac3c36fc621c6201a70d63f70444b40f4d7f7f99a56f9aa2ef16f",
+      "id": "ca56c49a-8192-429f-b752-61d5515c20b1",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "public-health-dentistry",
+      "title": "Oral Health Indices and Prevention",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "fe9b0374527dbb31eb8a5a97ed1f29e747f13c718ed5f9ffa742ebe7b1d72321",
+      "id": "2c898e4e-a6e0-4abe-8f96-3040bb974ac5",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "public-health-dentistry",
+      "title": "What does the F in DMFT represent?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "b02138b6c0b8ab0a5d2b6f4106eebd043b4693e5c8309fa5793718a8bed6a323",
+      "id": "f5483650-cd64-47f8-95cb-321c592ca26f",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "public-health-dentistry",
+      "title": "What is a key requirement for population screening?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "e08c99fa485cacf53084ab8a5c81ca2f8facce8ad61bede910f4298ae24f2c7b",
+      "id": "4703689f-c2ff-467c-a34b-5fe93ca65a4b",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-pathology",
+      "title": "Oral Biopsy and Histopathology Fundamentals — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "d174f1cdc7eb955d92b6da6373f67c65a1ae12a353aac5edb46b6f412a720836",
+      "id": "790ae706-b718-480c-bfac-180ceba76db2",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-pathology",
+      "title": "Oral Biopsy and Histopathology Fundamentals",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "f08ba86734036ed4738422fbaa0cb6c1495b6452e7681d3ba549ee0fb02d8f99",
+      "id": "be0cd50a-d9d6-48e7-a539-0f82e2d40841",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-pathology",
+      "title": "Which investigation can establish histopathological features of a lesion?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "16dfe75a126508a7a817572441609d097e9841293353949aef07f828111c4a35",
+      "id": "cdf685f7-8ffd-48ee-b346-c170d7aa153a",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "oral-pathology",
+      "title": "Why provide clinical history with a biopsy specimen?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "75989bc165aac50bac23c3148a9f0c2c52337d3751b81db812fbc631191df451",
+      "id": "7316c979-d941-4260-9daf-256054b924f0",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "general-medicine-surgery",
+      "title": "Medical Risk Assessment in Dentistry — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "0cd4385a36067d5eadd4a200a752ad16442b093eced5e44dc2241fb873c58f29",
+      "id": "6b9b17e4-6643-4044-9fdf-5cfce92158dc",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "general-medicine-surgery",
+      "title": "Medical Risk Assessment in Dentistry",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "b7deb19be84d16f4d4f44ae17d41bc5484e9c5f0e9ce3aadaf6522a5be479fe9",
+      "id": "4e29eea1-4575-4fa8-a977-9c7e452ffcfe",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "general-medicine-surgery",
+      "title": "Which item belongs in a preoperative medical review?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "4d623ba524905bf5ee4ffe23492d2e8fbfa72c9bde02e4bc29a0b48a950a6935",
+      "id": "5f4f1b5b-a152-4894-ad0f-cea76914be61",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "general-medicine-surgery",
+      "title": "When a patient has symptoms suggesting acute medical instability, the priority is to:",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "429c4dda4838f7dd8ed271baa9975e6067631ada00096394354b9f304cb08a3b",
+      "id": "bbd93f0c-743f-42d8-893b-7cf59c3392bd",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pharmacology-dental-materials",
+      "title": "Rational Dental Prescribing — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "1ba73d6f7a575fb8a86f5c9c512e91b43e003e927de312e1eceaafc9068dbdfe",
+      "id": "cad0a3cb-a3f5-4194-b5d6-10471ae5777c",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pharmacology-dental-materials",
+      "title": "Rational Dental Prescribing",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "5f46e94bc1816875398f417fd9eb7d67f0bb2f3d696509e3d95e296a44fc374d",
+      "id": "5a873af7-023e-4127-9c05-743a9ae19475",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pharmacology-dental-materials",
+      "title": "Why review a patient's medication history before dental prescribing?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "c60765988d9bab3cda1de53f76ce9f193aa54c396f52930a310ef7e5c319fc32",
+      "id": "8339fc42-a839-48ca-b094-3996fc0e4772",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "pharmacology-dental-materials",
+      "title": "What is the best principle of antibiotic stewardship?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "fe16d87d3e2969c843dc28110fec7e45ef82eb0909ef037763efa5f3e3321b60",
+      "id": "bda81b22-58f9-4a26-8ed1-b5a304d89ce8",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "basic-medical-sciences",
+      "title": "Head and Neck Applied Anatomy — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "2d520a1a082f0d6f47beb5d228d540e46e7268444eee881cc1b6955eea8b4907",
+      "id": "ad7caadb-f4ab-4503-98fb-0d54b155a0f5",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "basic-medical-sciences",
+      "title": "Head and Neck Applied Anatomy",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "00ba4f76ff6f1d7a725ddea1e762013b685e727b64b3626883bbd9fd51099ba5",
+      "id": "7f8e1655-9f98-460b-9dc5-92d3d37d8adf",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "basic-medical-sciences",
+      "title": "Which branch of the trigeminal nerve contains the inferior alveolar nerve?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "ddb90c9266e56786bece1f095d8e8bcd8301a7231318cde0e9ade7713ab66073",
+      "id": "7ff48f3c-d6c2-4865-ad40-8cf9d77fd530",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "basic-medical-sciences",
+      "title": "Which cranial nerve carries the main sensory supply from the face?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "5b5d45c74243c7c0ecfe01abf829b63e23bab1c07598aaf09b67e03d24e44f7c",
+      "id": "66dc1b47-1f14-45ee-b0ca-b87b8df5c9c6",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "medical-emergencies",
+      "title": "Recognising Medical Emergencies in the Dental Chair — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "d3fd0342a6a696336f81dea0caad7d0fbb26b1e6b23c604565bfc144c79ddbd8",
+      "id": "669efd3f-b982-476b-bfb0-6787afb3cb31",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "medical-emergencies",
+      "title": "Recognising Medical Emergencies in the Dental Chair",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "2edfae3a5ee4aef308c6960680f9bd6e8eb1b85a90c4d9c5f292aeb5acbec8d9",
+      "id": "6033d4a5-7de5-4fdb-b05b-aa36c6328ccf",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "medical-emergencies",
+      "title": "Which feature is concerning for a potentially severe allergic reaction?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "8dd4b3c189418c4fa5c8f73114fdcf783f801f7b1d6593124f6aed663ce44b8e",
+      "id": "c6317eeb-c9e9-4541-b832-c0872088ae96",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "medical-emergencies",
+      "title": "The first response to sudden unresponsiveness during treatment should include:",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "6d8c9ff09d8f48f783ac7f68f93c51c206d83be96665fe21c9979b21e21798b0",
+      "id": "0c9efca7-4666-46e6-8aad-8e9c5b942c36",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "infection-control-ethics",
+      "title": "Standard Precautions and Informed Consent — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "32d173565fddc4928fb3077d3a0b9f6e83c77f3cd9b28b481f3c120c663e6ac8",
+      "id": "57ae7639-b85d-4c75-8d33-01bd553487e3",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "infection-control-ethics",
+      "title": "Standard Precautions and Informed Consent",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "4e66204fe0e2a0b65cdb1ffd7c537019cd1195589adae7bd7171b9678c7817f5",
+      "id": "097f6279-27db-40e0-b5b9-d116e0a0c41e",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "infection-control-ethics",
+      "title": "Which element is fundamental to valid informed consent?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "ecb7251bf0ea460469d38c119af0cf497dc262183cc94dde5925d761e823cc38",
+      "id": "83b9532f-0355-4248-b9a1-c7078a10d264",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "infection-control-ethics",
+      "title": "Standard precautions apply to:",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "841ba5daf3d7eb0eb106cfe6ccb8573f268f6a694ab6e8872f7d643d73b8541f",
+      "id": "181e4a4d-fa60-4ad5-88b9-9badf45e0814",
+      "kind": "case",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "govt-healthcare-administration",
+      "title": "Public Dental Service and Interview Readiness — Clinical Scenario",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "2e8db8fc7a8ee427cce2bd0fa41180205f9e9b02ba661241ae5809f29d339027",
+      "id": "39d34971-cebc-4066-8226-57311e809718",
+      "kind": "lesson",
+      "legacy_references": [],
+      "options": null,
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "govt-healthcare-administration",
+      "title": "Public Dental Service and Interview Readiness",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "not_applicable"
+    },
+    {
+      "backend_fingerprint": "6222b0e5ff7a5efc089ebf70254f300b2f5325add369387d396d833878181a1c",
+      "id": "10f4dfcf-3f2f-4581-82c7-90d2990e454a",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "govt-healthcare-administration",
+      "title": "What should you do if asked an interview question you cannot answer confidently?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    },
+    {
+      "backend_fingerprint": "51f590babf9dcf398114d2ded49dc4618be4413b7b33935ab3b6e4431e180c94",
+      "id": "42babc92-cba9-45d3-846c-8296f80fcb5a",
+      "kind": "question",
+      "legacy_references": "Original AI-assisted DentPrep practice question; pending independent dental review",
+      "options": {
+        "correct_count": 1,
+        "count": 4,
+        "distinct_bodies": 4
+      },
+      "source_rows": 0,
+      "status": "draft",
+      "subject": "govt-healthcare-administration",
+      "title": "Which source is authoritative for official UPSC recruitment changes?",
+      "decision": "BLOCKED",
+      "verified_source_ids": [],
+      "qualified_approval": null,
+      "blockers": [
+        "No per-claim authoritative source verification",
+        "No independently verified qualified dental approval",
+        "No 20-gate educational acceptance"
+      ],
+      "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
+    }
+  ],
+  "static_illustration_audit": {
+    "id": "legacy-tooth-cross-section",
+    "locations": [
+      "src/components/app/brand.tsx",
+      "src/components/app/app-hero.tsx",
+      "src/routes/index.tsx"
+    ],
+    "decision": "WITHDRAW_FROM_LEARNER_UI",
+    "sources": [],
+    "qualified_approval": null,
+    "reason": "Informative labelled anatomical SVG had no source/label/expert review evidence; removed in favor of existing aria-hidden decorative logo. Original source remains in git history."
+  }
+}

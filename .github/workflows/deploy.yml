@@ -23,6 +23,8 @@ jobs:
       VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
@@ -45,6 +47,10 @@ jobs:
           test -n "$CF_ACCOUNT" || { echo 'Add CLOUDFLARE_ACCOUNT_ID in the production environment secrets.'; exit 1; }
       - run: npm ci --no-audit --no-fund
       - run: npm run check:security
+      - name: Enforce medical content package gates
+        run: |
+          npm run test:content
+          npm run check:content
       - run: npm run typecheck
       - run: npm test
       - run: npm run test:release

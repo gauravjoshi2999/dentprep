@@ -97,4 +97,17 @@ describe("renewable study cycles", () => {
       ),
     ).toBe(false);
   });
+
+  it("carries a genuine source-study revision without requiring approved MCQs, and avoids repeating its fresh copy", () => {
+    const subject = { id: "s", name: "Oral & Maxillofacial Surgery",
+      slug: "oral-maxillofacial-surgery", lessons: [] };
+    const sourceTitle = "Source study: Oral & Maxillofacial Surgery — Preoperative assessment";
+    const pending = task("source-1", { task_type: "revision", subject_id: "s", lesson_id: null,
+      title: sourceTitle, minutes: 20 });
+    const result = generateCycle({ ...base, subjects: [subject], dailyHours: 1 }, [pending]);
+    expect(result.carried).toBe(1);
+    expect(result.tasks.filter(t => t.title.replace(/^(Continue: )+/, "") === sourceTitle)).toHaveLength(1);
+    expect(result.tasks.some(t => t.task_type === "lesson" || t.task_type === "practice" || t.task_type === "case")).toBe(false);
+  });
+
 });

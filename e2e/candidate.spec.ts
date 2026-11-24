@@ -695,6 +695,8 @@ test("study focus leads to an honest primary reading path and keeps tools in Pro
   await expect(page).toHaveURL(/\/library#primary-reading$/);
   await expect(page.getByRole("heading", { name: "Oral Cancer Guideline — 2026 chairside guide" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Dental Patients Taking Anticoagulants — professional guide" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Endodontic Clinical Resources — guidelines and terminology" })).toBeVisible();
+  await expect(page.locator("#source-reading-aae-endodontic-resources").getByRole("link", { name: "Open official guidance" })).toHaveAttribute("href", "https://www.aae.org/specialty/clinical-resources/guidelines-position-statements/");
   await expect(page.getByRole("heading", { name: "Infection Prevention Practices in Dental Settings" })).toBeVisible();
   const cdcCard = page.locator("#source-reading-cdc-dental-infection-prevention");
   await expect(cdcCard.getByRole("link", { name: "Open official guidance" })).toHaveAttribute(

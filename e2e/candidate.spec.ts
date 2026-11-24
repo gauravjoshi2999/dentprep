@@ -334,6 +334,9 @@ test("sign in opens a real empty dashboard and logout closes private views", asy
   await expect(page.getByRole("heading", { name: "Welcome, QA" })).toBeVisible();
   await expect(page.getByText("Practice accuracy", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
+  // Wait for the asynchronous signOut callback and its redirect before opening a private route.
+  // Otherwise the in-flight root navigation can race with the test navigation on slow mobile CI.
+  await expect(page).toHaveURL(/\/$/);
   await page.goto("/dashboard");
   await expect(page.getByText("Sign in to your study space")).toBeVisible();
   await expect(page.getByText("Welcome, QA")).toHaveCount(0);

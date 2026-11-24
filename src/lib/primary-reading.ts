@@ -138,3 +138,23 @@ export const SEVENTH_DENTAL_READING = {
     "Discuss clinical interpretation, dosing and India-specific practice context with qualified pediatric dental faculty.",
   ],
 } as const;
+
+
+/** BOS guidance index is UK professional source reading, not reviewed DentPrep clinical teaching. */
+export const EIGHTH_DENTAL_READING = {
+  id: "bos-orthodontic-guidelines",
+  subject: "Orthodontics",
+  subjectSlug: "orthodontics",
+  title: "Advice Sheets and Orthodontic Clinical Guidelines",
+  publisher: "British Orthodontic Society (BOS)",
+  edition: "Living guidance index; document-specific revision dates vary (2025–26 and earlier)",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://bos.org.uk/professionals-members/advice-sheets-and-guidelines/",
+  guideUrl: "https://bos.org.uk/professionals-members/advice-sheets-and-guidelines/",
+  readingSteps: [
+    "Confirm the British Orthodontic Society as publisher and note each document's revision date.",
+    "Locate the index entries on orthodontic records, consent and retention.",
+    "Explain why this UK professional guidance does not define an official Indian exam syllabus.",
+    "Write any patient-management question for a qualified local orthodontic educator to review.",
+  ],
+} as const;

@@ -353,6 +353,8 @@ For every execution append timestamp, SHA, fixture/account label (no credentials
 - Missing: independently verified author/reviewer credentials, versioned source and professional approval workflow; no clinical approval or publishing PASS is asserted.
 - Actual: 15 / 30 / 15 drafts, zero clinical publications, one auth user, QA user absent. Production 45243391806 SUCCESS.
 
+- Partial P1-04 technical checkpoint: admin-only preparation records, immutable versions, stale lesson/option/case detection and publication-lock refusal passed rollback-only native tests. No clinical approval/reviewer is certified; full workflow remains BLOCKED. CI/live pending.
+
 ## T43 — RLS private data
 
 - Priority: P0; status: **NOT RUN**.

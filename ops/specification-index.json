@@ -98,9 +98,10 @@
       "page": 7,
       "question": "Kaise confirm hoga ki saare essential topics cover hue?",
       "required_behavior": "Blueprint ke 15 subject groups se subject->unit->topic->learning outcome coverage matrix banao. Har essential outcome ko reviewed lesson, retrieval question, case ya oral prompt se map karo; missing cells gap report mein dikhao.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
-      "acceptance": "T11-T16,T42"
+      "acceptance": "T11-T16,T42",
+      "implementation_note": "P1-04 private per-item unit/topic/outcome and source edition/section preparation metadata, immutable history and stale-content/options checks implemented; native rollback QA passes, CI/live pending. Not full curriculum coverage/source verification/qualified review/approval."
     },
     {
       "id": "Q012",
@@ -116,9 +117,10 @@
       "page": 7,
       "question": "Kya outdated medical information student ko sikh sakta hai?",
       "required_behavior": "Har clinical item ke source version, review date aur next-review due date record ho. Guideline change par flagged content temporarily pause ho aur approved correction ke baad publish ho.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
-      "acceptance": "T11-T16,T42"
+      "acceptance": "T11-T16,T42",
+      "implementation_note": "P1-04 private per-item unit/topic/outcome and source edition/section preparation metadata, immutable history and stale-content/options checks implemented; native rollback QA passes, CI/live pending. Not full curriculum coverage/source verification/qualified review/approval."
     },
     {
       "id": "Q014",
@@ -134,9 +136,10 @@
       "page": 7,
       "question": "Kya primary sources aur textbooks ke citations honge?",
       "required_behavior": "Haan. Each claim/lesson ke source title, edition/year, stable URL/identifier, relevant section, reviewed_on aur reviewer fields. Unsupported assertions ko source-needed status mile.",
-      "status": "Missing",
+      "status": "Partial",
       "code_area": "/library, /lesson; subjects, lessons, content_sources, content_reviews",
-      "acceptance": "T11-T16,T42"
+      "acceptance": "T11-T16,T42",
+      "implementation_note": "P1-04 private per-item unit/topic/outcome and source edition/section preparation metadata, immutable history and stale-content/options checks implemented; native rollback QA passes, CI/live pending. Not full curriculum coverage/source verification/qualified review/approval."
     },
     {
       "id": "Q016",

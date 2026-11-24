@@ -10,6 +10,8 @@ import { adminQuestionOptions, adminQuestions, adminSaveQuestion } from "@/lib/a
 import { RequireUser } from "@/components/app/study-shell";
 import { EmptyState, ErrorBlock, LoadingBlock, Notice, PageHeader } from "@/components/app/common";
 import { Button } from "@/components/ui/button";
+import { CurriculumEvidenceEditor } from "@/components/app/curriculum-evidence-editor";
+import type { CurriculumEntityType } from "@/lib/curriculum-evidence";
 
 export const Route = createFileRoute("/_study/admin")({
   component: () => (
@@ -26,6 +28,11 @@ export const Route = createFileRoute("/_study/admin")({
 });
 type Kind = "lessons" | "questions" | "clinical_cases";
 type Content = Tables<"lessons"> | Tables<"questions"> | Tables<"clinical_cases">;
+const evidenceType: Record<Kind, CurriculumEntityType> = {
+  lessons: "lesson",
+  questions: "question",
+  clinical_cases: "case",
+};
 function AdminGate() {
   const id = useUserId();
   const role = useQuery(isAdminQuery(id));
@@ -43,6 +50,7 @@ function Admin() {
   const qc = useQueryClient();
   const [kind, setKind] = useState<Kind>("lessons");
   const [selected, setSelected] = useState<Content | "new" | null>(null);
+  const [preparation, setPreparation] = useState<Content | null>(null);
   const content = useQuery({
     queryKey: ["admin-content", userId, kind],
     queryFn: async () => {
@@ -110,16 +118,25 @@ function Admin() {
         ).map(([id, label]) => (
           <Button
             key={id}
+            disabled={!!preparation}
             variant={kind === id ? "default" : "outline"}
             onClick={() => {
               setKind(id);
               setSelected(null);
+              setPreparation(null);
             }}
           >
             {label}
           </Button>
         ))}
-        <Button variant="soft" onClick={() => setSelected("new")}>
+        <Button
+          variant="soft"
+          disabled={!!preparation}
+          onClick={() => {
+            setPreparation(null);
+            setSelected("new");
+          }}
+        >
           Add draft
         </Button>
       </div>
@@ -134,6 +151,14 @@ function Admin() {
             setSelected(null);
             void qc.invalidateQueries();
           }}
+        />
+      )}
+      {preparation && (
+        <CurriculumEvidenceEditor
+          key={`${kind}-${preparation.id}`}
+          entityType={evidenceType[kind]}
+          entityId={preparation.id}
+          onClose={() => setPreparation(null)}
         />
       )}
       {content.isPending || subjects.isPending ? (
@@ -153,13 +178,30 @@ function Admin() {
                 </span>
                 <h2 className="font-bold">{"title" in row ? row.title : row.stem}</h2>
               </div>
-              <div className="flex shrink-0 gap-2">
-                <Button variant="outline" onClick={() => setSelected(row)}>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  disabled={!!preparation}
+                  onClick={() => {
+                    setPreparation(null);
+                    setSelected(row);
+                  }}
+                >
                   Edit draft
                 </Button>
                 <Button
+                  variant="outline"
+                  disabled={!!preparation}
+                  onClick={() => {
+                    setSelected(null);
+                    setPreparation(row);
+                  }}
+                >
+                  Curriculum &amp; sources
+                </Button>
+                <Button
                   variant="ghost"
-                  disabled={archive.isPending}
+                  disabled={archive.isPending || !!preparation}
                   onClick={() => archive.mutate(row)}
                 >
                   {row.status === "archived" ? "Restore as draft" : "Archive"}

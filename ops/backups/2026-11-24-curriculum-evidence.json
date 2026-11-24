@@ -1,0 +1,18 @@
+{
+  "classification": "Before-state metadata/counts only; no learner/content rows or credentials",
+  "admin_accounts": 0,
+  "captured_at": "2026-11-24T00:14:15.026443+00:00",
+  "case_drafts": 15,
+  "guards_enabled": 3,
+  "lesson_drafts": 15,
+  "plans": 1,
+  "public_tables": 22,
+  "published_clinical": 0,
+  "question_drafts": 30,
+  "registry_exists": false,
+  "rls_disabled": 0,
+  "sha256_supported": true,
+  "tasks": 30,
+  "users": 1,
+  "rollback": "Additive table/functions; leave history intact on application rollback. Publication guard is unchanged."
+}

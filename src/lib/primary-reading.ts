@@ -60,3 +60,22 @@ export const THIRD_DENTAL_READING = {
     "Mark any care-protocol questions for faculty review rather than treating this reading as clinical certification.",
   ],
 } as const;
+
+/** Official professional endodontic resource directory; not an approved DentPrep lesson. */
+export const FOURTH_DENTAL_READING = {
+  id: "aae-endodontic-resources",
+  subject: "Conservative Dentistry & Endodontics",
+  subjectSlug: "conservative-endodontics",
+  title: "Endodontic Clinical Resources — guidelines and terminology",
+  publisher: "American Association of Endodontists (AAE)",
+  edition: "Living clinical resource index; verify dates of individual linked guidance",
+  checkedOn: "24 November 2026",
+  publisherUrl: "https://www.aae.org/specialty/clinical-resources/",
+  guideUrl: "https://www.aae.org/specialty/clinical-resources/guidelines-position-statements/",
+  readingSteps: [
+    "Confirm which AAE guidance or terminology resource you opened and record its date.",
+    "Locate relevant sections on pulpal and periapical terminology or treatment-planning resources.",
+    "Separate definitions and examination learning from patient-specific diagnosis or treatment advice.",
+    "List uncertain claims for an appropriately qualified Indian dental faculty review.",
+  ],
+} as const;

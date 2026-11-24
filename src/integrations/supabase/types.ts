@@ -215,6 +215,60 @@ export type Database = {
           },
         ]
       }
+      clinical_feedback_submissions: {
+        Row: {
+          id: string
+          submitted_by: string
+          client_submission_id: string
+          source_id: string
+          subject_slug: string
+          source_title: string
+          source_edition: string
+          source_url: string
+          claimed_reviewer_name: string
+          claimed_qualification: string
+          claimed_registration: string
+          recommendation: "changes_requested" | "needs_more_evidence" | "suitable_for_formal_review"
+          feedback: string
+          status: "pending_verification"
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          submitted_by: string
+          client_submission_id: string
+          source_id: string
+          subject_slug: string
+          source_title: string
+          source_edition: string
+          source_url: string
+          claimed_reviewer_name: string
+          claimed_qualification: string
+          claimed_registration: string
+          recommendation: "changes_requested" | "needs_more_evidence" | "suitable_for_formal_review"
+          feedback: string
+          status?: "pending_verification"
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          submitted_by?: string
+          client_submission_id?: string
+          source_id?: string
+          subject_slug?: string
+          source_title?: string
+          source_edition?: string
+          source_url?: string
+          claimed_reviewer_name?: string
+          claimed_qualification?: string
+          claimed_registration?: string
+          recommendation?: "changes_requested" | "needs_more_evidence" | "suitable_for_formal_review"
+          feedback?: string
+          status?: "pending_verification"
+          created_at?: string
+        }
+        Relationships: []
+      }
       content_reviews: {
         Row: {
           created_at: string

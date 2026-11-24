@@ -94,7 +94,7 @@ export function PrimarySourceReading({ source = firstSource }: { source?: Source
           </p>
         )}
       </fieldset>
-      <ClinicalReviewRequest subject={source.subject} sourceTitle={source.title} sourceUrl={source.guideUrl} />
+      <ClinicalReviewRequest subject={source.subject} subjectSlug={source.subjectSlug} sourceId={source.id} sourceTitle={source.title} sourceEdition={source.edition} sourceUrl={source.guideUrl} />
       <p className="mt-5 text-sm">
         <Link to="/interviews" className="font-semibold text-teal">
           Next: practise explaining your learning in English →

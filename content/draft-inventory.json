@@ -1327,5 +1327,17 @@
       ],
       "explanation_review": "BLOCKED alongside question; structural best-answer count is not medical validity"
     }
-  ]
+  ],
+  "static_illustration_audit": {
+    "id": "legacy-tooth-cross-section",
+    "locations": [
+      "src/components/app/brand.tsx",
+      "src/components/app/app-hero.tsx",
+      "src/routes/index.tsx"
+    ],
+    "decision": "WITHDRAW_FROM_LEARNER_UI",
+    "sources": [],
+    "qualified_approval": null,
+    "reason": "Informative labelled anatomical SVG had no source/label/expert review evidence; removed in favor of existing aria-hidden decorative logo. Original source remains in git history."
+  }
 }

@@ -296,6 +296,17 @@ async function mockBackend(
   });
 }
 
+test("unreviewed anatomical teaching is absent from public branding", async ({ page }) => {
+  await mockBackend(page);
+  for (const route of ["/", "/library"]) {
+    await page.goto(route);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByRole("img", { name: /cross-section.*molar/i })).toHaveCount(0);
+    await expect(page.getByText("Enamel", { exact: true })).toHaveCount(0);
+    await expect(page.getByText("PDL & cementum", { exact: true })).toHaveCount(0);
+  }
+});
+
 test("public library and protected pages behave on mobile and desktop", async ({ page }) => {
   await mockBackend(page);
   await page.goto("/library");
